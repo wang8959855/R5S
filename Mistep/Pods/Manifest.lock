@@ -1,0 +1,48 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - BMKLocationKit (1.1.0)
+  - IQKeyboardManager (6.0.3)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
+  - Toast (4.0.0)
+
+DEPENDENCIES:
+  - AFNetworking
+  - BMKLocationKit
+  - IQKeyboardManager
+  - SDWebImage
+  - Toast
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - BMKLocationKit
+    - IQKeyboardManager
+    - SDWebImage
+    - Toast
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  BMKLocationKit: 1dae7e092b1f8bf808370bbbcbd23bc4445108d9
+  IQKeyboardManager: c390e612f4b98c8fd748016470138537dc163ead
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+
+PODFILE CHECKSUM: 4a78883459e8f45a40bde05ad1dd079c55e28a43
+
+COCOAPODS: 1.5.0

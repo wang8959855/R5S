@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "未知"; ObjectID = "BKI-QR-P3W"; */
+"BKI-QR-P3W.text" = "未知";
+
+/* Class = "UILabel"; text = "帮助"; ObjectID = "EK0-tr-jLX"; */
+"EK0-tr-jLX.text" = "帮助";
+
+/* Class = "UILabel"; text = "软件版本:"; ObjectID = "Z0h-Bg-OmA"; */
+"Z0h-Bg-OmA.text" = "软件版本:";
+
+/* Class = "UILabel"; text = "关于"; ObjectID = "cgb-cl-GOh"; */
+"cgb-cl-GOh.text" = "关于";
+
+/* Class = "UILabel"; text = "安全，便捷，稳定的一款智能运动手环APP。"; ObjectID = "ctP-ss-i5X"; */
+"ctP-ss-i5X.text" = "安全，便捷，稳定的一款智能运动手环APP。";
+
+/* Class = "UILabel"; text = "Mistep"; ObjectID = "sMm-Wb-1p0"; */
+"sMm-Wb-1p0.text" = "Mistep";
+
+/* Class = "UILabel"; text = "固件版本:"; ObjectID = "wbT-fr-Kz4"; */
+"wbT-fr-Kz4.text" = "固件版本:";
+
+/* Class = "UILabel"; text = ">"; ObjectID = "xmZ-Fl-YxA"; */
+"xmZ-Fl-YxA.text" = ">";

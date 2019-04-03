@@ -1,0 +1,13 @@
+platform :ios,'9.0'
+
+target 'Wukong' do
+pod 'IQKeyboardManager'
+#pod 'UMengAnalytics-NO-IDFA', '~>3.6.7'
+pod 'AFNetworking'
+#platform :ios,'9.0'
+#pod 'IQKeyboardManager'
+#pod 'SMTabbedSplitViewController'
+pod 'SDWebImage'
+pod 'BMKLocationKit'
+pod 'Toast'
+end

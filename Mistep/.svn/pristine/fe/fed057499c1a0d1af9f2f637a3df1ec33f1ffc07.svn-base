@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "HRV"; ObjectID = "13C-QC-nqd"; */
+"13C-QC-nqd.text" = "HRV";
+
+/* Class = "UILabel"; text = "扩张压:mmHg"; ObjectID = "5IE-Q0-740"; */
+"5IE-Q0-740.text" = "扩张压:mmHg";
+
+/* Class = "UILabel"; text = "0%"; ObjectID = "ADf-DG-fuR"; */
+"ADf-DG-fuR.text" = "0%";
+
+/* Class = "UILabel"; text = "收缩压:mmHg"; ObjectID = "G6i-49-92d"; */
+"G6i-49-92d.text" = "收缩压:mmHg";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "IQC-gg-3zQ"; */
+"IQC-gg-3zQ.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "IXv-Xb-VT0"; */
+"IXv-Xb-VT0.text" = "0";
+
+/* Class = "UILabel"; text = "%"; ObjectID = "KVJ-Vg-3sQ"; */
+"KVJ-Vg-3sQ.text" = "%";
+
+/* Class = "UILabel"; text = "正常"; ObjectID = "O1z-R5-5lP"; */
+"O1z-R5-5lP.text" = "正常";
+
+/* Class = "UILabel"; text = "0 Kcal"; ObjectID = "SxB-Re-SDe"; */
+"SxB-Re-SDe.text" = "0 Kcal";
+
+/* Class = "UIButton"; normalTitle = "<"; ObjectID = "WDF-5Y-Oeo"; */
+"WDF-5Y-Oeo.normalTitle" = "<";
+
+/* Class = "UILabel"; text = "SPO2"; ObjectID = "Z13-Fp-Ik1"; */
+"Z13-Fp-Ik1.text" = "SPO2";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "anx-yp-vbK"; */
+"anx-yp-vbK.text" = "0";
+
+/* Class = "UILabel"; text = "0.0"; ObjectID = "c28-fv-1OL"; */
+"c28-fv-1OL.text" = "0.0";
+
+/* Class = "UILabel"; text = "0h0'"; ObjectID = "dGL-nJ-h3A"; */
+"dGL-nJ-h3A.text" = "0h0'";
+
+/* Class = "UILabel"; text = "心率:次/分钟"; ObjectID = "diY-XB-Orb"; */
+"diY-XB-Orb.text" = "心率:次/分钟";
+
+/* Class = "UILabel"; text = "10.14  周三"; ObjectID = "kDX-Ju-Zfb"; */
+"kDX-Ju-Zfb.text" = "10.14  周三";
+
+/* Class = "UILabel"; text = "--  bpm"; ObjectID = "orQ-IU-kQy"; */
+"orQ-IU-kQy.text" = "--  bpm";
+
+/* Class = "UILabel"; text = "目标:10000步"; ObjectID = "sjZ-uq-RE1"; */
+"sjZ-uq-RE1.text" = "目标:10000步";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "tW8-0E-lcQ"; */
+"tW8-0E-lcQ.text" = "100";
+
+/* Class = "UIButton"; normalTitle = ">"; ObjectID = "tXH-49-dvE"; */
+"tXH-49-dvE.normalTitle" = ">";
+
+/* Class = "UIButton"; normalTitle = ">"; ObjectID = "uTr-CR-n7C"; */
+"uTr-CR-n7C.normalTitle" = ">";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "zg4-px-a9b"; */
+"zg4-px-a9b.text" = "0";

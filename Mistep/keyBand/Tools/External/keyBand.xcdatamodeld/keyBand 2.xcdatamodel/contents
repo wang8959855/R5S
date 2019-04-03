@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="DayTotal" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+    <entity name="DayDetail" representedClassName="DayDetail" syncable="YES">
+        <attribute name="awakeSleep" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="costsData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="dataDate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="deepSleep" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lightSleep" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pilaoData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="sleepData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="stepData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="userCount" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="HeartRate" representedClassName="HeartRate" syncable="YES">
+        <attribute name="dataDate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="heartData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="userCount" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DayDetail" positionX="-54" positionY="-9" width="128" height="180"/>
+        <element name="HeartRate" positionX="-54" positionY="36" width="128" height="90"/>
+    </elements>
+</model>

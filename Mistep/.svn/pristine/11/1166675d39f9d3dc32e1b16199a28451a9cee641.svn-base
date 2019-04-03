@@ -1,0 +1,391 @@
+//
+//  keyBandHeader.pch
+//  keyBand
+//
+//  Created by 迈诺科技 on 15/10/30.
+//  Copyright © 2015年 huichenghe. All rights reserved.
+//
+
+#ifndef keyBandHeader_pch
+#define keyBandHeader_pch
+
+#import "PZBaseViewController.h"
+#import "GMHeader.h"
+//#import "YRSideViewController.h"
+#import "HCHCommonManager.h"
+#import "MBProgressHUD.h"
+#import "TimeCallManager.h"
+#import "SQLdataManger.h"
+#import "UIView+SDAutoLayout.h"
+#import "NSString+MD5.h"
+#import "AFAppDotNetAPIClient.h"
+#import "AFHTTPRequestManage.h"
+#import "CoreDataManage.h"
+#import "MJRefresh.h"
+#import "CositeaBlueTooth.h"
+#import "PZBlueToothManager.h"
+#import "UIColor+ColorChange.h"
+#import "NSDate+MJ.h"
+#import "AllTool.h"
+#import "ADASaveDefaluts.h"
+#import "PerModel.h"
+#import "CacheLogin.h"
+#import "TimingUploadData.h"
+#import "ColorTool.h"
+#import "PSDrawerManager.h"
+
+
+#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
+typedef long NSInteger;
+typedef unsigned long NSUInteger;
+#else
+typedef int NSInteger;
+typedef unsigned int NSUInteger;
+#endif
+
+
+// define weakfity
+#define WeakSelf __weak typeof(self) weakSelf = self;
+#define kDY  (CurrentDeviceHeight - 64 - 48) / (667 -64 -48)
+
+#define kSY   (CurrentDeviceHeight - 64) / (667 - 64)
+
+#define kX    CurrentDeviceWidth / 375
+
+#define kLOCAL(x) NSLocalizedString(x,nil)
+
+#define kHCH [HCHCommonManager getInstance]
+
+//test 颜色
+
+#define  allColorRed  [UIColor redColor];
+#define  allColorWhite  [UIColor whiteColor];
+
+// 全局颜色定义
+#define fontcolorMain   [UIColor colorWithHexString:@"#323232"]
+#define fontcolorless   [UIColor colorWithHexString:@"#7d7d7d"]
+#define intToString(x) [NSString stringWithFormat:@"%d",x]
+
+#define kStepColor [UIColor colorWithRed:33/255.0 green:109/255.0 blue:182/255.0 alpha:1]
+#define kDeppSleepColor kColor(122, 82, 160)
+#define kLightSleepColor kColor(212, 170, 254)
+#define kWakeSleepColor kColor(242, 217, 254)
+#define kColor(x,y,z) [UIColor colorWithRed:x/255.0 green:y/255.0 blue:z/255.0 alpha:1]
+
+#define ShouHuan_DeviceName @"HR"
+#define testEventCount ([HCHCommonManager getInstance].eventCount)
+
+#define mSystemVersion   ([[UIDevice currentDevice] systemVersion])
+#define currentWorkMode ([HCHCommonManager getInstance].currentMode)
+#define kLastDeviceUUID @"BindingDeviceUuid"
+#define kLastDeviceNAME @"BindingDeviceName"
+#define kLastDeviceMACADDRESS @"BindingDeviceMacAddress"
+#define SUPPORTPAGEMANAGER @"SUPPORTPAGEMANAGER"   //不管怎么样先存一个 异常码 @"4294967295"  支持  那些配置页面
+#define SHOWPAGEMANAGER @"SHOWPAGEMANAGER"   //不管怎么样先存一个 异常码 @"4294967295" 显示  那些配置页面
+#define SUPPORTINFORMATION @"SUPPORTINFORMATION"   // 1是默认值，2是支持Line        @"65535"
+/**
+ *  AllDEVICETYPE  1 手环  2 手表
+ *
+ */
+#define AllDEVICETYPE  @"AllDEVICETYPE"
+//#define AllDEVICEID  @"AllDEVICEID"
+#define AllDEVICETYPELAST  @"AllDEVICETYPELAST"
+#define AllDEVICETYPECHANGE  @"AllDEVICETYPECHANGE"   //YES   NO
+#define DEFAULTDEVICEID  @"111111111111"   //YES   NO
+
+
+#define CheckFirstLoad_HCH @"CheckFirstLoad_HCH"
+#define Steps_PlanTo_HCH        @"stepsPlan"
+#define Sleep_PlanTo_HCH        @"sleepPlan"
+
+#define LastLoginUser_Info  @"LastLoginUser_Info"
+
+#define kUnitStateKye @"unitState"
+
+#define CurrentUserName_HCH     @"CurrentUserName"
+
+#define kLightSleep @"lightSleep"
+#define kDeepSleep @"deepSleep"
+#define kAwakeSleep @"awakeSleep"
+#define HEARTCONTINUITY @"heartContinuity"
+#define NEWALARM @"newAlarm"
+#define REMINDLENGTH @"remindLength"
+#define CUSTOMREMINDLENGTH @"customRemindLength"
+#define continuityMonitorNumber  @"62"
+#define MISTEPDATABASEVERSION @"MistepDatabaseVersion" 
+//数据库版本   1.上传下行升级到版本3    2.运动加轨迹 升级到4  3. 修复离线的保存数据。改了运动表。升级到5
+
+//在线运动的表
+#define ONLINESPORT @"ONLINESPORT"
+#define SPORTID @"sportID"
+#define SPORTTYPE @"sportType"
+#define SPORTDATE @"sportDate"
+#define FROMTIME @"fromTime"
+#define TOTIME @"toTime"
+#define STEPNUMBER @"stepNumber"
+#define KCALNUMBER @"kcalNumber"
+#define HEARTRATE @"heartRate"
+#define SPORTNAME @"sportName"
+#define ISUP @"isUp"        //默认保存@"0"没有上传   @"1"上传成功
+#define HAVETRAIL @"haveTrail"
+#define TRAILARRAY @"trailArray"
+#define MOVETARGET @"moveTarget"
+#define MILEAGEM @"mileageM"
+#define MILEAGEM_MAP @"mileageM_map"
+#define SPORTPACE @"sportPace"  //配速
+#define WHENLONG @"whenLong" //时长
+
+
+#define DEVICETYPE @"deviceType"
+#define DEVICEID @"deviceID"
+
+
+
+//第三方登录
+#define kThirdPartLoginKey @"thirdPartDic"
+
+#define kThirdPartPassWord @"Cositea001"
+
+//心率预警key
+#define kHeartRateAlarm @"HeartRateAlarm"
+//个人信息
+#define HeadImageURL_PersonInfo_HCH   @"HeadImageURL" //用户头像
+#define BornDate_PersonInfo_HCH       @"BornDateHCL" //出生年月
+#define Male_PersonInfo_HCH    @"Male"
+#define High_PersonInfo_HCH    @"High"
+#define Weight_PersonInfo_HCH  @"Weight"
+#define Key_PersonInfo_HCH     @"Key"
+#define PersonInfo_IsNeedTosend_HCH     @"PersonInfo_IsNeedTosend"
+
+
+// 实时数据
+#define ActualData_Index_HCH   @"ActualData_Index"
+#define StartTime_ActualData_HCH    @"StartTime_ActualData"
+#define StopTime_ActualData_HCH    @"StopTime_ActualData"
+
+
+// 全天详细数据
+#define kDayStepsData @"stepData"
+#define kDayCostsData @"costsData"
+#define kPilaoData @"pilaoData"
+
+//  心率数据
+#define DataTime_HCH      @"DataDate"
+
+//睡眠数据
+#define DataIndex_SleepData_HCH     @"DataIndex_SleepData"
+#define DataStartTime_SleepData_HCH @"DataStartTime_SleepData"
+#define DataStopTime_SleepData_HCH  @"DataStopTime_SleepData"
+#define DataValue_SleepData_HCH     @"DataValue_SleepData"
+#define SleepEventIndex_HCH         @"SleepEventIndex"
+
+#define DataIndex_SleepHeartRate_HCH     @"DataIndex_SleepHeartRate"
+#define DataRate_SleepHeartRate_HCH      @"DataRate_SleepHeartRate"
+
+
+//天总数据
+#define TotalSteps_DayData_HCH      @"TotalSteps_DayData"
+#define TotalMeters_DayData_HCH     @"TotalMeters_DayData"
+#define TotalCosts_DayData_HCH      @"TotalCosts_DayData"
+#define TotalDeepSleep_DayData_HCH  @"TotalDeepSleep_DayData"
+#define TotalLittleSleep_DayData_HCH    @"TotalLittleSleep_DayData"
+#define TotalWarkeSleep_DayData_HCH     @"TotalWarkeSleep_DayData"
+#define TotalSleepCount_DayData_HCH     @"TotalSleepCount_DayData"
+#define TotalDayEventCount_DayData_HCH  @"TotalDayEventCount_DayData"
+#define TotalDataWeekIndex_DayData_HCH  @"TotalDataWeekIndex"
+#define TotalDataActivityTime_DayData_HCH   @"TotalDataActivityTime_DayData"
+#define TotalDataCalmTime_DayData_HCH   @"TotalDataCalm_DayData"
+
+#define kTotalDayActivityCost           @"activityCosts"
+#define kTotalDayCalmCost               @"calmCosts"
+
+//   防丢提醒
+#define AntiLoss_Status_HCH     @"antiLoss_status"
+
+
+//实时数据
+#define SportString_ActualData_HCH  @"SportString_ActualData"
+#define StartTime_ActualData_HCH    @"StartTime_ActualData"
+#define StopTime_ActualData_HCH    @"StopTime_ActualData"
+#define SportType_ActualData_HCH    @"SportType_ActualData"
+#define HeartRate_ActualData_HCH    @"HeartRate_ActualData"
+#define StepCount_ActualData_HCH    @"StepCount_ActualData"
+#define MeterCount_ActualData_HCH   @"MeterCount_ActualData"
+#define CostCount_ActualData_HCH    @"CostCount_ActualData"
+#define Speed_ActualData_HCH        @"Speed_ActualData"
+#define SportEventIndex_HCH         @"SportEventIndex"
+#define TimeSeprate_ActualData_HCH  @"TimeSeprate_ActualData"
+
+#define ActualData_Index_HCH   @"ActualData_Index"
+
+#define IsLaguageDataPath_SRK @"IsLaguageDataPath"
+#define ChinesLanguage_SRK    @"ChinesLanguage"
+#define EnglishLanguage_SRK   @"EnglishLanguage"
+#define LanguageChooseKey_SRK @"LanguageChooseKey_SRK"
+
+#define TiredCheck_Time_HCH  @"monitorTime"
+#define TiredCheck_Data_HCH   @"fatigue"
+
+//血压数据，建表 ，需要保存用户
+#define BloodPressureID_def @"BloodPressureID"
+#define BloodPressureDate_def    @"BloodPressureDate"
+#define StartTime_def   @"StartTime"
+#define systolicPressure_def @"systolicPressure"
+
+#define diastolicPressure_def  @"diastolicPressure"
+#define heartRateNumber_def   @"heartRateNumber"
+#define SPO2_def   @"SPO2"
+#define HRV_def   @"HRV"
+//外设表
+#define deviceId_per   @"deviceId_per"
+#define macAddress_per   @"macAddress_per"
+#define UUIDString_per   @"UUIDString_per"
+#define RSSI_per   @"RSSI_per"
+#define deviceName_per   @"deviceName_per"
+
+    //天气表
+#define WEATHERTABLE @"Weather_Table"
+#define WEATHERID   @"weatherId"
+#define WEATHERTIME   @"weatherTime"
+#define WEATHERLOCATION   @"weatherLocation"
+#define WEATHERCONTENT   @"weatherContent"
+#define EXTONE   @"extOne"
+#define EXTTWO   @"extTwo"
+#define EXTTHREE   @"extThree"
+
+
+typedef enum
+{
+    EditPersonStateRegist = 1,
+    EditPersonStateEdit,
+    EditPersonStateFirst,
+}EditPersonState;
+
+typedef enum {
+    ChinesLanguage_Enum = 0 ,
+    EnglishLanguage_Enum ,
+    KoreaLanguage_Enum,
+    SpanishLanguage_Enum,
+}Language_Enum;
+
+typedef enum {
+    CallAlarm_Enum = 0x01, //来电提醒
+    UnitSet_Enum,           //语言设置  以及各种基本设置
+    CheckPower_Enum,       //检测电量
+    SetStepPram_Enum,       //设置计步参数
+    OpenAntiLoss_Enum = 0x05,      //打开防丢提醒
+    GetActualData_Enum,     //获取实时数据
+    CheckVersion_Enum,      //检测版本
+    UpdateHardWare_Enum,    //升级固件
+    CustomAlarm_Enum,       //自定义提醒
+    TiredCheck_Enum,        //开始疲劳测试
+    TakePhoto_Enum = 0x0e,
+    sendWeatherSuc_Enum = 0x0f,       //天气发送成功
+    HeartRateAlarm_Enum = 0x10, //心率预警
+    ResetDevice_Enum,           //恢复出厂设置
+    PhoneDelay_Enum,            //电话延时提醒
+    FindBand_Enum,
+    JiuzuoAlarm_Enum = 0x14,
+    TimeSync_Enum = 0x20,          //时间同步
+    UpdateTotalData_Enum_old,   //上传监测数据
+    UpdateOffLine_Enum,   //上传离线数据
+    UpdateSleepData_Enum,   //上传睡眠数据
+    UpdateTiredData_Enum = 0x25,//上传疲劳值数据
+    UpdateTotalData_Enum,
+    ExceptioncodeData_Enum,
+    BloodPressure_Enum = 0x2a,
+    PageManager_None = 0x2c,  //页面管理界面
+    completionDegree_Enum = 0x2D,//完成度
+    queryWeather_Enum = 0x31,//手环请求天气
+    checkAction_Enum = 0x32,//查询设备是否支持某功能
+    checkNewLength_Enum = 0x33,//查询设备支持 长度
+    pilaoData_Enum = 0x65//疲劳值不支持
+    //CustomAlarm_Enum_None = 0x49,//手环请求天气
+    
+}BlueToothFunctionIndexEnum;
+
+//int LanguageIndex_SRK ;
+//int DeviceStatus_OAD ; //升级状态
+//int testEventCount; //白天事件总数
+//int startSeconds; //实时数据开始时间
+//int systemTimeOffset;
+//int netWorkStatus; //网络状态
+//int currentWorkMode; //后台和前台
+
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+//适配的比例
+#define ZITI_PROPORTION (736.0 / 2208)
+
+#define WIDTH_PROPORTION ([UIScreen mainScreen].bounds.size.width / 1242)
+
+#define HEIGHT_PROPORTION ([UIScreen mainScreen].bounds.size.height / 2208)
+
+/**
+ *
+ *  颜色的设置
+ *
+ */
+#define  colorFontGraw6c6c6c   kColor(108, 108, 108)
+#define  colorFontBlack484848   kColor(72, 72, 72)
+#define  color16e0be   kColor(22, 224, 190)
+#define  color39baff   kColor(57, 186, 254)
+//#define  color   kColor(72, 72, 72)
+//#define  color   kColor(72, 72, 72)
+//#define  connectViewH  (50*HeightProportion)
+#define  NavsubTag  43568
+#define KONEDAYSECONDS 86400
+#define LOGINTYPE @"loginType"  //登录类型   1为本服务器登录  2 是第三方登录  3为未登录
+
+// 定义log的输出
+#ifdef DEBUG // 调试状态, 打开LOG功能
+#define adaLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])//NSLog(__VA_ARGS__)
+#else // 发布状态, 关闭LOG功能
+#define adaLog(...)
+#endif
+
+//#ifdef DEBUG // 调试状态, 打开LOG功能
+//#define interfaceLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])//NSLog(__VA_ARGS__)
+//#else // 发布状态, 关闭LOG功能
+//#define interfaceLog(...)
+//#endif
+
+//#ifdef DEBUG // 调试状态, 打开LOG功能
+//#define dataLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])//NSLog(__VA_ARGS__)
+//#else // 发布状态, 关闭LOG功能
+//#define dataLog(...)
+//#endif
+
+//  查询天气的字典 key
+#define QUERYWEATHERID @"queryWeatherID"   //手环向app查询天气 1为某一天 2 为某几天
+#define QUERYWEATHERRI @"queryWeatherRi"   // 具体那个日期  如果是年月日就是未来几天
+#define QUERYWEATHERDAYNUMBER @"queryWeatherDayNumber"  //如果是未来几天，有几天的说法
+#define COMPLETIONDEGREESUPPORT @"CompletionDegreeSupport"//是否支持完成度  1支持
+#define WEATHERSUPPORT @"weatherSupport"//是否支持天气 0不支持 1支持
+
+#define BLOODPRESSURELOW @"BLOODPRESSURELOW"
+#define BLOODPRESSUREHIGH @"BLOODPRESSUREHIGH"
+
+
+//#define MAPSPORTTARGET @"mapSportTarget"//带轨迹的运动，运动目标
+//#define MAPSPORTTYPE @"mapSportType"//带轨迹的运动，运动类型
+
+
+#define MAPSPORTTARGET @"mapSportTarget"//带轨迹的运动，运动目标
+#define MAPSPORTTYPE @"mapSportType"//带轨迹的运动，运动类型
+#define UIColorFromHex(s)  [UIColor colorWithRed:(((s & 0xFF0000) >> 16))/255.0 green:(((s &0xFF00) >>8))/255.0 blue:((s &0xFF))/255.0 alpha:1.0]
+#define UIColorFromHexAlpha(s,aal)  [UIColor colorWithRed:(((s & 0xFF0000) >> 16))/255.0 green:(((s &0xFF00) >>8))/255.0 blue:((s &0xFF))/255.0 alpha:aal]
+
+#define MAPVOICEISOPEN @"mapVoiceIsOpen"    //地图的声音   1 是开  2 是关
+#define SEARCHDEVICEISSEEK @"searchDeviceIsSeek"    //搜索设备是否找到  1、没有找到  、2 找到了
+#define CALLBACKFORTY @"callbackForty"    //40秒回调    1是可以用40的回调  2是 不可 用40的回调
+
+#define kAppDelegate (AppDelegate *)[[UIApplication sharedApplication] delegate]
+
+//[[UIApplication sharedApplication] delegate]
+//#define kAppShare [UIApplication sharedApplication]
+
+#endif /* keyBandHeader_pch */

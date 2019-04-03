@@ -1,0 +1,1674 @@
+/*
+ NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS PERSONINFO (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, address Char)";
+ */
+
+
+#import "SQLdataManger.h"
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
+#import "FMDatabaseAdditions.h"
+#import "GMHeader.h"
+//#import "SportModel.h"
+#import "BloodPressureModel.h"
+#import "SportModelMap.h"
+
+static SQLdataManger * instance=nil;
+
+#define SQLfileName @"person.sqlite"
+#define InitTableAction  1
+#define WriteTableAction 2
+#define WriteTable_Dictionary 3  //使用字典的形式写入
+#define ReadTableAction  5
+
+@interface SQLdataManger(){
+    NSString *sqlDataPath;
+    NSArray *contentArray;
+    NSString *resourceDataPath;
+}
+@end
+
+@implementation SQLdataManger
+
+#define Int_Type_SQL  @"1"
+#define Long_Type_SQL @"2"
+#define DateTime_Type_SQL @"3"
+#define Double_Type_SQL  @"4"
+//#define Int_Type_AUTO  @"5"
+#define Char_Type_SQL(x,y) [self getCharTypeSQLWithLength:x default:y]
+#define Nvarchar_Type_SQL(x,y) [self getNvarcharTypeSQLWithLength:x default:y]
+#define Varchar_Type_SQL(x,y) [self getVarcharTypeSQLWithLength:x default:y]
+
+
+- (void)dealloc
+{
+    contentArray = nil;
+    sqlDataPath = nil ;
+    resourceDataPath = nil ;
+}
+
++(SQLdataManger *)getInstance
+{
+    if(instance == nil )
+    {
+        @synchronized(self)
+        {
+            instance =  [[SQLdataManger alloc] init];
+            if ([[ADASaveDefaluts objectForKey:MISTEPDATABASEVERSION] integerValue] == 4)
+            {
+                [instance createTable];
+                [instance createTableTwo];
+                adaLog(@"-------------------------startInit");
+            }
+            else
+            {
+                [instance checkUpdateDataBase:[[ADASaveDefaluts objectForKey:MISTEPDATABASEVERSION] integerValue]];
+                
+            }
+        }
+    }
+    return instance;
+}
+
++ (void)clearInstance{
+    if (instance) {
+        instance = nil;
+        
+    }
+}
+/**
+ 1 把要更改结构的那张表 A1 改名为 tempA1
+ 2 创建一张当前版本需要结构的表A1
+ 3 将tempA1 里面的有效数据 迁移到 A1中
+ 4 删除 tempA1
+ 
+ */
+-(void)checkUpdateDataBase:(NSInteger)DBVersion
+{
+    [instance createTable];
+    [instance createTableTwo];
+    if (DBVersion == 2)
+    {
+        NSFileManager * fileManager = [NSFileManager defaultManager];
+        NSString *fileFolder = [[HCHCommonManager getInstance] getFileStoreFolder];
+        NSString *paths = [NSString stringWithFormat:@"%@/%@",fileFolder,SQLfileName];
+        adaLog(@"数据库的路径 paths == %@",paths);
+        
+        resourceDataPath = [NSString stringWithFormat:@"%@", paths];
+        sqlDataPath = paths;
+        if ([fileManager fileExistsAtPath:paths])
+        {
+            [FMDatabase databaseWithPath:paths]; // create it }
+            FMDatabase * db = [FMDatabase databaseWithPath:paths];
+            if ([db open])
+            {
+                //1.0  //将原始表名T1 修改为 tempT1
+                //将原始表名PersonInfo_Table 修改为 tempPersonInfo_Table
+                NSString *renameString1 = @"alter table PersonInfo_Table rename to tempPersonInfo_Table";
+                BOOL res1 = [db executeUpdate:renameString1];
+                if (!res1) {
+                    adaLog(@"error when alter table");
+                } else {
+                    adaLog(@"succ when alter table");
+                }
+                //将原始表名DayTotalData_Table 修改为 tempDayTotalData_Table
+                NSString *renameString2 = @"alter table DayTotalData_Table rename to tempDayTotalData_Table";
+                BOOL res2 = [db executeUpdate:renameString2];
+                if (!res2) {
+                    adaLog(@"error when alter table");
+                } else {
+                    adaLog(@"succ when alter table");
+                }
+                //将原始表名BloodPressure_Table 修改为 tempBloodPressure_Table
+                NSString *renameString3 = @"alter table BloodPressure_Table rename to tempBloodPressure_Table";
+                BOOL res3 = [db executeUpdate:renameString3];
+                if (!res3) {
+                    adaLog(@"error when alter table");
+                } else {
+                    adaLog(@"succ when alter table");
+                }
+                //将原始表名ONLINESPORT 修改为 tempONLINESPORT
+                NSString *renameString4 = @"alter table ONLINESPORT rename to tempONLINESPORT";
+                BOOL res4 = [db executeUpdate:renameString4];
+                if (!res4) {
+                    adaLog(@"error when alter table");
+                } else {
+                    adaLog(@"succ when alter table");
+                }
+                // 2.0 //创建新表T1（V2版本的新表创建）
+                contentArray = [NSArray arrayWithObjects:
+                                [NSNumber numberWithInt:PersonInfo_Table],
+                                [NSNumber numberWithInt:DayTotalData_Table],
+                                [NSNumber numberWithInt:BloodPressure_Table],
+                                nil];
+                for( int i=0;i<contentArray.count ;i++ )
+                {
+                    //判断是否有表名
+                    NSInteger tableName = [[contentArray objectAtIndex:i] integerValue];
+                    if( ![db tableExists:[self getTableNameStringWithName:tableName]] )
+                    {                        //建立第一张表:用户信息表
+                        NSString *sql = [self packageSQLorder:InitTableAction withTableName:tableName];
+                        BOOL res = [db executeUpdate:sql];
+                        if (!res)
+                        {
+                            adaLog(@"error when creating db table");
+                        } else {
+                            adaLog(@"succ to creating db table");
+                        }
+                    }
+                }
+                NSString *sportSql = [self haveStringTableName:ONLINESPORT primaryKey:SPORTID type:@"varchar(1000)" otherColumn:@{CurrentUserName_HCH:@"varchar(10000)",ISUP:@"Char",DEVICETYPE:@"varchar(10000)",DEVICEID:@"varchar(10000)",SPORTTYPE:@"varchar(10000)",SPORTDATE:@"varchar(1000)",FROMTIME:@"varchar(1000)",TOTIME:@"varchar(1000)",STEPNUMBER:@"varchar(1000)",KCALNUMBER:@"varchar(1000)",HEARTRATE:@"blob",SPORTNAME:@"varchar(1000)"}];
+                BOOL res = [db executeUpdate:sportSql];
+                if (!res)
+                {
+                    adaLog(@"error when creating db table");
+                } else {
+                    adaLog(@"succ to creating db table");
+                }
+                
+                // 3.0  //迁移数据
+                NSString *toString1 = @"insert into PersonInfo_Table(Key,HeadImageURL,BornDateHCL,Male,High,Weight,PersonInfo_IsNeedTosend)  select Key,HeadImageURL,BornDateHCL,Male,High,Weight,PersonInfo_IsNeedTosend from tempPersonInfo_Table";
+                [db executeUpdate:toString1];
+                
+                NSString *toString2 = @"insert into DayTotalData_Table(CurrentUserName,DataDate,TotalSteps_DayData,TotalMeters_DayData,TotalCosts_DayData,stepsPlan,sleepPlan,TotalDeepSleep_DayData,TotalLittleSleep_DayData,TotalWarkeSleep_DayData,TotalSleepCount_DayData,TotalDayEventCount_DayData,TotalDataWeekIndex,TotalDataActivityTime_DayData,TotalDataCalm_DayData,activityCosts,calmCosts)  select CurrentUserName,DataDate,TotalSteps_DayData,TotalMeters_DayData,TotalCosts_DayData,stepsPlan,sleepPlan,TotalDeepSleep_DayData,TotalLittleSleep_DayData,TotalWarkeSleep_DayData,TotalSleepCount_DayData,TotalDayEventCount_DayData,TotalDataWeekIndex,TotalDataActivityTime_DayData,TotalDataCalm_DayData,activityCosts,calmCosts from tempDayTotalData_Table";
+                [db executeUpdate:toString2];
+                
+                NSString *toString3 = @"insert into BloodPressure_Table(BloodPressureID,CurrentUserName,BloodPressureDate,StartTime,systolicPressure,diastolicPressure,heartRateNumber,SPO2,HRV)  select BloodPressureID,CurrentUserName,BloodPressureDate,StartTime,systolicPressure,diastolicPressure,heartRateNumber,SPO2,HRV from tempBloodPressure_Table";
+                [db executeUpdate:toString3];
+                
+                NSString *toString4 = @"insert into ONLINESPORT(sportID,CurrentUserName,sportType,sportDate,fromTime,toTime,stepNumber,kcalNumber,heartRate,sportName) select sportID,CurrentUserName,sportType,sportDate,fromTime,toTime,stepNumber,kcalNumber,heartRate,sportName from tempONLINESPORT";
+                [db executeUpdate:toString4];
+                
+                // 4.0   //删除tempT1临时表
+                NSString *dropTableStr1 = @"drop table tempPersonInfo_Table";
+                [db executeUpdate:dropTableStr1];
+                NSString *dropTableStr2 = @"drop table tempDayTotalData_Table";
+                [db executeUpdate:dropTableStr2];
+                NSString *dropTableStr3 = @"drop table tempBloodPressure_Table";
+                [db executeUpdate:dropTableStr3];
+                NSString *dropTableStr4 = @"drop table tempONLINESPORT";
+                [db executeUpdate:dropTableStr4];
+                [db close];
+                [ADASaveDefaluts setObject:@"3" forKey:MISTEPDATABASEVERSION];
+                DBVersion = 3;
+            }
+            else
+            {
+                adaLog(@"error when open db");
+            }
+        }
+    }
+    if (DBVersion == 3)
+    {
+        NSFileManager * fileManager = [NSFileManager defaultManager];
+        NSString *fileFolder = [[HCHCommonManager getInstance] getFileStoreFolder];
+        NSString *paths = [NSString stringWithFormat:@"%@/%@",fileFolder,SQLfileName];
+        resourceDataPath = [NSString stringWithFormat:@"%@", paths];
+        sqlDataPath = paths;
+        if ([fileManager fileExistsAtPath:paths])
+        {
+            [FMDatabase databaseWithPath:paths];
+            FMDatabase * db = [FMDatabase databaseWithPath:paths];
+            if ([db open])
+            {
+                //将原始表名ONLINESPORT 修改为 tempONLINESPORT
+                NSString *renameString4 = @"alter table ONLINESPORT rename to tempONLINESPORT";
+                BOOL res4 = [db executeUpdate:renameString4];
+                if (!res4) {
+                    adaLog(@"error when alter table");
+                    [self checkUpdateDataBase:DBVersion];
+                } else {
+                    adaLog(@"succ when alter table");
+                }
+                NSString *sportSql = [self haveStringTableName:ONLINESPORT primaryKey:SPORTID type:@"varchar(1000)" otherColumn:@{CurrentUserName_HCH:@"varchar(10000)",ISUP:@"Char",DEVICETYPE:@"varchar(10000)",DEVICEID:@"varchar(10000)",SPORTTYPE:@"varchar(10000)",SPORTDATE:@"varchar(1000)",FROMTIME:@"varchar(1000)",TOTIME:@"varchar(1000)",STEPNUMBER:@"varchar(1000)",KCALNUMBER:@"varchar(1000)",HEARTRATE:@"blob",SPORTNAME:@"varchar(1000)",HAVETRAIL:@"Char",TRAILARRAY:@"blob",MOVETARGET:@"varchar(1000)",MILEAGEM:@"varchar(1000)",MILEAGEM_MAP:@"varchar(1000)",SPORTPACE:@"varchar(1000)",WHENLONG:@"varchar(1000)"}];
+                BOOL res = [db executeUpdate:sportSql];
+                if (!res)
+                {
+                    adaLog(@"error when creating db table");
+                } else {
+                    adaLog(@"succ to creating db table");
+                }
+                
+                // 3.0  //迁移数据
+                NSString *toString4 = @"insert into ONLINESPORT(sportID,CurrentUserName,sportType,sportDate,fromTime,toTime,stepNumber,kcalNumber,heartRate,sportName,isUp,deviceType,deviceID) select sportID,CurrentUserName,sportType,sportDate,fromTime,toTime,stepNumber,kcalNumber,heartRate,sportName,isUp,deviceType,deviceID from tempONLINESPORT";
+                BOOL del1 = [db executeUpdate:toString4];
+                if (!del1)
+                {
+                    adaLog(@"error when creating db table");
+                } else {
+                    adaLog(@"succ to creating db table");
+                    
+                }
+                // 4.0   //删除tempT1临时表
+                NSString *dropTableStr4 = @"drop table tempONLINESPORT";
+                [db executeUpdate:dropTableStr4];
+                [db close];
+                [ADASaveDefaluts setObject:@"4" forKey:MISTEPDATABASEVERSION];
+                DBVersion = 4;
+            }
+            else
+            {
+                adaLog(@"error when open db");
+            }
+        }
+    }
+}
+
+- (void)updateSqlite;
+{
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    //    [queue inDatabase:^(FMDatabase *db){
+    //        NSString *tableName = [self getTableNameStringWithName:ACtualTimeData_Table];
+    //        NSString *sql = [NSString stringWithFormat:@"select * from %@ " , tableName];
+    //
+    //        FMResultSet * rs = [db executeQuery:sql];
+    //        while ([rs next]) {
+    //            NSDictionary *dic = [rs resultDictionary] ;
+    //            [mutArray addObject:dic];
+    //        }
+    //    }];
+    
+    adaLog(@"%@",mutArray);
+    
+//    FMDatabase *db = [FMDatabase databaseWithPath:sqlDataPath];
+    //    if ([db open])
+    //    {
+    //        NSString *sql = @"drop table ACtualTimeData_Table";
+    //        BOOL res = [db executeUpdate:sql];
+    //        if (!res) {
+    //            adaLog(@"error when delete db table");
+    //        } else {
+    //            adaLog(@"succ to delete db table");
+    //        }
+    //        [db close];
+    //    }
+    [self createTable];
+    [self createTableTwo];
+    //    for (NSDictionary *dic in mutArray)
+    //    {
+    //        [self insertSignalDataToTable:ACtualTimeData_Table withData:dic];
+    //    }
+    //    return mutArray ;
+}
+
+////将对象转换成json字符串
+//- (NSString *)changeObjectToJsonString : (id)objec{
+//
+//    NSData *tempData = [NSJSONSerialization dataWithJSONObject:objec options:0 error:nil];
+//    NSString *jsonString = [[NSString alloc]initWithData:tempData encoding:NSUTF8StringEncoding];
+//    //    adaLog(@"jsonString is %@" ,jsonString);
+//    return jsonString ;
+//}
+
+
+- (void)deleteTabel
+{
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSString *fileFolder = [[HCHCommonManager getInstance] getFileStoreFolder];
+    NSString *paths = [NSString stringWithFormat:@"%@/%@",fileFolder,SQLfileName];
+    if ([fileManager fileExistsAtPath:paths])
+    {
+        // delete it
+        FMDatabase *db = [FMDatabase databaseWithPath:paths];
+        if ([db open])
+        {
+            NSString *sql = @"drop table DayTotalData_Table";
+            BOOL res = [db executeUpdate:sql];
+            if (!res) {
+                adaLog(@"error when delete db table");
+            } else {
+                adaLog(@"succ to delete db table");
+            }
+            sql = @"drop table BloodPressure_Table";
+            BOOL res2 = [db executeUpdate:sql];
+            if (!res2) {
+                adaLog(@"error when delete db table time");
+            } else {
+                adaLog(@"succ to delete db table time");
+            }
+            
+            sql = @"drop table ONLINESPORT";
+            BOOL res3 = [db executeUpdate:sql];
+            if (!res3) {
+                adaLog(@"error when delete db table time");
+            } else {
+                adaLog(@"succ to delete db table time");
+            }
+            
+            [db close];
+        }
+    }
+}
+
+- (void)createTable{
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    
+    NSString *fileFolder = [[HCHCommonManager getInstance] getFileStoreFolder];
+    NSString *paths = [NSString stringWithFormat:@"%@/%@",fileFolder,SQLfileName];
+    adaLog(@"数据库的路径 paths == %@",paths);
+    
+    resourceDataPath = [NSString stringWithFormat:@"%@" , paths];
+    
+    sqlDataPath = paths;
+    
+    if ([fileManager fileExistsAtPath:paths] == NO) {
+        // create it
+        [FMDatabase databaseWithPath:paths];
+    }
+    
+    FMDatabase * db = [FMDatabase databaseWithPath:paths];
+    if ([db open]) {
+        contentArray = [NSArray arrayWithObjects:
+                        [NSNumber numberWithInt:PersonInfo_Table],
+                        [NSNumber numberWithInt:DayTotalData_Table],
+                        [NSNumber numberWithInt:BloodPressure_Table],
+                        [NSNumber numberWithInt:Peripheral_Table],
+                        //[NSNumber numberWithInt:Language_English_Table],
+                        //[NSNumber numberWithInt:SleepData_Table],
+                        //[NSNumber numberWithInt:ActualHeartRateData_Table],
+                        //[NSNumber numberWithInt:ActualSpeedData_Table],
+                        //[NSNumber numberWithInt:SleepTimeData_Table],
+                        //[NSNumber numberWithInt:ACtualTimeData_Table],
+                        //[NSNumber numberWithInt:SleepHeartRate_Table],
+                        nil];
+        for( int i=0;i<contentArray.count ;i++ ){
+            //判断是否有表名
+            NSInteger tableName = [[contentArray objectAtIndex:i] integerValue];
+            
+            if( ![db tableExists:[self getTableNameStringWithName:tableName]] ){
+                //建立第一张表:用户信息表
+                NSString *sql = [self packageSQLorder:InitTableAction withTableName:tableName];
+                
+                BOOL res = [db executeUpdate:sql];
+                if (!res) {
+                    adaLog(@"error when creating db table");
+                } else {
+                    adaLog(@"succ to creating db table");
+                }
+            }
+        }
+        [db close];
+    } else {
+        adaLog(@"error when open db");
+    }
+    
+}
+
+#pragma mark Package SQL order
+- (NSString *)packageSQLorder:(int)orderIndex withTableName:(NSInteger)tableName{
+    NSString *string = @"";
+    
+    NSArray *array = [self getSQLTableKeyArrayWithIndex:tableName];
+    NSInteger nums = [array count]/2;
+    NSString *tableString = @"";//表名
+    NSString *keyString = @"";//主键
+    if( nums >= 2 ){
+        tableString = [array objectAtIndex:0];
+        keyString = [array objectAtIndex:2];
+    }else{
+        return string ;
+    }
+    
+    switch (orderIndex) {
+        case InitTableAction:
+        {
+            string = [NSString stringWithFormat:@"CREATE TABLE '%@' " , tableString];
+            //主键
+            int kNums = [[array objectAtIndex:3] intValue];
+            NSString *pirmkey = @"" ;
+            NSString *yueshu = [self getUnionKeyWithTableName:tableName];
+            if( yueshu ){
+                
+            }else{
+                pirmkey = @"primary key";
+            }
+            
+            switch (kNums) {
+                case 0://字符
+                    string = [NSString stringWithFormat:@"%@ (%@ %@ %@ " , string,keyString , [array objectAtIndex:3],pirmkey];
+                    break;
+                case 1://int 型
+                    string = [NSString stringWithFormat:@"%@ (%@ int NOT NULL %@ " , string,keyString,pirmkey];
+                    break;
+                case 2://long 型
+                    string = [NSString stringWithFormat:@"%@ (%@ long NOT NULL %@ " , string,keyString,pirmkey];
+                    break;
+                case 3://dateTime
+                    string = [NSString stringWithFormat:@"%@ (%@ DATETIME NOT NULL %@ " , string,keyString,pirmkey];
+                    break;
+                case 4://double
+                    string = [NSString stringWithFormat:@"%@ (%@ double NOT NULL %@ " , string,keyString,pirmkey];
+                    break;
+                    //                case 5://   int 型  auto
+                    //                    string = [NSString stringWithFormat:@"%@ (%@ int NOT NULL %@ AUTOINCREMENT" , string,keyString,pirmkey];
+                    //                    break;
+                default:
+                    break;
+            }
+            
+            for(int i =2;i<nums;i++ ){
+                int fNums = [[array objectAtIndex:2*i+1]intValue];
+                NSString *section = [array objectAtIndex:2*i];
+                NSString *value = [array objectAtIndex:2*i + 1];
+                switch (fNums) {
+                    case 0:
+                        string = [NSString stringWithFormat:@"%@ , '%@' %@" , string , section , value];
+                        break;
+                    case 1: //int 型
+                        string = [NSString stringWithFormat:@"%@ , '%@' int NOT NULL DEFAULT (0)",string,section];
+                        break;
+                    case 2: //long 型
+                        string = [NSString stringWithFormat:@"%@ , '%@' long NOT NULL DEFAULT (0)",string,section];
+                        break;
+                    case 3://dateTime
+                        string = [NSString stringWithFormat:@"%@ , '%@' DATETIME NOT NULL",string,section];
+                        break;
+                    case 4://double
+                        string = [NSString stringWithFormat:@"%@ , '%@' double NOT NULL DEFAULT (0)",string,section];
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+            if( yueshu ) string = [NSString stringWithFormat:@"%@ , %@",string , yueshu];
+            
+            string = [NSString stringWithFormat:@"%@)",string];
+        }
+            break;
+            
+        case WriteTableAction:
+        {
+            string = [NSString stringWithFormat:@"insert or replace into %@ (%@" , tableString,keyString];
+            for(int i =2;i<nums;i++ ){
+                string = [NSString stringWithFormat:@"%@,%@",string,[array objectAtIndex:2*i]];
+            }
+            string = [NSString stringWithFormat:@"%@) values(?",string];
+            
+            for(int i=2;i<nums;i++ ){
+                string = [NSString stringWithFormat:@"%@,? ",string];
+            }
+            string = [NSString stringWithFormat:@"%@)",string];
+        }
+            break;
+            
+        case WriteTable_Dictionary:
+        {
+            //insert into namedparamcounttest values (:a, :b, :c, :d)
+            string = [NSString stringWithFormat:@"insert or replace into %@ values (:%@" , tableString,keyString];
+            for(int i =2;i<nums;i++ ){
+                string = [NSString stringWithFormat:@"%@,:%@",string,[array objectAtIndex:2*i]];
+            }
+            string = [NSString stringWithFormat:@"%@)",string];
+        }
+            break;
+        default:
+            break;
+    }
+    
+    return string ;
+}
+
+- (NSString *)getUnionKeyWithTableName:(NSInteger)tableName{
+    NSString *string ;
+    
+    switch (tableName) {
+            //        case SleepData_Table:
+            //            string = [NSString stringWithFormat:@"primary key ('%@','%@','%@')",CurrentUserName_HCH,DataTime_HCH,DataIndex_SleepData_HCH];
+            //            break;
+            //        case SleepHeartRate_Table:
+            //            string = [NSString stringWithFormat:@"primary key ('%@','%@','%@')",CurrentUserName_HCH,DataTime_HCH,DataIndex_SleepHeartRate_HCH];
+            //            break;
+            //        case ActualHeartRateData_Table:
+            //            string = [NSString stringWithFormat:@"primary key ('%@','%@','%@')",CurrentUserName_HCH,DataTime_HCH,ActualData_Index_HCH];
+            //            break;
+            //        case ActualSpeedData_Table:
+            //            string = [NSString stringWithFormat:@"primary key ('%@','%@','%@')",CurrentUserName_HCH,DataTime_HCH,ActualData_Index_HCH];
+            //            break;
+            //        case SleepTimeData_Table:
+            //            string = [NSString stringWithFormat:@"primary key ('%@','%@','%@')",CurrentUserName_HCH,DataTime_HCH,DataStartTime_SleepData_HCH];
+            //            break;
+            //        case ACtualTimeData_Table:
+            //            string = [NSString stringWithFormat:@"primary key ('%@','%@','%@')",CurrentUserName_HCH,DataTime_HCH,StartTime_ActualData_HCH];
+            //            break;
+        case DayTotalData_Table:
+            string = [NSString stringWithFormat:@"primary key ('%@','%@','%@')",CurrentUserName_HCH,DataTime_HCH,DEVICETYPE];
+            break;
+            //        case  Peripheral_Table:
+            //            string = [NSString stringWithFormat:@"primary key ('%@')",CurrentUserName_HCH];
+            //            break;
+        default:
+            break;
+    }
+    
+    return string ;
+}
+
+- (NSString *)checkNULLstring:(NSString *)oriString{
+    NSString *string = @"";
+    if( !oriString ) return string;
+    if( [oriString isKindOfClass:[NSNull class] ] ) return string ;
+    string =[NSString stringWithFormat:@"%@" , oriString ];
+    
+    return string ;
+}
+
+#pragma mark getTableDic
+//根据表名获取表所对应的表结构字段
+- (NSArray *)getSQLTableKeyArrayWithIndex:(NSInteger)indexs{
+    NSArray *array = nil ;
+    switch (indexs) {
+        case PersonInfo_Table:
+            array = [NSArray arrayWithObjects:
+                     @"PersonInfo_Table",Char_Type_SQL(0, nil),
+                     Key_PersonInfo_HCH,Int_Type_SQL,//主键
+                     HeadImageURL_PersonInfo_HCH,Char_Type_SQL(0, nil),
+                     BornDate_PersonInfo_HCH,Char_Type_SQL(0, nil),
+                     Male_PersonInfo_HCH,Char_Type_SQL(0, nil),
+                     High_PersonInfo_HCH,Char_Type_SQL(0, nil),
+                     Weight_PersonInfo_HCH,Char_Type_SQL(0, nil),
+                     PersonInfo_IsNeedTosend_HCH,Int_Type_SQL,
+                     ISUP,Char_Type_SQL(0, nil),
+                     DEVICETYPE,Char_Type_SQL(0, nil),
+                     DEVICEID,Char_Type_SQL(0, nil),
+                     nil];
+            break;
+        case DayTotalData_Table:
+            array = [NSArray arrayWithObjects:
+                     @"DayTotalData_Table",Char_Type_SQL(0, nil),
+                     CurrentUserName_HCH,Nvarchar_Type_SQL(20, @""),
+                     DataTime_HCH,Int_Type_SQL,//主键
+                     TotalSteps_DayData_HCH,Int_Type_SQL,
+                     TotalMeters_DayData_HCH,Int_Type_SQL,
+                     TotalCosts_DayData_HCH,Int_Type_SQL,
+                     Steps_PlanTo_HCH, Int_Type_SQL,
+                     Sleep_PlanTo_HCH, Int_Type_SQL,
+                     TotalDeepSleep_DayData_HCH, Int_Type_SQL,
+                     TotalLittleSleep_DayData_HCH, Int_Type_SQL,
+                     TotalWarkeSleep_DayData_HCH, Int_Type_SQL,
+                     TotalSleepCount_DayData_HCH, Int_Type_SQL,
+                     TotalDayEventCount_DayData_HCH, Int_Type_SQL,
+                     TotalDataWeekIndex_DayData_HCH, Int_Type_SQL,
+                     TotalDataActivityTime_DayData_HCH, Int_Type_SQL,
+                     TotalDataCalmTime_DayData_HCH,Int_Type_SQL,
+                     kTotalDayActivityCost,Int_Type_SQL,
+                     kTotalDayCalmCost,Int_Type_SQL,
+                     ISUP,Char_Type_SQL(0, nil),
+                     DEVICETYPE,Char_Type_SQL(0, nil),
+                     DEVICEID,Char_Type_SQL(0, nil),
+                     nil];
+            break;
+        case BloodPressure_Table:   //血压建表。字段
+            array = [NSArray arrayWithObjects:
+                     @"BloodPressure_Table",Char_Type_SQL(0, nil),
+                     BloodPressureID_def,Nvarchar_Type_SQL(1000, @""),//主键
+                     CurrentUserName_HCH,Nvarchar_Type_SQL(1000, @""),
+                     BloodPressureDate_def,Nvarchar_Type_SQL(1000, @""),
+                     StartTime_def,Nvarchar_Type_SQL(1000, @""),
+                     systolicPressure_def,Nvarchar_Type_SQL(1000, @""),
+                     diastolicPressure_def,Nvarchar_Type_SQL(1000, @""),
+                     heartRateNumber_def,Nvarchar_Type_SQL(1000, @""),
+                     SPO2_def,Nvarchar_Type_SQL(1000, @""),
+                     HRV_def,Nvarchar_Type_SQL(1000, @""),
+                     ISUP,Char_Type_SQL(0, nil),
+                     DEVICETYPE,Char_Type_SQL(0, nil),
+                     DEVICEID,Char_Type_SQL(0, nil),
+                     nil];
+            break;
+        case  Peripheral_Table:  //外设表
+            array = [NSArray arrayWithObjects:
+                     @"Peripheral_Table",Char_Type_SQL(0, nil),//主键
+                     deviceId_per,Int_Type_SQL,
+                     macAddress_per,Nvarchar_Type_SQL(1000, @""),
+                     UUIDString_per,Nvarchar_Type_SQL(1000, @""),
+                     RSSI_per,Nvarchar_Type_SQL(1000, @""),
+                     deviceName_per,Nvarchar_Type_SQL(1000, @""),
+                     nil];
+            //#define deviceId_per   @"deviceId_per"
+            //#define macAddress_per   @"macAddress_per"
+            //#define UUIDString_per   @"UUIDString_per"
+            //#define RSSI_per   @"RSSI_per"
+            //#define deviceName_per   @"deviceName_per"
+            break;
+            //        case Language_English_Table:
+            //            array = [NSArray arrayWithObjects:
+            //                     @"Language_English_Table",Char_Type_SQL(0, nil),
+            //                     ChinesLanguage_SRK,Char_Type_SQL(0, nil),//时间索引
+            //                     EnglishLanguage_SRK,Char_Type_SQL(0, nil),//年月日，格式:YYYY-MM-DD
+            //                     nil];
+            //            break;
+            
+            //        case SleepHeartRate_Table:
+            //            array = [NSArray arrayWithObjects:
+            //                     @"SleepHeartRate_Table",Char_Type_SQL(0, nil),
+            //                     CurrentUserName_HCH,Nvarchar_Type_SQL(20, @""),
+            //                     DataTime_HCH,Int_Type_SQL,//主键
+            //                     DataIndex_SleepHeartRate_HCH,Int_Type_SQL,
+            //                     DataStartTime_SleepData_HCH,Int_Type_SQL,
+            //                     DataStopTime_SleepData_HCH,Int_Type_SQL,
+            //                     DataRate_SleepHeartRate_HCH,Int_Type_SQL,
+            //                     nil];
+            //            break;
+            //        case SleepData_Table:
+            //            array = [NSArray arrayWithObjects:
+            //                     @"SleepData_Table",Char_Type_SQL(0, nil),
+            //                     CurrentUserName_HCH,Nvarchar_Type_SQL(20, @""),
+            //                     DataTime_HCH,Int_Type_SQL,//主键
+            //                     SleepEventIndex_HCH,Int_Type_SQL,
+            //                     DataIndex_SleepData_HCH,Int_Type_SQL,
+            //                     DataStartTime_SleepData_HCH,Int_Type_SQL,
+            //                     DataStopTime_SleepData_HCH,Int_Type_SQL,
+            //                     DataValue_SleepData_HCH,Int_Type_SQL,
+            //                     nil];
+            //            break;
+            
+            //        case ActualData_Table:
+            //            array = [NSArray arrayWithObjects:
+            //                     @"ActualData_Table",Char_Type_SQL(0, nil),
+            //                     DataTime_HCH,Int_Type_SQL,//主键
+            //                     SportEventIndex_HCH,Int_Type_SQL,
+            //                     StartTime_ActualData_HCH,Int_Type_SQL,
+            //                     SportType_ActualData_HCH,Int_Type_SQL,
+            //                     StopTime_ActualData_HCH,Int_Type_SQL,
+            //                     HeartRate_ActualData_HCH,Int_Type_SQL,
+            //                     StepCount_ActualData_HCH,Int_Type_SQL,
+            //                     MeterCount_ActualData_HCH,Int_Type_SQL,
+            //                     CostCount_ActualData_HCH,Int_Type_SQL,
+            //                     Speed_ActualData_HCH,Int_Type_SQL,
+            //                     nil];
+            //            break;
+            //        case ActualHeartRateData_Table:
+            //            array = [NSArray arrayWithObjects:
+            //                     @"ActualHeartRateData_Table",Char_Type_SQL(0, nil),
+            //                     CurrentUserName_HCH,Nvarchar_Type_SQL(20, @""),
+            //                     DataTime_HCH,Int_Type_SQL,//主键
+            //                     StartTime_ActualData_HCH,Int_Type_SQL,
+            //                     StopTime_ActualData_HCH,Int_Type_SQL,
+            //                     ActualData_Index_HCH,Int_Type_SQL,
+            //                     HeartRate_ActualData_HCH,Int_Type_SQL,
+            //                     TimeSeprate_ActualData_HCH,Int_Type_SQL,
+            //                     nil];
+            //            break;
+            //        case ActualSpeedData_Table:
+            //            array = [NSArray arrayWithObjects:
+            //                     @"ActualSpeedData_Table",Char_Type_SQL(0, nil),
+            //                     CurrentUserName_HCH,Nvarchar_Type_SQL(20, @""),
+            //                     DataTime_HCH,Int_Type_SQL,//主键
+            //                     StartTime_ActualData_HCH,Int_Type_SQL,
+            //                     StopTime_ActualData_HCH,Int_Type_SQL,
+            //                     ActualData_Index_HCH,Int_Type_SQL,
+            //                     Speed_ActualData_HCH,Int_Type_SQL,
+            //                     TimeSeprate_ActualData_HCH,Int_Type_SQL,
+            //                     nil];
+            //            break;
+            //        case SleepTimeData_Table:
+            //            array = [NSArray arrayWithObjects:
+            //                     @"SleepTimeData_Table",Char_Type_SQL(0, nil),
+            //                     CurrentUserName_HCH,Nvarchar_Type_SQL(20, @""),
+            //                     DataTime_HCH,Int_Type_SQL,//主键
+            //                     DataStartTime_SleepData_HCH,Int_Type_SQL,
+            //                     DataStopTime_SleepData_HCH,Int_Type_SQL,
+            //                     nil];
+            //            break;
+            //        case ACtualTimeData_Table:
+            //            array = [NSArray arrayWithObjects:
+            //                     @"ACtualTimeData_Table",Char_Type_SQL(0, nil),
+            //                     CurrentUserName_HCH,Nvarchar_Type_SQL(20, @""),
+            //                     DataTime_HCH,Int_Type_SQL,//主键
+            //                     StartTime_ActualData_HCH,Int_Type_SQL,
+            //                     SportType_ActualData_HCH,Int_Type_SQL,
+            //                     StopTime_ActualData_HCH,Int_Type_SQL,
+            //                     StepCount_ActualData_HCH,Int_Type_SQL,
+            //                     CostCount_ActualData_HCH,Int_Type_SQL,
+            //                     SportEventIndex_HCH,Int_Type_SQL,
+            //                     SportString_ActualData_HCH,Char_Type_SQL(0, nil),
+            //                     nil];
+            //            break;
+            
+            
+        default:
+            break;
+    }
+    
+    return array ;
+}
+
+- (NSString *)getTableNameStringWithName:(NSInteger)indexs{
+    NSString *string = @"";
+    NSArray *array = [self getSQLTableKeyArrayWithIndex:indexs];
+    if( [array count] >= 4 ){
+        string = [NSString stringWithFormat:@"%@" , [array objectAtIndex:0]];
+    }
+    
+    return string ;
+}
+
+
+#pragma mark insertMoreDateToTable
+- (BOOL)insertMoreDataToTable:(SQLTalbeNameEnum)tableName withData:(NSArray *)transArray{
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    __block BOOL res = NO ;
+    [queue inDatabase:^(FMDatabase *db){
+        NSInteger nums = [transArray count];
+        [db beginTransaction];
+        BOOL isRollBack = NO;
+        @try {
+            NSString * sql = [self packageSQLorder:WriteTable_Dictionary withTableName:tableName];
+            NSArray *keyArray = [self getSQLTableKeyArrayWithIndex:tableName];
+            NSInteger kNums = [keyArray count]/2;
+            
+            for( int i =0 ;i<nums ;i++ ){
+                NSDictionary *dic = [transArray objectAtIndex:i];
+                NSMutableDictionary *mutDic = [[NSMutableDictionary alloc]init];
+                for( int j = 1 ; j<kNums ;j++ ){
+                    NSString *keyString = [keyArray objectAtIndex:2*j];
+                    int type = [[keyArray objectAtIndex:2*j+1] intValue];
+                    id value ;
+                    switch (type) {
+                        case 0:
+                            value = [dic objectForKey:keyString];
+                            if( !value ) value = @"" ;
+                            else value = [NSString stringWithFormat:@"%@" , value];
+                            break;
+                        case 1: //int 型
+                            value = [NSNumber numberWithInt:[[dic objectForKey:keyString] intValue]];
+                            break;
+                        case 2: //long 型
+                            value = [NSNumber numberWithLongLong:[[dic objectForKey:keyString] longLongValue]];
+                            break;
+                        case 3: //DateTime
+                        {
+                            NSString *dString = [self checkNULLstring:[dic objectForKey:keyString]];
+                            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                            [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                            value = [formatter dateFromString:dString];
+                        }
+                            break;
+                        case 4://double
+                            value = [NSNumber numberWithDouble:[[dic objectForKey:keyString] doubleValue]];
+                            break;
+                        case 5://bigint
+                            value = [NSNumber numberWithLongLong:[[dic objectForKey:keyString] longLongValue]];
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                    [mutDic setValue:value forKey:keyString];
+                }
+                
+                res = [db executeUpdate:sql withParameterDictionary:mutDic];
+            }
+        }
+        @catch (NSException *exception) {
+            [db rollback];
+        }
+        @finally {
+            if (!isRollBack) {
+                res = YES ;
+                [db commit];
+            }
+        }
+    }];
+    
+    return res;
+}
+
+#pragma mark insetSignalDataToTable
+- (BOOL)insertSignalDataToTable:(SQLTalbeNameEnum)tableName withData:(NSDictionary *)transDic{
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    __block BOOL res = NO ;
+    
+    [queue inDatabase:^(FMDatabase *db){
+        NSString * sql = [self packageSQLorder:WriteTable_Dictionary withTableName:tableName];
+        NSArray *array = [self getSQLTableKeyArrayWithIndex:tableName];
+        NSInteger nums = [array count]/2;
+        NSMutableDictionary *mutDic = [[NSMutableDictionary alloc]init];
+        for( int i=1;i<nums;i++ ){
+            NSString *keyString = [array objectAtIndex:2*i];
+            int type = [[array objectAtIndex:2*i+1] intValue];
+            
+            id value ;
+            switch (type) {
+                case 0:
+                    value = [transDic objectForKey:keyString];
+                    if( !value ) value = @"" ;
+                    else value = [NSString stringWithFormat:@"%@" , value];
+                    break;
+                case 1: //int 型
+                    value = [NSNumber numberWithInt:[[transDic objectForKey:keyString] intValue]];
+                    break;
+                case 2: //long 型
+                case 5: //longint
+                    value = [NSNumber numberWithLongLong:[[transDic objectForKey:keyString] longLongValue]];
+                    break;
+                case 3: //DateTime
+                {
+                    NSString *dString = [self checkNULLstring:[transDic objectForKey:keyString]];
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                    value = [formatter dateFromString:dString];
+                }
+                    break;
+                case 4://double
+                    value = [NSNumber numberWithDouble:[[transDic objectForKey:keyString] doubleValue]];
+                    break;
+                    
+                default:
+                    break;
+            }
+            [mutDic setValue:value forKey:keyString];
+        }
+        
+        res = [db executeUpdate:sql withParameterDictionary:mutDic];
+    }];
+    
+    return res ;
+}
+
+
+#pragma mark
+#pragma mark deleteTableInfoWithTableName
+- (void)deleteTableInfoWithTableName:(SQLTalbeNameEnum)talbeName{
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:talbeName];
+        NSString *sql = [NSString stringWithFormat:@"delete from %@ " , tableName];
+        if( [db executeUpdate:sql] ){
+            adaLog(@"Delete %@ success" , tableName ) ;
+        }else{
+            adaLog(@"delete %@ failed" , tableName);
+        }
+    }];
+}
+
+#pragma mark dropTableWithName
+- (BOOL)dropTableWithName:(int)tableIndex{
+    FMDatabase * db = [FMDatabase databaseWithPath:sqlDataPath];
+    NSString *tableName = [self getTableNameStringWithName:tableIndex];
+    BOOL res = NO ;
+    NSString *sql = [NSString stringWithFormat:@"drop table %@" , tableName];
+    if ([db open]) {
+        res = [db executeUpdate:sql] ;
+        if( res ){
+            adaLog(@"drop table success" ) ;
+        }else{
+            adaLog(@"drop table failed");
+        }
+        
+        [db close];
+    }
+    
+    return res ;
+}
+
+//数据库封装
+- (NSString *)getCharTypeSQLWithLength:(int)length default:(NSString *)defalut{
+    NSString *string = @"Char";
+    
+    if( length > 0 ){
+        string = [NSString stringWithFormat:@"%@(%d)" , string , length];
+    }
+    
+    if( ![defalut isEqualToString:@"Not Null"] && defalut ){
+        string = [NSString stringWithFormat:@"%@ NOT NULL DEFAULT '%@'" , string , defalut] ;
+    }else if(defalut){
+        string = [NSString stringWithFormat:@"%@ NOT NULL " , string ] ;
+    }
+    
+    return string ;
+}
+
+- (NSString *)getNvarcharTypeSQLWithLength:(int)length default:(NSString *)defalut{
+    NSString *string = @"Nvarchar";
+    
+    if( length > 0 ){
+        string = [NSString stringWithFormat:@"%@(%d)" , string , length];
+    }
+    
+    if( ![defalut isEqualToString:@"Not Null"] && defalut ){
+        string = [NSString stringWithFormat:@"%@ NOT NULL DEFAULT '%@'" , string , defalut] ;
+    }else if(defalut){
+        string = [NSString stringWithFormat:@"%@ NOT NULL " , string ] ;
+    }
+    
+    return string ;
+}
+
+- (NSString *)getVarcharTypeSQLWithLength:(int)length default:(NSString *)defalut{
+    NSString *string = @"Varchar";
+    
+    if( length > 0 ){
+        string = [NSString stringWithFormat:@"%@(%d)" , string , length];
+    }
+    
+    if( ![defalut isEqualToString:@"Not Null"] && defalut ){
+        string = [NSString stringWithFormat:@"%@ NOT NULL DEFAULT '%@'" , string , defalut] ;
+    }else if(defalut){
+        string = [NSString stringWithFormat:@"%@ NOT NULL " , string ] ;
+    }
+    
+    return string ;
+}
+
+
+//- (NSString *)queryEnglishLanguageWithChinese:(NSString *)chinese{
+//    __block NSString *rtString ;
+//
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:Language_English_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@'" , tableName , ChinesLanguage_SRK,chinese];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            rtString = [dic objectForKey:EnglishLanguage_SRK] ;
+//        }
+//
+//    }];
+//
+//    return rtString ;
+//}
+
+- (NSDictionary *)getCurPersonInf{
+    __block NSDictionary *infoDic ;
+    
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:PersonInfo_Table];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ " , tableName];
+        
+        FMResultSet * rs = [db executeQuery:sql];
+        
+        while ([rs next]) {
+            infoDic = [rs resultDictionary] ;
+        }
+    }];
+    
+    return infoDic ;
+}
+
+- (NSDictionary *)getTotalDataWith:(int)date{
+    __block NSDictionary *infoDic ;
+    
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:DayTotalData_Table];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' and %@ = '%d' and %@ = '%@' " , tableName,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount], DataTime_HCH, date,DEVICETYPE,[ADASaveDefaluts objectForKey:AllDEVICETYPE]];
+        //        NSString *sql = [NSString stringWithFormat:@"select * from %@ " , tableName];
+        
+        FMResultSet * rs = [db executeQuery:sql];
+        
+        while ([rs next]) {
+            infoDic = [rs resultDictionary] ;
+        }
+    }];
+    
+    return infoDic ;
+}
+/*
+ *根据系统的uuid的唯一标记符。取得macAddress
+ *
+ *
+ */
+- (NSDictionary *)getPeripheralWith:(NSString *)uuid
+{
+    __block NSDictionary *infoDic ;
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:Peripheral_Table];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@'" , tableName,UUIDString_per, uuid];
+        //        NSString *sql = [NSString stringWithFormat:@"select * from %@ " , tableName];
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            infoDic = [rs resultDictionary] ;
+        }
+    }];
+    return infoDic ;
+}
+/**
+ 
+ 上传数据查询 , ,获取天总数据
+ 日期 ，上传标记
+ */
+- (NSDictionary *)getTotalDataWithToUp:(int)date  isUp:(NSString *)isUp
+{
+    __block NSDictionary *infoDic ;
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:DayTotalData_Table];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' and %@ = '%d'  and %@ != '%@' and %@ = '%@'" , tableName,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount], DataTime_HCH, date,ISUP,isUp,DEVICETYPE,[ADASaveDefaluts objectForKey:AllDEVICETYPE]];
+        //        NSString *sql = [NSString stringWithFormat:@"select * from %@ " , tableName];
+        
+        FMResultSet * rs = [db executeQuery:sql];
+        
+        while ([rs next]) {
+            infoDic = [rs resultDictionary] ;
+        }
+    }];
+    
+    return infoDic ;
+}
+/**
+ 
+ 上传 成功   更新数据
+ 日期 ，上传标记
+ */
+//- (void)updataTotalDataTableWithDic:(NSDictionary *)dic
+//{
+//
+//    __block NSDictionary *infoDic ;
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:DayTotalData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' and %@ = '%d'  and %@ != '%@' " , tableName,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount], DataTime_HCH, date,ISUP,isUp];
+//        //        NSString *sql = [NSString stringWithFormat:@"select * from %@ " , tableName];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//
+//        while ([rs next]) {
+//            infoDic = [rs resultDictionary] ;
+//        }
+//    }];
+//}
+- (NSArray *)getAllTotalData{
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+    
+    int startTime = [[TimeCallManager getInstance]getSecondsWithTimeString:@"2015/01/20" andFormat:@"yyyy/MM/dd"];
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:DayTotalData_Table];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' and %@ > '%d' order by %@ " , tableName , CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],DataTime_HCH, startTime, DataTime_HCH];
+        
+        FMResultSet * rs = [db executeQuery:sql];
+        
+        while ([rs next]) {
+            NSDictionary *dic = [rs resultDictionary] ;
+            [mutArray addObject:dic];
+        }
+    }];
+    
+    return mutArray ;
+}
+
+//- (NSArray *)querySleepDataWithStartTime:(int)date{
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:SleepData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' and %@ = '%d' order by %@ " , tableName , CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],DataStartTime_SleepData_HCH , date , DataIndex_SleepData_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//    return mutArray ;
+//}
+//获取天睡眠数据
+//- (NSArray *)querySleepDataWithDayTime:(int)date{
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:SleepData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' and %@ = '%d' order by %@ " , tableName , CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],DataTime_HCH , date , DataIndex_SleepData_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//    return mutArray ;
+//}
+//查询睡眠心率
+//- (NSArray *)querySleepHeartWithStartTime:(int)startTime andEndTime :(int)endTime{
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:SleepHeartRate_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' and %@ = '%d' order by %@ " , tableName ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount], DataStartTime_SleepData_HCH , startTime ,  DataIndex_SleepHeartRate_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//                [mutArray addObject:dic];
+//        }
+//    }];
+//
+//    return mutArray ;
+//}
+//- (NSArray *)queryAllSleepHeart{
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:SleepHeartRate_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' order by %@ " , tableName ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],  SleepEventIndex_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//    return mutArray ;
+//}
+
+//- (NSArray *)queryHeartDataWithStartTime:(int)startTime andEndtime:(int)endtime{
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//
+//    int dateSeconds = [[TimeCallManager getInstance]getYYYYMMDDSecondsSince1970With:startTime];
+//    int startIndex = (startTime - dateSeconds)/60;
+//    int endIndex = (endtime - dateSeconds)/60;
+//
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:HeratRate_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%d' order by %@ " , tableName , DataTime_HCH , dateSeconds ,DataIndex_HeartRate_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//        int index = 0;
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            index = [[dic objectForKey:DataIndex_HeartRate_HCH] intValue];
+//            if (index >= startIndex && index <= endIndex) {
+//                [mutArray addObject:dic];
+//            }
+//        }
+//    }];
+//
+//
+//    return mutArray ;
+//}
+
+//- (NSArray *)querySleepTimeList {
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:SleepTimeData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' order by %@ desc" , tableName , CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],DataStartTime_SleepData_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//
+//    return mutArray ;
+//}
+//- (NSArray *)querySleepTimeListWithDay:(int)dayTime {
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:SleepTimeData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@  where %@ = '%@' and %@ = '%d' order by %@ desc" , tableName ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],DataTime_HCH,dayTime, DataStartTime_SleepData_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//
+//    return mutArray ;
+//}
+
+//- (NSArray *)queryActualTimeListWithType:(int)type {
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:ACtualTimeData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@  where %@ = '%@' and %@ = '%d' order by %@ desc" , tableName , CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],SportType_ActualData_HCH, type,StartTime_ActualData_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//
+//    return mutArray ;
+//}
+
+//- (NSArray *)queryActualTimeListWithDay:(int) time {
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:ACtualTimeData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@  where %@ = '%@' and %@ = '%d' order by %@ desc" , tableName ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount], DataTime_HCH, time,StartTime_ActualData_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//
+//    return mutArray ;
+//}
+
+//- (NSArray *)queryAllActualSpeedDataWithDay:(int) time {
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:ActualSpeedData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@  where %@ = '%@' and %@ = '%d' order by %@ " , tableName ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount], DataTime_HCH, time, ActualData_Index_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//
+//    return mutArray ;
+//}
+
+//- (NSArray *)queryAllActualHeartRateWithDay:(int) time {
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:ActualHeartRateData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@  where %@ = '%@' and %@ = '%d' order by %@ " , tableName ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount], DataTime_HCH, time, ActualData_Index_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//
+//    return mutArray ;
+//}
+
+//- (NSArray *)queryHeartRateWithStartTime:(int)startTime andEndTime :(int)endTime{
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:ActualHeartRateData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' and %@ = '%d' order by %@ " , tableName ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount], StartTime_ActualData_HCH , startTime ,  ActualData_Index_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//    return mutArray ;
+//}
+
+//- (NSArray *)querySpeedWithStartTime:(int)startTime andEndTime :(int)endTime{
+//    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+//
+//    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+//    [queue inDatabase:^(FMDatabase *db){
+//        NSString *tableName = [self getTableNameStringWithName:ActualSpeedData_Table];
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' and %@ = '%d' order by %@ " , tableName , CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],StartTime_ActualData_HCH , startTime ,  ActualData_Index_HCH];
+//
+//        FMResultSet * rs = [db executeQuery:sql];
+//
+//        while ([rs next]) {
+//            NSDictionary *dic = [rs resultDictionary] ;
+//            [mutArray addObject:dic];
+//        }
+//    }];
+//
+//    return mutArray ;
+//}
+
+- (NSArray *)queryDayTotalDataWith:(NSInteger)year weekIndex:(NSInteger)week {
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+    
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:DayTotalData_Table];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = '%@' and %@ = '%ld' and %@ = '%@'" , tableName , CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],TotalDataWeekIndex_DayData_HCH , (long)week,DEVICETYPE,[ADASaveDefaluts objectForKey:AllDEVICETYPE]];
+        
+        FMResultSet * rs = [db executeQuery:sql];
+        
+        while ([rs next]) {
+            NSDictionary *dic = [rs resultDictionary] ;
+            NSInteger time = [[dic objectForKey:DataTime_HCH] integerValue];
+            NSInteger year_temp = [[[TimeCallManager getInstance]getYearWithSecond:time] integerValue];
+            if (year == year_temp) {
+                [mutArray addObject:dic];
+            }
+        }
+    }];
+    
+    return mutArray ;
+}
+//通过日期查询血压数据
+- (NSArray *)queryBloodPressureWithDay:(NSString *) time {
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:BloodPressure_Table];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@  where %@ = '%@' and %@ = '%@'" , tableName ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount], BloodPressureDate_def,time];
+        
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            NSDictionary *dic = [rs resultDictionary] ;
+            [mutArray addObject:dic];
+        }
+    }];
+    return mutArray ;
+}
+/**
+ *
+ *上传数据查询
+ *日期 ，上传标记
+ *通过日期查询血压数据
+ */
+- (NSArray *)queryBloodPressureWithDayToUp:(NSString *)time isUp:(NSString *)isUp
+{
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:BloodPressure_Table];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@  where %@ = '%@' and %@ = '%@' and %@ != '%@'" , tableName ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount], BloodPressureDate_def, time,ISUP,isUp];
+        
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            NSDictionary *dic = [rs resultDictionary] ;
+            [mutArray addObject:dic];
+        }
+    }];
+    return mutArray ;
+    
+}
+
+
+// 查询血压数据 总数／／
+- (NSInteger)queryBloodPressureALL{
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:BloodPressure_Table];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@" , tableName];
+        
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            NSDictionary *dic = [rs resultDictionary] ;
+            [mutArray addObject:dic];
+        }
+    }];
+    return [mutArray count];
+}
+// 查询外设数据 总数／／
+- (NSInteger)queryPeripheralALL{
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:Peripheral_Table];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@" , tableName];
+        
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            NSDictionary *dic = [rs resultDictionary] ;
+            [mutArray addObject:dic];
+        }
+    }];
+    return [mutArray count];
+}
+/**
+ 
+ 查询表内所有数据
+ */
+- (NSArray*)queryALLDataWithTable:(SQLTalbeNameEnum)talbeName
+{
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *tableName = [self getTableNameStringWithName:talbeName];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@" , tableName];
+        
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            NSDictionary *dic = [rs resultDictionary] ;
+            [mutArray addObject:dic];
+        }
+    }];
+    return mutArray;
+}
+
+#pragma mark   ---  建表    ---  建表   ---   建表
+
+
+/**创建表单*/
+- (void)createTableTwo
+{
+    [self createTableName:ONLINESPORT primaryKey:SPORTID type:@"varchar(1000)" otherColumn:@{CurrentUserName_HCH:@"varchar(10000)",ISUP:@"Char",DEVICETYPE:@"varchar(10000)",DEVICEID:@"varchar(10000)",SPORTTYPE:@"varchar(10000)",SPORTDATE:@"varchar(1000)",FROMTIME:@"varchar(1000)",TOTIME:@"varchar(1000)",STEPNUMBER:@"varchar(1000)",KCALNUMBER:@"varchar(1000)",HEARTRATE:@"blob",SPORTNAME:@"varchar(1000)",HAVETRAIL:@"Char",TRAILARRAY:@"blob",MOVETARGET:@"varchar(1000)",MILEAGEM:@"varchar(1000)",MILEAGEM_MAP:@"varchar(1000)",SPORTPACE:@"varchar(1000)",WHENLONG:@"varchar(1000)"}];
+}
+- (NSString*)haveStringTableName:(NSString *)name primaryKey:(NSString *)key type:(NSString *)type otherColumn:(NSDictionary *)dict
+{
+    //字典中,key是列的名字,值是列的类型,如果没有附加参数,直接写到列中
+    NSString* sql=[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(%@ %@ PRIMARY KEY",name,key,type];
+    for (NSString* columnName in dict) {
+        sql=[sql stringByAppendingFormat:@",%@ %@",columnName,dict[columnName]];
+    }
+    sql=[sql stringByAppendingString:@");"];
+    return sql;
+}
+/**建表*/
+//在线运动
+- (void)createTableName:(NSString *)name primaryKey:(NSString *)key type:(NSString *)type otherColumn:(NSDictionary *)dict {
+    //在线运动
+    //建立数据库
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        //字典中,key是列的名字,值是列的类型,如果没有附加参数,直接写到列中
+        NSString* sql=[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(%@ %@ PRIMARY KEY",name,key,type];
+        for (NSString* columnName in dict) {
+            sql=[sql stringByAppendingFormat:@",%@ %@",columnName,dict[columnName]];
+        }
+        sql=[sql stringByAppendingString:@");"];
+        BOOL res = [db executeUpdate:sql];
+        if (!res) {
+            adaLog(@"Two   error when creating db table");
+        } else {
+            adaLog(@"Two   succ to creating db table");
+        }
+    }];
+    
+}
+//在线运动
+/**插入记录*/
+- (void)insertDataWithColumns:(NSDictionary *)dic toTableName:(NSString *)tableName {
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString* columnNames=[dic.allKeys componentsJoinedByString:@","];
+        NSMutableArray* xArray=[NSMutableArray array];
+        for (int i=0 ; i<[dic.allKeys count] ; i++) {
+            [xArray addObject:@"?"];
+        }
+        NSString* valueStr=[xArray componentsJoinedByString:@","];
+        NSString* sql=[NSString stringWithFormat:@"INSERT INTO %@(%@) VALUES(%@);",tableName,columnNames,valueStr];
+        adaLog(@"sql==%@",sql);
+        BOOL res = [db executeUpdate:sql  withArgumentsInArray:dic.allValues];
+        if (!res) {
+            adaLog(@"insert   error ");
+        } else {
+            adaLog(@"insert   succ ");
+        }
+    }];
+}
+/**插入于覆盖记录*/
+- (void)replaceDataWithColumns:(NSDictionary *)dic toTableName:(NSString *)tableName
+{
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString* columnNames=[dic.allKeys componentsJoinedByString:@","];
+        NSMutableArray* xArray=[NSMutableArray array];
+        for (int i=0 ; i<[dic.allKeys count] ; i++) {
+            [xArray addObject:@"?"];
+        }
+        NSString* valueStr=[xArray componentsJoinedByString:@","];
+        NSString* sql=[NSString stringWithFormat:@"REPLACE INTO %@(%@) VALUES(%@);",tableName,columnNames,valueStr];
+        
+        adaLog(@"sql==%@",sql);
+        BOOL res = [db executeUpdate:sql  withArgumentsInArray:dic.allValues];
+        if (!res) {
+            adaLog(@"insert   error ");
+        } else {
+            adaLog(@"insert   succ ");
+        }
+    }];
+}
+
+//在线运动
+- (NSArray *)queryHeartRateDataWithDate:(NSString *)Date {
+    
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *sql = [NSString stringWithFormat:@"select * from ONLINESPORT where sportDate = '%@' and %@ = '%@' and %@ = '%@'" ,Date ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],DEVICETYPE,[ADASaveDefaluts objectForKey:AllDEVICETYPE]];
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            NSDictionary *dic = [rs resultDictionary] ;
+            SportModelMap *sport = [SportModelMap  setValueWithDictionary:dic];
+            [mutArray addObject:sport];
+        }
+        [db close];
+    }];
+    return mutArray ;
+    
+}
+//在线运动
+- (NSInteger)queryHeartRateDataWithAll{
+    
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *sql = [NSString stringWithFormat:@"select * from ONLINESPORT"];
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            NSDictionary *dic = [rs resultDictionary] ;
+            [mutArray addObject:dic];
+        }
+    }];
+    return [mutArray count] ;
+    
+}
+- (void)deleteDataWithTableName:(NSString *)tableName{
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        
+        NSString *sql = [NSString stringWithFormat:@"Delete from %@ where 1 = 1",tableName];
+        if( [db executeUpdate:sql] ){
+            adaLog(@"Delete %@ s uccess" , tableName ) ;
+        }else{
+            adaLog(@"delete %@ failed" , tableName);
+        }
+    }];
+}
+/**删除数据*/
+- (void)deleteDataWithColumns:(NSDictionary *)dic fromTableName:(NSString *)tableName
+{
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString* sql=[NSString stringWithFormat:@"DELETE FROM %@",tableName];
+        BOOL isFirst=YES;
+        for (NSString* key in dic)
+        {
+            if (isFirst)
+            {
+                sql=[sql stringByAppendingString:@" WHERE "];
+                isFirst=NO;
+            }
+            else
+            {
+                sql=[sql stringByAppendingString:@" AND "];
+            }
+            sql=[sql stringByAppendingFormat:@"%@=?",key];
+        }
+        sql=[sql stringByAppendingString:@";"];
+        if( [db executeUpdate:sql withArgumentsInArray:dic.allValues] ){
+            adaLog(@"Delete %@  success" , tableName ) ;
+        }else{
+            adaLog(@"delete %@ failed" , tableName);
+        }
+    }];
+}
+
+/**
+ 
+ 上传数据查询
+ 日期 ，上传标记
+ */
+- (NSArray *)queryHeartRateDataWithDateToUp:(NSString *)Date isUp:(NSString *)isUp
+{
+    
+    __block NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+    FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:sqlDataPath];
+    [queue inDatabase:^(FMDatabase *db){
+        NSString *sql = [NSString stringWithFormat:@"select * from ONLINESPORT where sportDate = '%@' and %@ = '%@' and %@ != '%@' and %@ = '%@'" ,Date ,CurrentUserName_HCH,[[HCHCommonManager getInstance]UserAcount],ISUP,isUp,DEVICETYPE,[ADASaveDefaluts objectForKey:AllDEVICETYPE]];
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            NSDictionary *dic = [rs resultDictionary] ;
+            SportModelMap *sport = [SportModelMap  setValueWithDictionary:dic];
+            [mutArray addObject:sport];
+        }
+        [db close];
+    }];
+    return mutArray ;
+    
+}
+/**
+ 插入一个数组
+ */
+-(void)insertMostSport:(NSArray *)array
+{
+    for (int i=0;i<array.count;i++)
+    {
+        NSDictionary *dic = [(SportModelMap *)array[i]  modelToStorageDictionary];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:dic];
+        if(!dict[@"sportID"])
+        {
+            NSString *str = [NSString stringWithFormat:@"%ld",[[SQLdataManger getInstance] queryHeartRateDataWithAll]];
+            [dict setValue:str forKey:@"sportID"];
+            [self replaceDataWithColumns:dict toTableName:ONLINESPORT];
+        }
+        else
+        {
+            [self replaceDataWithColumns:dict toTableName:ONLINESPORT];
+        }
+    }
+    
+}
+/**
+ 插入一个血压数组
+ */
+-(void)insertMostBlood:(NSArray *)array
+{
+    for (NSDictionary *dict in array)
+    {
+        NSDictionary *dic = [BloodPressureModel  modelToStorageDict:dict];
+        [self replaceDataWithColumns:dic toTableName:@"BloodPressure_Table"];
+    }
+}
+@end

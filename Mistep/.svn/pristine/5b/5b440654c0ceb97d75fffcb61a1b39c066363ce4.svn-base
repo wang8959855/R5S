@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "b6e62e31-6165-6244-8f33-63884067de4a++8190",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "b6e62e31-6165-6244-8f33-63884067de4a++8190" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "b6e62e31-6165-6244-8f33-63884067de4a++8190" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E9067EA6-D1F9-4781-8A3C-17468714FB6C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "b6e62e31-6165-6244-8f33-63884067de4a++8190" : "Mistep2.0SVN\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Mistep",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Mistep.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/192.168.6.2\/svn\/cositeaProject",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "b6e62e31-6165-6244-8f33-63884067de4a++8190"
+    }
+  ]
+}

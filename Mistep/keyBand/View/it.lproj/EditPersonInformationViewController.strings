@@ -1,0 +1,39 @@
+
+/* Class = "UITextField"; placeholder = "输入昵称"; ObjectID = "0pM-VH-ssy"; */
+"0pM-VH-ssy.placeholder" = "输入昵称";
+
+/* Class = "UILabel"; text = "个人资料"; ObjectID = "3q5-qq-uE6"; */
+"3q5-qq-uE6.text" = "个人资料";
+
+/* Class = "UIButton"; normalTitle = " 英制"; ObjectID = "I7m-I9-Pa4"; */
+"I7m-I9-Pa4.normalTitle" = " 英制";
+
+/* Class = "UIButton"; normalTitle = "男"; ObjectID = "KIP-hP-iTN"; */
+"KIP-hP-iTN.normalTitle" = "男";
+
+/* Class = "UITextField"; placeholder = "请选择出生日期"; ObjectID = "b1t-Ga-Lgu"; */
+"b1t-Ga-Lgu.placeholder" = "请选择出生日期";
+
+/* Class = "UILabel"; text = "这些信息有助于设备采取更准确的信息！"; ObjectID = "cxr-4u-UE3"; */
+"cxr-4u-UE3.text" = "这些信息有助于设备采取更准确的信息！";
+
+/* Class = "UILabel"; text = "account"; ObjectID = "dAv-gQ-Djf"; */
+"dAv-gQ-Djf.text" = "account";
+
+/* Class = "UILabel"; text = "cm"; ObjectID = "eO3-tw-kDO"; */
+"eO3-tw-kDO.text" = "cm";
+
+/* Class = "UITextField"; placeholder = "请输入体重"; ObjectID = "exk-nq-lgj"; */
+"exk-nq-lgj.placeholder" = "请输入体重";
+
+/* Class = "UITextField"; placeholder = "请输入身高"; ObjectID = "ggI-tr-qsg"; */
+"ggI-tr-qsg.placeholder" = "请输入身高";
+
+/* Class = "UIButton"; normalTitle = " 公制"; ObjectID = "mOv-m9-wLw"; */
+"mOv-m9-wLw.normalTitle" = " 公制";
+
+/* Class = "UIButton"; normalTitle = "女"; ObjectID = "qWI-dL-hjK"; */
+"qWI-dL-hjK.normalTitle" = "女";
+
+/* Class = "UILabel"; text = "kg"; ObjectID = "rlL-rP-7Ol"; */
+"rlL-rP-7Ol.text" = "kg";

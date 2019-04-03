@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="shijianViewController">
+            <connections>
+                <outlet property="tableView" destination="Ovs-kP-Nqg" id="0ww-aa-VHR"/>
+                <outlet property="titleLabel" destination="PHj-nL-Dej" id="KXL-dx-a8B"/>
+                <outlet property="topNavView2" destination="p5Z-6K-SoF" id="5Bo-zM-swu"/>
+                <outlet property="view" destination="oVD-ho-IBp" id="68l-bc-5mc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="oVD-ho-IBp">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5Z-6K-SoF" userLabel="View1">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="离线事件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHj-nL-Dej">
+                            <rect key="frame" x="122" y="31" width="76" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="GmP-hm-gfB"/>
+                                <constraint firstAttribute="width" constant="76" id="ZxV-h3-u1k"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWa-b1-gC5">
+                            <rect key="frame" x="15" y="28" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="0Bg-wB-suv"/>
+                                <constraint firstAttribute="height" constant="24" id="n5C-lE-ZKn"/>
+                            </constraints>
+                            <state key="normal" image="GoBackBtn.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GR2-4T-vI7">
+                            <rect key="frame" x="0.0" y="26" width="68" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="477-uI-JeM"/>
+                                <constraint firstAttribute="width" constant="68" id="j5m-mz-eKe"/>
+                            </constraints>
+                            <connections>
+                                <action selector="gobackAction:" destination="-1" eventType="touchUpInside" id="eG9-Je-0cr"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.32549019610000002" green="0.76862745099999996" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="PHj-nL-Dej" firstAttribute="top" secondItem="p5Z-6K-SoF" secondAttribute="top" constant="31" id="4QT-Fa-MEe"/>
+                        <constraint firstItem="bWa-b1-gC5" firstAttribute="leading" secondItem="p5Z-6K-SoF" secondAttribute="leading" constant="15" id="Opx-1P-bSb"/>
+                        <constraint firstItem="bWa-b1-gC5" firstAttribute="top" secondItem="p5Z-6K-SoF" secondAttribute="top" constant="28" id="cAJ-bQ-V1z"/>
+                        <constraint firstItem="GR2-4T-vI7" firstAttribute="centerY" secondItem="PHj-nL-Dej" secondAttribute="centerY" id="hHY-Sp-9eP"/>
+                        <constraint firstAttribute="height" constant="64" id="lnB-mx-9ba"/>
+                        <constraint firstItem="GR2-4T-vI7" firstAttribute="leading" secondItem="p5Z-6K-SoF" secondAttribute="leading" id="zqG-mv-cMN"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ovs-kP-Nqg">
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="0SV-02-gkU"/>
+                        <outlet property="delegate" destination="-1" id="XIF-rM-dZi"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Ovs-kP-Nqg" secondAttribute="bottom" id="BbH-FS-7om"/>
+                <constraint firstAttribute="trailing" secondItem="Ovs-kP-Nqg" secondAttribute="trailing" id="KBa-aa-jWN"/>
+                <constraint firstAttribute="trailing" secondItem="p5Z-6K-SoF" secondAttribute="trailing" id="VXs-lG-YeE"/>
+                <constraint firstItem="PHj-nL-Dej" firstAttribute="centerX" secondItem="oVD-ho-IBp" secondAttribute="centerX" id="avu-JS-mwm"/>
+                <constraint firstItem="Ovs-kP-Nqg" firstAttribute="leading" secondItem="oVD-ho-IBp" secondAttribute="leading" id="jrT-dA-OH5"/>
+                <constraint firstItem="p5Z-6K-SoF" firstAttribute="leading" secondItem="oVD-ho-IBp" secondAttribute="leading" id="pBV-xC-1Zh"/>
+                <constraint firstItem="p5Z-6K-SoF" firstAttribute="top" secondItem="oVD-ho-IBp" secondAttribute="top" id="rDg-Pi-Cmj"/>
+                <constraint firstItem="Ovs-kP-Nqg" firstAttribute="top" secondItem="p5Z-6K-SoF" secondAttribute="bottom" id="yXT-uS-dHU"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="273" y="-1122"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="GoBackBtn.png" width="34" height="32"/>
+    </resources>
+</document>

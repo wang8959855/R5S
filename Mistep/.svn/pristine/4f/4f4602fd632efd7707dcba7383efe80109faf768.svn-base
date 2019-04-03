@@ -1,0 +1,376 @@
+//
+//  HCHCommonManager.m
+//  HuiChengHe
+//
+//  Created by zhangtan on 14-12-7.
+//  Copyright (c) 2014年 zhangtan. All rights reserved.
+//
+
+#import "HCHCommonManager.h"
+#import "BleTool.h"
+
+static HCHCommonManager * instance=nil;
+
+@interface HCHCommonManager()
+@property (nonatomic,strong) NSTimer *timeTimer;//用于监测系统的变化。基本是区别夸天
+@end
+
+@implementation HCHCommonManager
+
++ (HCHCommonManager *)getInstance{
+    //        static dispatch_once_t onceToken;
+    @synchronized(self) {
+        if( instance == nil ){
+            instance =  [[HCHCommonManager alloc] init];
+            [instance initData];
+        }
+    }
+    return instance;
+}
+
++ (void)clearInstance{
+    instance = nil ;
+}
+
+- (void)initData{
+    _isFirstLogin = [[NSUserDefaults standardUserDefaults] boolForKey:CheckFirstLoad_HCH];
+    _sleepPlan = [[[NSUserDefaults standardUserDefaults] objectForKey:Sleep_PlanTo_HCH] intValue];
+    _stepsPlan = [[[NSUserDefaults standardUserDefaults] objectForKey:Steps_PlanTo_HCH] intValue];
+    _antilossIsOn = [[NSUserDefaults standardUserDefaults] boolForKey:AntiLoss_Status_HCH];
+    _state = [[[NSUserDefaults standardUserDefaults] objectForKey:kUnitStateKye]intValue];
+    _todayTimeSeconds = [[TimeCallManager getInstance] getSecondsOfCurDay];
+    _selectTimeSeconds = _todayTimeSeconds;
+    self.pilaoValue = YES;
+    self.weatherLocation = 1;
+    _timeTimer = [NSTimer scheduledTimerWithTimeInterval:10.f target:self selector:@selector(systemTimeChange) userInfo:nil repeats:YES];//定时刷新时间
+    
+    //监测网络的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    //开始监测网络
+    self.internetReachability = [Reachability reachabilityForInternetConnection];
+    [self.internetReachability startNotifier];
+    [self updateInterfaceWithReachability:self.internetReachability];
+}
+
+- (void)setAntilossIsOn:(BOOL)antilossIsOn {
+    _antilossIsOn = antilossIsOn;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:antilossIsOn] forKey:AntiLoss_Status_HCH];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)getFileStoreFolder{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *paths = [[path objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",@""]];
+    if( ![fileManager isExecutableFileAtPath:paths] ){
+        [fileManager createDirectoryAtPath:paths withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+    return paths;
+}
+
+- (int)getPersonAge {
+    int age = 25;
+    //    NSDictionary *dic = [[SQLdataManger getInstance] getCurPersonInf];
+    NSDateFormatter *formates = [[NSDateFormatter alloc] init];
+    [formates setDateFormat:@"yyyy-MM-dd"];
+    //    NSDate *assignDate = [formates dateFromString:[dic objectForKey:BornDate_PersonInfo_HCH]];
+    NSDate *assignDate = [formates dateFromString:[_userInfoDictionAry objectForKey:@"birthdate"]];
+    int time = [assignDate timeIntervalSinceNow];
+    age = abs(time/(60*60*24))/365;
+    return age;
+}
+
+//设置自动登录
+- (void)setIsFirstLogin:(BOOL)isFirstLogin{
+    _isFirstLogin = isFirstLogin ;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isFirstLogin] forKey:CheckFirstLoad_HCH];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setSleepPlan:(int)sleepPlan {
+    _sleepPlan = sleepPlan;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:sleepPlan] forKey:Sleep_PlanTo_HCH];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+- (void)setStepsPlan:(int)stepsPlan {
+    _stepsPlan = stepsPlan;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:stepsPlan] forKey:Steps_PlanTo_HCH];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)storeHeadImageWithImage:(UIImage *)locImage{
+    NSString *file = [self getFileStoreFolder];
+    file = [NSString stringWithFormat:@"%@/%@",file,@"headImageCache.png"];
+    
+    NSData *imageData = UIImagePNGRepresentation(locImage);
+    [imageData writeToFile:file atomically:YES];
+    
+    return file ;
+}
+
+- (NSString *)saveImageFromCache
+{
+    NSString *file = [self getFileStoreFolder];
+    NSString *file1 = [NSString stringWithFormat:@"%@/%@",file,@"headImageCache.png"];
+    NSString *file2 = [NSString stringWithFormat:@"%@/%@",file,@"headImage.png"];
+    [[NSFileManager defaultManager] removeItemAtPath:file2 error:nil];
+    [[NSFileManager defaultManager] moveItemAtPath:file1 toPath:file2 error:nil];
+    return file2;
+}
+
+- (UIImage *)getHeadImageWithFile:(NSString *)fileName{
+    UIImage *locImage = [UIImage imageWithContentsOfFile:fileName];
+    
+    return locImage ;
+}
+
+//- (int)age {
+//    int age = 25;
+//    NSDictionary *dic = [[SQLdataManger getInstance] getCurPersonInf];
+//    NSDateFormatter *formates = [[NSDateFormatter alloc] init];
+//    [formates setDateFormat:@"yyyy-MM-dd"];
+//    NSDate *assignDate = [formates dateFromString:[dic objectForKey:BornDate_PersonInfo_HCH]];
+//    int time = fabs([assignDate timeIntervalSinceNow]);
+//    age = trunc(time/(60*60*24))/365;
+//    if (age >60) {
+//        age = 60;
+//    }
+//    return age;
+//}
+
+//- (void)sendUserInfoToBlueTooth {
+//
+//    [[PZBlueToothManager sharedInstance] sendUserInfoToBind];
+//}
+
+//- (void)sendCurrentUserInfoToBlueTooth {
+//    [[PZBlueToothManager sharedInstance] sendUserInfoToBind];
+//}
+
+
+- (NSString *)createRandomString {
+    int NUMBER_OF_CHARS = 10;
+    char data[NUMBER_OF_CHARS];
+    for (int x=0;x<NUMBER_OF_CHARS;data[x++] = (char)('A' + (arc4random_uniform(26))));
+    return [[NSString alloc] initWithBytes:data length:NUMBER_OF_CHARS encoding:NSUTF8StringEncoding];
+}
+
+- (void)setUserEmailWith:(NSString *)email {
+    if (!_userInfoDictionAry) {
+        _userInfoDictionAry = [[NSMutableDictionary alloc]init];
+    }
+    if (_userInfoDictionAry && email) {
+        [_userInfoDictionAry setObject:email forKey:@"email"];
+    }
+}
+
+- (id)UserEmail {
+    if (_userInfoDictionAry) {
+        return [_userInfoDictionAry objectForKey:@"email"];
+    } else {
+        return  nil;
+    }
+}
+
+- (void)setUserBirthdateWith:(NSString *)birthdate {
+    if (!_userInfoDictionAry) {
+        _userInfoDictionAry = [[NSMutableDictionary alloc]init];
+    }
+    if (_userInfoDictionAry && birthdate) {
+        [_userInfoDictionAry setObject:birthdate forKey:@"birthdate"];
+    }
+}
+
+- (id)userBirthdate {
+    if (_userInfoDictionAry) {
+        return [_userInfoDictionAry objectForKey:@"birthdate"];
+    } else {
+        return  nil;
+    }
+}
+- (void)setUserHeaderWith:(NSString *)header {
+    if (!_userInfoDictionAry) {
+        _userInfoDictionAry = [[NSMutableDictionary alloc]init];
+    }
+    if (_userInfoDictionAry && header) {
+        [_userInfoDictionAry setObject:header forKey:@"header"];
+    }
+}
+
+- (id)UserHeader {
+    if (_userInfoDictionAry) {
+        return [_userInfoDictionAry objectForKey:@"header"];
+    } else {
+        return  nil;
+    }
+}
+
+- (void)setUserHeightWith:(NSString *)height {
+    if (!_userInfoDictionAry) {
+        _userInfoDictionAry = [[NSMutableDictionary alloc]init];
+    }
+    if (_userInfoDictionAry && height) {
+        [_userInfoDictionAry setObject:height forKey:@"height"];
+    }
+}
+
+- (id)UserHeight {
+    if (_userInfoDictionAry) {
+        return [_userInfoDictionAry objectForKey:@"height"];
+    } else {
+        return  nil;
+    }
+}
+
+- (void)setUserWeightWith:(NSString *)weight {
+    if (!_userInfoDictionAry) {
+        _userInfoDictionAry = [[NSMutableDictionary alloc]init];
+    }
+    if (_userInfoDictionAry && weight) {
+        [_userInfoDictionAry setObject:weight forKey:@"weight"];
+    }
+}
+
+- (id)UserWeight {
+    if (_userInfoDictionAry) {
+        return [_userInfoDictionAry objectForKey:@"weight"];
+    } else {
+        return  nil;
+    }
+}
+
+- (void)setUserNickWith:(NSString *)nick {
+    if (!_userInfoDictionAry) {
+        _userInfoDictionAry = [[NSMutableDictionary alloc]init];
+    }
+    if (_userInfoDictionAry && nick) {
+        [_userInfoDictionAry setObject:nick forKey:@"nick"];
+    }
+}
+
+- (id)UserNick {
+    if (_userInfoDictionAry) {
+        return [_userInfoDictionAry objectForKey:@"nick"];
+    } else {
+        return  nil;
+    }
+}
+
+- (void)setUserGenderWith:(NSString *)gender {
+    if (!_userInfoDictionAry) {
+        _userInfoDictionAry = [[NSMutableDictionary alloc]init];
+    }
+    if (_userInfoDictionAry && gender) {
+        [_userInfoDictionAry setObject:gender forKey:@"gender"];
+    }
+}
+
+- (id)UserGender {
+    if (_userInfoDictionAry) {
+        return [_userInfoDictionAry objectForKey:@"gender"];
+    } else {
+        return  nil;
+    }
+}
+
+- (void)setUserAcountName:(NSString *)userName {
+    if (!_userInfoDictionAry) {
+        _userInfoDictionAry = [[NSMutableDictionary alloc]init];
+    }
+    if (_userInfoDictionAry && userName) {
+        [_userInfoDictionAry setObject:userName forKey:@"account"];
+    }
+}
+
+- (id)UserAcount {
+    if (_userInfoDictionAry) {
+        if ([_userInfoDictionAry objectForKey:@"account"] == nil)
+        {
+            return NSLocalizedString(@"未登录", nil);
+        }
+        return [_userInfoDictionAry objectForKey:@"account"];
+        
+    } else {
+        return  NSLocalizedString(@"未登录", nil);
+    }
+}
+- (int)getAge
+{
+    NSDateFormatter *formates = [[NSDateFormatter alloc] init];
+    [formates setDateFormat:@"yyyy-MM-dd"];
+    NSDate *assignDate = [formates dateFromString:[self userBirthdate]];
+    int time = fabs([assignDate timeIntervalSinceNow]);
+    int age = trunc(time/(60*60*24))/365;
+    return age;
+}
+-(NSMutableArray *)queryWeatherArray
+{
+    if (!_queryWeatherArray) {
+        _queryWeatherArray = [NSMutableArray array];
+    }
+    return _queryWeatherArray;
+}
+//-(AFNetworkReachabilityStatus)networkStatus
+//{
+//    if (_networkStatus<=0)
+//    {
+//        //adaLog(@"当前无网络连接");
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [[TodayStepsViewController sharedInstance] remindNotReachable];
+//        });
+//        //        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//        //        [self addActityTextInView:window text:NSLocalizedString(@"当前无网络连接", nil) deleyTime:1.0f];
+//    }
+//    return _networkStatus;
+//}
+-(int)LanguageNum
+{
+    _LanguageNum = [BleTool setLanguageTool];
+    return _LanguageNum;
+}
+//监测系统时间的方法
+-(void)systemTimeChange
+{
+    self.todayTimeSeconds = [[TimeCallManager getInstance] getSecondsOfCurDay];
+    
+//    //adaLog(@"todayTimeSeconds = %d",_todayTimeSeconds);
+//    //adaLog(@"todayTimeSeconds = %@",[[TimeCallManager getInstance] timeAdditionWithTimeString:@"yyyy-MM-dd HH:mm:ss" andSeconed:_todayTimeSeconds]);
+}
+#pragma  mark   - -- apple demo   监测网络
+- (void) reachabilityChanged:(NSNotification *)note
+{
+    Reachability* curReach = [note object];
+    NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
+    [self updateInterfaceWithReachability:curReach];
+}
+- (void)updateInterfaceWithReachability:(Reachability *)reachability
+{
+    NetworkStatus netStatus = [reachability currentReachabilityStatus];
+    self.iphoneNetworkStatus = netStatus;
+    switch (netStatus)
+    {
+        case NotReachable:{
+            //adaLog(@"--NotReachable");
+            break;
+        }
+        case ReachableViaWWAN:{
+            //adaLog(@"--ReachableViaWWAN");
+            break;
+        }
+        case ReachableViaWiFi:{
+            //adaLog(@"--ReachableViaWiFi");
+            break;
+        }
+    }
+}
+ 
+-(void)dealloc
+{
+    //暂停定时器
+    if (_timeTimer.isValid) {
+        [_timeTimer invalidate];
+        _timeTimer = nil;
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
+}
+@end

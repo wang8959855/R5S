@@ -1,0 +1,191 @@
+//
+//  BlueToothManager.h
+//  TestBlueToothVector
+//
+//  Created by zhangtan on 14-9-24.
+//  Copyright (c) 2014年 zhangtan. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+#import <AVFoundation/AVFoundation.h>
+#import "PZWeatherModel.h"
+#import "WeatherDay.h"
+
+
+#define kState [[[NSUserDefaults standardUserDefaults] objectForKey:kUnitStateKye] intValue]
+
+@protocol BlutToothManagerDelegate <NSObject>
+
+@optional
+//蓝牙是否连接，YES表示连接,NO表示断开
+- (void)blueToothManagerIsConnected:(BOOL)isConnected connectPeripheral:(CBPeripheral *)peripheral;
+- (void)blueToothManagerReceiveNotifyData:(NSData *)Dat;
+- (void)blueToothManagerReceiveHeartRateNotify:(NSData *)Dat;
+- (void)callbackConnectTimeAlert:(int)TimeAlert;
+- (void)callbackCBCentralManagerState:(CBCentralManagerState)state;
+
+//- (void)blueToothScanDiscoverPeripheral:(NSMutableArray *)deviceArray;
+
+@end
+
+@interface BlueToothManager : NSObject
+
+//@property (nonatomic, assign) int connectTimeAlert;//是否弹窗了。只有1，都要提示
+//1为未提示，2为已提示
+@property (nonatomic, assign) int isSeek;//是否找到外设  1 没有找到  2 找到了
+
+@property (nonatomic , weak) id<BlutToothManagerDelegate>delegate;
+@property (nonatomic , retain) NSString *connectUUID;
+@property (nonatomic, assign) BOOL isConnected;  //连接与否
+//@property (nonatomic, assign) BOOL conState;    //连接状态的监测
+@property (nonatomic, retain) NSString *deviceName;
+@property (nonatomic, retain) NSMutableArray *dataArray;
+@property (strong, nonatomic) NSData *sendingData;
+@property (nonatomic, assign) int resendCount;
+@property (nonatomic, assign) BOOL canPaired;
+@property (strong, nonatomic) NSString *romURL;
+
+typedef enum {
+    UnitStateNone = 1,
+    UnitStateBritishSystem,
+    UnitStateMetric,
+}UnitState;
+
+
++ (BlueToothManager *)getInstance;
++ (void)clearInstance;
+
+- (void)ConnectWithUUID:(NSString *)connectUUID;
+- (void)ConnectPeripheral:(CBPeripheral *)peripheral;
+- (void)disConnectPeripheralWithUuid:(NSString *)uuid;
+
+
+/**
+ *  获取设备是否已连接
+ *
+ *  @param device 设备对象
+ *
+ *  @return YES 已连接  NO 未连接
+ */
+-(BOOL)readDeviceIsConnect:(CBPeripheral *)device;
+
+//开始扫描
+- (void)startScan;
+//- (void)startScanDevice;
+- (void)stopScanDevice;
+- (void)checkPower;
+- (void)setStepPramWithHeight:(int)height andWeight:(int)weight andSexIndex:(int)sexIndex andAge:(int)age;
+- (void)getActualData;
+- (void)checkVersion;
+//读取页面管理
+- (void)checkPageManager;
+//页面管理 -- 支持那些页面
+- (void)supportPageManager;
+
+- (void)openAntiLoss;
+- (void)closeAntiLoss;- (void)synsCurTime;
+- (void)setCustomAlarmWithStatus:(int)status alarmIndex:(int)alarmIndex alarmType:(int)alarmType alarmCount:(int)alarmCount alarmtimeArray:(NSArray *)alarmtimeArray repeat:(int)repeat noticeString:(NSString *)noticeString;
+
+
+- (void)queryCustomAlarm;
+- (void)closeCustomAlarmWith:(int)index;
+
+//- (void)revDataAckWith:(BlueToothFunctionIndexEnum) dataFunctionNum;
+- (void)revDataAckWith:(int)dataFunctionNum;
+- (void)revDataAckWith:(int) dataFunctionNum andDat:(NSData *)data;
+
+- (void)getCurDayTotalData;
+- (void)heartRateNotifyEnable:(BOOL)isEnable;
+
+- (void)querySystemAlarmWithIndex:(int)index;
+- (void)setSystemAlarmWithIndex:(int)index status:(int)status;
+//- (void)reloadBlueToothData;
+
+- (void)startUpdateHardWithURL:(NSString *)romURL;
+- (void)updateHardWaerWithPackIndex:(int)index;
+- (void)updatehardwaerComplete;
+
+- (void)getCurDayTotalHeartData;
+//请求最新的两个心率包
+-(void)getNewestCurDayTotalHeartData;
+
+- (void)resetDevice;
+
+- (void)queryPhoneDelay;
+
+- (void)setPhoneDelay:(int)seconds;
+
+- (void)queryHeartAlarm;
+
+- (void)setHeartAlarmWithMin:(int)minHeart andMax:(int)maxHeart andState:(int)state;
+
+//- (void)reloadTotalDayData;
+
+//- (void)connectReload;
+
+- (void)phoneAlarmNotify;
+
+- (void)findBindState:(BOOL)state;
+
+- (void)setUnitStateWithState:(BOOL)state;
+
+- (void)setBindDateStateWithState:(BOOL)state;
+
+- (void)queryJiuzuoAlarm;
+
+- (void)setJiuzuoAlarmWithTag:(int)tag isOpen:(BOOL)isOpen BeginHour:(int)beginHour Minite:(int)beginMinite EndHour:(int)endHour Minite:(int)endMinite Duration:(int)duration;
+
+- (void)deleteJiuzuoAlarmWithTag:(int)tag;
+
+- (void)queryHeartAndtired;
+
+- (void) setHeartHZState:(int)state;
+
+- (void)setHeartDuration:(int)state;
+- (void)returnCompletionDegree;     //运动目标 。睡眠目标  睡眠时间
+- (void)activeCompletionDegree;     //运动目标 。睡眠目标  睡眠时间 - 主动发送
+- (void)setPhotoWithState:(BOOL)state;
+
+- (void)answerTakePhoto;
+
+- (void)responseExceptionData;
+
+- (void)getCurDayTotalDataWithType:(NSNumber *)type;
+
+- (void)getPilaoData;
+
+
+//打开心率的命令
+-(void)openHeartRate;
+-(void)timerGetHeartRateData;
+//关闭心率的命令
+-(void)closeHeartRate;
+-(void)answerBloodPressure;//回复血压
+//  告诉设备，是否准备接收数据
+-(void)readyReceive:(int)number;
+//  回答设备，是否准备接收数据
+-(void)answerReadyReceive:(int)number;
+//  回答设备， 校正值
+-(void)answerCorrectNumber;
+//  设置设备， 校正值   APP设置血压测量配置参数
+-(void)setupCorrectNumber;
+//  set  页面管理
+- (void)setupPageManager:(int)pageString;
+-(void)sendWeather:(PZWeatherModel *)weather;//发送天气
+-(void)sendWeatherArray:(NSMutableArray *)weatherArr  day:(int)day number:(int)number;//发送未来几天天气
+-(void)sendOneDayWeather:(PZWeatherModel *)weather;//发送某天天气   今天
+-(void)sendOneDayWeatherTwo:(WeatherDay *)weather;//发送某天天气   某天   < 6
+/**
+ *
+ 使用unicode编码，最大44个字节长度，相当于可有22个ascii或中文；如果提醒类型是1~5，则不用传递提醒语
+ 
+ *   把内容为16进制的字符串转换为数组
+ **/
++(NSData *)utf8ToUnicode:(NSString *)string;
+//开启定时器，定时请求天气
+-(void)weatherRefresh;
+#pragma mark   - - 连接蓝牙刷新 的方法
+-(void)coreBlueRefresh;
+@end

@@ -1,0 +1,708 @@
+//
+//  PZBaseViewController.m
+//  keyband
+//
+//  Created by 迈诺科技 on 15/10/27.
+//  Copyright © 2015年 mainuo. All rights reserved.
+//
+
+/**
+ *
+ *侧边栏的宽度
+ */
+#define  sideWidth (220 * WidthProportion)
+
+#import "PZBaseViewController.h"
+
+#import "HomeViewController.h"
+#import "TodayViewController.h"
+//#import "YRSideViewController.h"
+#import "SharedViewController.h"
+#import "MainTabBarController.h"
+#import "TodayStepsViewController.h"
+//#import "TodaySportViewController.h"
+#import "TodaySportMapViewController.h"
+#import "TodaySleepViewController.h"
+#import "XueyaViewController.h"
+#import "UIImage+ForceDecode.h"
+#import "DeviceTypeViewController.h"
+//#import "LeftView.h"
+#import "UIView+leoAdd.h"
+#import "PSDrawerManager.h"
+#import "HomeView.h"
+//#import "HomeTwoViewController.h"
+
+#import "AppDelegate.h"
+
+@interface PZBaseViewController ()
+{
+    UIImageView *navImageView;
+}
+
+@property (nonatomic, weak) UIImageView *coverImageView;
+
+@end
+
+@implementation PZBaseViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    _topNavView.backgroundColor = [UIColor whiteColor];
+    UIView *topView = [[UIView alloc] init];
+    topView.backgroundColor = [UIColor blackColor];
+    [_topNavView addSubview:topView];
+    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, 20);
+    _topNavView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    _topNavView.layer.shadowOffset = CGSizeMake(0, 1);
+    _topNavView.layer.shadowOpacity = 0.6;
+    _topNavView.layer.shadowRadius = 4;
+    _topNavView.userInteractionEnabled = YES;
+    
+    _topNavView2.backgroundColor = [UIColor whiteColor];
+    UIView *topView1 = [[UIView alloc] init];
+    topView1.backgroundColor = [UIColor blackColor];
+    [_topNavView2 addSubview:topView1];
+    topView1.frame = CGRectMake(0, 0, CurrentDeviceWidth, 20);
+    _topNavView2.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    _topNavView2.layer.shadowOffset = CGSizeMake(0, 1);
+    _topNavView2.layer.shadowOpacity = 0.6;
+    _topNavView2.layer.shadowRadius = 4;
+    
+    _hour1.text = NSLocalizedString(@"小时", nil);
+    _hour2.text = NSLocalizedString(@"小时", nil);
+    _hour3.text = NSLocalizedString(@"小时", nil);
+    _hour4.text = NSLocalizedString(@"小时", nil);
+    
+    _minites1.text = NSLocalizedString(@"分钟", nil);
+    _minites2.text = NSLocalizedString(@"分钟", nil);
+    _minites3.text = NSLocalizedString(@"分钟", nil);
+    _minites4.text = NSLocalizedString(@"分钟", nil);
+    
+    _colories1.text = NSLocalizedString(@"千卡", nil);
+    _colories2.text = NSLocalizedString(@"千卡", nil);
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 更换主页面
+- (void)setRootViewController:(UIViewController *)viewController animationType:(NSString *)animationType
+{
+    UIWindow *window = [UIApplication sharedApplication].windows[0];
+    CATransition *animation = [CATransition  animation ];
+    animation.subtype = kCATransitionFromRight;
+    animation.duration = 0.25;
+    animation.type = kCATransitionPush;
+    [window.layer addAnimation:animation forKey:nil];
+    window.rootViewController = viewController;
+}
+
+- (void)popToViewController:(UIViewController *)viewController animationType:(NSString *)animationType
+{
+    UIWindow *window = [UIApplication sharedApplication].windows[0];
+    CATransition *animation = [CATransition  animation ];
+    animation.subtype = kCATransitionFromLeft;
+    animation.duration = 0.25;
+    animation.type = kCATransitionPush;
+    [window.layer addAnimation:animation forKey:nil];
+    
+    window.rootViewController = viewController;
+}
+
+- (UIResponder *)checkNextResponderIsKindOfViewController : (Class)viewClass{
+    UIResponder *reResponder = nil ;
+    
+    for (UIView* next = self.view.superview ; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass: viewClass ]) {
+            reResponder = nextResponder ;
+            
+            break;
+        }
+    }
+    
+    return reResponder ;
+}
+//#pragma mark - 更换主页面之后，改成push  和 pop
+//
+///// 添加当前页面的截屏
+//- (void)addCurrentPageScreenshot {
+//
+//    UIImage *screenImage = [UIImage screenshot];
+//    UIImageView *imgView = [[UIImageView alloc] initWithImage:screenImage];
+//    imgView.image = screenImage;
+//    [self.view addSubview:imgView];
+//    self.coverImageView = imgView;
+//
+//}
+//
+///// 设置抽屉视图pop后的状态
+//- (void)settingDrawerWhenPop {
+//
+//    self.mm_drawerController.maximumLeftDrawerWidth = sideWidth;
+//    self.mm_drawerController.showsShadow = YES;
+//    self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
+//    [self.coverImageView removeFromSuperview];
+//    self.coverImageView = nil;
+//
+//}
+//
+///// 设置抽屉视图push后的状态
+//- (void)settingDrawerWhenPush {
+//
+//    [self.mm_drawerController setMaximumLeftDrawerWidth:CurrentDeviceWidth];
+//    self.mm_drawerController.showsShadow = NO;
+//    // 这里一定要关闭手势，否则隐藏在屏幕右侧的drawer可以被拖拽出来
+//    self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeNone;
+//
+//}
+
+//#pragma mark - UINavigationControllerDelegate
+//
+//- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+//
+//    if ([viewController isKindOfClass:[HomeViewController class]]) {
+//        [navigationController setNavigationBarHidden:NO animated:YES];
+//    } else {
+//        [navigationController setNavigationBarHidden:NO animated:YES];
+//    }
+//
+//}
+
+#pragma mark - 判断帐号密码
+
+- (BOOL) isUserName:(NSString *)userName
+{
+    
+    if (userName.length == 0)
+    {
+        //        [self showAlertView:NSLocalizedString( @"帐号不能为空，请输入不少于4个字符的帐号", nil)];
+        return NO;
+    }
+    else
+    {
+        if (userName.length<4 || userName.length>32)
+        {
+            //            [self showAlertView:NSLocalizedString(@"帐号输入错误，请输入不少于4个字符的帐号", nil) ];
+            return NO;
+        }
+        NSString * regex = @"([A-Za-z0-9\_]{4,32}$)";
+        NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        //        BOOL isRight = [pred evaluateWithObject:userName];
+        if (![pred evaluateWithObject:userName])
+        {
+            //            [self showAlertView:NSLocalizedString(@"帐号输入只允许大小写字母、数字、下划线", nil) ];
+            return NO;
+        }
+    }
+    return YES;
+}
+
+
+
+- (BOOL) isPassWord:(NSString *)passWord
+{
+    if (passWord.length == 0)
+    {
+        //        [self showAlertView:NSLocalizedString(@"密码不能为空，请输入不少于6个字符的密码", nil) ];
+        return NO;
+    }
+    else if (passWord.length < 6)
+    {
+        //        [self showAlertView:NSLocalizedString(@"密码输入错误，请输入不少于6个字符的密码", nil) ];
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL) isEmail:(NSString *)string
+{
+    if (string.length == 0)
+    {
+        //        [self showAlertView:NSLocalizedString(@"邮箱不能为空，请输入邮箱", nil) ];
+        return NO;
+    }
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    BOOL isEmail = [emailTest evaluateWithObject:string];
+    if (isEmail)
+    {
+        return YES;
+    }
+    else
+    {
+        //        [self showAlertView:NSLocalizedString(@"邮箱格式输入错误，请检查您的邮箱", nil) ];
+        return NO;
+    }
+}
+
+- (BOOL) checkUserName:(NSString *)userName
+{
+    if (userName.length == 0)
+    {
+        [self showAlertView:NSLocalizedString( @"帐号不能为空，请输入不少于4个字符的帐号", nil)];
+        return NO;
+    }
+    else
+    {
+        if (userName.length<4 || userName.length>32)
+        {
+            [self showAlertView:NSLocalizedString(@"帐号输入错误，请输入不少于4个字符的帐号", nil) ];
+            return NO;
+        }
+        NSString *    regex = @"([A-Za-z0-9\_]{4,32}$)";
+        NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        //        BOOL isRight = [pred evaluateWithObject:userName];
+        if (![pred evaluateWithObject:userName])
+        {
+            [self showAlertView:NSLocalizedString(@"帐号输入只允许大小写字母、数字、下划线", nil) ];
+            return NO;
+        }
+    }
+    return YES;
+    
+}
+
+- (BOOL) checkPassWord:(NSString *)passWord
+{
+    if (passWord.length == 0)
+    {
+        [self showAlertView:NSLocalizedString(@"密码不能为空，请输入不少于6个字符的密码", nil) ];
+        return NO;
+    }
+    else if (passWord.length < 6 || passWord.length > 32)
+    {
+        [self showAlertView:NSLocalizedString(@"密码输入错误，请输入不少于6个字符的密码", nil) ];
+        return NO;
+    }
+    return YES;
+    
+}
+
+
+- (BOOL) checkEmail:(NSString *)string
+{
+    if (string.length == 0)
+    {
+        [self showAlertView:NSLocalizedString(@"邮箱不能为空，请输入邮箱", nil) ];
+        return NO;
+    }
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    BOOL isEmail = [emailTest evaluateWithObject:string];
+    if (isEmail)
+    {
+        return YES;
+    }
+    else
+    {
+        [self showAlertView:NSLocalizedString(@"邮箱格式输入错误，请检查您的邮箱", nil) ];
+        return NO;
+    }
+    
+}
+
+- (void)showAlertView:(NSString *)string
+{
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:string delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    [alertView show];
+    [self performSelector:@selector(hidenAlertView:) withObject:alertView afterDelay:2.];
+}
+
+- (void)hidenAlertView:(UIAlertView *)alertView
+{
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+- (MainTabBarController *)gettabBarController
+{
+    MainTabBarController *tabBar = [[MainTabBarController alloc] init];
+    
+    UIView *mview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, 48)];
+    mview.backgroundColor = [UIColor whiteColor];
+    [tabBar.tabBar insertSubview:mview atIndex:0];
+    
+    TodayStepsViewController *todayStepsVC = [TodayStepsViewController sharedInstance];
+    UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:todayStepsVC];
+    todayStepsVC.navigationController.navigationBar.hidden = YES;
+    UITabBarItem *tabItem1 = [[UITabBarItem alloc] init];
+    tabItem1.image = [[UIImage imageNamed:@"活动未选状态"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabItem1.selectedImage = [[UIImage imageNamed:@"活动选中"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    todayStepsVC.tabBarItem =tabItem1;
+    tabItem1.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+    
+    //TodaySportViewController *sportVC = [[TodaySportViewController alloc] init];
+    //UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:sportVC];
+    
+    //sportVC.navigationController.navigationBar.hidden = YES;
+    // UITabBarItem *tabItem2 = [[UITabBarItem alloc] init];
+    // sportVC.tabBarItem =tabItem2;
+    TodaySportMapViewController *sportVC = [[TodaySportMapViewController alloc] init];
+    UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:sportVC];
+    sportVC.navigationController.navigationBar.hidden = YES;
+    UITabBarItem *tabItem2 = [[UITabBarItem alloc] init];
+    sportVC.tabBarItem =tabItem2;
+    tabItem2.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+    tabItem2.image = [[UIImage imageNamed:@"运动未选状态"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabItem2.selectedImage = [[UIImage imageNamed:@"运动选中状态"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    TodaySleepViewController *todaySleepVC = [[TodaySleepViewController alloc] init];
+    UINavigationController *nav3 = [[UINavigationController alloc] initWithRootViewController:todaySleepVC];
+    todaySleepVC.navigationController.navigationBar.hidden = YES;
+    UITabBarItem *tabItem3 = [[UITabBarItem alloc] init];
+    todaySleepVC.tabBarItem =tabItem3;
+    tabItem3.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+    tabItem3.image = [[UIImage imageNamed:@"睡眠未选状态"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabItem3.selectedImage = [[UIImage imageNamed:@"睡眠选中状态"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    
+    XueyaViewController *xueyaVC = [[XueyaViewController alloc] init];
+    UINavigationController *nav4 = [[UINavigationController alloc] initWithRootViewController:xueyaVC];
+    xueyaVC.navigationController.navigationBar.hidden = YES;
+    UITabBarItem *tabItem4 = [[UITabBarItem alloc] init];
+    xueyaVC.tabBarItem =tabItem4;
+    tabItem4.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+    tabItem4.image = [[UIImage imageNamed:@"血压未选状态"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabItem4.selectedImage = [[UIImage imageNamed:@"血压选中"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    
+    NSArray *tabbarItems;
+    if ([[ADASaveDefaluts getDeviceTypeForKey] integerValue] == 2) {
+        tabbarItems = @[nav1,nav2,nav3,nav4];
+    } else {
+        tabbarItems = @[nav1,nav2,nav3];
+    }
+    [tabBar setViewControllers:tabbarItems animated:YES];
+     
+    return tabBar;
+}
+
+- (void)loginHome
+{
+    //检查是否有设备类型
+    BOOL isYes = [self checkDeviceType];
+    if (isYes) {
+        return;
+    }
+ 
+    MainTabBarController *tabBar = [self gettabBarController];
+    AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    tempAppDelegate.mainTabBarController = tabBar;
+    HomeView *leftView = [[HomeView alloc]init];
+    //[HomeView sharedInstance];
+    leftView.frame = CGRectMake(0, 0, 250*WidthProportion, CurrentDeviceHeight);
+//    HomeTwoViewController *VC = [[HomeTwoViewController alloc] init];
+//    VC.view.frame = CGRectMake(0, 0, 250*WidthProportion, CurrentDeviceHeight);
+//    UIView *leftView = [VC view];
+    [[PSDrawerManager instance] installCenterViewController:tabBar leftView:leftView];
+    
+    //    HomeViewController *leftVC = [HomeViewController new];
+    //    UINavigationController *leftNav = [[UINavigationController alloc]initWithRootViewController:leftVC];
+    //    LeftView *leftView = [[LeftView alloc] initWithFrame:CGRectMake(0, 0,375,667)];
+    //   [[PSDrawerManager instance] installCenterViewController:tabBar leftView:leftView];
+    //    MMDrawerController * drawerController = [[MMDrawerController alloc] initWithCenterViewController:tabBar leftDrawerViewController:leftNav];
+    //    [drawerController setMaximumLeftDrawerWidth:sideWidth];
+    //    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    //    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+   
+    //    [self setRootViewController:drawerController animationType:kCATransitionPush];
+}
+-(BOOL)checkDeviceType
+{
+    if (![ADASaveDefaluts getDeviceTypeForKey])
+    {
+        DeviceTypeViewController *type = [[DeviceTypeViewController alloc]init];
+        type.isHiddenBackButton = YES;
+        type.navigationController.navigationBar.hidden = YES;
+        [self.navigationController pushViewController:type animated:YES];
+        
+        return  YES;
+    }
+    return NO;
+}
+- (void)backToHome
+{
+    //检查是否有设备类型
+    BOOL isYes = [self checkDeviceType];
+    if (isYes) {
+        return;
+    }
+    MainTabBarController *tabBar = [self gettabBarController];
+    AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    tempAppDelegate.mainTabBarController = tabBar;
+    HomeView *leftView = [[HomeView alloc]init];
+    leftView.frame = CGRectMake(0, 0, 250*WidthProportion, CurrentDeviceHeight);
+    
+//    HomeTwoViewController *VC = [[HomeTwoViewController alloc] init];
+//    VC.view.frame = CGRectMake(0, 0, 250*WidthProportion, CurrentDeviceHeight);
+//    UIView *leftView = [VC view];
+    [[PSDrawerManager instance] installCenterViewController:tabBar leftView:leftView];
+    
+    //    HomeViewController *leftVC = [HomeViewController new];
+    //    UINavigationController *leftNav = [[UINavigationController alloc]initWithRootViewController:leftVC];
+    
+    //    LeftView *leftView = [[LeftView alloc] initWithFrame:CGRectMake(0, 0,CurrentDeviceWidth,CurrentDeviceHeight)];
+    
+    //    MMDrawerController * drawerController = [[MMDrawerController alloc] initWithCenterViewController:tabBar leftDrawerViewController:leftNav];
+    //    [drawerController setMaximumLeftDrawerWidth:sideWidth];
+    //    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    //    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    //    [self popToViewController:drawerController animationType:nil];
+}
+
+
+- (NSMutableAttributedString *)makeAttributedStringWithString:(NSString *)string andLength:(int)length
+{
+    NSMutableAttributedString *stepString = [[NSMutableAttributedString alloc]initWithString:string];
+    if ([HCHCommonManager getInstance].LanuguageIndex_SRK == ChinesLanguage_Enum ||[HCHCommonManager getInstance].LanuguageIndex_SRK == KoreaLanguage_Enum)
+    {
+        [stepString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(length, string.length - length)];
+    }
+    else
+    {
+        if(string.length >= 5)
+        {
+            [stepString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(length, string.length - length)];
+        }
+        else
+        {
+            [stepString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(length, string.length - length)];
+        }
+    }
+    return stepString;
+}
+
+//# pragma mark - 获取sideVC
+//- (YRSideViewController *)getSideVC
+//{
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    YRSideViewController *sideVC = (YRSideViewController *)window.rootViewController;
+//    return sideVC;
+//}
+
+#pragma mark - 颜色生成Image
+
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+
+#pragma mark - 弹出HUD
+- (void)addActityTextInView : (UIView *)view text : (NSString *)textString deleyTime : (float)times {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    // Configure for text only and offset down
+    hud.mode = MBProgressHUDModeText;
+    //    hud.labelText = textString ;
+    hud.label.text = textString;
+    hud.margin = 10.f;
+    //    	hud.yOffset = 150.f;
+    hud.removeFromSuperViewOnHide = YES;
+    hud.square = YES;
+    //    [hud hide:YES afterDelay:times];
+    [hud hideAnimated:YES afterDelay:times];
+}
+
+- (void)addActityIndicatorInView :(UIView *)view labelText : (NSString *)labelString detailLabel : (NSString *)detailString{
+    
+    MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:view];
+    //    hud.dimBackground = YES ;
+    
+    if(labelString != nil)
+        //        hud.labelText =  labelString ;
+        hud.label.text = labelString;
+    if(detailString != nil)
+        //        hud.detailsLabelText = detailString ;
+        hud.detailsLabel.text = detailString;
+    hud.square = YES;
+    
+    [view addSubview:hud];
+    //    [hud show:YES];
+    [hud showAnimated:YES];
+}
+
+- (void)removeActityIndicatorFromView : (UIView *)view{
+    for( UIView *viewInView in [view subviews]){
+        if( [viewInView isKindOfClass:[MBProgressHUD class] ]){
+            [viewInView removeFromSuperview];
+            break;
+        }
+    }
+}
+
+- (void)setButtonWithButton:(UIButton *)button andTitle:(NSString *)string
+{
+    [button setBackgroundColor:kColor(73, 126, 227)];
+    [button setTitle:string forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button.layer.cornerRadius = 5;
+    button.clipsToBounds = YES;
+}
+
+- (void)shareVC
+{
+    UIGraphicsBeginImageContext(self.view.bounds.size);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    SharedViewController *shareVC = [SharedViewController new];
+    shareVC.image = viewImage;
+    
+    
+    [self.navigationController pushViewController:shareVC animated:YES];
+}
+
+- (void)loginStateTimeOutWithBlock:(void(^)(BOOL state))block;
+{
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:LastLoginUser_Info];
+    if (dic)
+    {
+        [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:@"user_login" ParametersDictionary:dic Block:^(id responseObject, NSError *error,NSURLSessionTask *task) {
+            if (error) {
+                [self removeActityIndicatorFromView:self.view];
+                [self addActityTextInView:self.view text:NSLocalizedString(@"失败", nil) deleyTime:1.5f];
+                if (block)
+                {
+                    block(NO);
+                }
+            }else {
+                int code = [[responseObject objectForKey:@"code"] intValue];
+                if(code == 9003) {
+                    int timeSeconds = [[TimeCallManager getInstance] getSecondsOfCurDay];
+                    NSDictionary *dic = [[SQLdataManger getInstance]getTotalDataWith:timeSeconds];
+                    if (!dic) {
+                        NSString *macAddress = [AllTool amendMacAddressGetAddress];
+                        //                        NSString *macAddress = [ADASaveDefaluts objectForKey:kLastDeviceMACADDRESS];
+                        //                        if (!macAddress)
+                        //                        {
+                        //                            macAddress = DEFAULTDEVICEID;
+                        //                        }
+                        dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                               [[HCHCommonManager getInstance]UserAcount],CurrentUserName_HCH,
+                               [NSNumber numberWithInt:timeSeconds],  DataTime_HCH,
+                               [NSNumber numberWithInt:0], TotalSteps_DayData_HCH,
+                               [NSNumber numberWithInt:0], TotalMeters_DayData_HCH,
+                               [NSNumber numberWithInt:0], TotalCosts_DayData_HCH,
+                               [NSNumber numberWithInt:[HCHCommonManager getInstance].sleepPlan ], Sleep_PlanTo_HCH,
+                               [NSNumber numberWithInt:[HCHCommonManager getInstance].stepsPlan], Steps_PlanTo_HCH,
+                               [NSNumber numberWithInt:0],TotalDeepSleep_DayData_HCH,
+                               [NSNumber numberWithInt:0],TotalLittleSleep_DayData_HCH,
+                               [NSNumber numberWithInt:0],TotalWarkeSleep_DayData_HCH,
+                               [NSNumber numberWithInt:0],TotalSleepCount_DayData_HCH,
+                               [NSNumber numberWithInt:testEventCount],TotalDayEventCount_DayData_HCH,
+                               [NSNumber numberWithInt:0],TotalDataActivityTime_DayData_HCH,
+                               [NSNumber numberWithInt:[[TimeCallManager getInstance] getWeekIndexInYearWith:timeSeconds]], TotalDataWeekIndex_DayData_HCH,
+                               [NSString stringWithFormat:@"%03d",[[ADASaveDefaluts objectForKey:AllDEVICETYPE] intValue]],DEVICETYPE,
+                               macAddress,DEVICEID,
+                               @"0",ISUP,
+                               nil];
+                        [[SQLdataManger getInstance]insertSignalDataToTable:DayTotalData_Table withData:dic];
+                    }
+                    
+                    if (block)
+                    {
+                        block(YES);
+                    }
+                    
+                }else {
+                    [self removeActityIndicatorFromView:self.view];
+                    [self addActityTextInView:self.view text:(NSLocalizedString(@"失败", nil)) deleyTime:1.5f];
+                }
+            }
+        }];
+    }
+    else{
+        NSDictionary *thirdDic = [[NSUserDefaults standardUserDefaults] objectForKey:kThirdPartLoginKey];
+        if (thirdDic)
+        {
+            [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:@"user_thirdPartyLogin" ParametersDictionary:thirdDic Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task){
+                if (error)
+                {
+                    [self addActityTextInView:self.view text:(NSLocalizedString(@"失败", nil)) deleyTime:1.5f];
+                    if (block)
+                    {
+                        block(NO);
+                    }
+                }
+                else
+                {
+                    int code = [responseObject[@"code"] intValue];
+                    if (code == 9003)
+                    {
+                        int timeSeconds = [[TimeCallManager getInstance] getSecondsOfCurDay];
+                        NSDictionary *dic = [[SQLdataManger getInstance]getTotalDataWith:timeSeconds];
+                        if (!dic) {
+                            NSString *macAddress = [AllTool amendMacAddressGetAddress];
+                            //                            NSString *macAddress = [ADASaveDefaluts objectForKey:kLastDeviceMACADDRESS];
+                            //                            if (!macAddress)
+                            //                            {
+                            //                                macAddress = DEFAULTDEVICEID;
+                            //                            }
+                            dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [[HCHCommonManager getInstance]UserAcount],CurrentUserName_HCH,
+                                   [NSNumber numberWithInt:timeSeconds],  DataTime_HCH,
+                                   [NSNumber numberWithInt:0], TotalSteps_DayData_HCH,
+                                   [NSNumber numberWithInt:0], TotalMeters_DayData_HCH,
+                                   [NSNumber numberWithInt:0], TotalCosts_DayData_HCH,
+                                   [NSNumber numberWithInt:[HCHCommonManager getInstance].sleepPlan ], Sleep_PlanTo_HCH,
+                                   [NSNumber numberWithInt:[HCHCommonManager getInstance].stepsPlan], Steps_PlanTo_HCH,
+                                   [NSNumber numberWithInt:0],TotalDeepSleep_DayData_HCH,
+                                   [NSNumber numberWithInt:0],TotalLittleSleep_DayData_HCH,
+                                   [NSNumber numberWithInt:0],TotalWarkeSleep_DayData_HCH,
+                                   [NSNumber numberWithInt:0],TotalSleepCount_DayData_HCH,
+                                   [NSNumber numberWithInt:testEventCount],TotalDayEventCount_DayData_HCH,
+                                   [NSNumber numberWithInt:0],TotalDataActivityTime_DayData_HCH,
+                                   [NSNumber numberWithInt:[[TimeCallManager getInstance] getWeekIndexInYearWith:timeSeconds]], TotalDataWeekIndex_DayData_HCH,
+                                   [NSString stringWithFormat:@"%03d",[[ADASaveDefaluts objectForKey:AllDEVICETYPE] intValue]],DEVICETYPE,
+                                   macAddress,DEVICEID,
+                                   @"0",ISUP,
+                                   nil];
+                            [[SQLdataManger getInstance]insertSignalDataToTable:DayTotalData_Table withData:dic];
+                        }
+                    }
+                    if (block)
+                    {
+                        block(YES);
+                    }
+                }
+            }];
+        }
+    }
+}
+
+- (BOOL)stringNotNull:(NSString *)string
+{
+    if ((NSNull *)string == [NSNull null])
+    {
+        return NO;
+    }
+    return YES;
+}
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+
+@end

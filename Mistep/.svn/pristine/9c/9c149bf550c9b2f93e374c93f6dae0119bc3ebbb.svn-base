@@ -1,0 +1,27 @@
+
+/* Class = "UITextField"; placeholder = "请输入密码"; ObjectID = "Bul-vL-rDJ"; */
+"Bul-vL-rDJ.placeholder" = "请输入密码";
+
+/* Class = "UITextField"; placeholder = "请输入帐号"; ObjectID = "DMf-oE-v8P"; */
+"DMf-oE-v8P.placeholder" = "请输入帐号";
+
+/* Class = "UILabel"; text = "帐号"; ObjectID = "Lpf-KV-uv3"; */
+"Lpf-KV-uv3.text" = "帐号";
+
+/* Class = "UILabel"; text = "密码"; ObjectID = "XYM-FR-sie"; */
+"XYM-FR-sie.text" = "密码";
+
+/* Class = "UITextField"; placeholder = "请输入邮箱"; ObjectID = "hhZ-Df-G6p"; */
+"hhZ-Df-G6p.placeholder" = "请输入邮箱";
+
+/* Class = "UITextField"; placeholder = "请输入密码"; ObjectID = "jRJ-ne-9Id"; */
+"jRJ-ne-9Id.placeholder" = "请输入密码";
+
+/* Class = "UILabel"; text = "注册"; ObjectID = "ph0-98-mWS"; */
+"ph0-98-mWS.text" = "注册";
+
+/* Class = "UILabel"; text = "邮箱"; ObjectID = "rCm-yZ-EWo"; */
+"rCm-yZ-EWo.text" = "邮箱";
+
+/* Class = "UILabel"; text = "确认密码"; ObjectID = "rli-kx-qLD"; */
+"rli-kx-qLD.text" = "确认密码";

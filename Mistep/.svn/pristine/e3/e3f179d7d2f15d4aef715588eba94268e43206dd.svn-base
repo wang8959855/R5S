@@ -1,0 +1,296 @@
+//
+//  CositeaBlueTooth.h
+//  Mistep
+//
+//  Created by 迈诺科技 on 16/9/7.
+//  Copyright © 2016年 huichenghe. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "BlueToothManager.h"
+#import "CositeaBlueToothHeader.h"
+//#import "SportModel.h"
+#import "SportModelMap.h"
+#import "BloodPressureModel.h"
+#import "PZWeatherModel.h"
+#import "WeatherDay.h"
+#import "BlueToothScan.h"
+
+typedef enum {
+    SystemAlarmType_Antiloss = 1,  //   防丢提醒
+    SystemAlarmType_SMS,           //   短信提醒
+    SystemAlarmType_Phone,         //   来电提醒
+    SystemAlarmType_Taiwan = 6,    //   抬腕唤醒
+    SystemAlarmType_Fanwan = 7,    //   翻腕切屏
+    SystemAlarmType_WeChat = 9,    //   微信消息提醒
+    SystemAlarmType_QQ,            //   QQ消息提醒
+    SystemAlarmType_Facebook,      //   Facebook提醒
+    SystemAlarmType_Skype,         //   Skype提醒
+    SystemAlarmType_Twitter,       //   Twitter提醒
+    SystemAlarmType_WhatsAPP,      //   WhatsAPP提醒
+    SystemAlarmType_Line = 16,      //   Line提醒
+    
+}SystemAlarmType_Enum;
+
+typedef void(^intBlock)(int number);
+
+typedef void(^doubleBlock)(double number);
+typedef void(^uintBlock)(uint number);
+typedef void (^arrayBlock)(NSArray *array);
+
+typedef void (^connectStateChanged)(BOOL isConnect, CBPeripheral *peripheral);
+
+typedef void (^dicBlock)(NSDictionary *dic);
+
+typedef void (^allDayModelBlock)(DayOverViewDataModel *model);
+
+typedef void (^offLineDataModel)(SportModelMap *model);
+
+typedef void (^doubleArrayBlock)(NSArray *steps,NSArray *costs,int timeSeconds);
+
+typedef void (^doubleIntArrayBlock) (int timeSeconds,int index, NSArray *array);
+
+typedef void (^sleepModelBlock)(SleepModel *model);
+
+typedef void (^intArrayBlock) (int number, NSArray *array);
+
+typedef void (^versionBlock)(int firstHardVersion,int secondHardVersion,int softVersion,int blueToothVersion);
+
+typedef void (^alarmModelBlock)(CustomAlarmModel *alarmModel);
+
+typedef void(^doubleInt)(int index, int state);
+
+typedef void(^heartRateAlarmBlock)(int state, int max, int min);
+
+typedef void(^floatBlock)(float progress);
+
+typedef void(^BlueToothState)(CBCentralManagerState state);
+
+typedef void(^pageManager)(NSString *pageManager);
+
+//@protocol CositeaBlueToothManagerDelegate <NSObject>
+//@end
+@interface CositeaBlueToothManager : NSObject
+
+#pragma mark -- 第二人
+
+typedef void(^startSportBlock)(BOOL flag);
+typedef void(^timerGetHeartRate)(SportModelMap  *sport);
+typedef void(^bloodPressure)(BloodPressureModel  *bloodPre);
+#pragma mark -- 全局变量
+
+@property (strong, nonatomic) BlueToothScan *blueToothScan;
+
+@property (strong, nonatomic) BlueToothManager *blueToothManager;
+
+#pragma mark -- blocks
+
+@property (copy, nonatomic) intBlock PowerBlock;
+
+@property (copy, nonatomic) arrayBlock deviceArrayBlock;
+
+@property (copy, nonatomic) allDayModelBlock dayTotalDataBlock;
+
+@property (copy, nonatomic) connectStateChanged connectStateBlock;
+
+@property (copy, nonatomic) intBlock heartRateBlock;
+
+@property (copy, nonatomic) offLineDataModel offLineDataModelBlock;
+
+@property (copy, nonatomic) allDayModelBlock historyAlldayModelBlock;
+
+@property (copy, nonatomic) doubleArrayBlock dayHourDataBlock;
+
+@property (copy, nonatomic) doubleArrayBlock historyHourDataBlock;
+
+@property (copy, nonatomic) doubleIntArrayBlock heartRateArrayBlock;
+
+@property (copy, nonatomic) doubleIntArrayBlock historyHeartRateArrayBlock;
+
+@property (copy, nonatomic) sleepModelBlock sleepStateArrayBlock;
+
+@property (copy, nonatomic) sleepModelBlock historySleepStateArrayBlock;
+
+@property (copy, nonatomic) intArrayBlock HRVDataBlock;
+
+@property (copy, nonatomic ) intArrayBlock historyHRVDataBlock;
+
+@property (copy, nonatomic) intBlock openFindBindBlock;
+
+@property (copy, nonatomic) intBlock closeFindBindBlock;
+
+@property (copy, nonatomic) intBlock resetBindBlock;
+
+@property (copy, nonatomic) versionBlock versionBlock;
+
+@property (copy, nonatomic) alarmModelBlock alarmModelBlock;
+
+@property (copy, nonatomic) doubleInt systemAlarmBlock;
+
+@property (copy, nonatomic) intBlock phoneDelayBlock;
+
+@property (copy, nonatomic) arrayBlock sedentaryArrayBlock;
+
+@property (copy, nonatomic) doubleInt heartRateMonitorBlock;
+
+@property (copy, nonatomic) heartRateAlarmBlock heartRateAlarmBlock;
+
+@property (copy, nonatomic) floatBlock progressBlock;
+
+@property (copy, nonatomic) intBlock updateSuccessBlock;
+
+@property (copy, nonatomic) intBlock updateFailureBlock;
+
+
+@property (copy, nonatomic) intBlock takePhotoBlock;
+@property (copy, nonatomic) startSportBlock startSportBlock;
+@property (copy, nonatomic) timerGetHeartRate timerGetHeartRate;
+@property (copy, nonatomic) intBlock clockSportBlock;
+@property (copy, nonatomic) bloodPressure bloodPressure;
+@property (copy, nonatomic) intBlock TimeAlert;
+@property (copy, nonatomic) BlueToothState BlueToothState;
+@property (copy, nonatomic) uintBlock pageManager;
+@property (copy, nonatomic) uintBlock supportPage;
+#pragma mark -- methods
+
+
+#pragma mark -- 扫描方法
+
+- (void)scanDevicesWithBlock:(arrayBlock)deviceArrayBlock;
+
+/*
+ *停止扫描设备
+ **/
+- (void)stopScanDevice;
+
+#pragma mark -- 连接方法
+
+- (void)connectWithUUID:(NSString *)UUID;
+
+/*
+ *   连接状态的改变
+ *
+ */
+
+- (void)connectStateChangedWithBlock:(connectStateChanged)connectStateBlock;
+
+#pragma mark -- 断开连接
+
+- (void)disConnectedWithUUID:(NSString *)UUID;
+
+#pragma mark -- 发送蓝牙数据
+/**
+ *  查询手环电量
+ *
+ *  @param power block返回未手环电量值
+ */
+- (void)checkBandPowerWithPowerBlock:(intBlock)PowerBlock;
+
+- (void)chekCurDayAllDataWithBlock:(allDayModelBlock)dayTotalDataBlock;
+
+- (void)openActualHeartRateWithBolock:(intBlock)heartRateBlock;
+
+- (void)closeActualHeartRate;
+
+- (void)checkHourStepsAndCostsWithBlock:(doubleArrayBlock)dayHourDataBlock;
+
+- (void)checkTodayHeartRateWithBlock:(doubleIntArrayBlock)heartRateArrayBlock;
+
+- (void)checkTodaySleepStateWithBlock:(sleepModelBlock)sleepStateArrayBlock;
+
+- (void)checkHRVWithHRVBlock:(intArrayBlock)HRVDataBlock;
+
+- (void)openFindBindWithBlock:(intBlock)openFindBindBlock;
+
+- (void)CloseFindBindWithBlock:(intBlock)closeFindBindBlock;
+
+- (void)resetBindWithBlock:(intBlock)resetBindBlock;
+
+- (void)checkVerSionWithBlock:(versionBlock)versionBlock;
+
+- (void)setAlarmWithAlarmModel:(CustomAlarmModel *)model;
+
+- (void)chekAlarmWithBlock:(alarmModelBlock)alarmModelBlock;
+
+- (void)deleteAlarmWithAlarmIndex:(int)index;
+
+- (void)checkSystemAlarmWithType:(SystemAlarmType_Enum)type StateBlock:(doubleInt)systemAlarmBlock;//防丢
+
+- (void)setSystemAlarmWithType:(SystemAlarmType_Enum)type State:(int)state;
+
+- (void)checkPhoneDealayWithBlock:(intBlock)phoneDealayBlock;
+
+- (void)setPhoneDelayWithDelaySeconds:(int)Seconds;
+
+- (void)checkSedentaryWithSedentaryBlock:(arrayBlock)sedentaryArrayBlock;
+
+- (void)setSedentaryWithSedentaryModel:(SedentaryModel *)sedentaryModel;
+
+- (void)deleteSedentaryAlarmWithIndex:(int)index;
+
+- (void)checkHeartTateMonitorwithBlock:(doubleInt)heartRateMonitorBlock;
+
+- (void)changeHeartRateMonitorStateWithState:(BOOL)state;
+
+- (void)setHeartRateMonitorDurantionWithTime:(int)Minutes;
+
+- (void)checkHeartRateAlarmWithHeartRateAlarmBlock:(heartRateAlarmBlock)heartRateAlarmBlock;
+
+- (void)setHeartRateAlarmWithState:(BOOL)state MaxHeartRate:(int)max MinHeartRate:(int)min;
+
+- (void)updateBindROMWithRomUrl:(NSString *)romURL progressBlock:(floatBlock)progressBlock successBlock:(intBlock)success failureBlock:(intBlock)failure;
+
+- (void)changeTakePhotoState:(BOOL)state;
+
+- (void)synsCurTime;
+
+- (void)setUnitStateWithState:(BOOL)state;
+
+- (void)setBindDateStateWithState:(BOOL)state;
+
+- (void)sendUserInfoToBindWithHeight:(int)height weight:(int)weight male:(BOOL)male age:(int)age;
+#pragma mark -- 第二人
+- (void)openHeartRate:(startSportBlock)startSportBlock;
+- (void)timerGetHeartRateData:(timerGetHeartRate)timerGetHeartRate;
+- (void)closeHeartRate:(intBlock)clockSportBlock;
+- (void)getBloodPressure:(bloodPressure)bloodPressure;
+//检查是否提示了
+- (void)checkConnectTimeAlert:(intBlock)TimeAlert;
+//检查蓝牙开关
+- (void)checkCBCentralManagerState:(BlueToothState)BlueToothState;
+//页面管理
+- (void)checkPageManager:(uintBlock)pageManager;
+//页面管理 -- 支持那些页面
+- (void)supportPageManager:(uintBlock)page;
+
+//  set  页面管理
+- (void)setupPageManager:(uint)pageString;
+-(void)sendWeather:(PZWeatherModel *)weather;//发送天气
+-(void)sendWeatherArray:(NSMutableArray *)weatherArr day:(int)day number:(int)number;//发送未来几天天气
+-(void)sendOneDayWeather:(PZWeatherModel *)weather;//发送某天天气   今天
+-(void)sendOneDayWeatherTwo:(WeatherDay *)weather;//发送某天天气   某天   < 6
+-(void)activeCompletionDegree;
+//  告诉设备，是否准备接收数据
+-(void)readyReceive:(int)number;
+//  设置设备， 校正值   APP设置血压测量配置参数
+-(void)setupCorrectNumber;
+#pragma mark -- 蓝牙接受到需要处理数据
+
+- (void)recieveOffLineDataWithBlock:(offLineDataModel)offLineDataBlock;
+
+- (void)recieveHistoryAllDayDataWithBlock:(allDayModelBlock)historyAllDayDataBlock;
+
+- (void)recieveHistoryHourDataWithBlock:(doubleArrayBlock)historyHourDataBlock;
+
+- (void)recieveHistorySleepDataWithBlock:(sleepModelBlock)historySleepDataBlock;
+
+- (void)recieveHistoryHeartRateWithBlock:(doubleIntArrayBlock)historyHeartRateBlock;
+
+- (void)recieveHistoryHRVDataWithBlock:(intArrayBlock)historyHRVDataBlock;
+
+- (void)recieveTakePhotoMessage:(intBlock)takePhotoBlock;
+#pragma mark -- 处理数据工具方法
+- (uint)combineDataWithAddr:(Byte *)addr andLength:(uint)len;
+#pragma mark   - - 连接蓝牙刷新 的方法
+-(void)coreBlueRefresh;
+@end

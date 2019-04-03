@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "运动:"; ObjectID = "Adr-sE-KvS"; */
+"Adr-sE-KvS.text" = "运动:";
+
+/* Class = "UILabel"; text = "完成3次"; ObjectID = "VQ3-xI-ycK"; */
+"VQ3-xI-ycK.text" = "完成3次";
+
+/* Class = "UILabel"; text = "睡眠:"; ObjectID = "a1b-5A-doI"; */
+"a1b-5A-doI.text" = "睡眠:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "b3N-cW-aTa"; */
+"b3N-cW-aTa.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fSa-tK-1Rd"; */
+"fSa-tK-1Rd.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qnh-fx-ao1"; */
+"qnh-fx-ao1.text" = "Label";
+
+/* Class = "UILabel"; text = "状态:"; ObjectID = "uF0-gF-EJT"; */
+"uF0-gF-EJT.text" = "状态:";
+
+/* Class = "UILabel"; text = "昵称"; ObjectID = "zlV-x0-wv9"; */
+"zlV-x0-wv9.text" = "昵称";

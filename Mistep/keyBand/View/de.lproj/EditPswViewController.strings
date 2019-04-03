@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "修改密码"; ObjectID = "7fQ-VI-vhg"; */
+"7fQ-VI-vhg.text" = "修改密码";
+
+/* Class = "UILabel"; text = "旧密码"; ObjectID = "Cab-ZE-ddS"; */
+"Cab-ZE-ddS.text" = "旧密码";
+
+/* Class = "UILabel"; text = "确认密码"; ObjectID = "EsF-3I-odk"; */
+"EsF-3I-odk.text" = "确认密码";
+
+/* Class = "UILabel"; text = "帐号:123456"; ObjectID = "Ft0-P7-2ng"; */
+"Ft0-P7-2ng.text" = "帐号:123456";
+
+/* Class = "UILabel"; text = "新密码"; ObjectID = "lVA-RU-zER"; */
+"lVA-RU-zER.text" = "新密码";

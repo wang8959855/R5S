@@ -1,0 +1,792 @@
+ 
+ /* 西班牙语  */
+ "%.0f分钟" = "%.0fMin";
+ "%@月" = "%@";
+ "%@步" = "%@pasos";
+ "%d 千卡" = "%d Kcal";
+ "%d 步" = "%d pasos";
+ "%d千卡" = "%dKcal";
+ "%d次" = "%d Vez";
+ "%d步" = "%d pasos";
+ "0步" = "0pasos";
+ "一" = "lun";
+ "三" = "mié";
+ "中" = "Medio";
+ "二" = "mar";
+ "五" = "vie";
+ "从相册获取" = "Siendo de álbum";
+ "低" = "Bajo";
+ 
+ /* No comment provided by engineer. */
+ "修改失败" = "Fallo";
+ 
+ /* No comment provided by engineer. */
+ "修改密码" = "Modificados contraseña";
+ 
+ /* No comment provided by engineer. */
+ "修改密码..." = "Actualizando...";
+ 
+ /* No comment provided by engineer. */
+ "修改密码失败" = "Fallo";
+ 
+ /* No comment provided by engineer. */
+ "修改密码成功" = "Triunfar";
+ 
+ /* No comment provided by engineer. */
+ "修改成功" = "Triunfar";
+ 
+ /* No comment provided by engineer. */
+ "修改资料" = "Modificados datos";
+ 
+ /* No comment provided by engineer. */
+ "偏低" = "Bajo";
+ 
+ /* No comment provided by engineer. */
+ "偏少" = "Menos";
+ 
+ /* No comment provided by engineer. */
+ "充裕" = "Abundante";
+ 
+ /* No comment provided by engineer. */
+ " 公制" = " Métrico";
+ 
+ /* No comment provided by engineer. */
+ "六" = "sáb";
+ 
+ /* No comment provided by engineer. */
+ "出生日期不能为空，请选择出生日期" = "Fecha de nacimiento no puede estar vacía, por favor seleccione su fecha de nacimiento";
+ 
+ /* No comment provided by engineer. */
+ "刷新超时" = "Timeout";
+ 
+ /* No comment provided by engineer. */
+ "力量训练" = "Entrenamiento de fuerza";
+ 
+ /* No comment provided by engineer. */
+ "取消" = "Cancelar";
+ 
+ /* No comment provided by engineer. */
+ "吃药" = "Tomar píldoras";
+ 
+ /* No comment provided by engineer. */
+ "约会" = "La cita";
+ 
+ /* No comment provided by engineer. */
+ "周一" = "lunes";
+ 
+ /* No comment provided by engineer. */
+ "周三" = "miércoles";
+ 
+ /* No comment provided by engineer. */
+ "周二" = "martes";
+ 
+ /* No comment provided by engineer. */
+ "周五" = "viernes";
+ 
+ /* No comment provided by engineer. */
+ "周六" = "sábado";
+ 
+ /* No comment provided by engineer. */
+ "周四" = "jueves";
+ 
+ /* No comment provided by engineer. */
+ "周日" = "domingo";
+ 
+ /* No comment provided by engineer. */
+ "周末" = "Fines de semana";
+ 
+ /* No comment provided by engineer. */
+ "喝水" = "Beba agua";
+ 
+ /* No comment provided by engineer. */
+ "四" = "jue";
+ 
+ /* No comment provided by engineer. */
+ "固件已是最新" = "Firmware es la última";
+ 
+ /* No comment provided by engineer. */
+ "固件更新" = "Firmware actualice";
+ 
+ /* No comment provided by engineer. */
+ "固件版本" = "firmware versión";
+ 
+ /* No comment provided by engineer. */
+ "密码已经发送到帐号关联的邮箱，请查看后重新登录！" = "contraseña ha sido enviada a la cuenta asociada con el buzón de correo, por favor, vuelva a abrir una sesión!";
+ 
+ /* No comment provided by engineer. */
+ "工作日" = "Entre semana";
+ 
+ /* No comment provided by engineer. */
+ "已连接" = "Conectado";
+ 
+ /* No comment provided by engineer. */
+ "平均心率:%d" = "Media HR:%d";
+ 
+ /* No comment provided by engineer. */
+ "平均心率:--" = "Media HR:--";
+ 
+ /* No comment provided by engineer. */
+ "平均心率:%d" = "Media HR:%d";
+ 
+ /* No comment provided by engineer. */
+ "延时%d秒" = "%d segundos";
+ 
+ /* No comment provided by engineer. */
+ "%@秒后" = "%@ segundos";
+ 
+ /* No comment provided by engineer. */
+ "%d秒后" = "%d segundos";
+ /* No comment provided by engineer. */
+ "徒步" = "A pie";
+ 
+ /* No comment provided by engineer. */
+ "心率预警" = "HR";
+ 
+ /* No comment provided by engineer. */
+ "心率预警设置成功" = "Triunfar";
+ 
+ /* No comment provided by engineer. */
+ "恢复出厂设置" = "Restaurar la fábrica";
+ 
+ /* No comment provided by engineer. */
+ "您两次输入的密码不一致" = "Contraseña que ha introducido no es consistente para los dos tiempo.";
+ 
+ /* No comment provided by engineer. */
+ "手环升级成功" = "Triunfar";
+ 
+ /* No comment provided by engineer. */
+ "手环固件有新版本，是否更新？" = "Pulsera nueva versión del firmware, ya sea para actualizar?";
+ 
+ /* No comment provided by engineer. */
+ "找回失败" = "Fallo";
+ 
+ /* No comment provided by engineer. */
+ "找回密码" = "Hallar Password";
+ 
+ /* No comment provided by engineer. */
+ "找回密码成功" = "Triunfar";
+ 
+ /* No comment provided by engineer. */
+ "拍摄新的照片" = "Tomar una nueva foto";
+ 
+ /* No comment provided by engineer. */
+ "提醒不可超过8个" = "Recuerde a no más de ocho";
+ 
+ /* No comment provided by engineer. */
+ "提醒最大为8个" = "Recuerde a no más de ocho";
+ 
+ /* No comment provided by engineer. */
+ "搜索设备" = "Busca equipo";
+ 
+ /* No comment provided by engineer. */
+ "操作成功" = "Triunfar";
+ 
+ /* No comment provided by engineer. */
+ "新密码不能和旧密码相同" = "Nueva contraseña no puede ser el mismo que el antiguo";
+ 
+ 
+ /* No comment provided by engineer. */
+ "日" = "dom";
+ 
+ /* No comment provided by engineer. */
+ "昵称不能为空，请输入昵称" = "Nombre no puede estar vacío.";
+ 
+ /* No comment provided by engineer. */
+ "昵称长度不能超过32个字符" = "Nombre no puede contener más de 32 caracteres";
+ 
+ /* No comment provided by engineer. */
+ "更新" = "Actualización";
+ 
+ /* No comment provided by engineer. */
+ "最大心率:%d" = "Máxima HR:%d";
+ 
+ /* No comment provided by engineer. */
+ "最大心率:--" = "Máxima HR:--";
+ 
+ /* No comment provided by engineer. */
+ "最大心率值必须大于最小心率值" = "La frecuencia cardíaca máxima debe ser mayor que el ritmo cardíaco mínimo";
+ 
+ /* No comment provided by engineer. */
+ "最高心率:%d" = "Máxima HR:%d";
+ "最高心率"="Máxima HR";
+ "最高心率:"="Máxima HR:";
+ /* No comment provided by engineer. */
+ "有氧训练" = "Entrenamiento aeróbico";
+ 
+ /* No comment provided by engineer. */
+ "未发现设备" = "Dispositivo no se encontró";
+ 
+ /* No comment provided by engineer. */
+ "未登录" = "No has ingresado";
+ 
+ /* No comment provided by engineer. */
+ "未连接" = "No está conectado";
+ 
+ /* No comment provided by engineer. */
+ "未选择" = "No seleccionado";
+ 
+ /* No comment provided by engineer. */
+ "来电提醒" = "Llamada";
+ 
+ /* No comment provided by engineer. */
+ "正在下载固件" = "descarga firmware";
+ 
+ "正在升级固件" = "Es actualizar el firmware";
+ 
+ /* No comment provided by engineer. */
+ "正在修改..." = "Actualizando...";
+ 
+ /* No comment provided by engineer. */
+ "正在注册..." = "Registro...";
+ 
+ "下一步" = "Siguiente";
+ 
+ "注册" = "Registro";
+ /* No comment provided by engineer. */
+ "正在登录" = "Usuario login...";
+ 
+ /* No comment provided by engineer. */
+ "正在连接..." = "Conexión...";
+ 
+ /* No comment provided by engineer. */
+ "正在退出..." = "salida ...";
+ 
+ /* No comment provided by engineer. */
+ "正常" = "Normal";
+ 
+ /* No comment provided by engineer. */
+ "此帐号已注册" = "Cuenta se creó";
+ 
+ /* No comment provided by engineer. */
+ "此时间已存在" = "Tiempo es el mismo";
+ 
+ /* No comment provided by engineer. */
+ "每天" = "Cada día";
+ 
+ /* No comment provided by engineer. */
+ "仅一次" = "Nunca";
+ 
+ /* No comment provided by engineer. */
+ "注销" = "Salir";
+ 
+ /* No comment provided by engineer. */
+ "         活力" = "         Activo";
+ "活跃" = "Activo";
+ 
+ /* No comment provided by engineer. */
+ "爬山" = "Alpinismo";
+ "登山"="Alpinismo";
+ /* No comment provided by engineer. */
+ "球类运动" = "Juego bola";
+ 
+ /* No comment provided by engineer. */
+ "用户不存在" = "Usuario no existe";
+ 
+ /* No comment provided by engineer. */
+ "用户名或密码错误" = "Nombrar o error de contraseña, vuelva a introducir!";
+ 
+ /* No comment provided by engineer. */
+ "登录" = "Login";
+ 
+ /* No comment provided by engineer. */
+ "登录失败" = "Login falló";
+ 
+ /* No comment provided by engineer. */
+ "登录成功" = "Login exitoso";
+ 
+ /* No comment provided by engineer. */
+ "目标:%dh" = "Objetivo:%dh";
+ 
+ /* No comment provided by engineer. */
+ "目标:%d步" = "Objetivo:%dpasos";
+ 
+ /* No comment provided by engineer. */
+ "相机不可用" = "Cámara no está disponible";
+ 
+ /* No comment provided by engineer. */
+ "睡眠" = "Sueño";
+ 
+ /* No comment provided by engineer. */
+ "短信提醒" = "SMS";
+ 
+ /* No comment provided by engineer. */
+ "码" = "Patio";
+ 
+ /* No comment provided by engineer. */
+ "确定" = "Confirmar";
+ 
+ /* No comment provided by engineer. */
+ "立即提醒" = "Enseguida";
+ 
+ /* No comment provided by engineer. */
+ "编辑" = "Editar";
+ 
+ /* No comment provided by engineer. */
+ //"服务器异常" = "La red Anomalía";
+ 
+ /* No comment provided by engineer. */
+ "网络连接错误" = "La red conexión error";
+ 
+ /* No comment provided by engineer. */
+ "自定义" = "Personalizada";
+ 
+ /* No comment provided by engineer. */
+ " 英制" = " Imperial";
+ 
+ /* No comment provided by engineer. */
+ "英里" = "Milla";
+ 
+ /* No comment provided by engineer. */
+ "蓝牙未连接" = "Bluetooth no está conectado";
+ 
+ 
+ /* No comment provided by engineer. */
+ "设备已断开" = "Pulsera  haya desconectado";
+ 
+ /* No comment provided by engineer. */
+ "设备已连接" = "Conectado";
+ 
+ /* No comment provided by engineer. */
+ "设备未连接" = "Dispositivo no conectado";
+ 
+ /* No comment provided by engineer. */
+ "设置延时成功" = "Fijar demora éxito ";
+ 
+ /* No comment provided by engineer. */
+ "请输入提醒类型" = "Por favor, introduzca un tipo de recordatorio";
+ 
+ /* No comment provided by engineer. */
+ "请选择你习惯的计量单位" = "Por favor, optar por utilizar unidades métricas o imperiales";
+ 
+ /* No comment provided by engineer. */
+ 
+ /* No comment provided by engineer. */
+ "请选择提醒时间" = "Por favor, seleccione una hora de aviso";
+ 
+ /* No comment provided by engineer. */
+ "请选择提醒类型" = "Por favor, introduzca un tipo de recordatorio";
+ 
+ /* No comment provided by engineer. */
+ "请选择获取方式" = "Selecto método de ";
+ 
+ /* No comment provided by engineer. */
+ "跑步" = "Correr";
+ 
+ /* No comment provided by engineer. */
+ "身高不能为空，请选择身高" = "Altura no puede estar vacío, elija la altura";
+ 
+ "体重不能为空，请选择体重"="De peso corporal no puede estar vacío, elija la altura";
+ 
+ /* No comment provided by engineer. */
+ "输入不能为空" = "La entrada no puede estar vacía";
+ 
+ /* No comment provided by engineer. */
+ "输入的心率必须在40到180之间" = "Introduzca la frecuencia cardiaca debe ser entre 40 y 180";
+ 
+ /* No comment provided by engineer. */
+ "达人" = "Maestro";
+ 
+ /* No comment provided by engineer. */
+ "运动" = "Deporte";
+ 
+ /* No comment provided by engineer. */
+ "连接超时" = "Conexión Tiempo espera";
+ 
+ /* No comment provided by engineer. */
+ "选择单位" = "Selecto Unidades";
+ 
+ /* No comment provided by engineer. */
+ "邮箱无效" = "Email inválido";
+ 
+ /* No comment provided by engineer. */
+ "非常高" = "Muy alto";
+ 
+ /* No comment provided by engineer. */
+ "高" = "Alto";
+ 
+ "帐号不能为空，请输入不少于4个字符的帐号" = "Por favor, introduzca su número de cuenta";
+ 
+ "帐号输入错误，请输入不少于4个字符的帐号" = "nombre error de entrada, por favor, introduzca un nombre de usuario al menos cuatro letras";
+ 
+ "帐号输入只允许大小写字母、数字、下划线" = "Nombre  entrada permite sólo letras, números, guiones bajos";
+ 
+ "密码不能为空，请输入不少于6个字符的密码" = "contraseña incorrecta, por favor, introduzca una contraseña de al menos seis letras";
+ 
+ "密码输入错误，请输入不少于6个字符的密码" = "contraseña incorrecta, por favor, introduzca una contraseña de al menos seis letras";
+ 
+ "邮箱不能为空，请输入邮箱" = "Email no puede estar vacío, por favor entrada";
+ 
+ "邮箱格式输入错误，请检查您的邮箱" = "Email Dirección es inválida";
+ 
+ "最后更新:%@" = "Durar cambios: %@";
+ 
+ "下拉可以刷新" = "Dropdown actualizar.";
+ 
+ "松开立即刷新" = "Afloje para refrescar.";
+ 
+ "正在刷新数据..." = "Cargando...";
+ 
+ "最多可添加6个时间" = "Recuerde a veces se pueden ajustar a seis tiempo!";
+ 
+ "分享成功" = "Triunfar";
+ 
+ "有新版本更新" = "Una nueva versión para actualizar";
+ 
+ 
+ 
+ 
+ 
+ "添加时间" = "Añadir tiempo";
+ 
+ "危险" = "Peligro";
+ 
+ "静息" = "Descanso";
+ 
+ 
+ "         极限"="         El límite";
+ "         预警"="         Advertencia";
+ "         正常"="         Normal";
+ "男"="Male";
+ "女"="Hembra";
+ "安全，便捷，稳定的一款智能运动手环APP。"="un APP de smart pulsera para deporte.";
+ "帮助"="Ayuda";
+ "步"="paso";
+ "步数"="pasos";
+ "参考"="Consulta";
+ "查看事件 >"="Checar eventos >";
+ "非常低"="muy bajo";
+ "分享"="Compartir";
+ "分享到:"="Compartir a:";
+ "个人资料"="Perfil";
+ "根据个人数据，设置相应目标！"="Establecer sus metas de acuerdo a su capacidad.";
+ "根据正常人心率范围设置最高心率和最低心率，以便于第一时间提醒您！"="Establecer el rango máximo y mínimo de recursos humanos de acuerdo a la persona normal, con el fin de recordarle correctamente!";
+ "固件版本:未知"="Versión de firmware:desconocido";
+ "未知" = "desconocido";
+ "关于"="Acerca de";
+ "活跃时间"="El tiempo activo";
+ "今日活动"="Hoy evento";
+ "旧密码"="Contraseña anterior";
+ "开启闹铃提醒后，手环会在浅睡眠状态下轻微振动唤醒您，您这一天将会更加有活力。"="Abrir la alarma, se anima en la vida y trabajo.";
+ "离线事件"="eventos offline";
+ "连接"="conexión";
+ "密码"="contraseña";
+ "目标设置"="Objetivo";
+ "平均步数"="Media pasos";
+ "平均深睡"="Media sueño";
+ "平均时长"="Media tiempo";
+ "平均消耗热量"="Media calorías";
+ "平均心率"="Media  HR";
+ "浅睡"="Sueño ligero";
+ "请输入身高"="Altura";
+ "请输入体重"="Peso";
+ "请输入邮箱"="Email";
+ "请输入帐号:"="Por favor, introduzca su número de cuenta:";
+ "请填写合理的范围！"="Por favor, introduzca el rango correcto!";
+ "请选择出生日期"="Cumpleaños";
+ "确认密码"="Confirmar contraseña";
+ "燃脂"="Quemar grasa";
+ "热量"="calor";
+ "热量消耗"="consumo de calor";
+ "热身"="calentamiento";
+ "日间心率曲线图"="curva de Ritmo cardíaco en el día";
+ "软件版本:"="Versión del software:";
+ "设备管理"="Dispositivos";
+ "设置来电几秒后未接手环开始提醒"="Establecer un aviso de retardo para llamadas";
+ "深睡"="Sueño profundo";
+ "时间"="tiempo";
+ "睡眠目标"="objetivo de sueño";
+ "睡眠质量"="la calidad del sueño";
+ "提醒"="recordar";
+ "提醒设置"="Recordar";
+ "填写:"="Llenar;";
+ "完成:"="Completar:";
+ "完成度"="Completar";
+ "未连接"="No conectado";
+ "我的设备"="Mi dispositivo";
+ "无氧"="Anaeróbica";
+ "新密码"="nueva contraseña";
+ "选择来电提醒时间:"="Selección de tiempo:";
+ "选择类型"="Tipos de";
+ "夜间心率曲线图"="curva de Ritmo cardíaco durante la noche";
+ "有氧"="Aerobio";
+ "预警"="Advertencia";
+ "月"="mes";
+ "运动目标"="objetivo del deporte";
+ "运动强度"="Deporte intensidad";
+ "运动状态"="Moción estado";
+ "帐号"="usuario";
+ "亲关帐号"="usuario";
+ 
+ "找回密码"="Se te olvidó tu contraseña";
+ "这些信息有助于设备采取更准确的信息！"="Esta información ayudará a que el dispositivo para tomar una información más precisa！";
+ "直接使用"="Directo Uso";
+ "重复"="Repetición";
+ "周"="semana";
+ "总运动时长"="Movimiento tiempo";
+ "最大心率:"="Máxima HR:";
+ "最高纪录:"="récord más alto:";
+ "最小心率:"="ritmo cardíaco mínimo:";
+ "30分钟起身"="Levantarse de 30 minutos";
+ "QQ好友信息"="QQ";
+ "保存"="Guardar";
+ "备注名称"="Observaciones del nombre";
+ "备注名称不能超过32个字符"="El nombre de observación no puede ser mayor de 32 characteres";
+ "备注名称不能为空"="El nombre de observación no puede estar vacío";
+ "编辑测试模式"="Editar el módulo de prueba";
+ "标准体重"="Peso de estándar";
+ "不能关注自己"="No se puede seguir a sí mismo";
+ "测试模式不能为空"="El módulo de prueba no puede estar vacío";
+ "超重"="Sobrepeso";
+ "此操作将删除当前设备连接，并开始搜索新设备，是否继续？"="Esta operación eliminará el dispositivo actual y empezará a buscar un nuevo , ¿continuar o no?";
+ "大于"="Mayor a";
+ "当前操作将清除手环内所有数据，是否继续？"="Esta operación borrará todos los datos de la pulsera, ¿continuar o no?";
+ "当前操作将清除本应用所有历史数据，是否继续？"="Esta operación borrará todos los datos de la aplicación, ¿continuar o no?";
+ "返回"="Volver";
+ "防丢提醒"="RPara evitar perder";
+ "肥胖"="Obesidad";
+ "分钟/次"="Mins/vez";
+ "次/分钟" = "vez/min";
+ "服务"="Servicio";
+ "该用户已关注"="Este usuario ya ha sido seguido";
+ "更新日期"="Fecha de renovación";
+ "关注的用户不存在"="Este usuario no existe ";
+ "关注用户不能超过5个"="Los usuarios seguidos no pueden ser mayor a 5";
+ "关注账号不能为空"="La cuenta seguida no puede estar vacía";
+ "好友信息"="Información de amigos";
+ "恢复出厂设置后，所有数据清零"="Todos los datos se borrarán después de restaurar la configuración de fábrica ";
+ "活力"="Energía";
+ "获取权限"="Conseguir los permisos";
+ "监测频率"="La frecuencia";
+ "健康体重范围"="Rango de peso saludable";
+ "结束久坐时间"="Tiempo de terminación sedentario";
+ "结束时间不能为空"="El tiempo de terminación no puede estar vacío";
+ "结束时间不能早于或等于开始时间"="El tiempo de finalización no puede ser anterior o igual al tiempo de inicio";
+ "久坐时间段长度短于久坐提醒时间间隔"="El período sedentario debe ser más corto que el intervalo de recordatorio sedentario";
+ "久坐提醒"="Recordatorio sedentario";
+ "久坐提醒时间段"="Rango de tiempo de recordatorio sedentario";
+ "久坐提醒最多4条"="El recordatorio sedentario no mayor a 4";
+ "开启久坐提醒后，您的设备将增加一定的耗电量"="Después de iniciar el recordatorio sedentaria, el dispositivo aumentará el consumo de energía";
+ "开始久坐时间"="Tiempo de inicio sedentario";
+ "开始久坐提醒时间段"="Período de recordatorio de inicio sedentario";
+ "开始时间不能为空"="El tiempo de inicio no puede estar vacío";
+ "添加闹铃"="Alarma";
+ "确定删除这条提醒?"="¿Asegúrese de eliminar este rocordatorio?";
+ "疲劳监测模式"="Modo de monitorización de fatiga";
+ "偏瘦"="Un poco delgada";
+ "亲情关爱"="Atención familiar ";
+ "清除本地数据"="Limpieza de datos locales";
+ "清醒"="Despierto";
+ "请安装facebook"="Instalar facebook por favor";
+ "请安装推特"="Instalar twitter por favor";
+ "请完善资料"="Completar la información por favor";
+ "请先输入身高"="Rellenar la altura por favor";
+ "请选择结束时间"="Seleccionar el tiempo de finalización por favor";
+ "请选择开始时间"="Seleccionar el tiempo de inicio por favor";
+ "取消关注"="No seguir";
+ "取消关注当前好友健康信息？"="No seguir la información saludable del amigo actual";
+ "取消搜索"="Cancelar la búsqueda";
+ "确定获取通知信息？"="¿Asegurarse de conseguir el mensaje de notificación?";
+ "让手环振动，方便查找"="Deja que la pulsera vibra, fácil de encontrar";
+ "删除"="Borrar";
+ "删除成功"="Se ha borrado";
+ "删除失败"="No se pudo borrar";
+ "设备列表"="Lista de dispositivo";
+ "设置来电几秒后未接手环开始提醒,可以避免已接电话，手环继续震动消耗电量。"="Se establece que no se contesta la llamada después de unos segundos, la pulsera empieza a recordar. Se puede evitar que la pulsera mantiene vibrante y gasta la energía, cuando el teléfono ya se ha recibido.";
+ "生日"="Cumpleaños";
+ "生日不能为空"="El cumpleaños no puede estar vacío";
+ "生日输入错误"="Error de entrada de cumpleaños";
+ "失败"="Fracaso";
+ "时间间隔提醒"="Intervalo de recordatorio";
+ "使用第三方登录"="Registro de terceros";
+ "手环未连接"="La pulsera no está conectada";
+ "手环正在振动，点击停止可关闭振动"="La pulsera está vibrando, hacer clic parar para cerrar la vibración";
+ "手环正在震动"="La pulsera está vibrando";
+ "授权成功"="Se ha autorizado";
+ "授权失败"="Fracaso de autorización";
+ "数据更新时间:"="Durar cambios:";
+ "添加"="Añadir";
+ "添加关注"="Añadir el seguimiento";
+ "添加关注成功!"="Se ha añadido el seguimiento";
+ "停止"="Parar";
+ "忘记密码》"="Olvidar la contraseña";
+ "微信好友信息"="Wechat";
+ "为避免打扰您的休息，建议久坐提醒避开睡眠时间段。"="Para obtener un buen descanso, se recomienda que el recordatorio sedentario elude el período de sueño";
+ "为了您的身体健康，请制定合理的饮食习惯！"="Para su salud, ¡por favor desarrollar una dieta razonable!";
+ "小于"="Menor a ";
+ "心率"="HR";
+ "心率监测"="HR de seguimiento";
+ "新用户注册》"="Registro";
+ "信息提醒"="Recordatorio de mensaje";
+ "选择测试模式:"="Seleccionar el módulo de prueba";
+ "选择测试模式"="Seleccionar el módulo de prueba";
+ 
+ "夜间心率"="Frecuencia cardíaca durante la noche";
+ "预警范围"="Rango de advertencia ";
+ "遥控拍照"="Cámara a distancia";
+ "完成"="Completar";
+ "找手环"="Buscar la pulsera";
+ "正在获取关注列表"="Está obteniendo la lista de seguimiento";
+ "正在删除"="Está borrando ";
+ "正在添加"="Está agregando";
+ "周活动趋势图"="Tendencia";
+ "周睡眠趋势图"="Gráfico de tendencia del sueño semanal";
+ "注意"="Nota";
+ "状态:"="Estado";
+ "最大心率值必须大于最小心率值30"="La frecuencia cardíaca máxima debe ser mayor que la frecuencia cardíaca mínima 30";
+ "最多可设置4个久坐提醒"="El recordatorio sedentario no mayor a 4";
+ "昨晚"="Anoche";
+ "设置"="Siempre";
+ "今天"="Hoy.";
+ "小时"="h";
+ "分钟"="min";
+ "千卡"="kcal";
+ "疲劳"="fatiga";
+ "         疲劳"="         Fatiga";
+ "输入昵称"="Apodo";
+ "升级失败"="Fallo";
+ "目标:"="Objetivo:";
+ "运动"="Deporte";
+ "分享到其他"="Compartir a otros";
+ "请输入帐号"="Usuario";
+ "请输入密码"="Contraseña";
+ "平均心率:"="Media HR:";
+ "运动:"="Deporte:";
+ "睡眠:"="Sueño:";
+ "次"="Vez";
+ "电话簿短信"="SMS";
+ "Facebook信息"="Facebook";
+ "最大心率"="La mayor";
+ "最小心率"="Mínimo";
+ "正常范围"="El rango normal";
+ "秒"="Segundos";
+ "活动详情" = "Para más detalles";
+ "WhatsAPP信息" = "WhatsAPP";
+ "Twitter信息" = "Twitter";
+ "Skype信息" = "Skype";
+ "无数据" = "Sin datos";
+ "仅一次" = "Sólo una vez";
+ "您确定退出当前帐号?" = "¿Estás seguro de salir de esta cuenta?";
+ "当前手环版本不支持此功能" = "La versión no soporta esta función.";
+ "健康"="La salud";
+ "高危"="De alto riesgo";
+ "邮箱"="esmalte";
+ "选择运动模式"="Seleccione el modo deportivo";
+ "有氧运动"="ejercicio aeróbico";
+ "是否保存数据"="Guardar los datos deportivos o no";
+ "是"="Sí";
+ "否"="No";
+ "心率区间"="rango de frecuencia cardíaca";
+ "时长"="duración";
+ "百分比"="razón";
+ "极限"="extremo";
+ "收缩压"="presión sistólica";
+ "舒张压"="la presión diastólica";
+ "标准值"="valor normal";
+ "标准BMI范围"="Gama estándar IMC";
+ "请选择设备类型"="Por favor seleccione el tipo de dispositivo";
+ "手表"="El reloj";
+ "手环"="Brazalete";
+ "设备类型"="El tipo de dispositivo";
+ "次/分钟"="Segundo / minuto";
+ "运动类型"="Tipos de movimiento";
+ "请输入密码:"="Introduzca la contraseña:";
+ "当前设备不支持此功能,请升级设备固件"="El dispositivo no es compatible con esta función, por favor, actualización de firmware";
+ 
+ 
+ "更换设备"="cambiar dispositivo";
+ "抬手亮屏"="Levante la mano para aligerar la pantalla";
+ "设备连接失败, 请确定设备在您的身边并且在开机状态，然后重新连接"="Se ha producido un error en la conexión del dispositivo. Asegúrese de que el dispositivo se enciende y está a su lado y, a continuación, intente volver a conectarlo.
+ ";
+ "当前设备不支持此功能，请升级手环固件!"="El dispositivo actual no admite esta función, actualice el firmware del dispositivo";
+ "连接超时！请确认："="¡El tiempo de conexión expiro! por favor confirmar";
+ "1、设备已开机"="1、Encendido del dispositivo";
+ "2、设备未被连接"="2、Dispositivo no conectado por otros teléfonos";
+ "3、设备在可连接范围内（10米以内）"="3、Distancia de conexión disponible de 10 metros";
+ "未绑定"="sin consolidar";
+ "绑定设备"="Enlazar el dispositivo";
+ "解绑设备"="Desvincular el dispositivo";
+ "设备已解绑"="El dispositivo no está unido";
+ "解绑当前设备，继续?"="Desvincular el dispositivo actual, continúe?";
+ "设备类型已切换为手环"="El tipo de dispositivo se cambia a pulsera";
+ "设备类型已切换为手表"="El tipo de dispositivo se cambia a reloj";
+ "设备类型已经是手环，无需切换"="El tipo de dispositivo ya es una pulsera, no es necesario cambiar";
+ "设备类型已经是手表，无需切换"="El tipo de dispositivo ya es un reloj, no es necesario cambiar";
+ "请先解绑当前设备!"="¡Por favor, desvincula primero el dispositivo actual!";
+ 
+ "如何绑定设备?"="¿Cómo enlazar el dispositivo?";
+ "1、第一步:"="1. El primer paso:";
+ "打开APP进入设备管理页面，并确认手机蓝牙已打开。"="Abra el banner lateral de APP a la interfaz del dispositivo y, además, confirme que el teléfono Bluetooth esté activado.";
+ "2、第二步："="2. El segundo paso:";
+ "确认选择的设备类型与需要绑定的设备是同一类型，如果不是同一类型请到设备类型页面更改设备类型（注：绑定了设备要更改设备类型，请先解绑设备）"="Elija el tipo de dispositivo igual al dispositivo que se va a vincular. Si no, vaya a la interfaz de tipo de dispositivo y cambie";
+ "3、第三步："="3. El tercer paso";
+ "点击绑定设备进入连接设备页面，选择设备相对应的设备名进行连接，连接成功后回到设备管理页面。"="Haga clic en “enlazar el dispositivo” para elegir y conectar el dispositivo correspondiente, y luego volver a la interfaz del dispositivo.";
+ "绑定后连接超时如何解决？"="Cómo resolver las horas extraordinarias de conexión después del dispositivo de enlace";
+ "1、请确认手机蓝牙是否打开"="1.Por favor, confirme si el teléfono Bluetooth está activado";
+ "2、请确认设备是否被其他手机连接，查看设备左上角，如有蓝牙图标则表示设备被连接，请断开连接。"="2.Please confirmar si el dispositivo está conectado por otros teléfonos móviles. Si hay un icono de Bluetooth en la interfaz de tiempo del dispositivo, lo que significa que el dispositivo está conectado por otros. Desconecte por favor.";
+ "3、连接的时候请点亮设备屏幕，因为设备断开连接熄屏20分钟后就会关闭蓝牙广播。"="3.When que conecta, por favor enciende para arriba la pantalla del dispositivo, porque la radio del dispositivo Bluetooth se cerrará si la pantalla apagado y el dispositivo no conectó en 20 minutos.";
+ "4、请将设备靠近多需要连接的手机，越近越好。"="4.Please hacen el dispositivo cerca en el teléfono, el cierre el mejor";
+ "以上操作若还不能连接成功请重启手机蓝牙或手机"="Si las operaciones anteriores no se pueden conectar correctamente, reinicie el teléfono Bluetooth o el teléfono móvil.";
+ "连接设备"="Dispositivos de conexión";
+ "连接中..."="En la conexión";
+ //"连接超时，请确认："="Tiempo de conexión, asegúrese de que:";
+ "绑定步骤"="Obligar a paso";
+ "无"="Sin";
+ "请先解除绑定"="Por favor, desatando";
+ "是否解除绑定？"="¿Si desatar?";
+ "蓝牙已关闭"="Bluetooth ha cerrado";
+ "请打开蓝牙"="Por favor abre el Bluetooth";
+ 
+ "选择开关设备功能"="La función de conmutación";
+ "卡路里"="calorías";
+ "里程"="kilometraje";
+ "服务器异常"="excepción del servidor";
+ "血压"="presión arterial";
+ "天气"="tiempo";
+ "消息"="noticias";
+ "连续监测"="El monitoreo continuo";
+ "当前无网络连接"="No hay conexión a la red";
+ "请再次刷新"="Por favor, actualice de nuevo";
+ 
+ "校正血压值"="Valor de corrección de la presión arterial";
+ "请输入校正血压"="Por favor, introduzca la presión arterial correcta";
+ //"低压"="baja presión";
+ //"高压"="presión alta";
+ "    基于PPG的血压监测，因个人体质差异，需要个人基准血压用于校正血流变化与血压的对应关系，首次测量时，请输入您的基准血压。"= "    Control de la presión arterial a base de PPG, y debido a las diferencias físicas personales, la necesidad de corregir los cambios de la presión arterial de referencia individuales en el flujo sanguíneo y la correspondencia de la presión arterial, cuando la primera medición, por favor, introduzca su presión arterial basal.";
+ "    请先选择一款精确的传统血压计，并将基准的血压值输入下列信息框"= "    Por favor, seleccione un esfigmomanómetro, el valor de la presión arterial convencional precisa y el cuadro de referencia introduzca la siguiente información";
+ "请保持血压手表与APP已连接，填写完成，请立刻用您血压手表试一次血压，血压校正即完成，后续测量不用再次校正。"= "Por favor, vigilar la presión arterial relacionada con la APP, el completado de inmediato con su presión arterial ver una prueba de la presión arterial, la corrección de la presión arterial es mediciones posteriores completos, sin necesidad de recalibración.";
+ "请输入正确范围，舒张压40-100，收缩压90-180" = "Por favor, introduzca el rango correcto, 40-100 diastólica, la presión arterial sistólica 90-180";
+ "个人资料界面可修改血压基准值" = "Interfaz de perfil para modificar el valor de referencia de la presión arterial";
+ "Line信息" = "Line";
+
+"轨迹" = "lugar geométrico";
+"选择运动模式"  = "Seleccione el modo Sport";
+"创建新的模式" = "La creación de un nuevo modelo";
+"请输入运动类型" = "Por favor, introduzca el tipo de movimiento";
+"运动类型不能为空" = "Tipo de movimiento no puede estar vacía";
+"运动开启失败" = "Insuficiencia Open Sport";
+"该手环不支持在线运动，展示gps数据" = "El brazalete no es compatible con la campaña en línea para mostrar los datos del GPS";
+"请允许位置服务" = "Por favor, permitir que los servicios de localización";
+"运动详细" = "Detalles Deportes";
+"图表"= "tabla";
+"详情"="detalle";
+"运动心率"= "la frecuencia cardíaca";
+"预警区" = "área de advertencia";
+"配速" = "paso";
+"步频" = "cadencia";
+"速度" = "velocidad";
+"累计爬升"="Ascenso acumulado";
+"计步" = "podómetro";
+"步长" = "pasos";
+"运动详情" = "Detalles Deportes";
+
+"emptyDeviceData" = "Borrar datos del dispositivo";
+"emptyAppData" = "Borrar datos de aplicaciones";
+"connectioning" = "Conectando ...";
+"bluetoothNotOpen" = "Bluetooth no está activado";
+"pleaseWakeupDeviceNotfound" = "Por favor, no encuentra el dispositivo para activar el dispositivo";
+"bluetoothConnectionFailed" = "Volver a empezar la conexión Bluetooth falla";
+"syncFinish" = "La sincronización es completa";
+"connectSuccessfully" = "la conexión se realiza correctamente";
+"synchronizationFailure" = "Error en la sincronización";
+
+"DataSyn" = "La sincronización de datos ..";

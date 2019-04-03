@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "正常范围"; ObjectID = "2Xw-4c-77q"; */
+"2Xw-4c-77q.text" = "正常范围";
+
+/* Class = "UILabel"; text = "bpm"; ObjectID = "9Xo-16-JHJ"; */
+"9Xo-16-JHJ.text" = "bpm";
+
+/* Class = "UILabel"; text = "最大心率:"; ObjectID = "AAF-JK-5dv"; */
+"AAF-JK-5dv.text" = "最大心率:";
+
+/* Class = "UILabel"; text = "最小心率:"; ObjectID = "IO3-Hq-i2L"; */
+"IO3-Hq-i2L.text" = "最小心率:";
+
+/* Class = "UILabel"; text = "bpm"; ObjectID = "N3H-oq-veD"; */
+"N3H-oq-veD.text" = "bpm";
+
+/* Class = "UILabel"; text = "请填写合理的范围 ！"; ObjectID = "PLC-FD-USQ"; */
+"PLC-FD-USQ.text" = "请填写合理的范围 ！";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Rd9-Z3-nbP"; */
+"Rd9-Z3-nbP.text" = "Label";
+
+/* Class = "UILabel"; text = "根据正常人心率范围设置最高心率和最低心率，以便于第一时间提醒您！"; ObjectID = "ZFU-kM-k0q"; */
+"ZFU-kM-k0q.text" = "根据正常人心率范围设置最高心率和最低心率，以便于第一时间提醒您！";
+
+/* Class = "UILabel"; text = "心率预警"; ObjectID = "a2q-7u-rTn"; */
+"a2q-7u-rTn.text" = "心率预警";
+
+/* Class = "UILabel"; text = "参考:"; ObjectID = "gn7-us-LcE"; */
+"gn7-us-LcE.text" = "参考:";
+
+/* Class = "UILabel"; text = "填写:"; ObjectID = "mGF-hH-2p2"; */
+"mGF-hH-2p2.text" = "填写:";
+
+/* Class = "UIButton"; normalTitle = "保存"; ObjectID = "ma9-wl-eaM"; */
+"ma9-wl-eaM.normalTitle" = "保存";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sjW-DS-XRm"; */
+"sjW-DS-XRm.text" = "Label";

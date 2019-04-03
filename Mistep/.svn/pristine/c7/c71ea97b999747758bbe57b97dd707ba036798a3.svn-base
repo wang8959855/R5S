@@ -1,0 +1,39 @@
+
+/* Class = "UITextField"; placeholder = "请输入昵称"; ObjectID = "0pM-VH-ssy"; */
+"0pM-VH-ssy.placeholder" = "请输入昵称";
+
+/* Class = "UILabel"; text = "个人资料"; ObjectID = "3q5-qq-uE6"; */
+"3q5-qq-uE6.text" = "个人资料";
+
+/* Class = "UITextField"; placeholder = "请选择出生日期"; ObjectID = "b1t-Ga-Lgu"; */
+"b1t-Ga-Lgu.placeholder" = "请选择出生日期";
+
+/* Class = "UILabel"; text = "这些信息有助于设备采取更准确的信息！"; ObjectID = "cxr-4u-UE3"; */
+"cxr-4u-UE3.text" = "这些信息有助于设备采取更准确的信息！";
+
+/* Class = "UILabel"; text = "account"; ObjectID = "dAv-gQ-Djf"; */
+"dAv-gQ-Djf.text" = "account";
+
+/* Class = "UILabel"; text = "cm"; ObjectID = "eO3-tw-kDO"; */
+"eO3-tw-kDO.text" = "cm";
+
+/* Class = "UITextField"; placeholder = "请输入体重"; ObjectID = "exk-nq-lgj"; */
+"exk-nq-lgj.placeholder" = "请输入体重";
+
+/* Class = "UITextField"; placeholder = "请输入身高"; ObjectID = "ggI-tr-qsg"; */
+"ggI-tr-qsg.placeholder" = "请输入身高";
+
+/* Class = "UISegmentedControl"; hEF-Lj-5yq.segmentTitles[0] = "公制"; ObjectID = "hEF-Lj-5yq"; */
+"hEF-Lj-5yq.segmentTitles[0]" = "公制";
+
+/* Class = "UISegmentedControl"; hEF-Lj-5yq.segmentTitles[1] = "英制"; ObjectID = "hEF-Lj-5yq"; */
+"hEF-Lj-5yq.segmentTitles[1]" = "英制";
+
+/* Class = "UISegmentedControl"; k81-bS-Q7v.segmentTitles[0] = "男"; ObjectID = "k81-bS-Q7v"; */
+"k81-bS-Q7v.segmentTitles[0]" = "男";
+
+/* Class = "UISegmentedControl"; k81-bS-Q7v.segmentTitles[1] = "女"; ObjectID = "k81-bS-Q7v"; */
+"k81-bS-Q7v.segmentTitles[1]" = "女";
+
+/* Class = "UILabel"; text = "kg"; ObjectID = "rlL-rP-7Ol"; */
+"rlL-rP-7Ol.text" = "kg";

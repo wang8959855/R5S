@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "生日"; ObjectID = "0Ck-hc-lja"; */
+"0Ck-hc-lja.text" = "生日";
+
+/* Class = "UIButton"; normalTitle = "添加关注"; ObjectID = "714-wE-DG4"; */
+"714-wE-DG4.normalTitle" = "添加关注";
+
+/* Class = "UILabel"; text = "备注名称"; ObjectID = "KAQ-h5-nAV"; */
+"KAQ-h5-nAV.text" = "备注名称";
+
+/* Class = "UILabel"; text = "帐号"; ObjectID = "NQK-vT-LAC"; */
+"NQK-vT-LAC.text" = "帐号";
+
+/* Class = "UILabel"; text = "亲情关爱"; ObjectID = "iWD-lk-AaF"; */
+"iWD-lk-AaF.text" = "亲情关爱";

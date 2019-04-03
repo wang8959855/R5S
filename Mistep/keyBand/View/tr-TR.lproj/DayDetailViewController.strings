@@ -1,0 +1,105 @@
+
+/* Class = "UILabel"; text = "小时"; ObjectID = "6YH-oJ-Z4N"; */
+"6YH-oJ-Z4N.text" = "小时";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Ez4-ci-xLK"; */
+"Ez4-ci-xLK.text" = "0";
+
+/* Class = "UILabel"; text = "完成:"; ObjectID = "GXf-2C-KaG"; */
+"GXf-2C-KaG.text" = "完成:";
+
+/* Class = "UILabel"; text = "活跃"; ObjectID = "H1Z-DJ-tdQ"; */
+"H1Z-DJ-tdQ.text" = "活跃";
+
+/* Class = "UILabel"; text = "小时"; ObjectID = "IBt-8O-Xwm"; */
+"IBt-8O-Xwm.text" = "小时";
+
+/* Class = "UILabel"; text = "0 千卡"; ObjectID = "IEE-V9-44q"; */
+"IEE-V9-44q.text" = "0 千卡";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "J0P-ZR-f3K"; */
+"J0P-ZR-f3K.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Mky-za-rKO"; */
+"Mky-za-rKO.text" = "0";
+
+/* Class = "UILabel"; text = "目标:0h"; ObjectID = "OOr-zO-8wv"; */
+"OOr-zO-8wv.text" = "目标:0h";
+
+/* Class = "UILabel"; text = "运动状态"; ObjectID = "QeO-73-fWn"; */
+"QeO-73-fWn.text" = "运动状态";
+
+/* Class = "UILabel"; text = "0 千卡"; ObjectID = "R6S-xV-nIC"; */
+"R6S-xV-nIC.text" = "0 千卡";
+
+/* Class = "UILabel"; text = "最大心率:--"; ObjectID = "SAQ-vb-GIe"; */
+"SAQ-vb-GIe.text" = "最大心率:--";
+
+/* Class = "UIButton"; normalTitle = ">"; ObjectID = "Sof-Tr-Lru"; */
+"Sof-Tr-Lru.normalTitle" = ">";
+
+/* Class = "UILabel"; text = "睡眠质量"; ObjectID = "SpP-AW-2KQ"; */
+"SpP-AW-2KQ.text" = "睡眠质量";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "VOi-Vj-yij"; */
+"VOi-Vj-yij.text" = "0";
+
+/* Class = "UILabel"; text = "最大心率:--"; ObjectID = "WID-XS-xm1"; */
+"WID-XS-xm1.text" = "最大心率:--";
+
+/* Class = "UILabel"; text = "平均心率:--"; ObjectID = "XBR-mu-qfX"; */
+"XBR-mu-qfX.text" = "平均心率:--";
+
+/* Class = "UILabel"; text = "0h0'"; ObjectID = "XcF-xI-7kM"; */
+"XcF-xI-7kM.text" = "0h0'";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Xf8-8V-Do2"; */
+"Xf8-8V-Do2.text" = "0";
+
+/* Class = "UILabel"; text = "10.14  周三"; ObjectID = "YZQ-Ku-eGg"; */
+"YZQ-Ku-eGg.text" = "10.14  周三";
+
+/* Class = "UILabel"; text = "深睡"; ObjectID = "YzV-vR-qMo"; */
+"YzV-vR-qMo.text" = "深睡";
+
+/* Class = "UIButton"; normalTitle = "<"; ObjectID = "ZuB-xV-gNS"; */
+"ZuB-xV-gNS.normalTitle" = "<";
+
+/* Class = "UILabel"; text = "20h20min"; ObjectID = "Zv4-ez-qxZ"; */
+"Zv4-ez-qxZ.text" = "20h20min";
+
+/* Class = "UILabel"; text = "正常"; ObjectID = "e9z-AD-Cbb"; */
+"e9z-AD-Cbb.text" = "正常";
+
+/* Class = "UILabel"; text = "热量"; ObjectID = "g4o-da-7YC"; */
+"g4o-da-7YC.text" = "热量";
+
+/* Class = "UILabel"; text = "步数"; ObjectID = "lJH-fO-Th3"; */
+"lJH-fO-Th3.text" = "步数";
+
+/* Class = "UILabel"; text = "浅睡"; ObjectID = "lRx-KF-WoI"; */
+"lRx-KF-WoI.text" = "浅睡";
+
+/* Class = "UILabel"; text = "平均心率:--"; ObjectID = "mnc-6c-ZaC"; */
+"mnc-6c-ZaC.text" = "平均心率:--";
+
+/* Class = "UILabel"; text = "夜间心率"; ObjectID = "sTe-bF-WI4"; */
+"sTe-bF-WI4.text" = "夜间心率";
+
+/* Class = "UILabel"; text = "分钟"; ObjectID = "tXs-XV-43x"; */
+"tXs-XV-43x.text" = "分钟";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "u9j-bp-GcH"; */
+"u9j-bp-GcH.text" = "0";
+
+/* Class = "UILabel"; text = "0%"; ObjectID = "upA-R8-Tob"; */
+"upA-R8-Tob.text" = "0%";
+
+/* Class = "UILabel"; text = "小时"; ObjectID = "wRb-cg-Zmf"; */
+"wRb-cg-Zmf.text" = "小时";
+
+/* Class = "UILabel"; text = "分钟"; ObjectID = "wap-ag-t8X"; */
+"wap-ag-t8X.text" = "分钟";
+
+/* Class = "UILabel"; text = "分"; ObjectID = "wnB-yb-ocI"; */
+"wnB-yb-ocI.text" = "分";

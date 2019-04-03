@@ -1,0 +1,135 @@
+
+/* Class = "UILabel"; text = "11月"; ObjectID = "0ri-xD-nBx"; */
+"0ri-xD-nBx.text" = "11月";
+
+/* Class = "UILabel"; text = "完成:"; ObjectID = "1Gh-QN-Jqi"; */
+"1Gh-QN-Jqi.text" = "完成:";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "2px-ip-7C9"; */
+"2px-ip-7C9.text" = "0";
+
+/* Class = "UILabel"; text = "小时"; ObjectID = "4I6-sO-k5O"; */
+"4I6-sO-k5O.text" = "小时";
+
+/* Class = "UILabel"; text = "平均步数"; ObjectID = "57v-zQ-QTn"; */
+"57v-zQ-QTn.text" = "平均步数";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "78t-L5-ofK"; */
+"78t-L5-ofK.text" = "0";
+
+/* Class = "UILabel"; text = "0次"; ObjectID = "7dP-6D-DEu"; */
+"7dP-6D-DEu.text" = "0次";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "7ix-9m-WNv"; */
+"7ix-9m-WNv.text" = "0";
+
+/* Class = "UILabel"; text = "步"; ObjectID = "A8d-UL-mKE"; */
+"A8d-UL-mKE.text" = "步";
+
+/* Class = "UILabel"; text = "0步"; ObjectID = "B7a-As-jJL"; */
+"B7a-As-jJL.text" = "0步";
+
+/* Class = "UILabel"; text = "分钟"; ObjectID = "GKE-IV-wyp"; */
+"GKE-IV-wyp.text" = "分钟";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "M8v-El-7Kb"; */
+"M8v-El-7Kb.text" = "0";
+
+/* Class = "UILabel"; text = "0次"; ObjectID = "OcQ-9b-Iz0"; */
+"OcQ-9b-Iz0.text" = "0次";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "QYd-1v-kY7"; */
+"QYd-1v-kY7.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "QrF-ai-n1d"; */
+"QrF-ai-n1d.text" = "0";
+
+/* Class = "UILabel"; text = "平均消耗热量"; ObjectID = "Sde-rf-o3z"; */
+"Sde-rf-o3z.text" = "平均消耗热量";
+
+/* Class = "UILabel"; text = "小时"; ObjectID = "Tsb-Yp-7kD"; */
+"Tsb-Yp-7kD.text" = "小时";
+
+/* Class = "UILabel"; text = "千卡"; ObjectID = "W6Q-qC-TsU"; */
+"W6Q-qC-TsU.text" = "千卡";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Wf8-E5-ZKw"; */
+"Wf8-E5-ZKw.text" = "0";
+
+/* Class = "UILabel"; text = "小时"; ObjectID = "XcH-cm-7zQ"; */
+"XcH-cm-7zQ.text" = "小时";
+
+/* Class = "UILabel"; text = "平均时长"; ObjectID = "Xn1-yb-izZ"; */
+"Xn1-yb-izZ.text" = "平均时长";
+
+/* Class = "UILabel"; text = "小时"; ObjectID = "a5K-kF-Jas"; */
+"a5K-kF-Jas.text" = "小时";
+
+/* Class = "UILabel"; text = "分钟"; ObjectID = "aMV-c8-jQm"; */
+"aMV-c8-jQm.text" = "分钟";
+
+/* Class = "UILabel"; text = "平均步数"; ObjectID = "aVN-D7-agl"; */
+"aVN-D7-agl.text" = "平均步数";
+
+/* Class = "UILabel"; text = "千卡"; ObjectID = "bdC-ke-9gX"; */
+"bdC-ke-9gX.text" = "千卡";
+
+/* Class = "UIButton"; normalTitle = "月"; ObjectID = "ckn-4b-N9R"; */
+"ckn-4b-N9R.normalTitle" = "月";
+
+/* Class = "UIButton"; selectedTitle = "月"; ObjectID = "ckn-4b-N9R"; */
+"ckn-4b-N9R.selectedTitle" = "月";
+
+/* Class = "UILabel"; text = "最高记录:"; ObjectID = "dj1-GR-VSz"; */
+"dj1-GR-VSz.text" = "最高记录:";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "fB5-hh-bcG"; */
+"fB5-hh-bcG.text" = "0";
+
+/* Class = "UILabel"; text = "步"; ObjectID = "gKA-wA-aBE"; */
+"gKA-wA-aBE.text" = "步";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "ge2-YY-Y0Z"; */
+"ge2-YY-Y0Z.text" = "0";
+
+/* Class = "UILabel"; text = "平均时长"; ObjectID = "iVy-90-YkY"; */
+"iVy-90-YkY.text" = "平均时长";
+
+/* Class = "UILabel"; text = "平均深睡"; ObjectID = "jMQ-y1-Kns"; */
+"jMQ-y1-Kns.text" = "平均深睡";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "jf1-nD-ueL"; */
+"jf1-nD-ueL.text" = "0";
+
+/* Class = "UILabel"; text = "平均消耗热量"; ObjectID = "keX-IL-lMi"; */
+"keX-IL-lMi.text" = "平均消耗热量";
+
+/* Class = "UILabel"; text = "平均深睡"; ObjectID = "knj-Os-gIH"; */
+"knj-Os-gIH.text" = "平均深睡";
+
+/* Class = "UILabel"; text = "分钟"; ObjectID = "mno-YA-VMz"; */
+"mno-YA-VMz.text" = "分钟";
+
+/* Class = "UIButton"; normalTitle = "周"; ObjectID = "oQs-WQ-F7y"; */
+"oQs-WQ-F7y.normalTitle" = "周";
+
+/* Class = "UIButton"; selectedTitle = "周"; ObjectID = "oQs-WQ-F7y"; */
+"oQs-WQ-F7y.selectedTitle" = "周";
+
+/* Class = "UILabel"; text = "0步"; ObjectID = "rDb-2X-QfZ"; */
+"rDb-2X-QfZ.text" = "0步";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "rgJ-EX-Uds"; */
+"rgJ-EX-Uds.text" = "0";
+
+/* Class = "UILabel"; text = "完成:"; ObjectID = "v0H-PZ-7dv"; */
+"v0H-PZ-7dv.text" = "完成:";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "v2B-cJ-csz"; */
+"v2B-cJ-csz.text" = "0";
+
+/* Class = "UILabel"; text = "最高记录:"; ObjectID = "wXX-Uq-JoV"; */
+"wXX-Uq-JoV.text" = "最高记录:";
+
+/* Class = "UILabel"; text = "分钟"; ObjectID = "yGq-Ir-rss"; */
+"yGq-Ir-rss.text" = "分钟";

@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "0%"; ObjectID = "ADf-DG-fuR"; */
+"ADf-DG-fuR.text" = "0%";
+
+/* Class = "UILabel"; text = "0 Kcal"; ObjectID = "SxB-Re-SDe"; */
+"SxB-Re-SDe.text" = "0 Kcal";
+
+/* Class = "UIButton"; normalTitle = "<"; ObjectID = "WDF-5Y-Oeo"; */
+"WDF-5Y-Oeo.normalTitle" = "<";
+
+/* Class = "UILabel"; text = "0.0"; ObjectID = "c28-fv-1OL"; */
+"c28-fv-1OL.text" = "0.0";
+
+/* Class = "UILabel"; text = "0h0'"; ObjectID = "dGL-nJ-h3A"; */
+"dGL-nJ-h3A.text" = "0h0'";
+
+/* Class = "UILabel"; text = "10.14  周三"; ObjectID = "kDX-Ju-Zfb"; */
+"kDX-Ju-Zfb.text" = "10.14  周三";
+
+/* Class = "UILabel"; text = "--  bpm"; ObjectID = "orQ-IU-kQy"; */
+"orQ-IU-kQy.text" = "--  bpm";
+
+/* Class = "UILabel"; text = "目标:10000步"; ObjectID = "sjZ-uq-RE1"; */
+"sjZ-uq-RE1.text" = "目标:10000步";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "tW8-0E-lcQ"; */
+"tW8-0E-lcQ.text" = "100";
+
+/* Class = "UIButton"; normalTitle = ">"; ObjectID = "uTr-CR-n7C"; */
+"uTr-CR-n7C.normalTitle" = ">";

@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "登录"; ObjectID = "1v1-Sx-5Cy"; */
+"1v1-Sx-5Cy.text" = "登录";
+
+/* Class = "UILabel"; text = "帐号"; ObjectID = "7yU-lg-evG"; */
+"7yU-lg-evG.text" = "帐号";
+
+/* Class = "UILabel"; text = "使用第三方登录"; ObjectID = "Qdr-xj-YCH"; */
+"Qdr-xj-YCH.text" = "使用第三方登录";
+
+/* Class = "UIButton"; normalTitle = "忘记密码》"; ObjectID = "WTm-mF-a7r"; */
+"WTm-mF-a7r.normalTitle" = "忘记密码》";
+
+/* Class = "UILabel"; text = "密码"; ObjectID = "f6f-zd-lfZ"; */
+"f6f-zd-lfZ.text" = "密码";
+
+/* Class = "UIButton"; normalTitle = "新用户注册》"; ObjectID = "twC-su-wRr"; */
+"twC-su-wRr.normalTitle" = "新用户注册》";

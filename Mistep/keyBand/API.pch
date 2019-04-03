@@ -1,0 +1,68 @@
+//
+//  API.pch
+//  Mistep
+//
+//  Created by apple on 2018/5/14.
+//  Copyright © 2018年 huichenghe. All rights reserved.
+//
+
+#ifndef API_pch
+#define API_pch
+
+//生产环境
+//#define ROOT_URL @"https://rulong.lantianfangzhou.com/r5s/api/"
+//测试环境
+#define ROOT_URL @"http://test04.lantianfangzhou.com/r5s/api/"
+
+#define PATH_URL(url) [NSString stringWithFormat:@"%@%@",ROOT_URL,url]
+
+//登录
+#define LOGIN PATH_URL(@"login")
+//发送登录短信验证码
+#define LOGINSEND PATH_URL(@"sendLogSms")
+//注册
+#define REGISTER PATH_URL(@"register")
+//发送注册短信验证码
+#define REGISTERSEND PATH_URL(@"sendRegSms")
+//上传个人信息
+#define UPLOADUSERINFO PATH_URL(@"userInfo")
+//获取用户信息
+#define GETUSERINFO PATH_URL(@"getUserInfo")
+//修改昵称
+#define ALERTNICKNAME PATH_URL(@"updateNickName")
+//上传头像
+#define UPLOADHEADER PATH_URL(@"upHeadImg")
+//换绑手机号发送验证码
+#define ALERTTELSEND PATH_URL(@"sendChangeSms")
+//换绑手机号
+#define ALERTTEL PATH_URL(@"changeTel")
+//获取好友列表
+#define GETFRIENDLIST PATH_URL(@"friendList")
+//添加好友
+#define ADDFRIEND PATH_URL(@"addFriend")
+//心率上传
+#define HEARTRATEUPDATE PATH_URL(@"hr")
+//运动数据上传
+#define SPORTUPDATE PATH_URL(@"sport")
+//睡眠数据上传
+#define SLEEPUPDATE PATH_URL(@"upSleep")
+//用户点击SOS按钮接口
+#define CLICKSOS PATH_URL(@"sos")
+//获取监测服务按钮状态接口
+#define GETSERVER PATH_URL(@"getServer")
+//设置监测服务按钮状态接口
+#define SETSERVER PATH_URL(@"custServe")
+//设置监测服务按钮状态接口
+#define SETNOTI PATH_URL(@"warnbtn")
+//获取报警次数接口
+#define GETWARNING PATH_URL(@"getWarning")
+//定时上传定位
+#define UPLOADLOCATION PATH_URL(@"address")
+//每分钟步数上传
+#define UPLOADMINUTESTEP PATH_URL(@"stepnew")
+//心电图上传
+#define UPLOADECG PATH_URL(@"ecg")
+//首页数据
+#define GETHOMEDATA PATH_URL(@"data2app")
+
+#endif /* API_pch */

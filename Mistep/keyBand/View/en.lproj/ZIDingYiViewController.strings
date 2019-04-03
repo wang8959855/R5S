@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "仅一次"; ObjectID = "1MR-8F-deh"; */
+"1MR-8F-deh.text" = "仅一次";
+
+/* Class = "UILabel"; text = "选择类型"; ObjectID = "67u-sR-CgE"; */
+"67u-sR-CgE.text" = "选择类型";
+
+/* Class = "UILabel"; text = "未选择"; ObjectID = "9mR-af-06l"; */
+"9mR-af-06l.text" = "未选择";
+
+/* Class = "UILabel"; text = "开启闹铃提醒后，手环会在浅睡眠状态下轻微振动唤醒您，您这一天将会更加有活力。"; ObjectID = "GS9-Kz-WOv"; */
+"GS9-Kz-WOv.text" = "开启闹铃提醒后，手环会在浅睡眠状态下轻微振动唤醒您，您这一天将会更加有活力。";
+
+/* Class = "UILabel"; text = "自定义"; ObjectID = "JmK-zJ-1Cs"; */
+"JmK-zJ-1Cs.text" = "自定义";
+
+/* Class = "UILabel"; text = "重复"; ObjectID = "eMd-sP-mli"; */
+"eMd-sP-mli.text" = "重复";
+
+/* Class = "UILabel"; text = "未选择"; ObjectID = "pNq-h9-Lqr"; */
+"pNq-h9-Lqr.text" = "未选择";
+
+/* Class = "UILabel"; text = "时间"; ObjectID = "q6c-wj-40v"; */
+"q6c-wj-40v.text" = "时间";

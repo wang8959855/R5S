@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JiuzuoSetViewController">
+            <connections>
+                <outlet property="beginTimeBtn" destination="ewJ-Dr-EcH" id="Xc2-9E-r9q"/>
+                <outlet property="durationBtn" destination="XuM-kR-Mzp" id="dEp-CP-EsL"/>
+                <outlet property="durationLabel" destination="ozV-eL-J4r" id="Sec-El-hC3"/>
+                <outlet property="endTimeBtn" destination="B5a-cq-eMJ" id="M3Q-C8-JDW"/>
+                <outlet property="kBeginTimeLabel" destination="fBZ-II-FKK" id="QXB-hG-9aU"/>
+                <outlet property="kEndTimeLabel" destination="TiS-Mk-Tex" id="3xU-ky-Y96"/>
+                <outlet property="kTImeDurationLabel" destination="Ho3-gi-WWY" id="mLh-fO-4Av"/>
+                <outlet property="kTextTipLabel" destination="q45-rZ-ypc" id="YAA-Sh-HFn"/>
+                <outlet property="saveBtn" destination="0bu-Ae-2Md" id="cev-Vp-f1u"/>
+                <outlet property="titleLabel" destination="xgo-vl-6O9" id="v70-o7-b8c"/>
+                <outlet property="topNavView" destination="CcO-HA-0pt" id="goh-at-hyE"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CcO-HA-0pt">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <color key="backgroundColor" red="0.32549019610000002" green="0.76862745099999996" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="T3l-4Y-qFI"/>
+                        <constraint firstAttribute="height" constant="64" id="Zbq-k7-0PU"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kma-S0-jQV">
+                    <rect key="frame" x="15" y="28" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="0Xt-N3-0nq"/>
+                        <constraint firstAttribute="height" constant="24" id="bbB-Ds-0yc"/>
+                    </constraints>
+                    <state key="normal" image="left.png"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="久坐提醒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgo-vl-6O9">
+                    <rect key="frame" x="153" y="31.5" width="69.5" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="dLm-q3-h7m"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swf-dR-T3u">
+                    <rect key="frame" x="0.0" y="27" width="57" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="33h-5i-gtq"/>
+                        <constraint firstAttribute="width" constant="57" id="xyr-p2-Qh7"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="goBackButtonAction:" destination="-1" eventType="touchUpInside" id="tKD-EZ-8oI"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bu-Ae-2Md">
+                    <rect key="frame" x="336" y="27" width="31" height="30"/>
+                    <state key="normal" title="保存">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="saveChangeAction:" destination="-1" eventType="touchUpInside" id="HMR-8L-Qs9"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开始久坐时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBZ-II-FKK">
+                    <rect key="frame" x="20" y="84" width="92" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewJ-Dr-EcH">
+                    <rect key="frame" x="40" y="120" width="295" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="YTF-ng-Njg"/>
+                    </constraints>
+                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" backgroundImage="SZ_jiuzuoBtnUnselected.png">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="selected" backgroundImage="SZ_jiuzuoBtnSelected.png">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="TimeAction:" destination="-1" eventType="touchUpInside" id="PD8-TG-wmX"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="结束久坐时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiS-Mk-Tex">
+                    <rect key="frame" x="20" y="173" width="92" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUM-OL-Z3W">
+                    <rect key="frame" x="0.0" y="262" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="fpn-Xj-Ax3"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginTakeCare.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y5g-Zw-i7F">
+                    <rect key="frame" x="19" y="387" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="aag-1V-Gzn"/>
+                        <constraint firstAttribute="width" constant="16" id="cbE-zV-8Vu"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5a-cq-eMJ">
+                    <rect key="frame" x="40" y="209" width="295" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="C6b-0L-qT1"/>
+                    </constraints>
+                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" backgroundImage="SZ_jiuzuoBtnUnselected.png">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="selected" backgroundImage="SZ_jiuzuoBtnSelected.png"/>
+                    <connections>
+                        <action selector="TimeAction:" destination="-1" eventType="touchUpInside" id="q2T-yR-zed"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间间隔提醒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ho3-gi-WWY">
+                    <rect key="frame" x="20" y="281" width="92" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开启久坐后，您的设备将增加一定的耗电量。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q45-rZ-ypc">
+                    <rect key="frame" x="40" y="365" width="325" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="oaB-ii-Zid"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.13725490200000001" green="0.14901960780000001" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuM-kR-Mzp">
+                    <rect key="frame" x="40" y="317" width="295" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="ppl-5d-JOB"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="SZ_jiuzuoDurationBg.png">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="selected" backgroundImage="SZ_jiuzuoBtnSelected.png"/>
+                    <connections>
+                        <action selector="durationBtnClick:" destination="-1" eventType="touchUpInside" id="zRm-AJ-vmD"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30分钟提醒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozV-eL-J4r">
+                    <rect key="frame" x="48" y="325.5" width="279" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Ho3-gi-WWY" firstAttribute="top" secondItem="EUM-OL-Z3W" secondAttribute="bottom" constant="18" id="1ae-DK-iec"/>
+                <constraint firstItem="xgo-vl-6O9" firstAttribute="centerY" secondItem="Swf-dR-T3u" secondAttribute="centerY" id="3xu-Oh-0UY"/>
+                <constraint firstItem="Swf-dR-T3u" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="27" id="5L2-Bq-Gfc"/>
+                <constraint firstItem="ozV-eL-J4r" firstAttribute="centerX" secondItem="XuM-kR-Mzp" secondAttribute="centerX" id="6qr-fX-tjY"/>
+                <constraint firstItem="Y5g-Zw-i7F" firstAttribute="centerY" secondItem="q45-rZ-ypc" secondAttribute="centerY" id="6x3-ml-xk4"/>
+                <constraint firstItem="TiS-Mk-Tex" firstAttribute="top" secondItem="ewJ-Dr-EcH" secondAttribute="bottom" constant="18" id="7dO-Lk-kQ8"/>
+                <constraint firstItem="ewJ-Dr-EcH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AIC-lW-YTB"/>
+                <constraint firstItem="q45-rZ-ypc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="DBl-mo-mma"/>
+                <constraint firstItem="fBZ-II-FKK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="DYK-PP-EjZ"/>
+                <constraint firstItem="fBZ-II-FKK" firstAttribute="top" secondItem="CcO-HA-0pt" secondAttribute="bottom" constant="20" id="E4L-vh-rxa"/>
+                <constraint firstItem="Ho3-gi-WWY" firstAttribute="leading" secondItem="TiS-Mk-Tex" secondAttribute="leading" id="FWw-90-tZf"/>
+                <constraint firstItem="XuM-kR-Mzp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="JLp-he-Rsx"/>
+                <constraint firstItem="EUM-OL-Z3W" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ON5-qc-g6m"/>
+                <constraint firstItem="ozV-eL-J4r" firstAttribute="centerY" secondItem="XuM-kR-Mzp" secondAttribute="centerY" id="Pie-ZX-uHb"/>
+                <constraint firstItem="ewJ-Dr-EcH" firstAttribute="top" secondItem="fBZ-II-FKK" secondAttribute="bottom" constant="18" id="Pne-L6-HaY"/>
+                <constraint firstItem="Kma-S0-jQV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Qpk-Kk-52C"/>
+                <constraint firstAttribute="trailing" secondItem="0bu-Ae-2Md" secondAttribute="trailing" constant="8" id="SLI-5y-rjr"/>
+                <constraint firstItem="B5a-cq-eMJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Sfp-tZ-xpi"/>
+                <constraint firstItem="EUM-OL-Z3W" firstAttribute="top" secondItem="B5a-cq-eMJ" secondAttribute="bottom" constant="18" id="US7-zf-ZkG"/>
+                <constraint firstAttribute="trailing" secondItem="CcO-HA-0pt" secondAttribute="trailing" id="VnK-cO-11V"/>
+                <constraint firstItem="ozV-eL-J4r" firstAttribute="leading" secondItem="XuM-kR-Mzp" secondAttribute="leading" constant="8" id="WG5-8d-apf"/>
+                <constraint firstAttribute="trailing" secondItem="EUM-OL-Z3W" secondAttribute="trailing" id="Wuc-X5-nC9"/>
+                <constraint firstItem="xgo-vl-6O9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dXu-ds-E7b"/>
+                <constraint firstItem="CcO-HA-0pt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="e3t-Aj-8Q5"/>
+                <constraint firstItem="CcO-HA-0pt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gl9-20-Mo7"/>
+                <constraint firstItem="ewJ-Dr-EcH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="h7f-1G-PQj"/>
+                <constraint firstItem="TiS-Mk-Tex" firstAttribute="leading" secondItem="fBZ-II-FKK" secondAttribute="leading" id="i9I-bY-Qtp"/>
+                <constraint firstItem="B5a-cq-eMJ" firstAttribute="top" secondItem="TiS-Mk-Tex" secondAttribute="bottom" constant="18" id="kgn-vL-9h3"/>
+                <constraint firstItem="XuM-kR-Mzp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mnR-1u-tPm"/>
+                <constraint firstItem="q45-rZ-ypc" firstAttribute="top" secondItem="XuM-kR-Mzp" secondAttribute="bottom" constant="13" id="nHu-ML-qiR"/>
+                <constraint firstItem="Kma-S0-jQV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="28" id="oRz-fM-jW8"/>
+                <constraint firstItem="0bu-Ae-2Md" firstAttribute="centerY" secondItem="xgo-vl-6O9" secondAttribute="centerY" id="sWm-i7-525"/>
+                <constraint firstItem="q45-rZ-ypc" firstAttribute="leading" secondItem="Y5g-Zw-i7F" secondAttribute="trailing" constant="5" id="tt0-Ct-2Yj"/>
+                <constraint firstItem="XuM-kR-Mzp" firstAttribute="top" secondItem="Ho3-gi-WWY" secondAttribute="bottom" constant="18" id="uBr-Hp-1fv"/>
+                <constraint firstItem="B5a-cq-eMJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="wdM-0e-HDr"/>
+                <constraint firstItem="q45-rZ-ypc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="15" id="yDD-YS-HBl"/>
+                <constraint firstItem="Swf-dR-T3u" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zJH-S5-7gy"/>
+            </constraints>
+            <point key="canvasLocation" x="11" y="193"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="SZ_jiuzuoBtnSelected.png" width="741" height="130"/>
+        <image name="SZ_jiuzuoBtnUnselected.png" width="480" height="62"/>
+        <image name="SZ_jiuzuoDurationBg.png" width="480" height="61"/>
+        <image name="left.png" width="10" height="14"/>
+        <image name="loginTakeCare.png" width="12" height="12"/>
+    </resources>
+</document>
