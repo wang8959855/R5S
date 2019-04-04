@@ -132,7 +132,7 @@
     }
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, backScrollViewW, backScrollViewH)];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@/%@",root,self.sxiao,USERID,TOKEN]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@/%@/0",root,self.sxiao,USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     [self.backScrollView addSubview:self.webView];

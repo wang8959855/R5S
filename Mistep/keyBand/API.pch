@@ -64,5 +64,7 @@
 #define UPLOADECG PATH_URL(@"ecg")
 //首页数据
 #define GETHOMEDATA PATH_URL(@"data2app")
+//连接手环后上传设备型号
+#define UOLOADDEVICEMODEL PATH_URL(@"watch")
 
 #endif /* API_pch */

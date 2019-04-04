@@ -141,6 +141,9 @@ static NSString *conectReuse = @"connectedCell";
             [_searchBtn setTitle:NSLocalizedString(@"解绑设备",nil) forState:UIControlStateNormal];
             [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:62];
             [[CositeaBlueTooth sharedInstance] changeHeartRateMonitorStateWithState:YES];
+            
+            [self uoloadDeviceModel:[CositeaBlueTooth sharedInstance].deviceName];
+            
         }
         else
         {
@@ -688,6 +691,31 @@ static NSString *conectReuse = @"connectedCell";
         //        }
     }
     [self hidenSearchView:nil];
+}
+
+//上传设备型号
+- (void)uoloadDeviceModel:(NSString *)model{
+    NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",UOLOADDEVICEMODEL,TOKEN];
+    [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:uploadUrl fileUrl:nil params:@{@"userid":USERID,@"watch":model} Block:^(id responseObject, NSError *error) {
+        
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeOut) object:nil];
+        
+        [self removeActityIndicatorFromView:self.view];
+        if (error)
+        {
+            [self.view makeCenterToast:@"网络连接错误"];
+        }
+        else
+        {
+            int code = [[responseObject objectForKey:@"code"] intValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 0) {
+                
+            } else {
+                [self.view makeCenterToast:message];
+            }
+        }
+    }];
 }
 
 @end

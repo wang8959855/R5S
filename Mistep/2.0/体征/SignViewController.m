@@ -106,6 +106,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:[CositeaBlueTooth sharedInstance].connectUUID forKey:kLastDeviceUUID];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [ADASaveDefaluts setObject:[CositeaBlueTooth sharedInstance].deviceName forKey:kLastDeviceNAME];
+            [self uoloadDeviceModel:[CositeaBlueTooth sharedInstance].deviceName];
         }
         else
         {
@@ -383,6 +384,31 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"uploadLocation" object:nil];
         }break;
     }
+}
+
+//上传设备型号
+- (void)uoloadDeviceModel:(NSString *)model{
+    NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",UOLOADDEVICEMODEL,TOKEN];
+    [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:uploadUrl fileUrl:nil params:@{@"userid":USERID,@"watch":model} Block:^(id responseObject, NSError *error) {
+        
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeOut) object:nil];
+        
+        [self removeActityIndicatorFromView:self.view];
+        if (error)
+        {
+            [self.view makeCenterToast:@"网络连接错误"];
+        }
+        else
+        {
+            int code = [[responseObject objectForKey:@"code"] intValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 0) {
+                
+            } else {
+                [self.view makeCenterToast:message];
+            }
+        }
+    }];
 }
 
 @end
