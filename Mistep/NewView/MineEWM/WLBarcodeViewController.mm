@@ -148,7 +148,7 @@
     // 返回键
     UIButton *goBackButton = ({
         UIButton *button =
-        [[UIButton alloc] initWithFrame:CGRectMake(20, 30, 36, 36)];
+        [[UIButton alloc] initWithFrame:CGRectMake(20, StatusBarHeight+10, 36, 36)];
         [button setImage:[UIImage imageNamed:@"qr_vc_left"] forState:UIControlStateNormal];
         button.layer.cornerRadius = 18.0;
         button.layer.backgroundColor = [[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5] CGColor];
@@ -160,7 +160,7 @@
     // 控制散光灯
     UIButton *torchSwitch = ({
         UIButton *button =
-        [[UIButton alloc] initWithFrame:CGRectMake(mainBounds.size.width-44-20, 30, 36, 36)];
+        [[UIButton alloc] initWithFrame:CGRectMake(mainBounds.size.width-44-20, StatusBarHeight+10, 36, 36)];
         [button setImage:[UIImage imageNamed:@"qr_vc_right"] forState:UIControlStateNormal];
         button.layer.cornerRadius = 18.0;
         button.layer.backgroundColor = [[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5] CGColor];

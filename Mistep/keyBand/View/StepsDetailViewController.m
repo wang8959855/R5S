@@ -59,7 +59,7 @@
 - (void)creatChildView
 {
     _backScrollView = [[UIScrollView alloc] init];
-    _backScrollView.frame = CGRectMake(0, 64, CurrentDeviceWidth, CurrentDeviceHeight - 64 );
+    _backScrollView.frame = CGRectMake(0, SafeAreaTopHeight, CurrentDeviceWidth, CurrentDeviceHeight - SafeAreaTopHeight );
     [self.view addSubview:_backScrollView];
     self.backScrollView.contentSize = CGSizeMake(self.backScrollView.width, self.backScrollView.height + 0.5);
     self.backScrollView.showsVerticalScrollIndicator = NO;

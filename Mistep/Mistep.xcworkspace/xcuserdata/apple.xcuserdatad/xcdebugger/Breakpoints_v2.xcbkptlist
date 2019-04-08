@@ -9,30 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "keyBand/ViewController.m"
-            timestampString = "575879452.784771"
+            filePath = "keyBand/View/PZBaseViewController.h"
+            timestampString = "576385437.8089139"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "-dimissAlertController:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "keyBand/View/SheBeiViewController.m"
-            timestampString = "576035451.999174"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "713"
-            endingLineNumber = "713"
-            landmarkName = "-uoloadDeviceModel:"
-            landmarkType = "7">
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "PZBaseViewController"
+            landmarkType = "2">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

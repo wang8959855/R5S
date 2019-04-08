@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -198,7 +199,6 @@
             <constraints>
                 <constraint firstItem="dLO-85-5oV" firstAttribute="top" secondItem="Acd-Fb-NfX" secondAttribute="bottom" id="8Ul-gg-qJh"/>
                 <constraint firstItem="TMi-qs-Ep0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="AGf-Am-lvf"/>
-                <constraint firstItem="Acd-Fb-NfX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="BCh-TD-yjY"/>
                 <constraint firstItem="Acd-Fb-NfX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="DDu-Zq-B1p"/>
                 <constraint firstItem="mMi-UH-qnc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="EaI-8C-zgF"/>
                 <constraint firstItem="s46-q3-O5E" firstAttribute="centerY" secondItem="TMi-qs-Ep0" secondAttribute="centerY" id="Ehh-8s-hM1"/>
@@ -213,9 +213,11 @@
                 <constraint firstItem="K3z-jI-8eu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Acd-Fb-NfX" secondAttribute="trailing" constant="10" id="lIr-Lq-Dpz"/>
                 <constraint firstItem="dLO-85-5oV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="lfy-Hf-5UP"/>
                 <constraint firstItem="iva-88-IAQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="m77-lu-DjA"/>
+                <constraint firstItem="Acd-Fb-NfX" firstAttribute="top" secondItem="GXC-76-8WJ" secondAttribute="top" constant="44" id="mqy-eP-dZm"/>
                 <constraint firstItem="TMi-qs-Ep0" firstAttribute="top" secondItem="dLO-85-5oV" secondAttribute="bottom" id="obl-Cn-fps"/>
                 <constraint firstAttribute="trailing" secondItem="dLO-85-5oV" secondAttribute="trailing" constant="12" id="vr5-e1-LdZ"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="GXC-76-8WJ"/>
             <point key="canvasLocation" x="32" y="177"/>
         </view>
     </objects>

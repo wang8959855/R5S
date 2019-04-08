@@ -56,7 +56,7 @@
     //测试
     NSString *root = @"http://test03.lantianfangzhou.com/report/current";
     //生产
-    //    NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
+//        NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
     
     if ([CositeaBlueTooth sharedInstance].isConnected) {
         if ([CositeaBlueTooth sharedInstance].deviceName != nil) {
@@ -85,9 +85,9 @@
     backImageView.frame = CGRectMake(0, 0, CurrentDeviceWidth, CurrentDeviceHeight - 48);
     
     //CGFloat backScrollViewX = 0;
-    CGFloat backScrollViewY = 64;
+    CGFloat backScrollViewY = SafeAreaTopHeight;
     CGFloat backScrollViewW = CurrentDeviceWidth;
-    CGFloat backScrollViewH = CurrentDeviceHeight - 64 - 49;
+    CGFloat backScrollViewH = CurrentDeviceHeight - SafeAreaTopHeight - SafeAreaBottomHeight;
     
     self.backScrollView = [[UIScrollView alloc] init];
     self.backScrollView.frame = CGRectMake(0,backScrollViewY,backScrollViewW, backScrollViewH);
@@ -485,7 +485,7 @@
     
     self.targetBtn = [[UIButton alloc] init];
     self.targetBtn.size = CGSizeMake(95*kX, 30*kDY);
-    self.targetBtn.center = CGPointMake(CurrentDeviceWidth/2., self.view.height - 256*kDY  - 48 - 64);
+    self.targetBtn.center = CGPointMake(CurrentDeviceWidth/2., self.view.height - 256*kDY  - 48 - SafeAreaTopHeight);
     [self.backScrollView addSubview:self.targetBtn];
     self.targetBtn.layer.borderColor = kMainColor.CGColor;
     self.targetBtn.layer.borderWidth = 1;
@@ -569,7 +569,7 @@
     [self.view addSubview:_SLEconStateView];
     _SLEconStateView.alpha = 0;
     CGFloat conStateViewX = 0;
-    CGFloat conStateViewY = 64;
+    CGFloat conStateViewY = SafeAreaTopHeight;
     CGFloat conStateViewW = CurrentDeviceWidth;
     CGFloat conStateViewH = 60*HeightProportion;
     _SLEconStateView.frame = CGRectMake(conStateViewX,conStateViewY,conStateViewW,conStateViewH);
@@ -602,7 +602,7 @@
     {
         if(!([self.SLEdoneView.titleString isEqualToString:NSLocalizedString(@"DataSyn", nil)]&&self.SLEdoneView.alpha == 1))
         {
-            self.backScrollView.frame = CGRectMake(0,64,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
+            self.backScrollView.frame = CGRectMake(0,SafeAreaTopHeight,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
             self.webView.frame = CGRectMake(0,0,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
         }
         self.SLEconStateView.alpha = 0;
@@ -703,7 +703,7 @@
     self.SLEconStateView.alpha = 0;
     if(!([self.SLEdoneView.titleString isEqualToString:NSLocalizedString(@"DataSyn", nil)]&&self.SLEdoneView.alpha == 1))
     {
-        self.backScrollView.frame = CGRectMake(0,64,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
+        self.backScrollView.frame = CGRectMake(0,SafeAreaTopHeight,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
         self.webView.frame = CGRectMake(0,0,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
     }
 }
@@ -723,7 +723,7 @@
     }
     if(![SLEconnectString isEqualToString:NSLocalizedString(@"connectSuccessfully", nil)])
     {
-        self.backScrollView.frame = CGRectMake(0,64+self.SLEconStateView.height,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
+        self.backScrollView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEconStateView.height,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
         self.webView.frame = CGRectMake(0,0,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
     }
 }
@@ -744,7 +744,7 @@
 {
     self.SLEdoneView.alpha = 0;
     [UIView animateWithDuration:1.f animations:^{
-        self.backScrollView.frame = CGRectMake(0,64,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
+        self.backScrollView.frame = CGRectMake(0,SafeAreaTopHeight,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
         self.webView.frame = CGRectMake(0,0,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
     }];
 }
@@ -753,7 +753,7 @@
     if (!_SLEdoneView)
     {
         _SLEdoneView = [[DoneCustomView alloc]init];
-        _SLEdoneView.frame = CGRectMake(0,64, CurrentDeviceWidth, 60*HeightProportion);
+        _SLEdoneView.frame = CGRectMake(0,SafeAreaTopHeight, CurrentDeviceWidth, 60*HeightProportion);
         _SLEdoneView.alpha = 0;
     }
     return _SLEdoneView;
@@ -771,7 +771,7 @@
     {
         self.SLEdoneView.height =  height;
     }
-    self.backScrollView.frame = CGRectMake(0,64+self.SLEdoneView.height,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
+    self.backScrollView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEdoneView.height,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
     self.webView.frame = CGRectMake(0,0,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
     if (![SLEdoneString isEqualToString:NSLocalizedString(@"DataSyn", nil)])
     {

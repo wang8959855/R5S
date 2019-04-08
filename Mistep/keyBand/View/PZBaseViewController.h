@@ -17,6 +17,7 @@
 //@property (strong, nonatomic)YRSideViewController *sideVC;
 
 @property (weak, nonatomic) IBOutlet UIImageView *topNavView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topNavHeight;
 
 @property (weak, nonatomic) IBOutlet UIView *topNavView2;
 

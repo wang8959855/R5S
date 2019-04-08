@@ -562,8 +562,8 @@
     [btn addTarget:self action:@selector(backSleep) forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
     CGFloat btnX = 0;
-    CGFloat btnY = 20;
-    CGFloat btnW = 44;
+    CGFloat btnY = StatusBarHeight;
+    CGFloat btnW = SafeAreaTopHeight-StatusBarHeight;
     CGFloat btnH = btnW;
     btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
     
@@ -577,9 +577,9 @@
 {
     //
     CGFloat imageViewX = 0;
-    CGFloat imageViewY = 64;
+    CGFloat imageViewY = SafeAreaTopHeight;
     CGFloat imageViewW = CurrentDeviceWidth;
-    CGFloat imageViewH = (CurrentDeviceHeight - 64)/2;
+    CGFloat imageViewH = (CurrentDeviceHeight - SafeAreaTopHeight)/2;
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(imageViewX, imageViewY, imageViewW, imageViewH)];
     imageView.image = [UIImage imageNamed:@"GradientBackground_sleep"];
     //    imageView.backgroundColor = allColorRed;

@@ -65,7 +65,7 @@
 - (void)setupView
 {
     CGFloat tableViewX = 0;
-    CGFloat tableViewY = 64;
+    CGFloat tableViewY = SafeAreaTopHeight;
     CGFloat tableViewW = CurrentDeviceWidth;
     CGFloat tableViewH = CurrentDeviceHeight - tableViewY;
     

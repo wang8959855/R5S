@@ -18,6 +18,9 @@
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusHeight;
+
+
 @end
 
 @implementation NewFriendsViewController
@@ -35,6 +38,7 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 139;
     [self getFriendList];
+    self.statusHeight.constant = StatusBarHeight;
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
@@ -55,9 +59,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //测试
-//    NSString *root = @"http://test03.lantianfangzhou.com/report/current";
+    NSString *root = @"http://test03.lantianfangzhou.com/report/current";
     //生产
-        NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
+//        NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
     
     NSDictionary *dic = self.dataSource[indexPath.row];
     FriendDetailViewController *detail = [FriendDetailViewController new];

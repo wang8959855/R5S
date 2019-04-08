@@ -119,9 +119,9 @@
 - (void)setupDaohang
 {
     CGFloat headImageViewX = 0;
-    CGFloat headImageViewY = 20;
+    CGFloat headImageViewY = StatusBarHeight;
     CGFloat headImageViewW = CurrentDeviceWidth;
-    CGFloat headImageViewH = 44;
+    CGFloat headImageViewH = SafeAreaTopHeight-StatusBarHeight;
     UIImageView *headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(headImageViewX, headImageViewY, headImageViewW, headImageViewH)];
     
     [self.view addSubview:headImageView];
@@ -175,7 +175,7 @@
     UIView *totalView = [[UIView alloc]init];
     [self.view addSubview:totalView];
     CGFloat totalViewX = 0;
-    CGFloat totalViewY = 64;
+    CGFloat totalViewY = SafeAreaTopHeight;
     CGFloat totalViewW = CurrentDeviceWidth;
     CGFloat totalViewH = CurrentDeviceHeight -totalViewY;
     totalView.frame = CGRectMake(totalViewX, totalViewY, totalViewW, totalViewH);

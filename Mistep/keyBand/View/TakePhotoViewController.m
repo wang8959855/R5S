@@ -27,7 +27,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, CurrentDeviceWidth, CurrentDeviceHeight - 64)];
+    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, CurrentDeviceWidth, CurrentDeviceHeight - SafeAreaTopHeight)];
     backImageView.image = [UIImage imageNamed:@"PZ_背景.png"];
     [self.view addSubview:backImageView];
     
@@ -39,7 +39,7 @@
     [self.view addSubview:button];
     
     UIButton *openButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    openButton.frame = CGRectMake(0, 64, CurrentDeviceWidth, CurrentDeviceHeight - 64);
+    openButton.frame = CGRectMake(0, SafeAreaTopHeight, CurrentDeviceWidth, CurrentDeviceHeight - SafeAreaTopHeight);
     [openButton addTarget:self action:@selector(openCamera) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:openButton];
     
@@ -51,7 +51,7 @@
 //    [self.view addSubview:label];
     
     
-    UIView * navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, 64)];
+    UIView * navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, SafeAreaTopHeight)];
     navView.backgroundColor = [UIColor whiteColor];
     navView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
     navView.layer.shadowOffset = CGSizeMake(0, 1);
@@ -61,7 +61,7 @@
     
     UIView *topView = [[UIView alloc] init];
     topView.backgroundColor = [UIColor blackColor];
-    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, 20);
+    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, StatusBarHeight);
     [navView addSubview:topView];
     
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -71,7 +71,7 @@
     [self.view addSubview: titleLabel];
     
     UIButton *bacButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    bacButton.frame = CGRectMake(0, 20, 40, 44);
+    bacButton.frame = CGRectMake(0, StatusBarHeight, 40, SafeAreaTopHeight-StatusBarHeight);
     [bacButton setImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
     [bacButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bacButton];

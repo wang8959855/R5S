@@ -59,11 +59,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    _topNavHeight.constant = SafeAreaTopHeight;
+    
     _topNavView.backgroundColor = [UIColor whiteColor];
     UIView *topView = [[UIView alloc] init];
     topView.backgroundColor = [UIColor blackColor];
     [_topNavView addSubview:topView];
-    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, 20);
+    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, StatusBarHeight);
     _topNavView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
     _topNavView.layer.shadowOffset = CGSizeMake(0, 1);
     _topNavView.layer.shadowOpacity = 0.6;
@@ -74,7 +76,7 @@
     UIView *topView1 = [[UIView alloc] init];
     topView1.backgroundColor = [UIColor blackColor];
     [_topNavView2 addSubview:topView1];
-    topView1.frame = CGRectMake(0, 0, CurrentDeviceWidth, 20);
+    topView1.frame = CGRectMake(0, 0, CurrentDeviceWidth, StatusBarHeight);
     _topNavView2.layer.shadowColor = [UIColor lightGrayColor].CGColor;
     _topNavView2.layer.shadowOffset = CGSizeMake(0, 1);
     _topNavView2.layer.shadowOpacity = 0.6;

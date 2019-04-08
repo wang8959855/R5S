@@ -154,7 +154,7 @@
     [self.view addSubview:_SLEconStateView];
     _SLEconStateView.alpha = 0;
     CGFloat conStateViewX = 0;
-    CGFloat conStateViewY = 64;
+    CGFloat conStateViewY = SafeAreaTopHeight;
     CGFloat conStateViewW = CurrentDeviceWidth;
     CGFloat conStateViewH = 60*HeightProportion;
     _SLEconStateView.frame = CGRectMake(conStateViewX,conStateViewY,conStateViewW,conStateViewH);
@@ -170,9 +170,9 @@
     .rightSpaceToView(_SLEconStateView,0)
     .bottomSpaceToView(_SLEconStateView,0);
     
-    CGFloat backScrollViewY = 64;
+    CGFloat backScrollViewY = SafeAreaTopHeight;
     CGFloat backScrollViewW = CurrentDeviceWidth;
-    CGFloat backScrollViewH = CurrentDeviceHeight - 64 - 49;
+    CGFloat backScrollViewH = CurrentDeviceHeight - SafeAreaTopHeight - SafeAreaBottomHeight;
     
     _rateView = [[HeartRateView alloc] initWithFrame:CGRectMake(0, backScrollViewY, backScrollViewW, backScrollViewH)];
     _rateView.controller = self;
@@ -192,7 +192,7 @@
     if([CositeaBlueTooth sharedInstance].isConnected)
     {
         if(!([self.SLEdoneView.titleString isEqualToString:NSLocalizedString(@"DataSyn", nil)]&&self.SLEdoneView.alpha == 1)) {
-            self.rateView.frame = CGRectMake(0,64,self.rateView.frame.size.width, self.rateView.frame.size.height);
+            self.rateView.frame = CGRectMake(0,SafeAreaTopHeight,self.rateView.frame.size.width, self.rateView.frame.size.height);
         }
         self.SLEconStateView.alpha = 0;
     }
@@ -291,7 +291,7 @@
     
     self.SLEconStateView.alpha = 0;
     if(!([self.SLEdoneView.titleString isEqualToString:NSLocalizedString(@"DataSyn", nil)]&&self.SLEdoneView.alpha == 1)){
-        self.rateView.frame = CGRectMake(0,64,self.rateView.frame.size.width, self.rateView.frame.size.height);
+        self.rateView.frame = CGRectMake(0,SafeAreaTopHeight,self.rateView.frame.size.width, self.rateView.frame.size.height);
     }
 }
 -(void)setSLEconnectString:(NSString *)SLEconnectString
@@ -308,9 +308,9 @@
     {
         self.SLEconStateView.height =  height;
     }
-    CGFloat height1 = ScreenHeight - 64+12 - self.SLEconStateView.height-20;
+    CGFloat height1 = ScreenHeight - SafeAreaTopHeight+12 - self.SLEconStateView.height-20;
     if(![SLEconnectString isEqualToString:NSLocalizedString(@"connectSuccessfully", nil)]){
-        self.rateView.frame = CGRectMake(0,64+self.SLEconStateView.height,self.rateView.frame.size.width, height1);
+        self.rateView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEconStateView.height,self.rateView.frame.size.width, height1);
     }
 }
 
@@ -330,7 +330,7 @@
 {
     self.SLEdoneView.alpha = 0;
     [UIView animateWithDuration:1.f animations:^{
-        self.rateView.frame = CGRectMake(0,64,self.rateView.frame.size.width, self.rateView.frame.size.height);
+        self.rateView.frame = CGRectMake(0,SafeAreaTopHeight,self.rateView.frame.size.width, self.rateView.frame.size.height);
     }];
 }
 -(DoneCustomView *)SLEdoneView
@@ -338,7 +338,7 @@
     if (!_SLEdoneView)
     {
         _SLEdoneView = [[DoneCustomView alloc]init];
-        _SLEdoneView.frame = CGRectMake(0,64, CurrentDeviceWidth, 60*HeightProportion);
+        _SLEdoneView.frame = CGRectMake(0,SafeAreaTopHeight, CurrentDeviceWidth, 60*HeightProportion);
         _SLEdoneView.alpha = 0;
     }
     return _SLEdoneView;
@@ -356,8 +356,8 @@
     {
         self.SLEdoneView.height =  height;
     }
-    CGFloat height1 = ScreenHeight - 64+12 - self.SLEconStateView.height-20;
-    self.rateView.frame = CGRectMake(0,64+self.SLEdoneView.height,self.rateView.frame.size.width, height1);
+    CGFloat height1 = ScreenHeight - SafeAreaTopHeight+12 - self.SLEconStateView.height-20;
+    self.rateView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEdoneView.height,self.rateView.frame.size.width, height1);
     if (![SLEdoneString isEqualToString:NSLocalizedString(@"DataSyn", nil)])
     {
         [self performSelector:@selector(SLEhiddenDoneView) withObject:nil afterDelay:2.f];

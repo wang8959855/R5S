@@ -314,7 +314,7 @@
     headView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:headView];
     CGFloat headViewX = 0;
-    CGFloat headViewY = 20;
+    CGFloat headViewY = StatusBarHeight;
     CGFloat headViewW = CurrentDeviceWidth;
     CGFloat headViewH = 44;
     headView.frame = CGRectMake(headViewX, headViewY, headViewW, headViewH);
@@ -342,13 +342,13 @@
     UIView *topView = [[UIView alloc] init];
     topView.backgroundColor = [UIColor blackColor];
     [self.view  addSubview:topView];
-    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, 20);
+    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, StatusBarHeight);
     //     return headView;
 }
 -(void)setupBackgroudMap
 {
     CGFloat mapX = 0;
-    CGFloat mapY = 64;
+    CGFloat mapY = SafeAreaTopHeight;
     CGFloat mapW = CurrentDeviceWidth;
     CGFloat mapH = CurrentDeviceHeight;
     self.map = [[MKMapView alloc]init];

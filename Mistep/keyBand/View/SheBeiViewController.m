@@ -15,6 +15,10 @@
 @interface SheBeiViewController ()<DeviceTypeViewControllerDelegate,PZBlueToothManagerDelegate,UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>//BlueToothScanDelegate,
 
 @property (nonatomic,assign) BOOL isChange;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
+
+
 @end
 
 static NSString *cellReuse = @"Cell";
@@ -44,6 +48,7 @@ static NSString *conectReuse = @"connectedCell";
     [self setXibLabel];
     [self setupView];
     //    [self setupConstraint];
+    self.topHeight.constant = SafeAreaTopHeight;
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -183,7 +188,7 @@ static NSString *conectReuse = @"connectedCell";
 - (void)setupTopNav
 {
     
-    CGFloat buttonY = 20;
+    CGFloat buttonY = StatusBarHeight;
     CGFloat buttonW = 50;
     CGFloat buttonH = 44;
     CGFloat buttonX = CurrentDeviceWidth - buttonW - 3;
@@ -193,7 +198,7 @@ static NSString *conectReuse = @"connectedCell";
    
     CGFloat imageViewW = 22*WidthProportion;
     CGFloat imageViewH = 22*WidthProportion;
-    CGFloat imageViewY = (self.topNavView.height - 20 -imageViewH)/2 + 20;
+    CGFloat imageViewY = (self.topNavView.height - StatusBarHeight -imageViewH)/2 + StatusBarHeight+10;
     CGFloat imageViewX = CurrentDeviceWidth - imageViewW - 15*WidthProportion;
     
     imageView.frame = CGRectMake(imageViewX, imageViewY, imageViewW,imageViewH);

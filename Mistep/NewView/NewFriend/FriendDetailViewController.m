@@ -11,6 +11,8 @@
 @interface FriendDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusHeight;
+
 @end
 
 @implementation FriendDetailViewController
@@ -21,6 +23,7 @@
     NSURL *u = [NSURL URLWithString:self.url];
     NSURLRequest *request = [NSURLRequest requestWithURL:u];
     [self.webView loadRequest:request];
+    self.statusHeight.constant = StatusBarHeight;
 }
 
 //返回

@@ -68,7 +68,7 @@
     if (isBackBtn)
     {
         UIButton *leftVCBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        leftVCBtn.frame = CGRectMake(3, 20 , 50, 44);
+        leftVCBtn.frame = CGRectMake(3, StatusBarHeight , 50, SafeAreaTopHeight-StatusBarHeight);
         [leftVCBtn setImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
         [leftVCBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [navView addSubview:leftVCBtn];
@@ -76,7 +76,7 @@
     else
     {
         UIButton *leftVCBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        leftVCBtn.frame = CGRectMake(3, 20 , 50, 44);
+        leftVCBtn.frame = CGRectMake(3, StatusBarHeight , 50, SafeAreaTopHeight-StatusBarHeight);
         [leftVCBtn setImage:[UIImage imageNamed:@"caidan"] forState:UIControlStateNormal];
         [leftVCBtn addTarget:self action:@selector(leftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [navView addSubview:leftVCBtn];
@@ -84,32 +84,32 @@
     
     
     UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    shareBtn.frame = CGRectMake(CurrentDeviceWidth - 45 - 3, 20, 45, 44);
+    shareBtn.frame = CGRectMake(CurrentDeviceWidth - 45 - 3, StatusBarHeight, 45, SafeAreaTopHeight-StatusBarHeight);
     shareBtn.tag = 1002;
     [shareBtn setImage:[UIImage imageNamed:@"share_it"] forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(shareButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:shareBtn];
     
     UIButton *trendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    trendBtn.frame = CGRectMake(shareBtn.left - 45, 20, 45, 44);
+    trendBtn.frame = CGRectMake(shareBtn.left - 45, StatusBarHeight, 45, SafeAreaTopHeight-StatusBarHeight);
     [trendBtn setImage:[UIImage imageNamed:@"Details"] forState:UIControlStateNormal];
     [trendBtn addTarget:self action:@selector(trendButtonClick:) forControlEvents:UIControlEventTouchUpInside];
 //    [navView addSubview:trendBtn];
     
     [navView addSubview:self.datePickBtn];
-    self.datePickBtn.size = CGSizeMake(120, 44);
-    self.datePickBtn.center = CGPointMake(CurrentDeviceWidth/2, 42);
+    self.datePickBtn.size = CGSizeMake(120, SafeAreaTopHeight-StatusBarHeight);
+    self.datePickBtn.origin = CGPointMake(ScreenWidth/2-60, SafeAreaTopHeight-StatusBarHeight);
     self.datePickBtn.titleLabel.font = Font_Normal_String(14);
     
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(_datePickBtn.left - 30, 20, 30, 44);
+    leftBtn.frame = CGRectMake(_datePickBtn.left - 30, StatusBarHeight, 30, SafeAreaTopHeight-StatusBarHeight);
     [leftBtn setImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
     leftBtn.tag =0;
     [leftBtn addTarget:self action:@selector(changeDateButtonClick:) forControlEvents:UIControlEventTouchUpInside];
 //    [navView addSubview:leftBtn];
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(_datePickBtn.right, 20, 30, 44);
+    rightBtn.frame = CGRectMake(_datePickBtn.right, StatusBarHeight, 30, SafeAreaTopHeight-StatusBarHeight);
     [rightBtn setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
     rightBtn.tag = 1;
     [rightBtn addTarget:self action:@selector(changeDateButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -298,13 +298,13 @@
 {
     if (!_navView)
     {
-        _navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, 64)];
+        _navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, SafeAreaTopHeight)];
         _navView.backgroundColor = kColor(37 ,124 ,255);
         UIView *topView = [[UIView alloc] init];
         topView.tag = 1001;
         topView.backgroundColor = kColor(37 ,124 ,255);
         [_navView addSubview:topView];
-        topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, 20);
+        topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, StatusBarHeight);
         _navView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
         _navView.layer.shadowOffset = CGSizeMake(0, 1);
         _navView.layer.shadowOpacity = 0.6;
@@ -320,12 +320,12 @@
 {
     if (!_backNavView)
     {
-        _backNavView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, 64)];
+        _backNavView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, SafeAreaTopHeight)];
         _backNavView.backgroundColor = allColorWhite;
         UIView *topView = [[UIView alloc] init];
         topView.backgroundColor = [UIColor blackColor];
         [_backNavView addSubview:topView];
-        topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, 20);
+        topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, StatusBarHeight);
         _backNavView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
         _backNavView.layer.shadowOffset = CGSizeMake(0, 1);
         _backNavView.layer.shadowOpacity = 0.6;
@@ -340,8 +340,8 @@
 {
     if (!_alphaNavView)
     {
-        _alphaNavView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, 64)];
-        UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, 20)];
+        _alphaNavView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, SafeAreaTopHeight)];
+        UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, StatusBarHeight)];
         topView.backgroundColor = [UIColor blackColor];
         [_alphaNavView addSubview:topView];
         _alphaNavView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];

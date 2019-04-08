@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) SelectStepCell *lastSelectCell;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusHeight;
+
 @end
 
 @implementation SelectStepTypeViewController
@@ -27,6 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setSubViews];
+    self.statusHeight.constant = StatusBarHeight;
 }
 
 - (void)setSubViews{

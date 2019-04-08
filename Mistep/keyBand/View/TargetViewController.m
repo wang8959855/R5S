@@ -17,6 +17,9 @@
     NightFilterControl *nightFilter;
 }
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
+
+
 @end
 
 @implementation TargetViewController
@@ -38,6 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setXibLabel];
+    self.topHeight.constant = SafeAreaTopHeight;
     
     CGFloat flite = [UIScreen mainScreen].bounds.size.height/480;
     

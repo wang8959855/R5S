@@ -70,9 +70,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ta-qk-sYi">
-                            <rect key="frame" x="83" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="83" y="0.0" width="35" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="L1S-DV-yy9"/>
+                                <constraint firstAttribute="width" constant="35" id="L1S-DV-yy9"/>
                             </constraints>
                             <state key="normal" title="-"/>
                             <connections>
@@ -80,14 +80,14 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBV-hC-iYD">
-                            <rect key="frame" x="168" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="173" y="0.0" width="35" height="40"/>
                             <state key="normal" title="+"/>
                             <connections>
                                 <action selector="addTimeAction:" destination="-1" eventType="touchUpInside" id="TaA-rU-BuD"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlQ-tO-KUJ">
-                            <rect key="frame" x="123" y="0.0" width="45" height="40"/>
+                            <rect key="frame" x="118" y="0.0" width="55" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>

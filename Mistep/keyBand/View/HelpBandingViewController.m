@@ -37,7 +37,7 @@
 
 -(void)setupHeadView
 {
-    UIView *blackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, 20)];
+    UIView *blackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, StatusBarHeight)];
     [self.view addSubview:blackView];
     blackView.backgroundColor = [UIColor blackColor];
     
@@ -394,7 +394,7 @@
         _headView = [[UIView alloc]init];
         [self.view addSubview:_headView];
         CGFloat headViewX = 0;
-        CGFloat headViewY = 20;
+        CGFloat headViewY = StatusBarHeight;
         CGFloat headViewW = CurrentDeviceWidth;
         CGFloat headViewH = 44;
         _headView.frame = CGRectMake(headViewX, headViewY, headViewW, headViewH);

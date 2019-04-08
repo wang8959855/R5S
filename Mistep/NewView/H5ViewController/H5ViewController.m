@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusHeight;
+
 
 @end
 
@@ -25,6 +27,7 @@
     NSURL *url1 = [NSURL URLWithString:self.url];
     NSURLRequest *request = [NSURLRequest requestWithURL:url1];
     [self.webView loadRequest:request];
+    self.statusHeight.constant = StatusBarHeight;
 }
 
 - (void)setTitleStr:(NSString *)titleStr{

@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusHeight;
+
 
 @end
 
@@ -25,6 +27,7 @@
     NSString *data = [NSString stringWithFormat:@"https://www.lantianfangzhou.com/download/downloadApp.html?r5s=%@",USERID];
     [self composeImg:[self encodeQRImageWithContent:data size:CGSizeMake(215, 215)]];
     self.iconImage.image = [UIImage imageNamed:@"AppIcon"];
+    self.statusHeight.constant = StatusBarHeight;
 }
 
 - (void)didReceiveMemoryWarning {

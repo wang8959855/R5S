@@ -22,7 +22,7 @@
 {
     self.view.backgroundColor = allColorWhite;
     CGFloat viewX = 0;
-    CGFloat viewY = 64;
+    CGFloat viewY = SafeAreaTopHeight;
     CGFloat viewW = CurrentDeviceWidth;
     CGFloat viewH = 60*HeightProportion;
     UIView *taiwanView = [[UIView alloc]initWithFrame:CGRectMake(viewX, viewY, viewW, viewH)];

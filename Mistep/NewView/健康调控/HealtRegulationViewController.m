@@ -163,7 +163,7 @@
     [self.view addSubview:_SLEconStateView];
     _SLEconStateView.alpha = 0;
     CGFloat conStateViewX = 0;
-    CGFloat conStateViewY = 64;
+    CGFloat conStateViewY = SafeAreaTopHeight;
     CGFloat conStateViewW = CurrentDeviceWidth;
     CGFloat conStateViewH = 60*HeightProportion;
     _SLEconStateView.frame = CGRectMake(conStateViewX,conStateViewY,conStateViewW,conStateViewH);
@@ -179,13 +179,13 @@
     .rightSpaceToView(_SLEconStateView,0)
     .bottomSpaceToView(_SLEconStateView,0);
     
-    CGFloat backScrollViewY = 64+42+20;
+    CGFloat backScrollViewY = SafeAreaTopHeight+42+20;
     CGFloat backScrollViewW = CurrentDeviceWidth;
-    CGFloat backScrollViewH = CurrentDeviceHeight - 64 - 49;
+    CGFloat backScrollViewH = CurrentDeviceHeight - SafeAreaTopHeight - SafeAreaBottomHeight;
     
     //selectShowTypeView
     _selectShowTypeView = [[UIView alloc] init];
-    _selectShowTypeView.frame = CGRectMake(ScreenWidth/2-100, 64+12+10, 200, 40);
+    _selectShowTypeView.frame = CGRectMake(ScreenWidth/2-100, SafeAreaTopHeight+12+10, 200, 40);
     _selectShowTypeView.backgroundColor = kColor(214, 241, 251);
     [self.view addSubview:_selectShowTypeView];
 //    _selectShowTypeView.layer.borderWidth = 1;
@@ -287,11 +287,11 @@
         
         if(!([self.SLEdoneView.titleString isEqualToString:NSLocalizedString(@"DataSyn", nil)]&&self.SLEdoneView.alpha == 1))
         {
-            CGFloat height1 = self.view.height-42-64-48 + self.SLEconStateView.height-20;
-            self.selectShowTypeView.frame = CGRectMake(self.selectShowTypeView.frame.origin.x, 64+12, self.selectShowTypeView.frame.size.width, self.selectShowTypeView.frame.size.height);
-            self.sportView.frame = CGRectMake(0,64+42+20,self.sportView.frame.size.width, self.sportView.frame.size.height);
-            self.regulationView.frame = CGRectMake(0,64+42+20,self.regulationView.frame.size.width, height1);
-            self.workoutView.frame = CGRectMake(0,64+42+20,self.workoutView.frame.size.width, height1);
+            CGFloat height1 = self.view.height-42-SafeAreaTopHeight-48 + self.SLEconStateView.height-20;
+            self.selectShowTypeView.frame = CGRectMake(self.selectShowTypeView.frame.origin.x, SafeAreaTopHeight+12, self.selectShowTypeView.frame.size.width, self.selectShowTypeView.frame.size.height);
+            self.sportView.frame = CGRectMake(0,SafeAreaTopHeight+42+20,self.sportView.frame.size.width, self.sportView.frame.size.height);
+            self.regulationView.frame = CGRectMake(0,SafeAreaTopHeight+42+20,self.regulationView.frame.size.width, height1);
+            self.workoutView.frame = CGRectMake(0,SafeAreaTopHeight+42+20,self.workoutView.frame.size.width, height1);
         }
         self.SLEconStateView.alpha = 0;
     }
@@ -389,13 +389,13 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(SLEsubmitIsConnect) object:nil];
     
     self.SLEconStateView.alpha = 0;
-    CGFloat height1 = self.view.height-42-64-48 + self.SLEconStateView.height-20;
+    CGFloat height1 = self.view.height-42-SafeAreaTopHeight-48 + self.SLEconStateView.height-20;
     if(!([self.SLEdoneView.titleString isEqualToString:NSLocalizedString(@"DataSyn", nil)]&&self.SLEdoneView.alpha == 1))
     {
-        self.selectShowTypeView.frame = CGRectMake(self.selectShowTypeView.frame.origin.x, 64+12, self.selectShowTypeView.frame.size.width, self.selectShowTypeView.frame.size.height);
-        self.sportView.frame = CGRectMake(0,64+42+20,self.sportView.frame.size.width, height1);
-        self.workoutView.frame = CGRectMake(0,64+42+20,self.workoutView.frame.size.width, height1);
-        self.regulationView.frame = CGRectMake(0,64+42+20,self.regulationView.frame.size.width, height1);
+        self.selectShowTypeView.frame = CGRectMake(self.selectShowTypeView.frame.origin.x, SafeAreaTopHeight+12, self.selectShowTypeView.frame.size.width, self.selectShowTypeView.frame.size.height);
+        self.sportView.frame = CGRectMake(0,SafeAreaTopHeight+42+20,self.sportView.frame.size.width, height1);
+        self.workoutView.frame = CGRectMake(0,SafeAreaTopHeight+42+20,self.workoutView.frame.size.width, height1);
+        self.regulationView.frame = CGRectMake(0,SafeAreaTopHeight+42+20,self.regulationView.frame.size.width, height1);
     }
 }
 -(void)setSLEconnectString:(NSString *)SLEconnectString
@@ -412,13 +412,13 @@
     {
         self.SLEconStateView.height =  height;
     }
-    CGFloat height1 = ScreenHeight - 64-48-42 - self.SLEconStateView.height;
+    CGFloat height1 = ScreenHeight - SafeAreaTopHeight-48-42 - self.SLEconStateView.height;
     if(![SLEconnectString isEqualToString:NSLocalizedString(@"connectSuccessfully", nil)])
     {
-        self.selectShowTypeView.frame = CGRectMake(self.selectShowTypeView.frame.origin.x, 64+12+self.SLEconStateView.height, self.selectShowTypeView.frame.size.width, self.selectShowTypeView.frame.size.height);
-        self.sportView.frame = CGRectMake(0,64+self.SLEconStateView.height+42+20,self.sportView.frame.size.width, height1);
-        self.workoutView.frame = CGRectMake(0,64+self.SLEconStateView.height+42+20,self.workoutView.frame.size.width, height1);
-        self.regulationView.frame = CGRectMake(0,64+self.SLEconStateView.height+42+20,self.regulationView.frame.size.width, height1);
+        self.selectShowTypeView.frame = CGRectMake(self.selectShowTypeView.frame.origin.x, SafeAreaTopHeight+12+self.SLEconStateView.height, self.selectShowTypeView.frame.size.width, self.selectShowTypeView.frame.size.height);
+        self.sportView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEconStateView.height+42+20,self.sportView.frame.size.width, height1);
+        self.workoutView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEconStateView.height+42+20,self.workoutView.frame.size.width, height1);
+        self.regulationView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEconStateView.height+42+20,self.regulationView.frame.size.width, height1);
     }
 }
 
@@ -437,12 +437,12 @@
 -(void)SLEhiddenDoneView
 {
     self.SLEdoneView.alpha = 0;
-    CGFloat height1 = ScreenHeight - 64-48-42 + self.SLEconStateView.height-20;
+    CGFloat height1 = ScreenHeight - SafeAreaTopHeight-48-42 + self.SLEconStateView.height-20;
     [UIView animateWithDuration:1.f animations:^{
-        self.selectShowTypeView.frame = CGRectMake(self.selectShowTypeView.frame.origin.x, 64+12, self.selectShowTypeView.frame.size.width, self.selectShowTypeView.frame.size.height);
-        self.sportView.frame = CGRectMake(0,64+42+20,self.sportView.frame.size.width, height1);
-        self.workoutView.frame = CGRectMake(0,64+42+20,self.workoutView.frame.size.width, height1);
-        self.regulationView.frame = CGRectMake(0,64+42+20,self.regulationView.frame.size.width, height1);
+        self.selectShowTypeView.frame = CGRectMake(self.selectShowTypeView.frame.origin.x, SafeAreaTopHeight+12, self.selectShowTypeView.frame.size.width, self.selectShowTypeView.frame.size.height);
+        self.sportView.frame = CGRectMake(0,SafeAreaTopHeight+42+20,self.sportView.frame.size.width, height1);
+        self.workoutView.frame = CGRectMake(0,SafeAreaTopHeight+42+20,self.workoutView.frame.size.width, height1);
+        self.regulationView.frame = CGRectMake(0,SafeAreaTopHeight+42+20,self.regulationView.frame.size.width, height1);
     }];
 }
 -(DoneCustomView *)SLEdoneView
@@ -450,7 +450,7 @@
     if (!_SLEdoneView)
     {
         _SLEdoneView = [[DoneCustomView alloc]init];
-        _SLEdoneView.frame = CGRectMake(0,64, CurrentDeviceWidth, 60*HeightProportion);
+        _SLEdoneView.frame = CGRectMake(0,SafeAreaTopHeight, CurrentDeviceWidth, 60*HeightProportion);
         _SLEdoneView.alpha = 0;
     }
     return _SLEdoneView;
@@ -468,11 +468,11 @@
     {
         self.SLEdoneView.height =  height;
     }
-    CGFloat height1 = ScreenHeight - 64-48-42 - self.SLEconStateView.height;
-    self.selectShowTypeView.frame = CGRectMake(self.selectShowTypeView.frame.origin.x, 64+12+self.SLEconStateView.height, self.selectShowTypeView.frame.size.width, self.selectShowTypeView.frame.size.height);
-    self.sportView.frame = CGRectMake(0,64+self.SLEdoneView.height+42+20,self.sportView.frame.size.width, height1);
-    self.workoutView.frame = CGRectMake(0,64+self.SLEdoneView.height+42+20,self.workoutView.frame.size.width, height1);
-    self.regulationView.frame = CGRectMake(0,64+self.SLEdoneView.height+42+20,self.regulationView.frame.size.width, height1);
+    CGFloat height1 = ScreenHeight - SafeAreaTopHeight-48-42 - self.SLEconStateView.height;
+    self.selectShowTypeView.frame = CGRectMake(self.selectShowTypeView.frame.origin.x, SafeAreaTopHeight+12+self.SLEconStateView.height, self.selectShowTypeView.frame.size.width, self.selectShowTypeView.frame.size.height);
+    self.sportView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEdoneView.height+42+20,self.sportView.frame.size.width, height1);
+    self.workoutView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEdoneView.height+42+20,self.workoutView.frame.size.width, height1);
+    self.regulationView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEdoneView.height+42+20,self.regulationView.frame.size.width, height1);
     if (![SLEdoneString isEqualToString:NSLocalizedString(@"DataSyn", nil)])
     {
         [self performSelector:@selector(SLEhiddenDoneView) withObject:nil afterDelay:2.f];
