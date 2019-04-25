@@ -11,6 +11,7 @@
 #import "FriendListCell.h"
 #import "SleepView.h"
 #import "FriendDetailViewController.h"
+#import "AttentionView.h"
 
 @interface NewFriendsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -19,6 +20,13 @@
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusHeight;
+
+@property (nonatomic, strong) AttentionView *attentionView;
+
+@property (weak, nonatomic) IBOutlet UILabel *line1;
+@property (weak, nonatomic) IBOutlet UILabel *line2;
+@property (weak, nonatomic) IBOutlet UIButton *topButton1;
+@property (weak, nonatomic) IBOutlet UIButton *topButton2;
 
 
 @end
@@ -74,6 +82,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+//我的关注
+- (IBAction)topAction1:(UIButton *)sender {
+    sender.selected = YES;
+    self.line1.hidden = NO;
+    self.line2.hidden = YES;
+    self.topButton2.selected = NO;
+    [self.view sendSubviewToBack:self.attentionView];
+}
+
+//关注我的
+- (IBAction)topAction2:(UIButton *)sender {
+    sender.selected = YES;
+    self.line2.hidden = NO;
+    self.line1.hidden = YES;
+    self.topButton1.selected = NO;
+    [self.view bringSubviewToFront:self.attentionView];
+}
+
 //获取好友列表
 - (void)getFriendList{
     [self.dataSource removeAllObjects];
@@ -123,6 +149,16 @@
         }
     }];
     [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (AttentionView *)attentionView{
+    if (!_attentionView) {
+        _attentionView = [[AttentionView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, ScreenWidth, ScreenHeight-SafeAreaTopHeight)];
+        _attentionView.vc = self;
+        [self.view addSubview:_attentionView];
+        [self.view sendSubviewToBack:_attentionView];
+    }
+    return _attentionView;
 }
 
 - (NSMutableArray *)dataSource{

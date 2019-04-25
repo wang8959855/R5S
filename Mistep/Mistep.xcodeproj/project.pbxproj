@@ -50,6 +50,11 @@
 		1815A8AA224718CA00699F38 /* 设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 1815A8A7224718C900699F38 /* 设置.png */; };
 		18298FA220AC65FA0080C536 /* AlertUserInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18298FA020AC65FA0080C536 /* AlertUserInfomationViewController.m */; };
 		18298FA320AC65FA0080C536 /* AlertUserInfomationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18298FA120AC65FA0080C536 /* AlertUserInfomationViewController.xib */; };
+		1832DC1B22715CAC00CA27DA /* AttentionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1832DC1322715CAC00CA27DA /* AttentionCell.m */; };
+		1832DC1C22715CAC00CA27DA /* AttentionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1832DC1422715CAC00CA27DA /* AttentionView.m */; };
+		1832DC1D22715CAC00CA27DA /* AttentionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1832DC1522715CAC00CA27DA /* AttentionReusableView.m */; };
+		1832DC1E22715CAC00CA27DA /* AttentionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1832DC1722715CAC00CA27DA /* AttentionReusableView.xib */; };
+		1832DC1F22715CAC00CA27DA /* AttentionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1832DC1922715CAC00CA27DA /* AttentionCell.xib */; };
 		1849834D20AC6ABA007109A9 /* AUIHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849834B20AC6ABA007109A9 /* AUIHeaderCell.m */; };
 		1849834E20AC6ABA007109A9 /* AUIHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1849834C20AC6ABA007109A9 /* AUIHeaderCell.xib */; };
 		1849835220AC6AFD007109A9 /* AUIAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849835020AC6AFD007109A9 /* AUIAccountCell.m */; };
@@ -1299,6 +1304,14 @@
 		18298F9F20AC65FA0080C536 /* AlertUserInfomationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertUserInfomationViewController.h; sourceTree = "<group>"; };
 		18298FA020AC65FA0080C536 /* AlertUserInfomationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertUserInfomationViewController.m; sourceTree = "<group>"; };
 		18298FA120AC65FA0080C536 /* AlertUserInfomationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertUserInfomationViewController.xib; sourceTree = "<group>"; };
+		1832DC1322715CAC00CA27DA /* AttentionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionCell.m; sourceTree = "<group>"; };
+		1832DC1422715CAC00CA27DA /* AttentionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionView.m; sourceTree = "<group>"; };
+		1832DC1522715CAC00CA27DA /* AttentionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionReusableView.m; sourceTree = "<group>"; };
+		1832DC1622715CAC00CA27DA /* AttentionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionCell.h; sourceTree = "<group>"; };
+		1832DC1722715CAC00CA27DA /* AttentionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttentionReusableView.xib; sourceTree = "<group>"; };
+		1832DC1822715CAC00CA27DA /* AttentionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionView.h; sourceTree = "<group>"; };
+		1832DC1922715CAC00CA27DA /* AttentionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttentionCell.xib; sourceTree = "<group>"; };
+		1832DC1A22715CAC00CA27DA /* AttentionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionReusableView.h; sourceTree = "<group>"; };
 		1849834A20AC6ABA007109A9 /* AUIHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AUIHeaderCell.h; sourceTree = "<group>"; };
 		1849834B20AC6ABA007109A9 /* AUIHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AUIHeaderCell.m; sourceTree = "<group>"; };
 		1849834C20AC6ABA007109A9 /* AUIHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AUIHeaderCell.xib; sourceTree = "<group>"; };
@@ -3383,6 +3396,21 @@
 			path = AlertUserInfomation;
 			sourceTree = "<group>";
 		};
+		1832DC1222715CAC00CA27DA /* view */ = {
+			isa = PBXGroup;
+			children = (
+				1832DC1A22715CAC00CA27DA /* AttentionReusableView.h */,
+				1832DC1522715CAC00CA27DA /* AttentionReusableView.m */,
+				1832DC1722715CAC00CA27DA /* AttentionReusableView.xib */,
+				1832DC1622715CAC00CA27DA /* AttentionCell.h */,
+				1832DC1322715CAC00CA27DA /* AttentionCell.m */,
+				1832DC1922715CAC00CA27DA /* AttentionCell.xib */,
+				1832DC1822715CAC00CA27DA /* AttentionView.h */,
+				1832DC1422715CAC00CA27DA /* AttentionView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		1849834920AC6AA2007109A9 /* cellView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3763,6 +3791,7 @@
 		18FDF59420AFB24E00EDBB28 /* NewFriend */ = {
 			isa = PBXGroup;
 			children = (
+				1832DC1222715CAC00CA27DA /* view */,
 				18FDF59A20AFB94200EDBB28 /* cell */,
 				18FDF59520AFB26600EDBB28 /* NewFriendsViewController.h */,
 				18FDF59620AFB26600EDBB28 /* NewFriendsViewController.m */,
@@ -6407,6 +6436,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				"zh-Hans",
 				Base,
 				en,
@@ -6671,6 +6701,7 @@
 				729EB3F31E78D21E0005EE86 /* Shape_gou_map@2x.png in Resources */,
 				725473DC1EB83A8A00FB6885 /* electricity20@2x.png in Resources */,
 				72413E081DE697370083F902 /* 云环@3x.png in Resources */,
+				1832DC1E22715CAC00CA27DA /* AttentionReusableView.xib in Resources */,
 				729EB45F1E78D21F0005EE86 /* NavigationBarShadow.png in Resources */,
 				729EB3D51E78D21E0005EE86 /* Movement_type_map@2x.png in Resources */,
 				72413E051DE697370083F902 /* 手表@3x.png in Resources */,
@@ -6852,6 +6883,7 @@
 				729EB5261E790E530005EE86 /* aims_sport@3x.png in Resources */,
 				729EB30F1E78D21E0005EE86 /* HD_background@2x.png in Resources */,
 				72E9B4B01DFAAD9100640CE2 /* 月亮shezhi.png in Resources */,
+				1832DC1F22715CAC00CA27DA /* AttentionCell.xib in Resources */,
 				720B26291D94D8CB0002B569 /* 设备管理@2x.png in Resources */,
 				72DFEA031CEC129B00389D57 /* SMSAlarmViewController.xib in Resources */,
 				180F2FBE2248F0B0003EE292 /* SignViewController.xib in Resources */,
@@ -7513,6 +7545,7 @@
 				726987481C0D5E02005BC04C /* shijianViewController.m in Sources */,
 				72C069D11BE3316D0033F441 /* PZBaseViewController.m in Sources */,
 				1849834D20AC6ABA007109A9 /* AUIHeaderCell.m in Sources */,
+				1832DC1C22715CAC00CA27DA /* AttentionView.m in Sources */,
 				18FA89E5223C845600008638 /* UserProtocolVC.m in Sources */,
 				72C069C91BE3316D0033F441 /* EditPersonInformationViewController.m in Sources */,
 				72413E1B1DE6C42B0083F902 /* FirstScanDeviceViewController.m in Sources */,
@@ -7530,6 +7563,7 @@
 				18BBAAD320B1427700DA369F /* DirtyView.m in Sources */,
 				72ACD4461E66BD2400849DE8 /* SportDetailMapTwoViewController.m in Sources */,
 				72B44A231DEEF1AE00F33BC2 /* HelpBandingViewController.m in Sources */,
+				1832DC1D22715CAC00CA27DA /* AttentionReusableView.m in Sources */,
 				72E63D151C0E8114000006B5 /* UIView+MJExtension.m in Sources */,
 				726FA1A51BFDBCD900669166 /* CoreDataManage.m in Sources */,
 				7209DD3C1CFEC2D30011C047 /* FriendListTableViewCell.m in Sources */,
@@ -7647,6 +7681,7 @@
 				18FDF59E20AFB95200EDBB28 /* FriendListCell.m in Sources */,
 				18AFD82E20DB3CF3008E4AE5 /* DirtyDetailViewController.m in Sources */,
 				72C069CD1BE3316D0033F441 /* HomeViewController.m in Sources */,
+				1832DC1B22715CAC00CA27DA /* AttentionCell.m in Sources */,
 				7298A29B1E98CD12008029FD /* MASViewAttribute.m in Sources */,
 				723289511DB9B33100A3038B /* UIColor+ColorChange.m in Sources */,
 				18F4DF3720E634D60042C6E9 /* H5ViewController.m in Sources */,

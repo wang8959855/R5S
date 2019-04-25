@@ -40,6 +40,10 @@
 #define GETFRIENDLIST PATH_URL(@"friendList")
 //添加好友
 #define ADDFRIEND PATH_URL(@"addFriend")
+//好友关注列表
+#define GETATTENTIONLIST PATH_URL(@"whocarelist")
+//设置关注列表
+#define SETATTENTION PATH_URL(@"allowcare")
 //心率上传
 #define HEARTRATEUPDATE PATH_URL(@"hr")
 //运动数据上传
