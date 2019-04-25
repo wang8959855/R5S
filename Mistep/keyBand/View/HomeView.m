@@ -197,7 +197,6 @@ static NSString *reuseID  = @"CELL";
                        @"远程拍照",NSLocalizedString(@"遥控拍照", nil),
                        @"shebei",NSLocalizedString(@"设备管理", nil),
                        @"设置", NSLocalizedString(@"设置", nil),
-                       @"我的费用",@"我的费用",
                        @"关于", NSLocalizedString(@"关于", nil),];
     
     if (![HCHCommonManager getInstance].userInfoDictionAry)
@@ -406,13 +405,13 @@ static NSString *reuseID  = @"CELL";
         case 5:
             [self sheZhiPage];
             break;
-        case 6://我的费用
-            [self feiYong:nil];
-            break;
-        case 8://我的推广
-            [self tuiGuang:nil];
-            break;
-        case 7:
+//        case 6://我的费用
+//            [self feiYong:nil];
+//            break;
+//        case 8://我的推广
+//            [self tuiGuang:nil];
+//            break;
+        case 6:
             [self aboutPage:nil];
             break;
             //        case 4:

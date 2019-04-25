@@ -107,6 +107,27 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             [ADASaveDefaluts setObject:[CositeaBlueTooth sharedInstance].deviceName forKey:kLastDeviceNAME];
             [self uoloadDeviceModel:[CositeaBlueTooth sharedInstance].deviceName];
+            
+            //查看是否开启通知
+            [[CositeaBlueTooth sharedInstance] checkSystemAlarmWithType:9 StateBlock:^(int index, int state) {
+                switch (index)
+                {
+                        break;
+                    case SystemAlarmType_QQ: {
+                        [weakSelf.view makeToast:@"QQ消息提醒已打开" duration:1.5 position:CSToastPositionCenter];
+                    }
+                }
+            }];
+            
+            [[CositeaBlueTooth sharedInstance] checkSystemAlarmWithType:11 StateBlock:^(int index, int state) {
+                switch (index)
+                {
+                    case SystemAlarmType_WeChat: {
+                        [weakSelf.view makeToast:@"微信消息提醒已打开" duration:1.5 position:CSToastPositionCenter];
+                    }
+                }
+            }];
+            
         }
         else
         {

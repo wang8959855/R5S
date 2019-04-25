@@ -42,6 +42,9 @@
 		180F2FCB224A0C47003EE292 /* SleepNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F2FCA224A0C47003EE292 /* SleepNewViewController.m */; };
 		180F2FD0224A60F4003EE292 /* HelpSleepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F2FCE224A60F4003EE292 /* HelpSleepViewController.m */; };
 		180F2FD1224A60F4003EE292 /* HelpSleepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F2FCF224A60F4003EE292 /* HelpSleepViewController.xib */; };
+		1810621D226066AE009A3562 /* NowTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810621B226066AE009A3562 /* NowTestViewController.m */; };
+		1810621E226066AE009A3562 /* NowTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1810621C226066AE009A3562 /* NowTestViewController.xib */; };
+		1810622422607D53009A3562 /* celaing-d.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1810622322607D53009A3562 /* celaing-d.gif */; };
 		1815A8A8224718CA00699F38 /* 设置@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1815A8A5224718C800699F38 /* 设置@3x.png */; };
 		1815A8A9224718CA00699F38 /* 设置@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1815A8A6224718C800699F38 /* 设置@2x.png */; };
 		1815A8AA224718CA00699F38 /* 设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 1815A8A7224718C900699F38 /* 设置.png */; };
@@ -1286,6 +1289,10 @@
 		180F2FCD224A60F4003EE292 /* HelpSleepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpSleepViewController.h; sourceTree = "<group>"; };
 		180F2FCE224A60F4003EE292 /* HelpSleepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpSleepViewController.m; sourceTree = "<group>"; };
 		180F2FCF224A60F4003EE292 /* HelpSleepViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpSleepViewController.xib; sourceTree = "<group>"; };
+		1810621A226066AE009A3562 /* NowTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NowTestViewController.h; sourceTree = "<group>"; };
+		1810621B226066AE009A3562 /* NowTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NowTestViewController.m; sourceTree = "<group>"; };
+		1810621C226066AE009A3562 /* NowTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowTestViewController.xib; sourceTree = "<group>"; };
+		1810622322607D53009A3562 /* celaing-d.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "celaing-d.gif"; sourceTree = "<group>"; };
 		1815A8A5224718C800699F38 /* 设置@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置@3x.png"; sourceTree = "<group>"; };
 		1815A8A6224718C800699F38 /* 设置@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置@2x.png"; sourceTree = "<group>"; };
 		1815A8A7224718C900699F38 /* 设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置.png"; sourceTree = "<group>"; };
@@ -3305,9 +3312,20 @@
 			path = "助眠";
 			sourceTree = "<group>";
 		};
+		1810621922606684009A3562 /* NowTest */ = {
+			isa = PBXGroup;
+			children = (
+				1810621A226066AE009A3562 /* NowTestViewController.h */,
+				1810621B226066AE009A3562 /* NowTestViewController.m */,
+				1810621C226066AE009A3562 /* NowTestViewController.xib */,
+			);
+			path = NowTest;
+			sourceTree = "<group>";
+		};
 		1815A8AB22471A2500699F38 /* 2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				1810621922606684009A3562 /* NowTest */,
 				180EC49B224C77C800DDF892 /* 节律 */,
 				180F2FCC224A60E0003EE292 /* 助眠 */,
 				180F2FB92248ADD3003EE292 /* 体征 */,
@@ -3633,6 +3651,7 @@
 		18FA89EF223C859B00008638 /* File */ = {
 			isa = PBXGroup;
 			children = (
+				1810622322607D53009A3562 /* celaing-d.gif */,
 				180EC46E224B2C0900DDF892 /* Music */,
 				18FA89F0223C859B00008638 /* agree */,
 			);
@@ -6625,6 +6644,7 @@
 				720B26721D94D8CB0002B569 /* 身高@3x.png in Resources */,
 				729EB3D81E78D21E0005EE86 /* No_oxygen_map@2x.png in Resources */,
 				728CBA301C33D54600AC8AFA /* AlarmViewController.xib in Resources */,
+				1810621E226066AE009A3562 /* NowTestViewController.xib in Resources */,
 				729EB3151E78D21E0005EE86 /* HD_HeartRate@2x.png in Resources */,
 				729EB2F01E78D21E0005EE86 /* ClockSmall.png in Resources */,
 				729EB4051E78D21F0005EE86 /* Step_map.png in Resources */,
@@ -7200,6 +7220,7 @@
 				72E9B4BD1DFAAD9100640CE2 /* 运动shezhi.png in Resources */,
 				18FDF57E20AEC5F900EDBB28 /* qr_vc_left@3x.png in Resources */,
 				729EB4571E78D21F0005EE86 /* Layer_o@2x.png in Resources */,
+				1810622422607D53009A3562 /* celaing-d.gif in Resources */,
 				724AB48B1D962FB500CEF785 /* 运动未选状态@2x.png in Resources */,
 				729EB3FF1E78D21E0005EE86 /* Start_icon_map.png in Resources */,
 				720B26311D94D8CB0002B569 /* 设置选中状态.png in Resources */,
@@ -7458,6 +7479,7 @@
 				18EBED0C20B5A2AD0043AFA1 /* SOSView.m in Sources */,
 				727305501BEB5C4F00EC1726 /* DayDetailViewController.m in Sources */,
 				7295C5CB1D06BCFF007C06AC /* SGPhotoBrowser.m in Sources */,
+				1810621D226066AE009A3562 /* NowTestViewController.m in Sources */,
 				72CDD45C1DCC853000F11466 /* AllTool.m in Sources */,
 				722819691E1E28180076E607 /* AFNetworkReachabilityMana.m in Sources */,
 				727305491BEB297000EC1726 /* FMDatabasePool.m in Sources */,

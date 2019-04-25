@@ -44,6 +44,7 @@
         //    [self connectLastDevice];
         [self childrenTimeSecondChanged];
         [self setBlocks];
+        [self getHomeData];
     }
     return self;
 }
@@ -54,7 +55,7 @@
     [self remindView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getNowHeartRate:) name:GetNowHeartRateNotification object:nil];
     //获取平均心率
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getAvgHeartRate:) name:GetAvgHeartRateNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getAvgHeartRate:) name:GetAvgHeartRateNotification object:nil];
 }
 //平均心率
 - (void)getAvgHeartRate:(NSNotification *)noti{
@@ -91,7 +92,7 @@
     //    self.backScrollView.bounces = NO;
     
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight/2)];
-    bgView.backgroundColor = kColor(37 ,124 ,255);
+    bgView.backgroundColor = kMainColor;
     [self.backScrollView addSubview:bgView];
     
     WeakSelf
@@ -102,10 +103,12 @@
         [weakSelf performSelector:@selector(reloadOutTime) withObject:nil afterDelay:5.0f];
         [weakSelf dropDownReloadBlueToothData];
         [weakSelf performSelector:@selector(updataCurrentDay) withObject:nil afterDelay:2.f];
+        [weakSelf getHomeData];
     }];
     
     //    设置下方4个view
     NSArray *array = @[@"里程",@"卡路里",@"实时心率",@"平均心率"];
+    NSArray *leftImageArr = @[@"licheng--",@"kaluli--",@"shishi",@"pingjun--"];
     
     for (int i = 0; i < 4; i ++)
     {
@@ -123,6 +126,10 @@
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, view.width, view.height)];
         imageV.image = [UIImage imageNamed:@"xiaokuang"];
         [view addSubview:imageV];
+        
+        UIImageView *leftImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 20, 20)];
+        leftImage.image = [UIImage imageNamed:leftImageArr[i]];
+        [view addSubview:leftImage];
         
 //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(alertAtion:)];
 //        [view addGestureRecognizer:tap];
@@ -382,7 +389,7 @@
         self.caloriesLabel.attributedText = [self makeAttributedStringWithnumBer:[costs description] Unit:@"kcal" WithFont:18];
         NSMutableAttributedString *activeString = [[NSMutableAttributedString alloc] init];
         [activeString appendAttributedString:[self makeAttributedStringWithnumBer:@"0" Unit:@"次/分" WithFont:18]];
-        self.activeTimeLabel.attributedText = activeString;
+//        self.activeTimeLabel.attributedText = activeString;
         int stepPlan = [dic[@"stepsPlan"] intValue];
         
         [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d",stepPlan] Unit:@"(目标步数)" WithFont:18] forState:UIControlStateNormal];
@@ -636,6 +643,33 @@
             break;
     }
     [AlertMainView alertMainViewWithArray:arr];
+}
+
+- (void)getHomeData{
+    NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",GETHOMEDATA,TOKEN];
+    [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userId":USERID} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
+     {
+         
+         //                 adaLog(@"  - - - - -开始登录返回");
+         
+         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeOut) object:nil];
+         
+         if (error)
+         {
+             [self makeCenterToast:@"网络连接错误"];
+         }
+         else
+         {
+             int code = [[responseObject objectForKey:@"code"] intValue];
+             NSString *message = [responseObject objectForKey:@"message"];
+             if (code == 0) {
+                 //成功
+                 self.activeTimeLabel.text = responseObject[@"data"][@"rate"];
+             }else{
+                 [self makeCenterToast:message];
+             }
+         }
+     }];
 }
 
 @end

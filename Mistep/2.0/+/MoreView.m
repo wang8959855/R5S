@@ -10,6 +10,8 @@
 #import "SOSView.h"
 #import "PoliceAlertView.h"
 #import "RhythmViewController.h"
+#import "RegulationViewController.h"
+#import "NowTestViewController.h"
 
 static MoreView *instance = nil;
 @interface MoreView ()<CLLocationManagerDelegate>
@@ -24,6 +26,10 @@ static MoreView *instance = nil;
 @property (nonatomic, strong) UIButton *locationBtn;
 //预警
 @property (nonatomic, strong) UIButton *policeBtn;
+//调控
+@property (nonatomic, strong) UIButton *regulationBtn;
+//即时监测
+@property (nonatomic, strong) UIButton *testBtn;
 
 //4个按钮的初始位置
 @property (nonatomic, assign) CGRect btnInitialFrame;
@@ -49,7 +55,7 @@ static MoreView *instance = nil;
             CGAffineTransform endAngle = CGAffineTransformMakeRotation(M_PI / 4);
             [UIView animateWithDuration:0.3 animations:^{
                 instance.rotateBtn.transform = endAngle;
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 5; i++) {
                     UIView *view = [instance viewWithTag:100+i];
                     view.frame = [instance.endFrameArr[i] CGRectValue];
                 }
@@ -87,57 +93,68 @@ static MoreView *instance = nil;
     [self.rotateBtn setImage:[UIImage imageNamed:@"yuan"] forState:UIControlStateNormal];
     [self.rotateBtn addTarget:self action:@selector(rotateAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.viewWidth = (ScreenWidth-150)/4;
+    self.viewWidth = (ScreenWidth-180)/3;
     //创建4个按钮的初始位置
     self.btnInitialFrame = CGRectMake(ScreenWidth/2-self.viewWidth/2, ScreenHeight-SafeAreaBottomHeight-30, self.viewWidth, 88);
     
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         UIView *view = [[UIView alloc] initWithFrame:self.btnInitialFrame];
         [self addSubview:view];
         view.tag = 100+i;
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.viewWidth, 20)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 68, self.viewWidth, 20)];
         [view addSubview:label];
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor grayColor];
+        label.textColor = [UIColor darkGrayColor];
         label.font = [UIFont systemFontOfSize:13];
         label.tag = 200+i;
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0, 20, self.viewWidth, 68);
+        button.frame = CGRectMake(0, 0, self.viewWidth, 68);
         [view addSubview:button];
         [button addTarget:self action:@selector(menuAction:) forControlEvents:UIControlEventTouchUpInside];
         
         if (i == 0) {
-            self.jielvBtn = button;
-            [button setImage:[UIImage imageNamed:@"jl-label"] forState:UIControlStateNormal];
-            label.text = @"节律";
-        }else if (i == 1){
-            self.sosBtn = button;
-            [button setImage:[UIImage imageNamed:@"sos-label"] forState:UIControlStateNormal];
-            label.text = @"sos";
-        }else if (i == 2){
-            self.locationBtn = button;
-            [button setImage:[UIImage imageNamed:@"dw-label"] forState:UIControlStateNormal];
-            label.text = @"定位";
-            [button setImage:[UIImage imageNamed:@"dw-blue"] forState:UIControlStateSelected];
-        }else if (i == 3){
+            
             self.policeBtn = button;
-            [button setImage:[UIImage imageNamed:@"yj-label"] forState:UIControlStateNormal];
             [button setImage:[UIImage imageNamed:@"yj-blue"] forState:UIControlStateSelected];
+            [button setImage:[UIImage imageNamed:@"yujing-h"] forState:UIControlStateNormal];
             label.text = @"预警";
+        }else if (i == 1){
+            self.locationBtn = button;
+            [button setImage:[UIImage imageNamed:@"dw-blue"] forState:UIControlStateSelected];
+            label.text = @"定位";
+            [button setImage:[UIImage imageNamed:@"dingwei-h"] forState:UIControlStateNormal];
+        }else if (i == 2){
+            self.sosBtn = button;
+            [button setImage:[UIImage imageNamed:@"sos-blue"] forState:UIControlStateNormal];
+            label.text = @"sos";
+        }else if (i == 3){
+            self.jielvBtn = button;
+            [button setImage:[UIImage imageNamed:@"jl-blue"] forState:UIControlStateNormal];
+            label.text = @"节律";
+        }else if (i == 4){
+            self.regulationBtn = button;
+            [button setImage:[UIImage imageNamed:@"tiaokong"] forState:UIControlStateNormal];
+            label.text = @"调控";
+        }else if (i == 5){
+            self.testBtn = button;
+            [button setImage:[UIImage imageNamed:@"jishi"] forState:UIControlStateNormal];
+            label.text = @"即时监测";
         }
         
     }
     [self bringSubviewToFront:self.rotateBtn];
     
-    //设置4个按钮的结束位置
-    CGRect rect1 = CGRectMake(30, ScreenHeight-SafeAreaBottomHeight-100, self.viewWidth, 88);
-    CGRect rect4 = CGRectMake(ScreenWidth-30-self.viewWidth, ScreenHeight-SafeAreaBottomHeight-100, self.viewWidth, 88);
+    //设置6个按钮的结束位置
+    CGRect rect1 = CGRectMake(40, ScreenHeight-SafeAreaBottomHeight-250, self.viewWidth, 88);
+    CGRect rect2 = CGRectMake(ScreenWidth/2-self.viewWidth/2, ScreenHeight-SafeAreaBottomHeight-250, self.viewWidth, 88);
+    CGRect rect3 = CGRectMake(ScreenWidth-40-self.viewWidth, ScreenHeight-SafeAreaBottomHeight-250, self.viewWidth, 88);
     
-    CGRect rect2 = CGRectMake(30+self.viewWidth+30, ScreenHeight-SafeAreaBottomHeight-180, self.viewWidth, 88);
-    CGRect rect3 = CGRectMake(ScreenWidth-30-self.viewWidth*2-30, ScreenHeight-SafeAreaBottomHeight-180, self.viewWidth, 88);
-    self.endFrameArr = @[@(rect1),@(rect2),@(rect3),@(rect4)];
+    CGRect rect4 = CGRectMake(40, ScreenHeight-SafeAreaBottomHeight-150, self.viewWidth, 88);
+    CGRect rect5 = CGRectMake(ScreenWidth/2-self.viewWidth/2, ScreenHeight-SafeAreaBottomHeight-150, self.viewWidth, 88);
+    CGRect rect6 = CGRectMake(ScreenWidth-40-self.viewWidth, ScreenHeight-SafeAreaBottomHeight-150, self.viewWidth, 88);
+    self.endFrameArr = @[@(rect1),@(rect2),@(rect3),@(rect4),@(rect5),@(rect6)];
     
 }
 
@@ -188,6 +205,16 @@ static MoreView *instance = nil;
                 label.textColor = [UIColor grayColor];
             }
         };
+    }else if (button == self.regulationBtn){//调控
+        [self rotateAction:nil];
+        RegulationViewController *regulat = [RegulationViewController new];
+        regulat.hidesBottomBarWhenPushed = YES;
+        [[self findCurrentViewController].navigationController pushViewController:regulat animated:YES];
+    }else if (button == self.testBtn){//检测
+        [self rotateAction:nil];
+        NowTestViewController *test = [NowTestViewController new];
+        test.hidesBottomBarWhenPushed = YES;
+        [[self findCurrentViewController].navigationController pushViewController:test animated:YES];
     }
 }
 
@@ -195,7 +222,7 @@ static MoreView *instance = nil;
 - (void)rotateAction:(UIButton *)button{
     [UIView animateWithDuration:0.3 animations:^{
         button.transform = CGAffineTransformIdentity;
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 6; i++) {
             UIView *view = [self viewWithTag:100+i];
             view.frame = self.btnInitialFrame;
         }
@@ -208,7 +235,7 @@ static MoreView *instance = nil;
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [UIView animateWithDuration:0.3 animations:^{
         self.rotateBtn.transform = CGAffineTransformIdentity;
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 6; i++) {
             UIView *view = [self viewWithTag:100+i];
             view.frame = self.btnInitialFrame;
         }
@@ -286,14 +313,14 @@ static MoreView *instance = nil;
 
 //定位信息
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    UILabel *label = [self viewWithTag:202];
+    UILabel *label = [self viewWithTag:201];
     switch (status) {
         case kCLAuthorizationStatusDenied:{//未定位
             self.locationBtn.selected = NO;
-            label.textColor = [UIColor grayColor];
+//            label.textColor = [UIColor grayColor];
         }break;
         default:{//已定位
-            label.textColor = kMainColor;
+//            label.textColor = kMainColor;
             self.locationBtn.selected = YES;
         }break;
     }
@@ -308,12 +335,12 @@ static MoreView *instance = nil;
         if (code == 0) {
             int isWarn = [responseObject[@"data"][@"isWarn"] intValue];
             self.policeBtn.selected = isWarn;
-            UILabel *label = [self viewWithTag:203];
-            if (isWarn) {
-                label.textColor = kMainColor;
-            }else{
-                label.textColor = [UIColor grayColor];
-            }
+//            UILabel *label = [self viewWithTag:200];
+//            if (isWarn) {
+//                label.textColor = kMainColor;
+//            }else{
+//                label.textColor = [UIColor grayColor];
+//            }
         }else{
             
         }

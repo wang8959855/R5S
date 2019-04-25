@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://rulong.lantianfangzhou.com//wechat2/healthadjust.html?UserID=%@&token=%@",USERID,TOKEN]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://rulong.lantianfangzhou.com/test04Adjust/healthadjust.html?userID=%@&token=%@",USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }

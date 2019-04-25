@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来电提醒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dca-Nw-IOU">
-                    <rect key="frame" x="12" y="64" width="69.5" height="50"/>
+                    <rect key="frame" x="12" y="84" width="69.5" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="YEz-ha-1Fv"/>
                     </constraints>
@@ -35,7 +35,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFi-qP-ESp">
-                    <rect key="frame" x="12" y="114" width="351" height="1"/>
+                    <rect key="frame" x="12" y="134" width="351" height="1"/>
                     <color key="backgroundColor" red="0.82085037231445312" green="0.8210296630859375" blue="0.82081985473632812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="E04-SI-ZC6"/>
@@ -45,14 +45,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSb-k4-29k">
-                    <rect key="frame" x="305" y="73.5" width="51" height="31"/>
+                    <rect key="frame" x="305" y="93.5" width="51" height="31"/>
                     <color key="onTintColor" red="0.2901960784" green="0.4941176471" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <action selector="swithValueChanged:" destination="-1" eventType="valueChanged" id="nBq-nt-4tC"/>
                     </connections>
                 </switch>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BfH-lb-JfL">
-                    <rect key="frame" x="0.0" y="127" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="147" width="375" height="60"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择来电提醒时间:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECc-9T-jQ6">
                             <rect key="frame" x="8" y="6" width="110" height="16"/>
@@ -112,11 +112,12 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="BfH-lb-JfL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Js-3v-XKq"/>
+                <constraint firstItem="dca-Nw-IOU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="84" id="6YL-70-bzU"/>
                 <constraint firstAttribute="trailing" secondItem="NSb-k4-29k" secondAttribute="trailing" constant="21" id="7vR-9I-7vB"/>
                 <constraint firstItem="NSb-k4-29k" firstAttribute="centerY" secondItem="dca-Nw-IOU" secondAttribute="centerY" id="JkS-Ei-iSX"/>
                 <constraint firstItem="OFi-qP-ESp" firstAttribute="top" secondItem="dca-Nw-IOU" secondAttribute="bottom" id="YYa-EV-04n"/>
                 <constraint firstAttribute="trailing" secondItem="OFi-qP-ESp" secondAttribute="trailing" constant="12" id="Yta-hN-PJu"/>
-                <constraint firstItem="dca-Nw-IOU" firstAttribute="top" secondItem="jcF-qc-b2H" secondAttribute="top" constant="44" id="gi9-cn-ox2"/>
+                <constraint firstItem="dca-Nw-IOU" firstAttribute="top" secondItem="jcF-qc-b2H" secondAttribute="top" constant="64" id="gi9-cn-ox2"/>
                 <constraint firstItem="dca-Nw-IOU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="h2Z-2e-Dha"/>
                 <constraint firstItem="OFi-qP-ESp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="hL6-q8-3FH"/>
                 <constraint firstAttribute="trailing" secondItem="BfH-lb-JfL" secondAttribute="trailing" id="i7Z-OX-mFt"/>

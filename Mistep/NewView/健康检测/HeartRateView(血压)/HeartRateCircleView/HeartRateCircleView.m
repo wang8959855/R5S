@@ -215,7 +215,7 @@
     CGContextSetLineWidth(context, self.ringThickness);
     CGContextBeginPath(context);
     CGContextAddArc(context, center.x, center.y, ringRadius, M_PI_4/9, M_PI_2/1.5, 0);
-    CGContextSetStrokeColorWithColor(context, kMainColor.CGColor);
+    CGContextSetStrokeColorWithColor(context, kColor(26, 160, 229).CGColor);
     CGContextStrokePath(context);
     
     //

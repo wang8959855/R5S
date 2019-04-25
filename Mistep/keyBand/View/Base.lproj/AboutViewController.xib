@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -275,7 +275,6 @@
                 <constraint firstItem="Fwb-c7-Q4X" firstAttribute="leading" secondItem="K6c-bH-Z3K" secondAttribute="leading" id="Dqg-8A-T24"/>
                 <constraint firstItem="fYf-CZ-FD7" firstAttribute="leading" secondItem="Z0h-Bg-OmA" secondAttribute="trailing" constant="8" id="ETC-G1-lMA"/>
                 <constraint firstAttribute="trailing" secondItem="kUQ-kl-HFE" secondAttribute="trailing" id="Egm-o5-wux"/>
-                <constraint firstItem="cgb-cl-GOh" firstAttribute="top" secondItem="8Sf-uR-jbX" secondAttribute="top" constant="11" id="Frh-xC-LYc"/>
                 <constraint firstItem="EK0-tr-jLX" firstAttribute="top" secondItem="Fwb-c7-Q4X" secondAttribute="bottom" constant="15" id="GBz-mC-pck"/>
                 <constraint firstItem="g1x-dV-CiF" firstAttribute="centerY" secondItem="cgb-cl-GOh" secondAttribute="centerY" id="Ie7-hp-GGu"/>
                 <constraint firstItem="Wds-S8-c2p" firstAttribute="centerY" secondItem="g1x-dV-CiF" secondAttribute="centerY" id="IkB-cE-4L4"/>
@@ -320,6 +319,7 @@
                 <constraint firstAttribute="trailing" secondItem="cLV-a2-LzU" secondAttribute="trailing" constant="21" id="rcK-SA-Qoz"/>
                 <constraint firstItem="laP-tl-WUO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="21" id="vW2-wj-55c"/>
                 <constraint firstItem="cgb-cl-GOh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vfd-tN-VPu"/>
+                <constraint firstItem="cgb-cl-GOh" firstAttribute="top" secondItem="kUQ-kl-HFE" secondAttribute="bottom" constant="-33" id="xC9-F8-Y74"/>
                 <constraint firstItem="ctP-ss-i5X" firstAttribute="top" secondItem="sMm-Wb-1p0" secondAttribute="bottom" constant="9" id="yDD-eM-JcO"/>
                 <constraint firstItem="FZl-WT-ps5" firstAttribute="centerY" secondItem="cLV-a2-LzU" secondAttribute="centerY" id="yHA-DI-Di5"/>
                 <constraint firstItem="P11-TQ-5oS" firstAttribute="top" secondItem="kUQ-kl-HFE" secondAttribute="bottom" constant="48" id="yj1-lW-16U"/>
@@ -330,6 +330,6 @@
     </objects>
     <resources>
         <image name="aboutlogo" width="95" height="95"/>
-        <image name="left.png" width="10" height="14"/>
+        <image name="left.png" width="10" height="14.5"/>
     </resources>
 </document>

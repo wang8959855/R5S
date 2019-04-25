@@ -144,8 +144,6 @@ static NSString *conectReuse = @"connectedCell";
             //            _stateLabel.text = [CositeaBlueTooth sharedInstance].deviceName;
             //            _deviceName.text = NSLocalizedString(@"已连接",nil);
             [_searchBtn setTitle:NSLocalizedString(@"解绑设备",nil) forState:UIControlStateNormal];
-            [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:62];
-            [[CositeaBlueTooth sharedInstance] changeHeartRateMonitorStateWithState:YES];
             
             [self uoloadDeviceModel:[CositeaBlueTooth sharedInstance].deviceName];
             
@@ -198,7 +196,7 @@ static NSString *conectReuse = @"connectedCell";
    
     CGFloat imageViewW = 22*WidthProportion;
     CGFloat imageViewH = 22*WidthProportion;
-    CGFloat imageViewY = (self.topNavView.height - StatusBarHeight -imageViewH)/2 + StatusBarHeight+10;
+    CGFloat imageViewY = StatusBarHeight+10;
     CGFloat imageViewX = CurrentDeviceWidth - imageViewW - 15*WidthProportion;
     
     imageView.frame = CGRectMake(imageViewX, imageViewY, imageViewW,imageViewH);
@@ -686,6 +684,15 @@ static NSString *conectReuse = @"connectedCell";
         //        _stateLabel.text = [CositeaBlueTooth sharedInstance].deviceName;
         //        _deviceName.text = NSLocalizedString(@"已连接",nil);
         [_searchBtn setTitle:NSLocalizedString(@"解绑设备",nil) forState:UIControlStateNormal];
+        
+        //默认打开心率预警和j心率检测
+        [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:62];
+        [[CositeaBlueTooth sharedInstance] changeHeartRateMonitorStateWithState:YES];
+        [[CositeaBlueTooth sharedInstance] setHeartRateAlarmWithState:YES MaxHeartRate:[[[HCHCommonManager getInstance] UserSystolicP] intValue] MinHeartRate:[[[HCHCommonManager getInstance] UserDiastolicP] intValue]];
+        //默认关闭微信、QQ消息
+        [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:10 State:NO];
+        [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:9 State:NO];
+        
     }
     else
     {

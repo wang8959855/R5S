@@ -84,7 +84,7 @@
     
     //左边连接的灰色的线条
     UILabel *verticalView = [[UILabel alloc]init];
-    [self.contentView addSubview:verticalView];
+//    [self.contentView addSubview:verticalView];
     verticalView.backgroundColor = [UIColor grayColor];
     
     CGFloat verticalViewX = CGRectGetMinX(headImageView.frame) + headImageViewW * 0.5;

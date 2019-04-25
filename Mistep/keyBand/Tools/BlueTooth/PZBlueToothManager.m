@@ -693,7 +693,11 @@
                 }
             }
         }
-        NSAssert(beginTime+number<=heartArray2.count, @"离线心率溢出");
+        if (beginTime+number<=heartArray2.count){
+            NSLog(@"离线心率溢出");
+            return;
+            NSAssert(beginTime+number<=heartArray2.count, @"离线心率溢出");
+        }
         if (beginTime>=heartArray2.count) {
             return;
         }

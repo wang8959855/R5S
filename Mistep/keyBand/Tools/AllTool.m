@@ -2090,12 +2090,34 @@
  **/
 + (NSMutableArray *)filterSleepToValid:(NSArray *)sleepArr
 {
+    
+    
+    NSString *sleepStr = [sleepArr componentsJoinedByString:@""];
+    
+    [sleepStr containsString:@""];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"2332" withString:@"2112"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"2002" withString:@"2112"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"232" withString:@"212"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"202" withString:@"212"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"212" withString:@"211"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"33222" withString:@"33112"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"222" withString:@"221"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"2222" withString:@"2221"];
+    
+    NSMutableArray * resultArr = [NSMutableArray array];
+    
+    for (int i = 0; i < sleepStr.length; i++) {
+        [resultArr addObject:[sleepStr substringWithRange:NSMakeRange(i, 1)]];
+    }
+    
+    return resultArr;
+    
     if(sleepArr.count<=0)
     { return (NSMutableArray *)sleepArr;}
     int filter = 0;//根据这个值判断是否开始过滤
     int filtAwakeep = 0;//根据这个值判断是否转化清醒
     
-    NSMutableArray * resultArr = [NSMutableArray arrayWithArray:sleepArr];
+//    NSMutableArray * resultArr = [NSMutableArray arrayWithArray:sleepArr];
     
     int lightSleep = 0;
     int awakeSleep = 0;

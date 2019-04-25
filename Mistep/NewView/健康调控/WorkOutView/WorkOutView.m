@@ -56,7 +56,7 @@
     CGFloat sportTabelViewX = 0;
     CGFloat sportTabelViewY = 12.5*HeightProportion;
     CGFloat sportTabelViewW = downViewW;
-    CGFloat sportTabelViewH = downViewH - sportTabelViewY;
+    CGFloat sportTabelViewH = downViewH - sportTabelViewY-30;
     _sportTabelView.frame = CGRectMake(sportTabelViewX, sportTabelViewY, sportTabelViewW, sportTabelViewH);
 }
 

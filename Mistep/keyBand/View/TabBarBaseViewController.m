@@ -98,7 +98,7 @@
     
     [navView addSubview:self.datePickBtn];
     self.datePickBtn.size = CGSizeMake(120, SafeAreaTopHeight-StatusBarHeight);
-    self.datePickBtn.origin = CGPointMake(ScreenWidth/2-60, SafeAreaTopHeight-StatusBarHeight);
+    self.datePickBtn.origin = CGPointMake(ScreenWidth/2-60, StatusBarHeight);
     self.datePickBtn.titleLabel.font = Font_Normal_String(14);
     
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];

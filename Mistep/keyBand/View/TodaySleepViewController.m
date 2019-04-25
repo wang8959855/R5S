@@ -58,14 +58,7 @@
     //生产
 //        NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
     
-    if ([CositeaBlueTooth sharedInstance].isConnected) {
-        if ([CositeaBlueTooth sharedInstance].deviceName != nil) {
-            self.sxiao = [CositeaBlueTooth sharedInstance].deviceName;
-            self.sxiao = [self.sxiao lowercaseString];
-        }
-    }
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@/%@/0",root,self.sxiao,USERID,TOKEN]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s_/%@/%@/0",root,USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }
@@ -123,16 +116,8 @@
     //生产
 //    NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
     
-    self.sxiao = @"r5s_";
-    if ([CositeaBlueTooth sharedInstance].isConnected) {
-        if ([CositeaBlueTooth sharedInstance].deviceName != nil) {
-            self.sxiao = [CositeaBlueTooth sharedInstance].deviceName;
-            self.sxiao = [self.sxiao lowercaseString];
-        }
-    }
-    
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, backScrollViewW, backScrollViewH)];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@/%@/0",root,self.sxiao,USERID,TOKEN]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s_/%@/%@/0",root,USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     [self.backScrollView addSubview:self.webView];
@@ -170,12 +155,6 @@
 //    if (!isalert) {
 //        [AlertMainView alertMainViewWithType:AlertMainViewTypeRegulation];
 //    }
-    
-    if ([CositeaBlueTooth sharedInstance].isConnected) {
-        if ([CositeaBlueTooth sharedInstance].deviceName != nil && ![self.sxiao isEqualToString:[CositeaBlueTooth sharedInstance].deviceName]) {
-            [self reloadWebView];
-        }
-    }
     
 }
 

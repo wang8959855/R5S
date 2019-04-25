@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -253,6 +253,7 @@
                 <constraint firstItem="ywA-p4-DxF" firstAttribute="centerX" secondItem="oSu-bI-Thy" secondAttribute="centerX" id="BGN-1G-sbr"/>
                 <constraint firstAttribute="trailing" secondItem="H1L-3C-TZs" secondAttribute="trailing" id="Bh8-3i-Udo"/>
                 <constraint firstItem="E0s-aT-fHC" firstAttribute="top" secondItem="zPz-NY-6Pg" secondAttribute="top" id="EfD-d7-07m"/>
+                <constraint firstItem="vxc-Ga-OIH" firstAttribute="top" secondItem="PLu-ic-c54" secondAttribute="bottom" constant="-33" id="Eyv-kR-T6y"/>
                 <constraint firstItem="Sn4-ml-ae7" firstAttribute="centerY" secondItem="zPz-NY-6Pg" secondAttribute="centerY" id="GBV-Dd-HeH"/>
                 <constraint firstItem="661-aY-JOn" firstAttribute="centerY" secondItem="BaX-WD-0pk" secondAttribute="centerY" id="GEt-ZC-4MU"/>
                 <constraint firstItem="jmt-7L-nC7" firstAttribute="centerX" secondItem="zPz-NY-6Pg" secondAttribute="centerX" id="Hz9-a6-Geg"/>
@@ -305,7 +306,6 @@
                 <constraint firstItem="Sn4-ml-ae7" firstAttribute="leading" secondItem="oSu-bI-Thy" secondAttribute="trailing" id="s1k-KF-IxZ"/>
                 <constraint firstAttribute="trailing" secondItem="PLu-ic-c54" secondAttribute="trailing" id="u9p-cL-ZfK"/>
                 <constraint firstItem="DS6-gM-NYQ" firstAttribute="top" secondItem="zPz-NY-6Pg" secondAttribute="top" id="vmc-rP-Kqb"/>
-                <constraint firstItem="vxc-Ga-OIH" firstAttribute="top" secondItem="2ku-fS-MB1" secondAttribute="top" constant="11" id="wsp-3G-q4Y"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="2ku-fS-MB1"/>
             <point key="canvasLocation" x="27.5" y="33.5"/>
@@ -314,11 +314,11 @@
     <resources>
         <image name="FX_facebook.png" width="52" height="53"/>
         <image name="FX_pengyouquan.png" width="53" height="53"/>
-        <image name="FX_qq.png" width="52" height="53"/>
+        <image name="FX_qq.png" width="52.5" height="53"/>
         <image name="FX_twitter.png" width="53" height="53"/>
         <image name="FX_weibo.png" width="53" height="53"/>
         <image name="FX_weixin.png" width="53" height="53"/>
-        <image name="left.png" width="10" height="14"/>
+        <image name="left.png" width="10" height="14.5"/>
         <image name="qq.png" width="43" height="43"/>
     </resources>
 </document>

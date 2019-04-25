@@ -66,5 +66,7 @@
 #define GETHOMEDATA PATH_URL(@"data2app")
 //连接手环后上传设备型号
 #define UOLOADDEVICEMODEL PATH_URL(@"watch")
+//即时检测
+#define NOWTEST PATH_URL(@"temdata")
 
 #endif /* API_pch */

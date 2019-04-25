@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -195,7 +195,7 @@
                 <constraint firstAttribute="trailing" secondItem="CcO-HA-0pt" secondAttribute="trailing" id="VnK-cO-11V"/>
                 <constraint firstItem="ozV-eL-J4r" firstAttribute="leading" secondItem="XuM-kR-Mzp" secondAttribute="leading" constant="8" id="WG5-8d-apf"/>
                 <constraint firstAttribute="trailing" secondItem="EUM-OL-Z3W" secondAttribute="trailing" id="Wuc-X5-nC9"/>
-                <constraint firstItem="xgo-vl-6O9" firstAttribute="top" secondItem="4q6-dz-7q4" secondAttribute="top" constant="11.5" id="Z3n-ZU-pUy"/>
+                <constraint firstItem="xgo-vl-6O9" firstAttribute="top" secondItem="CcO-HA-0pt" secondAttribute="bottom" constant="-32.5" id="Y2j-gA-h4c"/>
                 <constraint firstItem="xgo-vl-6O9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dXu-ds-E7b"/>
                 <constraint firstItem="CcO-HA-0pt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="e3t-Aj-8Q5"/>
                 <constraint firstItem="CcO-HA-0pt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gl9-20-Mo7"/>
@@ -219,8 +219,8 @@
     <resources>
         <image name="SZ_jiuzuoBtnSelected.png" width="741" height="130"/>
         <image name="SZ_jiuzuoBtnUnselected.png" width="480" height="62"/>
-        <image name="SZ_jiuzuoDurationBg.png" width="480" height="61"/>
-        <image name="left.png" width="10" height="14"/>
-        <image name="loginTakeCare.png" width="12" height="12"/>
+        <image name="SZ_jiuzuoDurationBg.png" width="480" height="61.5"/>
+        <image name="left.png" width="10" height="14.5"/>
+        <image name="loginTakeCare.png" width="12.5" height="12.5"/>
     </resources>
 </document>
