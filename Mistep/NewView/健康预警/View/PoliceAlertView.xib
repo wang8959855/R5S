@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,15 +17,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wo5-la-n0n">
-                    <rect key="frame" x="20" y="185.5" width="335" height="316.5"/>
+                    <rect key="frame" x="20" y="235.5" width="335" height="216.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCc-nN-96h">
-                            <rect key="frame" x="10" y="58" width="315" height="200.5"/>
-                            <string key="text">“预警通知”实时监测心率变化，一旦发现异 常波动数据，立即向你和你的监护人发送预 轚短信或拨打预警电话。
-提示: 定制"预警通知"需要你将腕上健康APP
-在"手机管家-启动管理"中设为"允许后台运 •模式、点击导航键rt系统任务管理按钮"设
-为.上锁状态、点击M设置-电池"设为"后台高 耗电应用"等或保持手机处于亮屏状态!否则 会出现预警通知延迟或无通知情况。
-运动中如未选择"运动监测"，系统默认处于 自动预警状态，此时的预警参数有可能是运 动期间参数,请据情忽略。</string>
+                            <rect key="frame" x="10" y="58" width="315" height="100.5"/>
+                            <string key="text">“预警通知”实时监测心率变化，一旦发现异 常波动数据，立即向你和你的监护人发送预警短信或拨打预警电话。
+运动中如未选择"运动监测"，系统默认处于 自动预警状态，此时的预警参数有可能是运动期间参数,请据情忽略。</string>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -40,13 +37,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预警通知开启" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ar-Uj-Ezq">
-                            <rect key="frame" x="100.5" y="278.5" width="92" height="18"/>
+                            <rect key="frame" x="100.5" y="178.5" width="92" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zn2-Cc-fTj">
-                            <rect key="frame" x="197.5" y="276.5" width="37" height="22"/>
+                            <rect key="frame" x="197.5" y="176.5" width="37" height="22"/>
                             <state key="normal" image="guanbi-icon"/>
                             <state key="selected" image="kaiqi-icon"/>
                             <connections>

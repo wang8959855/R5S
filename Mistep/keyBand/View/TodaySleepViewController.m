@@ -58,7 +58,7 @@
     //生产
 //        NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s_/%@/%@/0",root,USERID,TOKEN]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s/%@/%@/0",root,USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }
@@ -117,7 +117,7 @@
 //    NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, backScrollViewW, backScrollViewH)];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s_/%@/%@/0",root,USERID,TOKEN]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s/%@/%@/0",root,USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     [self.backScrollView addSubview:self.webView];

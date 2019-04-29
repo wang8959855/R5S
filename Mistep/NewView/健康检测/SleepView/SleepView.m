@@ -263,7 +263,7 @@
 
 - (void)setBackgroundView {
     
-    UIView *downView = [[UIView alloc] initWithFrame:CGRectMake(10, self.height - 286*kDY + 30 + 20, ScreenWidth-20 , 180)];
+    UIView *downView = [[UIView alloc] initWithFrame:CGRectMake(10, self.height - 286*kDY + 30 + 20, ScreenWidth-20 , 200)];
     downView.layer.cornerRadius = 10;
     downView.layer.masksToBounds = YES;
     downView.layer.borderColor = kMainColor.CGColor;
@@ -280,10 +280,11 @@
     jieduLabel.font = Font_Bold_String(15);
     [downView addSubview:jieduLabel];
     
-    UILabel *tixing = [[UILabel alloc] initWithFrame:CGRectMake(20, downView.height-20, downView.width-40, 20)];
+    UILabel *tixing = [[UILabel alloc] initWithFrame:CGRectMake(20, downView.height-45, downView.width-40, 40)];
     [downView addSubview:tixing];
     tixing.font = [UIFont systemFontOfSize:11];
-    tixing.text = @"*正常人睡眠时长是7-8小时，其中深睡时长应达到总睡眠时长的25%。";
+    tixing.numberOfLines = 0;
+    tixing.text = @"*正常人睡眠时长是7-8小时,\n 其中深睡时长应达到总睡眠时长的25%。";
     tixing.textColor = kMainColor;
     
     NSArray *array = @[@"深睡",@"浅睡",@"清醒"];

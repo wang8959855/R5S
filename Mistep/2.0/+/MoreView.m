@@ -151,8 +151,8 @@ static MoreView *instance = nil;
     CGRect rect2 = CGRectMake(ScreenWidth/2-self.viewWidth/2, ScreenHeight-SafeAreaBottomHeight-250, self.viewWidth, 88);
     CGRect rect3 = CGRectMake(ScreenWidth-40-self.viewWidth, ScreenHeight-SafeAreaBottomHeight-250, self.viewWidth, 88);
     
-    CGRect rect4 = CGRectMake(40, ScreenHeight-SafeAreaBottomHeight-150, self.viewWidth, 88);
-    CGRect rect5 = CGRectMake(ScreenWidth/2-self.viewWidth/2, ScreenHeight-SafeAreaBottomHeight-150, self.viewWidth, 88);
+    CGRect rect4 = CGRectMake(self.viewWidth+20, ScreenHeight-SafeAreaBottomHeight-150, self.viewWidth, 88);
+    CGRect rect5 = CGRectMake(ScreenWidth-self.viewWidth*2-20, ScreenHeight-SafeAreaBottomHeight-150, self.viewWidth, 88);
     CGRect rect6 = CGRectMake(ScreenWidth-40-self.viewWidth, ScreenHeight-SafeAreaBottomHeight-150, self.viewWidth, 88);
     self.endFrameArr = @[@(rect1),@(rect2),@(rect3),@(rect4),@(rect5),@(rect6)];
     
@@ -222,7 +222,7 @@ static MoreView *instance = nil;
 - (void)rotateAction:(UIButton *)button{
     [UIView animateWithDuration:0.3 animations:^{
         button.transform = CGAffineTransformIdentity;
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             UIView *view = [self viewWithTag:100+i];
             view.frame = self.btnInitialFrame;
         }
@@ -235,7 +235,7 @@ static MoreView *instance = nil;
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [UIView animateWithDuration:0.3 animations:^{
         self.rotateBtn.transform = CGAffineTransformIdentity;
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             UIView *view = [self viewWithTag:100+i];
             view.frame = self.btnInitialFrame;
         }

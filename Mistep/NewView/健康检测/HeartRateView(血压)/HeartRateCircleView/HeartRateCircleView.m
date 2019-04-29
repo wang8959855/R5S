@@ -289,7 +289,7 @@
     
     if (!self.sleepImageView) {
         self.sleepImageView = [[UIImageView alloc] init];
-        self.sleepImageView.image = [UIImage imageNamed:@"heart"];
+        self.sleepImageView.image = [UIImage imageNamed:@"redHeart"];
         self.sleepImageView.size = CGSizeMake(35, 30);
         self.sleepImageView.center = CGPointMake(self.width/2., self.height/2.-40);
         [self addSubview:self.sleepImageView];
@@ -493,8 +493,26 @@
 }
 
 
-- (void)setValue:(CGFloat)value
-{
+- (void)setValue:(CGFloat)value {
+    
+    if (value >= 40 && value < 55) {
+        //黄色
+        self.valueLabel.textColor = kColor(253, 183, 45);
+        self.sleepImageView.image = [UIImage imageNamed:@"yellowHeart"];
+    }else if (value >= 55 && value < 90){
+         //蓝色
+        self.valueLabel.textColor = kColor(26, 160, 229);
+        self.sleepImageView.image = [UIImage imageNamed:@"heart"];
+    }else if (value >= 90 && value < 120){
+         //黄色
+        self.valueLabel.textColor = kColor(253, 183, 45);
+        self.sleepImageView.image = [UIImage imageNamed:@"yellowHeart"];
+    }else{
+        //红色
+        self.valueLabel.textColor = kColor(244, 70, 73);
+        self.sleepImageView.image = [UIImage imageNamed:@"redHeart"];
+    }
+    
     float com = (100 * value/_maxValue);
     NSMutableAttributedString *string = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%.f",value] Unit:@"次/分" WithFont:35];
     self.valueLabel.attributedText = string;

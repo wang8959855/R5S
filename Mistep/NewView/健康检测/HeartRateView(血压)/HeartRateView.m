@@ -397,7 +397,7 @@
                 _fatigueLabel.frame = CGRectMake(0, (view.height-30)/2+15, view.width, 30);
                 _fatigueLabel.textAlignment = NSTextAlignmentCenter;
                 _fatigueLabel.textColor = kMainColor;
-                _fatigueLabel.text = @"--";
+                _fatigueLabel.text = @"--%";
                 [view addSubview:_fatigueLabel];
             }
                 break;
@@ -437,7 +437,7 @@
     self.circleView.maxValue = 220;
     self.circleView.startAngle = 3./2 * M_PI + M_PI/3600.;
     self.circleView.endAngle = 3./2 * M_PI;
-    self.circleView.valueTextColor = [UIColor redColor];
+    self.circleView.valueTextColor = kColor(244, 70, 73);
     self.circleView.ringThickness = MIN(16 * kX, 16 * kDY);
     self.circleView.delegate = self;
     self.circleView.value = 0;
