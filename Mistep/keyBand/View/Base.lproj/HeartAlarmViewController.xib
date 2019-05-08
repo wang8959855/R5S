@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -226,6 +226,7 @@
                 <constraint firstItem="PLC-FD-USQ" firstAttribute="leading" secondItem="Xav-eP-g9X" secondAttribute="trailing" constant="8" id="7QB-2P-pCS"/>
                 <constraint firstItem="JgS-8D-2yD" firstAttribute="top" secondItem="Rd9-Z3-nbP" secondAttribute="top" id="880-68-1ai"/>
                 <constraint firstItem="JgS-8D-2yD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="23" id="8m9-6b-Jr3"/>
+                <constraint firstItem="a2q-7u-rTn" firstAttribute="top" secondItem="28g-21-459" secondAttribute="bottom" constant="-32.5" id="9bH-wz-V6m"/>
                 <constraint firstItem="gIo-i4-zXf" firstAttribute="trailing" secondItem="wg8-2Z-3fT" secondAttribute="trailing" id="A2I-a2-eHP"/>
                 <constraint firstItem="a2q-7u-rTn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ATd-ku-aSv"/>
                 <constraint firstItem="2Xw-4c-77q" firstAttribute="top" secondItem="JgS-8D-2yD" secondAttribute="bottom" constant="3" id="B1W-0v-NDn"/>
@@ -238,7 +239,6 @@
                 <constraint firstItem="ZFU-kM-k0q" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LgH-R7-650"/>
                 <constraint firstItem="AAF-JK-5dv" firstAttribute="centerY" secondItem="wg8-2Z-3fT" secondAttribute="centerY" id="Lyn-ia-ylN"/>
                 <constraint firstItem="PLC-FD-USQ" firstAttribute="top" secondItem="gIo-i4-zXf" secondAttribute="bottom" constant="21" id="N0P-o3-AHD"/>
-                <constraint firstItem="a2q-7u-rTn" firstAttribute="top" secondItem="PeF-Tl-noT" secondAttribute="top" constant="11.5" id="Ng6-qM-bws"/>
                 <constraint firstItem="wg8-2Z-3fT" firstAttribute="leading" secondItem="JgS-8D-2yD" secondAttribute="leading" id="SGE-w7-KED"/>
                 <constraint firstItem="gIo-i4-zXf" firstAttribute="top" secondItem="wg8-2Z-3fT" secondAttribute="bottom" constant="16" id="SgO-Sw-JxS"/>
                 <constraint firstItem="wg8-2Z-3fT" firstAttribute="top" secondItem="mGF-hH-2p2" secondAttribute="bottom" constant="16" id="UEI-kN-MaU"/>
@@ -278,8 +278,8 @@
     </objects>
     <resources>
         <image name="SZ_xinlvfanwei.png" width="490" height="27"/>
-        <image name="left.png" width="10" height="14"/>
-        <image name="loginTakeCare.png" width="12" height="12"/>
-        <image name="xinlvshurukuang.png" width="490" height="61"/>
+        <image name="left.png" width="10" height="14.5"/>
+        <image name="loginTakeCare.png" width="12.5" height="12.5"/>
+        <image name="xinlvshurukuang.png" width="490" height="61.5"/>
     </resources>
 </document>

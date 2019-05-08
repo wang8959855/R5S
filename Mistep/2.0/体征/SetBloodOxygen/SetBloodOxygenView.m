@@ -25,6 +25,10 @@
     set.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
     [[UIApplication sharedApplication].keyWindow addSubview:set];
     
+    set.SPO2TF.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"setspo2"];
+    set.heightTF.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"setheight"];
+    set.lowTF.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"setlow"];
+    
     return set;
 }
 
@@ -42,7 +46,10 @@
         [self makeBottomToast:@"请填写餐后血糖值"];
         return;
     }
-    
+    [[NSUserDefaults standardUserDefaults] setObject:self.heightTF.text forKey:@"setheight"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.lowTF.text forKey:@"setlow"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.SPO2TF.text forKey:@"setspo2"];
+    [self removeFromSuperview];
 }
 
 //取消
