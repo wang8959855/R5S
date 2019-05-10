@@ -50,6 +50,22 @@
     refreshButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 25, 32, 20, 20);
     [refreshButton setImage:[UIImage imageNamed:@"shuaxin-icon"] forState:UIControlStateNormal];
     [refreshButton addTarget:self action:@selector(reloadWebView) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:guideButton];
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 60, 32, 20, 20);
+    [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
+    [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+//指引
+- (void)guideAction{
+    GuideLinesViewController *guide = [GuideLinesViewController new];
+    guide.index = 0;
+    guide.imageArr = @[@"report1",@"report2",@"report3",@"report4"];
+    guide.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:guide animated:YES];
 }
 
 - (void)reloadWebView{

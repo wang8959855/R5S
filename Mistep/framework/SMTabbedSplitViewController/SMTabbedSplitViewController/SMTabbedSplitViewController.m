@@ -98,6 +98,20 @@
     _masterVC.view.layer.shadowRadius = 2.5f;
     _masterVC.view.layer.shadowPath = shadowPath.CGPath;
 
+    UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:guideButton];
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, 32, 20, 20);
+    [guideButton setImage:[UIImage imageNamed:@"zy-black"] forState:UIControlStateNormal];
+    [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+//指引
+- (void)guideAction{
+    GuideLinesViewController *guide = [GuideLinesViewController new];
+    guide.index = 0;
+    guide.imageArr = @[@"set1"];
+    [self.navigationController pushViewController:guide animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

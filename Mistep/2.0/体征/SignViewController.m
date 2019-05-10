@@ -66,6 +66,22 @@
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 100.0f;
+    
+    UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:guideButton];
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, 32, 20, 20);
+    [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
+    [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+//指引
+- (void)guideAction{
+    GuideLinesViewController *guide = [GuideLinesViewController new];
+    guide.index = 0;
+    guide.imageArr = @[@"tizheng1",@"tizheng2",@"tizheng3",@"tizheng4",@"tizheng5",@"tizheng6"];
+    guide.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:guide animated:YES];
 }
 
 -(void)setupView{

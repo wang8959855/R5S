@@ -115,6 +115,7 @@
 		18EF20DA20B43EE9002772F8 /* SportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF20D920B43EE9002772F8 /* SportView.m */; };
 		18EF20DD20B43EF0002772F8 /* WorkOutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF20DC20B43EF0002772F8 /* WorkOutView.m */; };
 		18EF20E020B43EF7002772F8 /* RegulationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF20DF20B43EF7002772F8 /* RegulationView.m */; };
+		18F41E93228526AD00D80625 /* GuideLinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F41E91228526AD00D80625 /* GuideLinesViewController.m */; };
 		18F4200A20E51DFB003EBDEB /* CustomStepTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4200920E51DFB003EBDEB /* CustomStepTypeView.m */; };
 		18F4200C20E51E03003EBDEB /* CustomStepTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F4200B20E51E03003EBDEB /* CustomStepTypeView.xib */; };
 		18F4DF3720E634D60042C6E9 /* H5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4DF3520E634D60042C6E9 /* H5ViewController.m */; };
@@ -1413,6 +1414,8 @@
 		18EF20DC20B43EF0002772F8 /* WorkOutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkOutView.m; sourceTree = "<group>"; };
 		18EF20DE20B43EF7002772F8 /* RegulationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegulationView.h; sourceTree = "<group>"; };
 		18EF20DF20B43EF7002772F8 /* RegulationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegulationView.m; sourceTree = "<group>"; };
+		18F41E91228526AD00D80625 /* GuideLinesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideLinesViewController.m; sourceTree = "<group>"; };
+		18F41E92228526AD00D80625 /* GuideLinesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLinesViewController.h; sourceTree = "<group>"; };
 		18F4200820E51DFB003EBDEB /* CustomStepTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomStepTypeView.h; sourceTree = "<group>"; };
 		18F4200920E51DFB003EBDEB /* CustomStepTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomStepTypeView.m; sourceTree = "<group>"; };
 		18F4200B20E51E03003EBDEB /* CustomStepTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomStepTypeView.xib; sourceTree = "<group>"; };
@@ -3338,6 +3341,7 @@
 		1815A8AB22471A2500699F38 /* 2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				18F41E90228526AD00D80625 /* 指引 */,
 				1810621922606684009A3562 /* NowTest */,
 				180EC49B224C77C800DDF892 /* 节律 */,
 				180F2FCC224A60E0003EE292 /* 助眠 */,
@@ -3664,6 +3668,15 @@
 				18EF20D920B43EE9002772F8 /* SportView.m */,
 			);
 			path = SportView;
+			sourceTree = "<group>";
+		};
+		18F41E90228526AD00D80625 /* 指引 */ = {
+			isa = PBXGroup;
+			children = (
+				18F41E92228526AD00D80625 /* GuideLinesViewController.h */,
+				18F41E91228526AD00D80625 /* GuideLinesViewController.m */,
+			);
+			path = "指引";
 			sourceTree = "<group>";
 		};
 		18F4DF3320E634B40042C6E9 /* H5ViewController */ = {
@@ -7699,6 +7712,7 @@
 				722439D01D938933006E8855 /* SedentaryModel.m in Sources */,
 				72A61C8A1D8008D6003CE7B2 /* CositeaBlueTooth.m in Sources */,
 				72CB344D1E2E5963002959DC /* CityNumber.m in Sources */,
+				18F41E93228526AD00D80625 /* GuideLinesViewController.m in Sources */,
 				727E85241BF5E07400B2DCBA /* UIImage+ForceDecode.m in Sources */,
 				18EF20DA20B43EE9002772F8 /* SportView.m in Sources */,
 			);

@@ -35,6 +35,7 @@
 #import "PSDrawerManager.h"
 #import "UIImageView+WebCache.h"
 #import <Toast.h>
+#import "GuideLinesViewController.h"
 
 
 
