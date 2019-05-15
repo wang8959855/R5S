@@ -40,6 +40,7 @@ static NSString * const testAFAppDotNetAPIBaseURLString = @"http://bracelet.cosi
 #import "NewFriendsViewController.h"
 
 #import "HomeView.h"
+#import <Photos/PHPhotoLibrary.h>
 
 @interface HomeView ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,ZBarReaderDelegate>
 
@@ -237,8 +238,8 @@ static NSString *reuseID  = @"CELL";
     [[HCHCommonManager getInstance] addObserver:self forKeyPath:@"curPower" options:NSKeyValueObservingOptionNew context:nil];//观察电量的赋值
     [[HCHCommonManager getInstance] addObserver:self forKeyPath:@"isLogin" options:NSKeyValueObservingOptionNew context:nil];//观察电量的赋值
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observerUserInfo) name:UserInformationUpDateNotification object:nil];//观察个人信息的赋值
-    //    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
-    //    [center addObserver:self selector:@selector(viewWillRefresh) name:@"homeViewWillRefresh" object:nil];
+        NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(viewWillRefresh) name:@"homeViewWillRefresh" object:nil];
     
     //退出
     _signOut = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -508,7 +509,6 @@ static NSString *reuseID  = @"CELL";
 -(void)viewWillRefresh
 {
     //    //adaLog(@"  = = = = = =  不断的请求");
-    
     [[PZBlueToothManager sharedInstance] checkBandPowerWithPowerBlock:^(int number) {
         if ([CositeaBlueTooth sharedInstance].isConnected)
         {
@@ -523,12 +523,12 @@ static NSString *reuseID  = @"CELL";
             _bleLabel.text = NSLocalizedString(@"已连接", nil);
         }
     }];
-    if (!([HCHCommonManager getInstance].userInfoDictionAry[@"nick"] == [NSNull null]))
-    {
-        _userNameLabel.text = [HCHCommonManager getInstance].userInfoDictionAry[@"nick"];
-    }
+//    if (!([HCHCommonManager getInstance].userInfoDictionAry[@"nick"] == [NSNull null]))
+//    {
+//        _userNameLabel.text = [HCHCommonManager getInstance].userInfoDictionAry[@"nick"];
+//    }
     
-    [self settedHeadImageView];
+//    [self settedHeadImageView];
 }
 
 -(void)settedHeadImageView
@@ -704,6 +704,23 @@ static NSString *reuseID  = @"CELL";
         [self addActityTextInView:window text:NSLocalizedString(@"未绑定", nil) deleyTime:1.5f];
         return;
     }
+    
+    NSString *mediaType = AVMediaTypeVideo;//读取媒体类型
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];//读取设备授权状态
+    if(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied){
+        NSString *errorStr = @"应用相机权限受限,请在设置中启用";
+        [[UIApplication sharedApplication].keyWindow makeToast:errorStr duration:1.5 position:CSToastPositionCenter];
+        return;
+    }
+    
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if (status == PHAuthorizationStatusRestricted || status == PHAuthorizationStatusDenied) {
+        // 无权限
+        NSString *errorStr = @"应用相册权限受限,请在设置中启用";
+        [[UIApplication sharedApplication].keyWindow makeToast:errorStr duration:1.5 position:CSToastPositionCenter];
+        return;
+    }
+    
     //    [self addCurrentPageScreenshot];
     //    [self settingDrawerWhenPush];
     TakePhotoViewController *photeVC = [TakePhotoViewController new];
@@ -803,7 +820,7 @@ static NSString *reuseID  = @"CELL";
     
     split.background = [UIColor whiteColor];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, 64)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CurrentDeviceWidth, SafeAreaTopHeight)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [imageView addSubview:button];
     
@@ -811,7 +828,7 @@ static NSString *reuseID  = @"CELL";
     UIView *topView = [[UIView alloc] init];
     topView.backgroundColor = [UIColor blackColor];
     [imageView addSubview:topView];
-    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, 20);
+    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, StatusBarHeight);
     imageView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
     imageView.layer.shadowOffset = CGSizeMake(0, 1);
     imageView.layer.shadowOpacity = 0.6;
@@ -846,7 +863,7 @@ static NSString *reuseID  = @"CELL";
     
     UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [imageView addSubview:guideButton];
-    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45, 32, 20, 20);
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45, StatusBarHeight + 12, 20, 20);
     [guideButton setImage:[UIImage imageNamed:@"zy-black"] forState:UIControlStateNormal];
     [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     

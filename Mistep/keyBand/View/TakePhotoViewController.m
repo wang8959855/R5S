@@ -27,7 +27,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, CurrentDeviceWidth, CurrentDeviceHeight - SafeAreaTopHeight)];
+    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, CurrentDeviceWidth, CurrentDeviceHeight)];
     backImageView.image = [UIImage imageNamed:@"PZ_背景.png"];
     [self.view addSubview:backImageView];
     
@@ -67,7 +67,7 @@
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.text = kLOCAL(@"遥控拍照");
     [titleLabel sizeToFit];
-    titleLabel.center = CGPointMake(CurrentDeviceWidth/2., 42);
+    titleLabel.center = CGPointMake(CurrentDeviceWidth/2., StatusBarHeight+22);
     [self.view addSubview: titleLabel];
     
     UIButton *bacButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -114,15 +114,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

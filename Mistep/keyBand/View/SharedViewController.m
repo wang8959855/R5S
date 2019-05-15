@@ -192,6 +192,10 @@ typedef enum {
             break;
     }
     [[UMSocialControllerService defaultControllerService] setShareText:appName shareImage:_image socialUIDelegate:nil];
+    if (snsPlatform == nil) {
+        [self.view makeCenterToast:@"暂不支持"];
+        return;
+    }
     snsPlatform.snsClickHandler(self,[UMSocialControllerService  defaultControllerService],YES);
 }
 

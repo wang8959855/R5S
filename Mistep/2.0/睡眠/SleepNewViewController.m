@@ -51,7 +51,7 @@
 
     UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:guideButton];
-    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, 32, 20, 20);
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, StatusBarHeight + 12, 20, 20);
     [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
     [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     

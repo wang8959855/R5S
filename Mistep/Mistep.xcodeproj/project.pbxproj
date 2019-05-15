@@ -3139,10 +3139,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				720212981CF424060092E1E8 /* Social.framework in Frameworks */,
+				726FA1A21BFDBC7A00669166 /* CoreData.framework in Frameworks */,
+				720212961CF423F90092E1E8 /* Accounts.framework in Frameworks */,
+				72100DEF1CEF094B001A9FC4 /* ImageIO.framework in Frameworks */,
 				72B0F7641BE8836200236D41 /* MessageUI.framework in Frameworks */,
 				723E67911E9E189B00DCB453 /* libUMSocial_Sdk_5.2.1.a in Frameworks */,
-				726FA1A21BFDBC7A00669166 /* CoreData.framework in Frameworks */,
-				72100DEF1CEF094B001A9FC4 /* ImageIO.framework in Frameworks */,
 				723E67AE1E9E189C00DCB453 /* libSocialTwitter.a in Frameworks */,
 				72B0F7721BE883AE00236D41 /* libz.tbd in Frameworks */,
 				7298A2AC1E98CEF9008029FD /* libc++.tbd in Frameworks */,
@@ -3156,8 +3158,6 @@
 				726F7DEE1E797FA200E75161 /* CoreLocation.framework in Frameworks */,
 				723E679D1E9E189B00DCB453 /* FBSDKShareKit.framework in Frameworks */,
 				726F7DED1E797F9000E75161 /* MapKit.framework in Frameworks */,
-				720212981CF424060092E1E8 /* Social.framework in Frameworks */,
-				720212961CF423F90092E1E8 /* Accounts.framework in Frameworks */,
 				72B0F7741BE883B700236D41 /* Foundation.framework in Frameworks */,
 				72B0F77E1BE883E300236D41 /* UIKit.framework in Frameworks */,
 				72B0F7701BE883A000236D41 /* libiconv.tbd in Frameworks */,

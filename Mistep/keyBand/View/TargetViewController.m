@@ -181,6 +181,7 @@
     //保存睡眠目标和运动目标。发送给蓝牙
     
     [[CositeaBlueTooth sharedInstance] activeCompletionDegree];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateStepAndSleep" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

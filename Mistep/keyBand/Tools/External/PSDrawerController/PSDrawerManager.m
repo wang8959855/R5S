@@ -160,10 +160,10 @@ CGFloat const gestureMinimumTranslation = 20.0;
             if (sender.view.left > CurrentDeviceWidth * kLeftWidthScale * 0.5) {
                 sender.view.transform = rightScopeTransform;
                 //创建一个消息对象
-//                NSNotification * notice = [NSNotification notificationWithName:@"homeViewWillRefresh" object:nil userInfo:nil];
+                NSNotification * notice = [NSNotification notificationWithName:@"homeViewWillRefresh" object:nil userInfo:nil];
                 //发送消息
-//                [[NSNotificationCenter defaultCenter]postNotification:notice];
-//                [[HomeView sharedInstance] viewWillRefresh];
+                [[NSNotificationCenter defaultCenter]postNotification:notice];
+                [[HomeView sharedInstance] viewWillRefresh];
 //                [[HomeTwoViewController sharedInstance] viewWillRefresh];
                 AppDelegate *app =(AppDelegate *)[[UIApplication sharedApplication] delegate];
                 app.coverBtn.hidden = NO;

@@ -61,7 +61,7 @@
 //获取报警次数接口
 #define GETWARNING PATH_URL(@"getWarning")
 //定时上传定位
-#define UPLOADLOCATION PATH_URL(@"address")
+#define UPLOADLOCATION PATH_URL(@"uploadAdd")
 //每分钟步数上传
 #define UPLOADMINUTESTEP PATH_URL(@"stepnew")
 //心电图上传

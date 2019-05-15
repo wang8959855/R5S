@@ -98,6 +98,9 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreView) name:@"PushMoreView" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:@"updateUserInfo" object:nil];
+    
 }
 
 - (void)moreView{

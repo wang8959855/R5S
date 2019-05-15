@@ -98,11 +98,11 @@
     _masterVC.view.layer.shadowRadius = 2.5f;
     _masterVC.view.layer.shadowPath = shadowPath.CGPath;
 
-    UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.view addSubview:guideButton];
-    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, 32, 20, 20);
-    [guideButton setImage:[UIImage imageNamed:@"zy-black"] forState:UIControlStateNormal];
-    [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.view addSubview:guideButton];
+//    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, StatusBarHeight + 12, 20, 20);
+//    [guideButton setImage:[UIImage imageNamed:@"zy-black"] forState:UIControlStateNormal];
+//    [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     
 }
 

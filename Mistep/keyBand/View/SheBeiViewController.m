@@ -52,7 +52,7 @@ static NSString *conectReuse = @"connectedCell";
     
     UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:guideButton];
-    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, 32, 20, 20);
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, StatusBarHeight + 12, 20, 20);
     [guideButton setImage:[UIImage imageNamed:@"zy-black"] forState:UIControlStateNormal];
     [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     
@@ -703,7 +703,12 @@ static NSString *conectReuse = @"connectedCell";
         //默认打开心率预警和j心率检测
         [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:62];
         [[CositeaBlueTooth sharedInstance] changeHeartRateMonitorStateWithState:YES];
-        [[CositeaBlueTooth sharedInstance] setHeartRateAlarmWithState:YES MaxHeartRate:[[[HCHCommonManager getInstance] UserSystolicP] intValue] MinHeartRate:[[[HCHCommonManager getInstance] UserDiastolicP] intValue]];
+        
+        int maxHeart,maxHeartTwo;
+        maxHeart = 220 - [[HCHCommonManager getInstance]getAge];
+        maxHeartTwo = maxHeart * 80 /100;
+        [[CositeaBlueTooth sharedInstance] setHeartRateAlarmWithState:YES MaxHeartRate:maxHeartTwo MinHeartRate:60];
+        
         //默认关闭微信、QQ消息
         [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:10 State:NO];
         [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:9 State:NO];

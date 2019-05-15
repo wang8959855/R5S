@@ -574,6 +574,7 @@ static NSString *AUISaveID = @"AUISaveID";
                  }else if ([url isEqualToString:UPLOADHEADER]){
                      [[HCHCommonManager getInstance] setUserHeaderWith:responseObject[@"data"][@"imgURL"]];
                      [self reloadTableViewSection:0 row:0];
+                     [[NSNotificationCenter defaultCenter] postNotificationName:UserInformationUpDateNotification object:nil];
                  }else{
                      [self getUserInfo];
                  }

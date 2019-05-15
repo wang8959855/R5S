@@ -61,7 +61,7 @@
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
     if ([CLLocationManager locationServicesEnabled] &&
         (status == kCLAuthorizationStatusAuthorizedWhenInUse
-         || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+         || status == kCLAuthorizationStatusAuthorizedAlways)) {
             //定位功能可用，开始定位
             //单次定位
             WeakSelf

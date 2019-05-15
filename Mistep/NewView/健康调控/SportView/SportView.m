@@ -45,6 +45,7 @@
         [self childrenTimeSecondChanged];
         [self setBlocks];
         [self getHomeData];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(upDataUIWithDic) name:@"updateStepAndSleep" object:nil];
     }
     return self;
 }

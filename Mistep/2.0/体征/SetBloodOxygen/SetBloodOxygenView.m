@@ -46,10 +46,68 @@
         [self makeBottomToast:@"请填写餐后血糖值"];
         return;
     }
-    [[NSUserDefaults standardUserDefaults] setObject:self.heightTF.text forKey:@"setheight"];
-    [[NSUserDefaults standardUserDefaults] setObject:self.lowTF.text forKey:@"setlow"];
-    [[NSUserDefaults standardUserDefaults] setObject:self.SPO2TF.text forKey:@"setspo2"];
-    [self removeFromSuperview];
+    
+    NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",UPLOADUSERINFO,TOKEN];
+    
+    NSMutableDictionary *_uploadInfoDic = [NSMutableDictionary dictionary];
+    HCHCommonManager *hchc = [HCHCommonManager getInstance];
+    [_uploadInfoDic setObject:[hchc userBirthdate] forKey:@"birthday"];
+    [_uploadInfoDic setObject:[hchc UserGender] forKey:@"sex"];
+    [_uploadInfoDic setObject:[hchc UserAcount] forKey:@"userName"];
+    [_uploadInfoDic setObject:[hchc UserAddress] forKey:@"address"];
+    [_uploadInfoDic setObject:[hchc UserWeight] forKey:@"weight"];
+    [_uploadInfoDic setObject:[hchc UserHeight] forKey:@"height"];
+    [_uploadInfoDic setObject:[hchc UserIsHypertension] forKey:@"is_hypertension"];
+    [_uploadInfoDic setObject:self.heightTF.text forKey:@"SystolicPressure"];
+    [_uploadInfoDic setObject:[hchc UserIsCHD] forKey:@"is_CHD"];
+    [_uploadInfoDic setObject:self.lowTF.text forKey:@"DiastolicPressure"];
+    [_uploadInfoDic setObject:[hchc UserRafTel1] forKey:@"rafTel1"];
+    [_uploadInfoDic setObject:[hchc UserRafTel2] forKey:@"rafTel2"];
+    [_uploadInfoDic setObject:[hchc UserRafTel3] forKey:@"rafTel3"];
+    [_uploadInfoDic setObject:self.SPO2TF.text forKey:@"Glu"];
+    [_uploadInfoDic setObject:[hchc UserIsGlu] forKey:@"is_Glu"];
+    [_uploadInfoDic setObject:USERID forKey:@"userId"];
+    
+    [self makeToastActivity:CSToastPositionCenter];
+    [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:uploadUrl fileUrl:nil params:_uploadInfoDic Block:^(id responseObject, NSError *error) {
+        
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeOut) object:nil];
+        
+        [self hideToastActivity];
+        if (error)
+        {
+            [self makeCenterToast:@"网络连接错误"];
+        }
+        else
+        {
+            int code = [[responseObject objectForKey:@"code"] intValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 0) {
+                if ([message isEqualToString:@"error"]) {
+                    [self makeCenterToast:@"修改失败"];
+                    return;
+                }else{
+                    //设置血压配置参数
+                    [ADASaveDefaluts setObject:_uploadInfoDic[@"SystolicPressure"] forKey:BLOODPRESSURELOW];
+                    [ADASaveDefaluts setObject:_uploadInfoDic[@"DiastolicPressure"] forKey:BLOODPRESSUREHIGH];
+                    [self makeCenterToast:@"修改成功"];
+                    
+                    [[NSUserDefaults standardUserDefaults] setObject:self.heightTF.text forKey:@"setheight"];
+                    [[NSUserDefaults standardUserDefaults] setObject:self.lowTF.text forKey:@"setlow"];
+                    [[NSUserDefaults standardUserDefaults] setObject:self.SPO2TF.text forKey:@"setspo2"];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateUserInfo" object:nil];
+                    
+                    [self removeFromSuperview];
+                    
+                }
+                
+            } else {
+                [self makeCenterToast:message];
+            }
+        }
+    }];
+    
 }
 
 //取消

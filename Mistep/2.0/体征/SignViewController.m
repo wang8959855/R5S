@@ -58,6 +58,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    //是否进入设备连接界面
+    NSString *isDevice = [[NSUserDefaults standardUserDefaults] objectForKey:@"isLoginOpenDevice"];
+    if ([isDevice isEqualToString:@"YES"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLoginOpenDevice"];
+        SheBeiViewController *shebei = [SheBeiViewController sharedInstance];
+        shebei.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:shebei animated:NO];
+    }
+    
     [self setupView];
     [HCHCommonManager getAvgHeartRate];
     [LoctionUpdateTool sharedInstance];
@@ -69,7 +79,7 @@
     
     UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:guideButton];
-    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, 32, 20, 20);
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, StatusBarHeight + 12, 20, 20);
     [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
     [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     
@@ -130,7 +140,7 @@
                 {
                         break;
                     case SystemAlarmType_QQ: {
-                        [weakSelf.view makeToast:@"QQ消息提醒已打开" duration:1.5 position:CSToastPositionCenter];
+                        [weakSelf.view makeToast:@"QQ消息提醒已打开" duration:1.5 position:CSToastPositionBottom];
                     }
                 }
             }];
@@ -139,7 +149,7 @@
                 switch (index)
                 {
                     case SystemAlarmType_WeChat: {
-                        [weakSelf.view makeToast:@"微信消息提醒已打开" duration:1.5 position:CSToastPositionCenter];
+                        [weakSelf.view makeToast:@"微信消息提醒已打开" duration:1.5 position:CSToastPositionBottom];
                     }
                 }
             }];

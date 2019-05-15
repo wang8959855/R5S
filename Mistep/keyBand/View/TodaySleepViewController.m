@@ -44,16 +44,18 @@
     [self setupView];
     [self.view addSubview:self.navView];
     self.haveTabBar = YES;
+    UIButton *shareBtn = [self.view viewWithTag:1002];
+    shareBtn.hidden = YES;
     
     UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:refreshButton];
-    refreshButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 25, 32, 20, 20);
+    refreshButton.frame = CGRectMake(CurrentDeviceWidth - 30, StatusBarHeight + 12, 20, 20);
     [refreshButton setImage:[UIImage imageNamed:@"shuaxin-icon"] forState:UIControlStateNormal];
     [refreshButton addTarget:self action:@selector(reloadWebView) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:guideButton];
-    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 60, 32, 20, 20);
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 25, StatusBarHeight + 12, 20, 20);
     [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
     [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     

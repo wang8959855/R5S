@@ -50,6 +50,8 @@
         [self reloadBlueToothDataSleep];
         [self setBlocks];
         [self SLErefreshAlertView];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadPlan) name:@"updateStepAndSleep" object:nil];
     }
     return self;
 }
@@ -156,7 +158,7 @@
 }
 -(void)successCallbackSleepData
 {
-    [self SLErefreshSucc];
+//    [self SLErefreshSucc];
     [self reloadData];
 }
 - (void)reloadData;

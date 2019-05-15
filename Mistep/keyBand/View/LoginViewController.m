@@ -142,6 +142,9 @@
                      if (code == 0)
                      {
                          [self addActityTextInView:self.view text:NSLocalizedString(@"登录成功", nil) deleyTime:1.5f];
+                         
+                         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLoginOpenDevice"];
+                         
                          [AllTool startUpData];
                          NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:[responseObject objectForKey:@"data"]];
                          NSString *name = [tempDic objectForKey:@"userName"] ;
@@ -212,6 +215,7 @@
                          [self loginHome];
                          [HCHCommonManager getInstance].isLogin = YES;
                          [HCHCommonManager getInstance].isThirdPartLogin = NO;
+                         
                      }else if (code == 3009){
                          [self addActityTextInView:self.view text:@"请完成个人信息"  deleyTime:1.5f];
                          [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"data"][@"userid"] forKey:@"userId"];
