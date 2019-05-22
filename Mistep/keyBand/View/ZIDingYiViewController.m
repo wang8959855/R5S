@@ -25,6 +25,7 @@
     // Do any additional setup after loading the view from its nib.
     
     [self setButtonWithButton:_confirmBtn andTitle:NSLocalizedString(@"确定", nil)];
+    self.topNavHeight.constant = SafeAreaTopHeight;
     
     _weekArray = @[NSLocalizedString(@"周日", nil),NSLocalizedString (@"周一",nil),NSLocalizedString (@"周二", nil),NSLocalizedString (@"周三", nil),NSLocalizedString(@"周四", nil),NSLocalizedString(@"周五",nil),NSLocalizedString(@"周六",nil),NSLocalizedString(@"仅一次", nil),NSLocalizedString(@"每天",nil),NSLocalizedString (@"工作日", nil),NSLocalizedString (@"周末", nil)];
     

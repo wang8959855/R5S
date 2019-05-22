@@ -11,6 +11,7 @@
 @interface HeartAlarmViewController ()
 {
 }
+
 @end
 
 @implementation HeartAlarmViewController

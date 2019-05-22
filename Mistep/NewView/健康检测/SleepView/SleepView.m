@@ -265,7 +265,52 @@
 
 - (void)setBackgroundView {
     
-    UIView *downView = [[UIView alloc] initWithFrame:CGRectMake(10, self.height - 286*kDY + 30 + 20, ScreenWidth-20 , 200)];
+    self.circle = [[NightCircleView alloc] init];
+    [self.backScrollView addSubview:self.circle];
+    self.circle.frame = CGRectMake(0, 0, MIN(203 * kX, 203 * kDY), MIN(203 * kX, 203 * kDY));
+    self.circle.center = CGPointMake(CurrentDeviceWidth / 2, 20 * kDY + self.circle.height/2.);
+    self.circle.backgroundColor = [UIColor clearColor];
+    
+    self.circle.minValue = 0;
+    self.circle.maxValue = kHCH.sleepPlan;
+    self.circle.startAngle = 3./2 * M_PI + M_PI/3600.;
+    self.circle.endAngle = 3./2 * M_PI;
+    self.circle.ringBackgroundColor = [UIColor whiteColor];
+    self.circle.valueTextColor = [UIColor whiteColor];
+    self.circle.ringThickness = MIN(16 * kX, 16 * kDY);
+    self.circle.delegate = self;
+    self.circle.value = 0;
+    [self.circle setNeedsDisplay];
+    
+    UIButton *detailButton = [[UIButton alloc]init];
+    [self.circle addSubview:detailButton];
+    detailButton.backgroundColor = [UIColor clearColor];//detailButton.alpha = 0.5;
+    [detailButton addTarget:self action:@selector(detailButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    CGFloat detailButtonX = 0;
+    CGFloat detailButtonY = 0;
+    CGFloat detailButtonW = MIN(203 * kX, 203 * kDY) * WidthProportion;
+    CGFloat detailButtonH = MIN(203 * kX, 203 * kDY) * HeightProportion;
+    detailButton.frame = CGRectMake(detailButtonX, detailButtonY, detailButtonW, detailButtonH);
+    
+    
+    self.targetBtn = [[UIButton alloc] init];
+    self.targetBtn.size = CGSizeMake(150*kX, 30*kDY);
+    self.targetBtn.center = CGPointMake(CurrentDeviceWidth/2., self.circle.bottom+40*kDY);
+    [self.backScrollView addSubview:self.targetBtn];
+    //    self.targetBtn.layer.borderColor = kMainColor.CGColor;
+    //    self.targetBtn.layer.borderWidth = 1;
+    //    self.targetBtn.layer.cornerRadius = 8*kDY;
+    self.targetBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [self.targetBtn setImage:[UIImage imageNamed:@"target1"] forState:UIControlStateNormal];
+    
+    [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d h",[HCHCommonManager getInstance].sleepPlan / 60] Unit:@"(目标睡眠)" WithFont:18] forState:UIControlStateNormal];
+    //    [self.targetBtn setTitle:[NSString stringWithFormat:@"%d h",[HCHCommonManager getInstance].sleepPlan / 60] forState:UIControlStateNormal];
+    self.targetBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.targetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.targetBtn.titleLabel.textColor = allColorWhite;
+    [self.targetBtn addTarget:self action:@selector(targetBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *downView = [[UIView alloc] initWithFrame:CGRectMake(10, self.targetBtn.bottom+20, ScreenWidth-20 , 200)];
     downView.layer.cornerRadius = 10;
     downView.layer.masksToBounds = YES;
     downView.layer.borderColor = kMainColor.CGColor;
@@ -351,49 +396,6 @@
         }
     }
     
-    self.targetBtn = [[UIButton alloc] init];
-    self.targetBtn.size = CGSizeMake(150*kX, 30*kDY);
-    self.targetBtn.center = CGPointMake(CurrentDeviceWidth/2., self.height - 286*kDY);
-    [self.backScrollView addSubview:self.targetBtn];
-//    self.targetBtn.layer.borderColor = kMainColor.CGColor;
-//    self.targetBtn.layer.borderWidth = 1;
-//    self.targetBtn.layer.cornerRadius = 8*kDY;
-    self.targetBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-    [self.targetBtn setImage:[UIImage imageNamed:@"target1"] forState:UIControlStateNormal];
-    
-    [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d h",[HCHCommonManager getInstance].sleepPlan / 60] Unit:@"(目标睡眠)" WithFont:18] forState:UIControlStateNormal];
-//    [self.targetBtn setTitle:[NSString stringWithFormat:@"%d h",[HCHCommonManager getInstance].sleepPlan / 60] forState:UIControlStateNormal];
-    self.targetBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.targetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.targetBtn.titleLabel.textColor = allColorWhite;
-    [self.targetBtn addTarget:self action:@selector(targetBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.circle = [[NightCircleView alloc] init];
-    [self.backScrollView addSubview:self.circle];
-    self.circle.frame = CGRectMake(0, 0, MIN(203 * kX, 203 * kDY), MIN(203 * kX, 203 * kDY));
-    self.circle.center = CGPointMake(CurrentDeviceWidth / 2, 40 * kDY + self.circle.height/2.);
-    self.circle.backgroundColor = [UIColor clearColor];
-    
-    self.circle.minValue = 0;
-    self.circle.maxValue = kHCH.sleepPlan;
-    self.circle.startAngle = 3./2 * M_PI + M_PI/3600.;
-    self.circle.endAngle = 3./2 * M_PI;
-    self.circle.ringBackgroundColor = [UIColor whiteColor];
-    self.circle.valueTextColor = [UIColor whiteColor];
-    self.circle.ringThickness = MIN(16 * kX, 16 * kDY);
-    self.circle.delegate = self;
-    self.circle.value = 0;
-    [self.circle setNeedsDisplay];
-    
-    UIButton *detailButton = [[UIButton alloc]init];
-    [self.circle addSubview:detailButton];
-    detailButton.backgroundColor = [UIColor clearColor];//detailButton.alpha = 0.5;
-    [detailButton addTarget:self action:@selector(detailButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    CGFloat detailButtonX = 0;
-    CGFloat detailButtonY = 0;
-    CGFloat detailButtonW = MIN(203 * kX, 203 * kDY) * WidthProportion;
-    CGFloat detailButtonH = MIN(203 * kX, 203 * kDY) * HeightProportion;
-    detailButton.frame = CGRectMake(detailButtonX, detailButtonY, detailButtonW, detailButtonH);
     
 }
 

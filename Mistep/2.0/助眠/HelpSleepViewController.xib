@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -115,7 +115,7 @@
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aid_music" translatesAutoresizingMaskIntoConstraints="NO" id="Jfl-Od-HpI">
-                    <rect key="frame" x="77" y="211.5" width="221" height="219"/>
+                    <rect key="frame" x="179.5" y="212.5" width="16" height="16"/>
                 </imageView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PAu-sm-pYL">
                     <rect key="frame" x="60" y="110.5" width="255" height="40"/>
@@ -127,7 +127,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtZ-zq-rJz">
-                            <rect key="frame" x="191.5" y="3" width="34" height="34"/>
+                            <rect key="frame" x="191.5" y="9" width="16" height="22"/>
                             <state key="normal" image="结束"/>
                             <connections>
                                 <action selector="endTimingAction:" destination="-1" eventType="touchUpInside" id="qCd-mJ-lur"/>
@@ -143,10 +143,10 @@
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xian-sleep" translatesAutoresizingMaskIntoConstraints="NO" id="0VV-xA-ddX">
-                    <rect key="frame" x="35" y="155.5" width="305" height="15"/>
+                    <rect key="frame" x="35" y="155.5" width="305" height="16"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgy-TI-MJn">
-                    <rect key="frame" x="105.5" y="480.5" width="164" height="42"/>
+                    <rect key="frame" x="179.5" y="278.5" width="16" height="22"/>
                     <state key="normal" image="bofang"/>
                     <state key="selected" image="zanting"/>
                     <connections>
@@ -154,14 +154,14 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRT-o5-rYL">
-                    <rect key="frame" x="284.5" y="480" width="43" height="43"/>
+                    <rect key="frame" x="210.5" y="278.5" width="16" height="22"/>
                     <state key="normal" image="liebiao-sleep"/>
                     <connections>
                         <action selector="changeMusicAction:" destination="-1" eventType="touchUpInside" id="NgM-10-DSW"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIz-8c-wOc">
-                    <rect key="frame" x="47.5" y="480" width="43" height="43"/>
+                    <rect key="frame" x="148.5" y="278.5" width="16" height="22"/>
                     <state key="normal" image="yingyue"/>
                     <connections>
                         <action selector="localMusicAction:" destination="-1" eventType="touchUpInside" id="VcM-hG-ntJ"/>
@@ -174,13 +174,13 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="PAu-sm-pYL" secondAttribute="trailing" constant="60" id="3g3-c1-dfc"/>
                 <constraint firstItem="vgy-TI-MJn" firstAttribute="leading" secondItem="UIz-8c-wOc" secondAttribute="trailing" constant="15" id="4Bh-jC-3C3"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="0VV-xA-ddX" secondAttribute="trailing" constant="35" id="5nd-bs-f4o"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="fpl-VC-QNX" secondAttribute="bottom" id="9iL-rg-aKI"/>
                 <constraint firstItem="BJz-Up-Zrx" firstAttribute="centerX" secondItem="fpl-VC-QNX" secondAttribute="centerX" id="9mM-m5-fsH"/>
                 <constraint firstItem="Jfl-Od-HpI" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="CoU-9y-eEh"/>
                 <constraint firstItem="0VV-xA-ddX" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="35" id="FsR-9z-XLK"/>
                 <constraint firstItem="BJz-Up-Zrx" firstAttribute="centerY" secondItem="Vcl-RJ-Zbh" secondAttribute="centerY" id="Hwf-wW-fx9"/>
                 <constraint firstItem="vgy-TI-MJn" firstAttribute="centerX" secondItem="Jfl-Od-HpI" secondAttribute="centerX" id="JDM-iq-TQo"/>
                 <constraint firstItem="UIz-8c-wOc" firstAttribute="centerY" secondItem="vgy-TI-MJn" secondAttribute="centerY" id="KPS-Ty-fEx"/>
+                <constraint firstAttribute="bottom" secondItem="fpl-VC-QNX" secondAttribute="bottom" id="LY4-WY-eg6"/>
                 <constraint firstItem="PAu-sm-pYL" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="60" id="Qqq-z7-HZ2"/>
                 <constraint firstItem="0VV-xA-ddX" firstAttribute="top" secondItem="0Ec-u6-kcM" secondAttribute="bottom" constant="5" id="SAb-dJ-lqh"/>
                 <constraint firstItem="fpl-VC-QNX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YGo-tp-XEy"/>

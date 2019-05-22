@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="tableView" destination="lG8-VW-CtC" id="oed-qN-DWy"/>
                 <outlet property="titleLabel" destination="AWg-iK-fTW" id="T2m-xu-vDu"/>
+                <outlet property="topHeight" destination="Rap-Ag-E97" id="PHu-Lg-4sL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -57,7 +58,6 @@
                 <constraint firstItem="lG8-VW-CtC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CmL-7e-knP"/>
                 <constraint firstAttribute="trailing" secondItem="8hw-t0-bYH" secondAttribute="trailing" constant="12" id="QKw-qN-2ol"/>
                 <constraint firstItem="AWg-iK-fTW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="84" id="Rap-Ag-E97"/>
-                <constraint firstItem="AWg-iK-fTW" firstAttribute="top" secondItem="N5g-wd-QYL" secondAttribute="top" constant="64" id="Y6N-MM-XcH"/>
                 <constraint firstItem="8hw-t0-bYH" firstAttribute="top" secondItem="AWg-iK-fTW" secondAttribute="bottom" id="ac4-ZH-PcD"/>
                 <constraint firstAttribute="trailing" secondItem="lG8-VW-CtC" secondAttribute="trailing" id="ad9-BN-oih"/>
                 <constraint firstItem="AWg-iK-fTW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="d0v-Gt-Z9e"/>

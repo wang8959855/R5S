@@ -10,6 +10,9 @@
 
 @interface FangdiuViewController ()
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
+
+
 @end
 
 @implementation FangdiuViewController
@@ -18,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     _titleLabel.text = NSLocalizedString(@"防丢提醒", nil);
+    self.topHeight.constant = SafeAreaTopHeight;
 }
 - (void)dealloc
 {

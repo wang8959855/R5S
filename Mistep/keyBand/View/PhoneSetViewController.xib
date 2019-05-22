@@ -17,6 +17,7 @@
                 <outlet property="kPhoneAlarmLabel" destination="dca-Nw-IOU" id="2sQ-rI-zAg"/>
                 <outlet property="phoneSwitch" destination="NSb-k4-29k" id="AwB-TS-Cnh"/>
                 <outlet property="timeLabel" destination="Wb0-Tb-lzZ" id="ugk-CM-gmd"/>
+                <outlet property="topHeight" destination="6YL-70-bzU" id="nPU-AH-sUg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -117,7 +118,6 @@
                 <constraint firstItem="NSb-k4-29k" firstAttribute="centerY" secondItem="dca-Nw-IOU" secondAttribute="centerY" id="JkS-Ei-iSX"/>
                 <constraint firstItem="OFi-qP-ESp" firstAttribute="top" secondItem="dca-Nw-IOU" secondAttribute="bottom" id="YYa-EV-04n"/>
                 <constraint firstAttribute="trailing" secondItem="OFi-qP-ESp" secondAttribute="trailing" constant="12" id="Yta-hN-PJu"/>
-                <constraint firstItem="dca-Nw-IOU" firstAttribute="top" secondItem="jcF-qc-b2H" secondAttribute="top" constant="64" id="gi9-cn-ox2"/>
                 <constraint firstItem="dca-Nw-IOU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="h2Z-2e-Dha"/>
                 <constraint firstItem="OFi-qP-ESp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="hL6-q8-3FH"/>
                 <constraint firstAttribute="trailing" secondItem="BfH-lb-JfL" secondAttribute="trailing" id="i7Z-OX-mFt"/>

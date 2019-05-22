@@ -56,7 +56,7 @@
 - (void)header
 {
     CGFloat headImageViewX = 0;
-    CGFloat headImageViewY = 20;
+    CGFloat headImageViewY = StatusBarHeight;
     CGFloat headImageViewW = CurrentDeviceWidth;
     CGFloat headImageViewH = 44;
     UIImageView *headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(headImageViewX, headImageViewY, headImageViewW, headImageViewH)];
@@ -101,16 +101,16 @@
     UIView *topView = [[UIView alloc] init];
     topView.backgroundColor = [UIColor blackColor];
     [self.view  addSubview:topView];
-    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, 20);
+    topView.frame = CGRectMake(0, 0, CurrentDeviceWidth, StatusBarHeight);
 
 }
 -(void)downView
 {
     
     CGFloat backImageViewX = 0;
-    CGFloat backImageViewY = 64;
+    CGFloat backImageViewY = SafeAreaTopHeight;
     CGFloat backImageViewW = CurrentDeviceWidth;
-    CGFloat backImageViewH = CurrentDeviceHeight - 64;
+    CGFloat backImageViewH = CurrentDeviceHeight - SafeAreaTopHeight;
     UIImageView *backImageView = [[UIImageView alloc]initWithFrame:CGRectMake(backImageViewX, backImageViewY, backImageViewW, backImageViewH)];
     
     [self.view addSubview:backImageView];

@@ -11,6 +11,8 @@
 
 @interface PhoneSetViewController ()<UITableViewDelegate,UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
+
 @end
 
 @implementation PhoneSetViewController
@@ -21,6 +23,7 @@
     [self setXibLabels];
     [_phoneSwitch setOn:NO];
     self.choseTimeView.hidden = YES;
+    self.topHeight.constant = SafeAreaTopHeight;
 }
 
 - (void)setXibLabels

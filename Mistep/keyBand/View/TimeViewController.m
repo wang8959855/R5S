@@ -30,6 +30,7 @@ static NSString *reuseID = @"cell";
         _dateArray =[[NSMutableArray alloc]init];
     }
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    self.topNavHeight.constant = SafeAreaTopHeight;
 }
 
 - (void)setXibLabel

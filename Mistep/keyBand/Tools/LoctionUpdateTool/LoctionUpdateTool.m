@@ -68,7 +68,12 @@
             [self.locationManager requestLocationWithReGeocode:YES withNetworkState:NO completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
                 weakSelf.uploadNum = 0;
                 if (location.rgcData) {
-                    NSString *address = [NSString stringWithFormat:@"%@%@%@",location.rgcData.province,location.rgcData.city,location.rgcData.district];
+                    NSString *address = @"";
+                    if ([location.rgcData.province isEqualToString:location.rgcData.city]) {
+                        address = [NSString stringWithFormat:@"%@%@",location.rgcData.city,location.rgcData.district];
+                    }else{
+                        address = [NSString stringWithFormat:@"%@%@%@",location.rgcData.province,location.rgcData.city,location.rgcData.district];
+                    }
                     [weakSelf requestUploadAddress:address lng:location.location.coordinate.longitude lat:location.location.coordinate.latitude environment:location.rgcData.locationDescribe];
                 }else{
                     [weakSelf requestUploadAddress:@"" lng:location.location.coordinate.longitude lat:location.location.coordinate.latitude environment:@""];

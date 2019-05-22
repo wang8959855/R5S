@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusheight;
 
 @end
 
@@ -23,6 +24,7 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://rulong.lantianfangzhou.com/test04Adjust/healthadjust.html?userID=%@&token=%@",USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+    self.statusheight.constant = StatusBarHeight;
 }
 
 - (void)didReceiveMemoryWarning {

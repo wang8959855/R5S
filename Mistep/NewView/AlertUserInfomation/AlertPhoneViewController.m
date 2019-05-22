@@ -22,6 +22,7 @@
 
 //客服
 @property (weak, nonatomic) IBOutlet UILabel *kefuLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusHeight;
 
 
 @end
@@ -32,6 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setSubViews];
+    self.statusHeight.constant = StatusBarHeight;
 }
 
 - (void)setSubViews{

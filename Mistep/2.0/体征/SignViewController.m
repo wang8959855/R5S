@@ -89,7 +89,7 @@
 - (void)guideAction{
     GuideLinesViewController *guide = [GuideLinesViewController new];
     guide.index = 0;
-    guide.imageArr = @[@"tizheng1",@"tizheng2",@"tizheng3",@"tizheng4",@"tizheng5",@"tizheng6"];
+    guide.imageArr = @[@"tizheng1",@"tizheng2",@"tizheng3",@"tizheng4",@"tizheng5",@"tizheng6",@"tizheng7",@"tizheng8"];
     guide.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:guide animated:YES];
 }

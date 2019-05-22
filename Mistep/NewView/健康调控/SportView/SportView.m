@@ -201,24 +201,10 @@
         
     }
     
-    //    设置目标按钮
-    self.targetBtn = [[UIButton alloc] init];
-    self.targetBtn.size = CGSizeMake(150*kX, 30*kDY);
-    self.targetBtn.center = CGPointMake(CurrentDeviceWidth/2., self.backScrollView.height - 286*kDY);
-    [self.backScrollView addSubview:self.targetBtn];
-//    self.targetBtn.layer.borderColor = kMainColor.CGColor;
-//    self.targetBtn.layer.borderWidth = 1;
-//    self.targetBtn.layer.cornerRadius = 8*kDY;
-    [self.targetBtn setImage:[UIImage imageNamed:@"target1"] forState:UIControlStateNormal];
-    [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:@"10000" Unit:@"(目标步数)" WithFont:18] forState:UIControlStateNormal];
-    [self.targetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.targetBtn.titleLabel.textColor = allColorWhite;
-    [self.targetBtn addTarget:self action:@selector(targetBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    
     self.circle = [[LMGaugeView alloc] init];
     [self.backScrollView addSubview:self.circle];
     self.circle.frame = CGRectMake(0, 0, MIN(203 * kX, 203 * kDY), MIN(203 * kX, 203 * kDY));
-    self.circle.center = CGPointMake(CurrentDeviceWidth / 2, 40 * kDY + self.circle.height/2.);
+    self.circle.center = CGPointMake(CurrentDeviceWidth / 2, 20 * kDY + self.circle.height/2.);
     self.circle.backgroundColor = [UIColor clearColor];
     
     self.circle.minValue = 0;
@@ -231,6 +217,20 @@
     self.circle.value = 0;
     self.circle.valueFont  = Font_Normal_String(38);
     [self.circle setNeedsDisplay];
+    
+    //    设置目标按钮
+    self.targetBtn = [[UIButton alloc] init];
+    self.targetBtn.size = CGSizeMake(150*kX, 30*kDY);
+    self.targetBtn.center = CGPointMake(CurrentDeviceWidth/2., self.circle.bottom+40*kDY);
+    [self.backScrollView addSubview:self.targetBtn];
+    //    self.targetBtn.layer.borderColor = kMainColor.CGColor;
+    //    self.targetBtn.layer.borderWidth = 1;
+    //    self.targetBtn.layer.cornerRadius = 8*kDY;
+    [self.targetBtn setImage:[UIImage imageNamed:@"target1"] forState:UIControlStateNormal];
+    [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:@"10000" Unit:@"(目标步数)" WithFont:18] forState:UIControlStateNormal];
+    [self.targetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.targetBtn.titleLabel.textColor = allColorWhite;
+    [self.targetBtn addTarget:self action:@selector(targetBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeCustom];
     detailButton.frame = self.circle.frame;

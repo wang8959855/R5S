@@ -44,6 +44,8 @@
 #define GETATTENTIONLIST PATH_URL(@"whocarelist")
 //设置关注列表
 #define SETATTENTION PATH_URL(@"allowcare")
+//删除好友
+#define DELETEFRIEND PATH_URL(@"dltfriend")
 //心率上传
 #define HEARTRATEUPDATE PATH_URL(@"hr")
 //运动数据上传

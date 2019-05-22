@@ -341,7 +341,7 @@
     if (! self.dotView)
     {
         self.dotView = [[UIView alloc] initWithFrame:CGRectMake(self.width/2 - self.ringThickness/2., 0, self.ringThickness ,self.ringThickness)];
-        self.dotView.backgroundColor = kColor(87, 254, 214);
+        self.dotView.backgroundColor = kColor(0, 160, 233);
         self.dotView.layer.cornerRadius = self.dotView.width/2.;
 //        [self addSubview:self.dotView];
     }

@@ -77,6 +77,19 @@
     [self.navigationController pushViewController:detail animated:YES];
 }
 
+// 进入编辑模式，按下出现的编辑按钮后,进行删除操作
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除好友？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+    WeakSelf
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf deleteInfo:indexPath.row];
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -100,17 +113,46 @@
     [self.view bringSubviewToFront:self.attentionView];
 }
 
+//删除好友
+- (void)deleteInfo:(NSInteger)row{
+    NSDictionary *dic = self.dataSource[row];
+    [self.view makeToastActivity:CSToastPositionCenter];
+    [self performSelector:@selector(loginTimeOut) withObject:nil afterDelay:60.f];
+    NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",DELETEFRIEND,TOKEN];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = 20;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"application/json", @"text/html", @"text/json", nil];
+    [manager POST:uploadUrl parameters:@{@"UserID":USERID,@"friendId":dic[@"friendId"]} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self.view hideToastActivity];
+        int code = [[responseObject objectForKey:@"code"] intValue];
+        NSString *message = [responseObject objectForKey:@"message"];
+        if (code == 0) {
+            [self.dataSource removeObjectAtIndex:row];
+            [self.tableView reloadData];
+            [self addActityTextInView:self.view text:@"删除成功" deleyTime:1.5f];
+        } else {
+            [self addActityTextInView:self.view text:NSLocalizedString(message, nil)  deleyTime:1.5f];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self.view hideToastActivity];
+        [self addActityTextInView:self.view text:NSLocalizedString(@"网络连接错误", nil) deleyTime:1.5f];
+    }];
+}
+
 //获取好友列表
 - (void)getFriendList{
     [self.dataSource removeAllObjects];
-    [self addActityIndicatorInView:self.view labelText:@"正在获取好友列表" detailLabel:@"正在获取好友列表"];
+    [self.view makeToastActivity:CSToastPositionCenter];
     [self performSelector:@selector(loginTimeOut) withObject:nil afterDelay:60.f];
     NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",GETFRIENDLIST,TOKEN];
     [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:uploadUrl fileUrl:nil params:@{@"userId":USERID} Block:^(id responseObject, NSError *error) {
         
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeOut) object:nil];
         
-        [self removeActityIndicatorFromView:self.view];
+        [self.view hideToastActivity];
         if (error)
         {
             [self addActityTextInView:self.view text:NSLocalizedString(@"网络连接错误", nil) deleyTime:1.5f];
@@ -170,14 +212,14 @@
 
 //添加好友
 - (void)addFriendWithId:(NSString *)friendId{
-    [self addActityIndicatorInView:self.view labelText:@"正在添加好友" detailLabel:@"正在添加好友"];
+    [self.view makeToastActivity:CSToastPositionCenter];
     [self performSelector:@selector(loginTimeOut) withObject:nil afterDelay:60.f];
     NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",ADDFRIEND,TOKEN];
     [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:uploadUrl fileUrl:nil params:@{@"userId":USERID,@"friendId":friendId} Block:^(id responseObject, NSError *error) {
         
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeOut) object:nil];
         
-        [self removeActityIndicatorFromView:self.view];
+        [self.view hideToastActivity];
         if (error)
         {
             [self addActityTextInView:self.view text:NSLocalizedString(@"网络连接错误", nil) deleyTime:1.5f];

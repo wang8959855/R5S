@@ -477,7 +477,7 @@
     tempAppDelegate.mainTabBarController = self.tabBarCon;
     HomeView *leftView = [[HomeView alloc]init];
     //[HomeView sharedInstance];
-    leftView.frame = CGRectMake(0, 0, 250*WidthProportion, CurrentDeviceHeight);
+    leftView.frame = CGRectMake(0, -20, 250*WidthProportion, CurrentDeviceHeight);
     //    HomeTwoViewController *VC = [[HomeTwoViewController alloc] init];
     //    VC.view.frame = CGRectMake(0, 0, 250*WidthProportion, CurrentDeviceHeight);
     //    UIView *leftView = [VC view];
@@ -518,7 +518,7 @@
     AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     tempAppDelegate.mainTabBarController = tabBar;
     HomeView *leftView = [[HomeView alloc]init];
-    leftView.frame = CGRectMake(0, 0, 250*WidthProportion, CurrentDeviceHeight);
+    leftView.frame = CGRectMake(0, -20, 250*WidthProportion, CurrentDeviceHeight);
     
     //    HomeTwoViewController *VC = [[HomeTwoViewController alloc] init];
     //    VC.view.frame = CGRectMake(0, 0, 250*WidthProportion, CurrentDeviceHeight);

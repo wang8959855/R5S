@@ -14,6 +14,9 @@
 
 @interface JiuzuoViewController ()<UITableViewDataSource,UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
+
+
 @end
 
 static NSString *reuseID = @"Cell";
@@ -28,6 +31,7 @@ static NSString *reuseID = @"Cell";
     [_tableView registerNib:[UINib nibWithNibName:@"JiuzuoTableViewCell" bundle:nil] forCellReuseIdentifier:reuseID];
     
     _exitArray = [[NSMutableArray alloc]initWithObjects:@"",@"",@"",@"",nil];
+    self.topHeight.constant = SafeAreaTopHeight;
 }
 
 - (void)setXibLabels

@@ -835,7 +835,7 @@ static NSString *reuseID  = @"CELL";
     imageView.layer.shadowRadius = 4;
     
     button.sd_layout.leftSpaceToView(imageView,15)
-    .topSpaceToView (imageView,28)
+    .topSpaceToView (imageView,StatusBarHeight+8)
     .widthIs(24)
     .heightIs(24);
     [button setImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
@@ -856,7 +856,7 @@ static NSString *reuseID  = @"CELL";
     label.textColor = [UIColor blackColor];
     label.sd_layout.centerXEqualToView(imageView)
     .widthIs(label.width)
-    .topSpaceToView(imageView,31)
+    .topSpaceToView(imageView,StatusBarHeight+11)
     .heightIs(21);
     //    [self addCurrentPageScreenshot];
     //    [self settingDrawerWhenPush];

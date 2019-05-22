@@ -12,6 +12,9 @@
 
 @interface HeartHomeAlarmViewController ()<UITableViewDelegate,UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
+
+
 @end
 
 @implementation HeartHomeAlarmViewController
@@ -24,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    self.topHeight.constant = SafeAreaTopHeight;
 }
 -(void)setupView
 {

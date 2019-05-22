@@ -15,7 +15,7 @@
 #define iOS_7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 static const NSInteger tabBarWidth = 70;
 static const NSInteger tabItemHeight = 60;
-#define tabsButtonsFrame CGRectMake(0, 64, tabBarWidth, _tabsButtonsHeight)
+#define tabsButtonsFrame CGRectMake(0, SafeAreaTopHeight, tabBarWidth, _tabsButtonsHeight)
 #define actionButtonFrame CGRectMake(0, self.view.frame.size.height - _actionsButtonsHeight + iOS_7 * 20 - tabItemHeight / 2 * iOS_7 - 10 * !iOS_7, tabBarWidth, _actionsButtonsHeight)
 
 @interface SMTabBar () <UITableViewDelegate, UITableViewDataSource>

@@ -17,7 +17,7 @@
 #import <WebKit/WebKit.h>
 
 
-@interface TodaySleepViewController ()<BlutToothManagerDelegate,PZBlueToothManagerDelegate,NightCircleViewDelegate>
+@interface TodaySleepViewController ()<BlutToothManagerDelegate,PZBlueToothManagerDelegate,NightCircleViewDelegate,WKNavigationDelegate>
 
 @property (strong, nonatomic) UIScrollView *backScrollView;
 //@property (nonatomic,strong)UIView *connectView;//提示连接的view
@@ -41,6 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[UIApplication sharedApplication].keyWindow makeToastActivity:CSToastPositionCenter];
     [self setupView];
     [self.view addSubview:self.navView];
     self.haveTabBar = YES;
@@ -71,6 +72,7 @@
 }
 
 - (void)reloadWebView{
+    [[UIApplication sharedApplication].keyWindow makeToastActivity:CSToastPositionCenter];
     //测试
     NSString *root = @"http://test03.lantianfangzhou.com/report/current";
     //生产
@@ -79,6 +81,13 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s/%@/%@/0",root,USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+}
+
+#pragma mark - WKNavigationDelegate
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    if (!webView.isLoading) {
+        [[UIApplication sharedApplication].keyWindow hideToastActivity];
+    }
 }
 
 -(void)setupView
@@ -138,6 +147,7 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s/%@/%@/0",root,USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+    self.webView.navigationDelegate = self;
     [self.backScrollView addSubview:self.webView];
     
 }

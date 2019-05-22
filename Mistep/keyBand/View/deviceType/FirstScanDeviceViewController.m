@@ -42,7 +42,7 @@
 - (void)header
 {
     CGFloat headImageViewX = 0;
-    CGFloat headImageViewY = 20;
+    CGFloat headImageViewY = StatusBarHeight;
     CGFloat headImageViewW = CurrentDeviceWidth;
     CGFloat headImageViewH = 44;
     UIImageView *headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(headImageViewX, headImageViewY, headImageViewW, headImageViewH)];
@@ -78,7 +78,7 @@
 }
 -(void)downView
 {     CGFloat TableViewX = 0;
-    CGFloat TableViewY = 64;
+    CGFloat TableViewY = SafeAreaTopHeight;
     CGFloat TableViewW = CurrentDeviceWidth;
     CGFloat TableViewH = 0.76 * CurrentDeviceHeight;
     self.deviceTableView =[[UITableView alloc]initWithFrame:CGRectMake(TableViewX, TableViewY, TableViewW, TableViewH) style:UITableViewStylePlain];

@@ -11,6 +11,8 @@
 
 @interface SMSAlarmViewController ()<UITableViewDelegate,UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
+
 @end
 
 @implementation SMSAlarmViewController
@@ -36,6 +38,7 @@ static NSString * reuseID = @"cell";
         _dataArray = @[NSLocalizedString(@"电话簿短信", nil),@"电话簿短信",NSLocalizedString(@"QQ好友信息", nil),@"SZ_QQ",NSLocalizedString(@"微信好友信息", nil),@"SZ_微信",NSLocalizedString(@"Facebook信息", nil),@"SZ_facebook",NSLocalizedString(@"WhatsAPP信息", nil),@"WhatsApp",NSLocalizedString(@"Twitter信息", nil),@"twitter",NSLocalizedString(@"Skype信息", nil),@"skype"];
         _tagArray = @[@2,@10,@9,@11,@14,@13,@12];
     }
+    self.topHeight.constant = SafeAreaTopHeight;
 }
 - (void)dealloc
 {
