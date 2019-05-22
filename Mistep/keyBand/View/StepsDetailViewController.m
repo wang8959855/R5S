@@ -106,6 +106,7 @@
     self.stepsView.steps = YES;
     
     NSArray *array= @[@"walk",@"SitStill"];
+    NSArray *titleArr = @[@"步数",@"久坐"];
     UIView *centerView;
     for (int i = 0; i < 2; i ++)
     {
@@ -118,7 +119,7 @@
         
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.image = [UIImage imageNamed:array[i]];
-        imageView.frame = CGRectMake(15 * kX, 0, 20*kX, view.height);
+        imageView.frame = CGRectMake(15 * kX, 0, 20*kX, view.height-10);
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [view addSubview:imageView];
         
@@ -126,6 +127,14 @@
         lineLabel.frame = CGRectMake(imageView.right + 11, 20 * kSY, 1, (view.height - 20*kSY * 2));
         lineLabel.backgroundColor = [UIColor lightGrayColor];
         [view addSubview:lineLabel];
+        
+        UILabel *titlela = [[UILabel alloc] init];
+        titlela.text = titleArr[i];
+        titlela.textColor = kMainColor;
+        titlela.font = [UIFont boldSystemFontOfSize:13];
+        titlela.textAlignment = NSTextAlignmentCenter;
+        titlela.frame = CGRectMake(2, view.height-30, lineLabel.left, 20);
+        [view addSubview:titlela];
         
         UIImageView *timeImageView = [[UIImageView alloc] init];
         timeImageView.image = [UIImage imageNamed:@"ClockSmall"];
