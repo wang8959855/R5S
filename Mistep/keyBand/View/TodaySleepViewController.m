@@ -74,9 +74,9 @@
 - (void)reloadWebView{
     [[UIApplication sharedApplication].keyWindow makeToastActivity:CSToastPositionCenter];
     //测试
-    NSString *root = @"http://test03.lantianfangzhou.com/report/current";
+//    NSString *root = @"http://test03.lantianfangzhou.com/report/current";
     //生产
-//        NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
+        NSString *root = @"https://www02.lantianfangzhou.com/report/current";
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s/%@/%@/0",root,USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -139,9 +139,9 @@
     self.haveTabBar = YES;
     
     //测试
-    NSString *root = @"http://test03.lantianfangzhou.com/report/current";
+//    NSString *root = @"http://test03.lantianfangzhou.com/report/current";
     //生产
-//    NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
+    NSString *root = @"https://www02.lantianfangzhou.com/report/current";
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, backScrollViewW, backScrollViewH)];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s/%@/%@/0",root,USERID,TOKEN]];

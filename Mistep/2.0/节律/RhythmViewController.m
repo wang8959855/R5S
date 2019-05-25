@@ -48,13 +48,13 @@
     [LoctionUpdateTool sharedInstance];
     [self.backNavView addSubview:self.datePickBtn];
     
-    UIButton *shareBtn = [self.view viewWithTag:1002];
-    [shareBtn setImage:[UIImage imageNamed:@"share_itb"] forState:UIControlStateNormal];
+//    UIButton *shareBtn = [self.view viewWithTag:1002];
+//    [shareBtn setImage:[UIImage imageNamed:@"share_itb"] forState:UIControlStateNormal];
     
     UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:guideButton];
     guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, StatusBarHeight + 12, 20, 20);
-    [guideButton setImage:[UIImage imageNamed:@"zy-black"] forState:UIControlStateNormal];
+    [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
     [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     
 }
@@ -69,7 +69,7 @@
 
 -(void)setupView{
     [self SLEremindView];
-    [self.view addSubview:self.backNavView];
+    [self.view addSubview:self.navView];
     self.haveTabBar = YES;
     SQLdataManger *manager = [SQLdataManger getInstance];
 }
@@ -220,6 +220,7 @@
             self.SLEconnectButton.userInteractionEnabled = YES;
             self.SLEconStateView.labeltextColor = [UIColor blueColor];
         }
+        self.dirtyView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEconStateView.height,self.dirtyView.frame.size.width, self.dirtyView.frame.size.height-40);
         self.SLEconStateView.alpha = 1;
     }
     
@@ -252,6 +253,7 @@
         self.SLEconnectButton.userInteractionEnabled = YES;
         self.SLEconStateView.labeltextColor = [UIColor blueColor];
     }
+    self.dirtyView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEconStateView.height,self.dirtyView.frame.size.width, self.dirtyView.frame.size.height-40);
     
 }
 

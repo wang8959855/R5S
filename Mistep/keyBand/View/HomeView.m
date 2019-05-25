@@ -157,6 +157,7 @@ static NSString *reuseID  = @"CELL";
     //电量
     self.eleImageView = [[UIImageView alloc]init];
     [self addSubview:self.eleImageView];
+    self.eleImageView.hidden = YES;
     self.eleImageView.image = [UIImage imageNamed:@"battery"];
     self.eleImageView.frame =CGRectMake(104*WidthProportion, 160.5*HeightProportion, 20*WidthProportion, 14*HeightProportion);
     
@@ -165,17 +166,29 @@ static NSString *reuseID  = @"CELL";
         make.centerY.equalTo(self.bleLabel);
     }];
     
+    UILabel *ele = [[UILabel alloc] initWithFrame:CGRectMake(104*WidthProportion, 160.5*HeightProportion, 20*WidthProportion, 14*HeightProportion)];
+    ele.text = @"电量";
+    ele.font = [UIFont systemFontOfSize:12];
+    ele.textColor = allColorWhite;
+    ele.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:ele];
+    [ele mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.bleLabel.mas_right).with.offset(20*WidthProportion);
+        make.centerY.equalTo(self.bleLabel);
+    }];
+    
+    
     self.eleLabel = [[UILabel alloc]init];
     [self addSubview:self.eleLabel];
     self.eleLabel.font = [UIFont systemFontOfSize:12];
     self.eleLabel.tag = 50;
     self.eleLabel.textColor = allColorWhite;
     self.eleLabel.text  = NSLocalizedString(@"x", nil);
-    self.eleLabel.frame =CGRectMake(136*WidthProportion, 160*HeightProportion, 6.5*WidthProportion, 15*HeightProportion);
+    self.eleLabel.frame =CGRectMake(124*WidthProportion, 160*HeightProportion, 6.5*WidthProportion, 15*HeightProportion);
     
     [self.eleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.eleImageView.mas_right).with.offset(8*WidthProportion);
-        make.centerY.equalTo(self.eleImageView);
+        make.left.equalTo(ele.mas_right).with.offset(5*WidthProportion);
+        make.centerY.equalTo(ele);
     }];
     
     //横线

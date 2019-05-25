@@ -93,8 +93,8 @@
 //    BloodPressureModel *bloodPre = noti.object;
 //    NSAttributedString *sting = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%@/%@",bloodPre.systolicPressure,bloodPre.diastolicPressure] Unit:@"mmhg" WithFont:18];
 //    self.bloodPressureLabel.attributedText = sting;
-    BloodPressureModel *bloodPre = noti.object;
-    self.fatigueLabel.text = [NSString stringWithFormat:@"%@%%",bloodPre.SPO2];
+//    BloodPressureModel *bloodPre = noti.object;
+//    self.fatigueLabel.text = [NSString stringWithFormat:@"%@%%",bloodPre.SPO2];
 }
 
 //计算血压/心肺功能算法/呼吸率算法 每三分钟计算一次
@@ -389,6 +389,7 @@
                 _bloodPressureLabel.text = @"--/--";
                 _bloodPressureLabel.textColor = kMainColor;
                 [view addSubview:_bloodPressureLabel];
+                
             }
                 break;
             case 1:
@@ -399,6 +400,10 @@
                 _fatigueLabel.textColor = kMainColor;
                 _fatigueLabel.text = @"--%";
                 [view addSubview:_fatigueLabel];
+                
+                _spo2Image = [[UIImageView alloc] initWithFrame:CGRectMake(view.width/2+27, _fatigueLabel.centerY-8, 9, 16)];
+                _spo2Image.image = [UIImage imageNamed:@"downSpo2"];
+                [view addSubview:_spo2Image];
             }
                 break;
             case 2:
@@ -709,8 +714,14 @@
                  //成功
                  self.nowHeartRateLabel.text = responseObject[@"data"][@"rate"];
                  self.bloodPressureLabel.text = responseObject[@"data"][@"xueya"];
-                 self.fatigueLabel.text = responseObject[@"data"][@"xueyang"];
+                 self.fatigueLabel.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"xueyang"]];
                  self.averageHeartRateLabel.text = responseObject[@"data"][@"tiwen"];
+                 
+                 if ([responseObject[@"data"][@"xueyang"] floatValue] >= 95) {
+                     self.spo2Image.image = [UIImage imageNamed:@"upSpo2"];
+                 }else{
+                     self.spo2Image.image = [UIImage imageNamed:@"downSpo2"];
+                 }
                  
              }else{
                  [self makeCenterToast:message];

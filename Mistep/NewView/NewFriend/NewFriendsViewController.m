@@ -67,9 +67,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //测试
-    NSString *root = @"http://test03.lantianfangzhou.com/report/current";
+//    NSString *root = @"http://test03.lantianfangzhou.com/report/current";
     //生产
-//        NSString *root = @"https://rulong.lantianfangzhou.com/report/current";
+        NSString *root = @"https://www02.lantianfangzhou.com/report/current";
     
     NSDictionary *dic = self.dataSource[indexPath.row];
     FriendDetailViewController *detail = [FriendDetailViewController new];

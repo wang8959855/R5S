@@ -25,6 +25,9 @@ typedef void(^rateReloadViewBlock)(NSString *title);
 
 @property (strong, nonatomic) UIButton *targetBtn;
 
+//血氧箭头
+@property (nonatomic, strong) UIImageView *spo2Image;
+
 @property (nonatomic, copy) rateReloadViewBlock rateReloadViewBlock;
 
 //获取最后一个心率值
