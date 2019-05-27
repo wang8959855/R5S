@@ -57,6 +57,12 @@
     [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
     [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backHome) name:@"jieLvBackHome" object:nil];
+    
+}
+
+- (void)backHome{
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 //指引
