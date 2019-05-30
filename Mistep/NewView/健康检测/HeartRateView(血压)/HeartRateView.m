@@ -31,7 +31,7 @@
     CGFloat backScrollViewH = self.frame.size.height;
     self.backScrollView.frame = CGRectMake(0,backScrollViewY,backScrollViewW, backScrollViewH);
 //    [self pilaoQushi];
-    [self requestGETWarning];
+//    [self requestGETWarning];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame

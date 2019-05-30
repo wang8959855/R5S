@@ -565,6 +565,11 @@ static NSString *AUISaveID = @"AUISaveID";
                      [ADASaveDefaluts setObject:self.uploadInfoDic[@"SystolicPressure"] forKey:BLOODPRESSURELOW];
                      [ADASaveDefaluts setObject:self.uploadInfoDic[@"DiastolicPressure"] forKey:BLOODPRESSUREHIGH];
                      
+                     [[NSUserDefaults standardUserDefaults] setObject:self.uploadInfoDic[@"SystolicPressure"] forKey:@"setheight"];
+                     [[NSUserDefaults standardUserDefaults] setObject:self.uploadInfoDic[@"DiastolicPressure"] forKey:@"setlow"];
+                     [[NSUserDefaults standardUserDefaults] setObject:self.uploadInfoDic[@"Glu"] forKey:@"setspo2"];
+                     
+                     
                      [self addActityTextInView:self.view text:NSLocalizedString(@"修改成功", nil) deleyTime:1.5f];
                  }
                  

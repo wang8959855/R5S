@@ -70,6 +70,7 @@
     GuideLinesViewController *guide = [GuideLinesViewController new];
     guide.index = 0;
     guide.imageArr = @[@"jielv1",@"jielv2",@"jielv3"];
+    guide.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:guide animated:YES];
 }
 

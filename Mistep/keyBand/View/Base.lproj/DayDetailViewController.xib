@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -253,10 +252,10 @@
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
-                                    <exclude reference="yMZ-rR-H9c"/>
-                                    <exclude reference="RY0-YK-5er"/>
                                     <exclude reference="L1l-Eq-UJD"/>
                                     <exclude reference="SfO-jW-9tv"/>
+                                    <exclude reference="RY0-YK-5er"/>
+                                    <exclude reference="yMZ-rR-H9c"/>
                                 </mask>
                             </variation>
                         </view>
@@ -805,7 +804,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ez4-ci-xLK">
-                                    <rect key="frame" x="116.5" y="0.0" width="16.5" height="25"/>
+                                    <rect key="frame" x="116" y="0.0" width="16.5" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="8yA-ms-nn2"/>
                                     </constraints>
@@ -814,7 +813,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnB-yb-ocI">
-                                    <rect key="frame" x="136" y="4" width="15" height="21"/>
+                                    <rect key="frame" x="135.5" y="4" width="15" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="M08-nd-lWe"/>
                                     </constraints>
@@ -823,7 +822,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0P-ZR-f3K">
-                                    <rect key="frame" x="65" y="0.0" width="16.5" height="25"/>
+                                    <rect key="frame" x="64.5" y="0.0" width="16.5" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="dtO-gY-00f"/>
                                     </constraints>
@@ -905,7 +904,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="夜间心率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTe-bF-WI4">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="夜间心率曲线图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTe-bF-WI4">
                             <rect key="frame" x="8" y="8" width="52" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="SjJ-RI-iJU"/>

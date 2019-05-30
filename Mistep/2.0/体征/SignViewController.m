@@ -77,12 +77,41 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 100.0f;
     
+    UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:messageButton];
+    messageButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 32, StatusBarHeight + 4, 32, 36);
+    [messageButton setImage:[UIImage imageNamed:@"yujing"] forState:UIControlStateNormal];
+    [messageButton addTarget:self action:@selector(yujingAction) forControlEvents:UIControlEventTouchUpInside];
+    
     UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:guideButton];
-    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, StatusBarHeight + 12, 20, 20);
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 32 - 30, StatusBarHeight + 12, 20, 20);
     [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
     [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     
+}
+
+//预警
+- (void)yujingAction{
+    NSString *url = [NSString stringWithFormat:@"%@/%@",GETWARNING,TOKEN];
+    NSDictionary *para = @{@"UserID":USERID};
+    
+    [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:url fileUrl:nil params:para Block:^(id responseObject, NSError *error) {
+        int code = [responseObject[@"code"] intValue];
+        if (code == 0) {
+            NSInteger warnNum = [responseObject[@"data"][@"warnNum"] integerValue];
+            if (warnNum > 0) {
+                H5ViewController *h5 = [H5ViewController new];
+                h5.titleStr = @"预警记录";
+                h5.url = [NSString stringWithFormat:@"https://www02.lantianfangzhou.com/report/heartrate/b7s/%@/%@/0?page=curent",USERID,TOKEN];
+                h5.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:h5 animated:YES];
+            }else{
+                [self.view makeToast:@"暂无预警记录" duration:1.5 position:CSToastPositionCenter];
+            }
+        }else{
+        }
+    }];
 }
 
 //指引
@@ -135,22 +164,15 @@
             [self uoloadDeviceModel:[CositeaBlueTooth sharedInstance].deviceName];
             
             //查看是否开启通知
-            [[CositeaBlueTooth sharedInstance] checkSystemAlarmWithType:9 StateBlock:^(int index, int state) {
-                switch (index)
-                {
-                        break;
-                    case SystemAlarmType_QQ: {
-                        [weakSelf.view makeToast:@"QQ消息提醒已打开" duration:1.5 position:CSToastPositionBottom];
-                    }
+            [[CositeaBlueTooth sharedInstance] checkSystemAlarmWithType:SystemAlarmType_QQ StateBlock:^(int index, int state) {
+                if (state) {
+                    [weakSelf.view makeToast:@"QQ消息提醒已打开" duration:1.5 position:CSToastPositionBottom];
                 }
             }];
             
-            [[CositeaBlueTooth sharedInstance] checkSystemAlarmWithType:11 StateBlock:^(int index, int state) {
-                switch (index)
-                {
-                    case SystemAlarmType_WeChat: {
-                        [weakSelf.view makeToast:@"微信消息提醒已打开" duration:1.5 position:CSToastPositionBottom];
-                    }
+            [[CositeaBlueTooth sharedInstance] checkSystemAlarmWithType:SystemAlarmType_WeChat StateBlock:^(int index, int state) {
+                if (state) {
+                    [weakSelf.view makeToast:@"微信消息提醒已打开" duration:1.5 position:CSToastPositionBottom];
                 }
             }];
             

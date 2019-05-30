@@ -48,12 +48,6 @@
     [self SLErefreshAlertView];
     self.tabBarController.tabBar.hidden = NO;
     [self.datePickBtn setTitle:@"睡眠" forState:UIControlStateNormal];
-
-    UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.view addSubview:guideButton];
-    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, StatusBarHeight + 12, 20, 20);
-    [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
-    [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -70,6 +64,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupView];
+    UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:guideButton];
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 30, StatusBarHeight + 12, 20, 20);
+    [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
+    [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)setupView{

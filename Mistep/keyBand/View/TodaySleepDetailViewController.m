@@ -697,7 +697,7 @@
     
     UILabel *nightHeartLab = [[UILabel alloc]initWithFrame:CGRectMake(nightHeartLabX, nightHeartLabY, nightHeartLabW, nightHeartLabH)];
     [downView addSubview:nightHeartLab];
-    nightHeartLab.attributedText = [NSAttributedString  makeAttributedStringWithnumBer:NSLocalizedString(@"夜间心率", nil) Unit:@"/bpm" WithFont:18];
+    nightHeartLab.attributedText = [NSAttributedString  makeAttributedStringWithnumBer:NSLocalizedString(@"夜间心率曲线图", nil) Unit:@"/bpm" WithFont:18];
     
     CGFloat maxHeartLabX = 250 * WidthProportion;
     CGFloat maxHeartLabY = 30 * HeightProportion;

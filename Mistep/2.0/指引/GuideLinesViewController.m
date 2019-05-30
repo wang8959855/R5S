@@ -34,12 +34,25 @@
 }
 
 - (void)setSubViews{
+    
+    NSString *imageStr = self.imageArr[self.index];
+    if (IPHONE_X) {
+        imageStr = [NSString stringWithFormat:@"%@-1242x2688",self.imageArr[self.index]];
+    }
+    
+    CGFloat nextY = ScreenHeight-120;
+    CGFloat stopY = ScreenHeight-60;
+    if ([imageStr containsString:@"sousuo2"] || [imageStr containsString:@"shebei2"] || [imageStr containsString:@"shebei3"]) {
+        nextY = SafeAreaTopHeight+20;
+        stopY = nextY+60;
+    }
+    
     UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, StatusBarHeight)];
     topView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:topView];
     
     UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, StatusBarHeight, ScreenWidth, ScreenHeight-StatusBarHeight)];
-    imageV.image = [UIImage imageNamed:self.imageArr[self.index]];
+    imageV.image = [UIImage imageNamed:imageStr];
     [self.view addSubview:imageV];
     
     UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -48,14 +61,14 @@
     nextBtn.layer.masksToBounds = YES;
     nextBtn.layer.cornerRadius = 10;
     nextBtn.layer.borderWidth = 2;
-    nextBtn.frame = CGRectMake(ScreenWidth/2-50, ScreenHeight-120, 100, 40);
+    nextBtn.frame = CGRectMake(ScreenWidth/2-50, nextY, 100, 40);
     [nextBtn addTarget:self action:@selector(nextController) forControlEvents:UIControlEventTouchUpInside];
     nextBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     [self.view addSubview:nextBtn];
     
     UIButton *stopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [stopBtn setTitle:@"结束引导" forState:UIControlStateNormal];
-    stopBtn.frame = CGRectMake(ScreenWidth/2-50, ScreenHeight-60, 100, 40);
+    stopBtn.frame = CGRectMake(ScreenWidth/2-50, stopY, 100, 40);
     stopBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     [stopBtn addTarget:self action:@selector(endGuide) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:stopBtn];

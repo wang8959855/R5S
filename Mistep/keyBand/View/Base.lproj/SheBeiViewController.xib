@@ -100,14 +100,14 @@
                         <constraint firstAttribute="width" constant="19" id="WvR-tF-RRs"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="找手环" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zt-KX-eHy">
-                    <rect key="frame" x="54" y="323.5" width="49" height="13"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="找设备" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zt-KX-eHy">
+                    <rect key="frame" x="54" y="317" width="49" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="让手环震动，方便查找" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3A-sC-Yln">
-                    <rect key="frame" x="54" y="336.5" width="143" height="12.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="让设备震动，方便查找" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3A-sC-Yln">
+                    <rect key="frame" x="54" y="333" width="143" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -279,7 +279,7 @@
                 <constraint firstAttribute="bottom" secondItem="gyJ-nE-UWk" secondAttribute="bottom" constant="25" id="V1d-gR-uUu"/>
                 <constraint firstItem="eld-DM-b2i" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="VPt-uI-e7e"/>
                 <constraint firstItem="Ps9-Ac-6Sa" firstAttribute="leading" secondItem="udV-AM-g5m" secondAttribute="leading" id="WSH-Tv-xpr"/>
-                <constraint firstItem="6Zt-KX-eHy" firstAttribute="centerY" secondItem="AgS-8C-kdq" secondAttribute="centerY" id="WcB-az-qIS"/>
+                <constraint firstItem="6Zt-KX-eHy" firstAttribute="centerY" secondItem="AgS-8C-kdq" secondAttribute="centerY" constant="-5" id="WcB-az-qIS"/>
                 <constraint firstItem="p3A-sC-Yln" firstAttribute="top" secondItem="6Zt-KX-eHy" secondAttribute="bottom" id="WwQ-Fj-R94"/>
                 <constraint firstAttribute="trailing" secondItem="4cE-jo-vIt" secondAttribute="trailing" id="YD8-iZ-kkL"/>
                 <constraint firstItem="Wz1-ah-bWV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZJa-WO-FAw"/>

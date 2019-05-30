@@ -94,7 +94,12 @@ static NSString *conectReuse = @"connectedCell";
         //        _stateLabel.text = [ADASaveDefaluts objectForKey:kLastDeviceNAME];
         [_searchBtn setTitle:NSLocalizedString(@"解绑设备",nil) forState:UIControlStateNormal];
         
-        _stateImageView.image = [UIImage imageNamed:@"设备已连接"];
+        if ([CositeaBlueTooth sharedInstance].isConnected) {
+            _stateImageView.image = [UIImage imageNamed:@"设备已连接"];
+        }else{
+            _stateImageView.image = [UIImage imageNamed:@"设备未连接"];
+        }
+        
         _deviceName.text = [ADASaveDefaluts objectForKey:kLastDeviceNAME];
         
     }
@@ -250,8 +255,8 @@ static NSString *conectReuse = @"connectedCell";
 {
     
     [self setButtonWithButton:_searchBtn andTitle:kLOCAL(@"搜索设备")];
-    _zhaoshouhuanLabel.text = NSLocalizedString(@"找云环", nil);
-    _zhaoshouhuanDetailLabel.text = NSLocalizedString(@"", nil);
+//    _zhaoshouhuanLabel.text = NSLocalizedString(@"找云环", nil);
+//    _zhaoshouhuanDetailLabel.text = NSLocalizedString(@"", nil);
     _resetLabel.text = NSLocalizedString(@"emptyDeviceData", nil);
     
     _resetDetailLabel.text = NSLocalizedString(@"", nil);
@@ -288,12 +293,12 @@ static NSString *conectReuse = @"connectedCell";
     if ([CositeaBlueTooth sharedInstance].isConnected)
     {
         [[CositeaBlueTooth sharedInstance] openFindBindWithBlock:nil];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"注意", nil) message:NSLocalizedString(@"云环正在振动，点击停止可关闭振动", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"停止",nil) otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"注意", nil) message:NSLocalizedString(@"设备正在振动，点击停止可关闭振动", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"停止",nil) otherButtonTitles:nil, nil];
         alert.tag = 103;
         [alert show];
     }else
     {
-        [self addActityTextInView:self.view text:NSLocalizedString(@"云环未连接", nil) deleyTime:2.];
+        [self addActityTextInView:self.view text:NSLocalizedString(@"设备未连接", nil) deleyTime:2.];
     }
 }
 
@@ -315,7 +320,7 @@ static NSString *conectReuse = @"connectedCell";
     }
     else
     {
-        [self addActityTextInView:self.view text:NSLocalizedString(@"云环未连接", nil) deleyTime:2.];
+        [self addActityTextInView:self.view text:NSLocalizedString(@"设备未连接", nil) deleyTime:2.];
     }
 }
 

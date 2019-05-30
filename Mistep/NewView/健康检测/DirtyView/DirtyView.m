@@ -356,7 +356,7 @@
     self.backScrollView.frame = CGRectMake(0,backScrollViewY,backScrollViewW, backScrollViewH);
     [self addSubview:self.backScrollView];
     
-    self.backScrollView.contentSize = CGSizeMake(self.backScrollView.width, self.backScrollView.height+0.5);
+    self.backScrollView.contentSize = CGSizeMake(self.backScrollView.width, self.backScrollView.height+20);
     self.backScrollView.showsVerticalScrollIndicator = NO;
     self.backScrollView.backgroundColor  = [UIColor clearColor];
     

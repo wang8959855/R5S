@@ -67,7 +67,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutlogo" translatesAutoresizingMaskIntoConstraints="NO" id="P11-TQ-5oS">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon180" translatesAutoresizingMaskIntoConstraints="NO" id="P11-TQ-5oS">
                     <rect key="frame" x="21" y="112" width="105.5" height="105.5"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="P11-TQ-5oS" secondAttribute="height" multiplier="1:1" id="Mze-Xm-Tzh"/>
@@ -82,7 +82,7 @@
                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实时智能健康心率监护云环APP。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctP-ss-i5X">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实时智能健康监护云环APP。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctP-ss-i5X">
                     <rect key="frame" x="148.5" y="148" width="196.5" height="36"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="bab-Q2-SrP"/>
@@ -329,7 +329,7 @@
         </view>
     </objects>
     <resources>
-        <image name="aboutlogo" width="95" height="95"/>
+        <image name="Icon180" width="60" height="60"/>
         <image name="left.png" width="10" height="14.5"/>
     </resources>
 </document>
