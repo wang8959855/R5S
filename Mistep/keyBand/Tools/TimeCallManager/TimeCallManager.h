@@ -65,4 +65,8 @@
 - (NSTimeInterval)getNowSecond;
 //获取当前分钟的秒数
 - (NSTimeInterval)getNowMinute;
+
+/** 获取当前时区的时间 */
+- (NSString *)getCurrentAreaTime;
+
 @end

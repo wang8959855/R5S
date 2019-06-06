@@ -289,4 +289,13 @@ static TimeCallManager * instance=nil;
     return timeOne;
 }
 
+- (NSString *)getCurrentAreaTime{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *forMatter = [[NSDateFormatter alloc] init];
+    //设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    [forMatter setDateFormat:@"yyyy-MM-dd+HH:mm:ss"];
+    NSString *dateStr = [forMatter stringFromDate:date];
+    return dateStr;
+}
+
 @end

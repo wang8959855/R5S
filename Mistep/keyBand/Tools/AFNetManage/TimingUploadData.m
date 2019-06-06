@@ -91,7 +91,7 @@
     
     [[CositeaBlueTooth sharedInstance] getECGData:^(NSString *ecg, NSString *SPO2, NSString *AF,NSString *rate) {
         NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",UPLOADECG,TOKEN];
-        [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userid":USERID,@"ecg":ecg,@"rate":rate,@"fangchan":AF,@"xueyang":SPO2} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
+        [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userid":USERID,@"ecg":ecg,@"rate":rate,@"fangchan":AF,@"xueyang":SPO2,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
          {
              
              //                 adaLog(@"  - - - - -开始登录返回");
@@ -533,7 +533,7 @@
             NSString *step = dict[@"TotalSteps_DayData"];
             NSString *distance = [NSString stringWithFormat:@"%f",[dict[@"TotalMeters_DayData"] doubleValue]/1000.0];
             
-            __block  NSDictionary *paramSport = @{@"date":timeStr,@"userId":USERID,@"Step":step,@"Cal":cal,@"Distance":distance,@"Step_List":stepString,@"Cal_List":costsString};
+            __block  NSDictionary *paramSport = @{@"date":timeStr,@"userId":USERID,@"Step":step,@"Cal":cal,@"Distance":distance,@"Step_List":stepString,@"Cal_List":costsString,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]};
             //adaLog(@"paramStep - %@",paramStep);
             //adaLog(@"paramCosts - %@",paramCosts);
             //adaLog(@"paramPilao - %@",paramPilao);

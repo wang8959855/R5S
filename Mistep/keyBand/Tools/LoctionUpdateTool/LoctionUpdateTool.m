@@ -86,7 +86,7 @@
 //定时上传定位
 - (void)requestUploadAddress:(NSString *)address lng:(float)lng lat:(float)lat environment:(NSString *)environment{
     NSString *url = [NSString stringWithFormat:@"%@/%@",UPLOADLOCATION,TOKEN];
-    NSDictionary *para = @{@"UserID":USERID,@"address":address,@"lng":@(lng),@"lat":@(lat),@"environment":environment};
+    NSDictionary *para = @{@"UserID":USERID,@"address":address,@"lng":@(lng),@"lat":@(lat),@"environment":environment,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]};
     [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:url ParametersDictionary:para Block:^(id responseObject, NSError *error, NSURLSessionDataTask *task) {
         int code = [responseObject[@"code"] intValue];
         if (code == 0) {

@@ -94,7 +94,7 @@
 //预警
 - (void)yujingAction{
     NSString *url = [NSString stringWithFormat:@"%@/%@",GETWARNING,TOKEN];
-    NSDictionary *para = @{@"UserID":USERID};
+    NSDictionary *para = @{@"UserID":USERID,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]};
     
     [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:url fileUrl:nil params:para Block:^(id responseObject, NSError *error) {
         int code = [responseObject[@"code"] intValue];

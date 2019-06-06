@@ -648,7 +648,7 @@
 
 - (void)getHomeData{
     NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",GETHOMEDATA,TOKEN];
-    [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userId":USERID} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
+    [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userId":USERID,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
      {
          
          //                 adaLog(@"  - - - - -开始登录返回");

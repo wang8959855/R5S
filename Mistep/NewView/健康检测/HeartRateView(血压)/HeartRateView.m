@@ -658,7 +658,7 @@
 
 - (void)requestGETWarning{
     NSString *url = [NSString stringWithFormat:@"%@/%@",GETWARNING,TOKEN];
-    NSDictionary *para = @{@"UserID":USERID};
+    NSDictionary *para = @{@"UserID":USERID,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]};
     [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:url ParametersDictionary:para Block:^(id responseObject, NSError *error, NSURLSessionDataTask *task) {
         int code = [responseObject[@"code"] intValue];
         if (code == 0) {
@@ -695,7 +695,7 @@
 
 - (void)getHomeData{
     NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",GETHOMEDATA,TOKEN];
-    [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userId":USERID} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
+    [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userId":USERID,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
      {
          
          //                 adaLog(@"  - - - - -开始登录返回");

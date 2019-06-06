@@ -1069,7 +1069,7 @@
 //点击sos
 - (void)requestSOSAddress:(NSString *)address lng:(float)lng lat:(float)lat environment:(NSString *)environment{
     NSString *url = [NSString stringWithFormat:@"%@/%@",CLICKSOS,TOKEN];
-    NSDictionary *para = @{@"UserID":USERID,@"address":address,@"lng":@(lng),@"lat":@(lat),@"environment":environment};
+    NSDictionary *para = @{@"UserID":USERID,@"address":address,@"lng":@(lng),@"lat":@(lat),@"environment":environment,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]};
     [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:url ParametersDictionary:para Block:^(id responseObject, NSError *error, NSURLSessionDataTask *task) {
         [self removeActityIndicatorFromView:self.view];
         int code = [responseObject[@"code"] intValue];
