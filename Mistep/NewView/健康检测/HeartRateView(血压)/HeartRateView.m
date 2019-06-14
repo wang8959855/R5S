@@ -197,13 +197,13 @@
     //CGFloat backScrollViewX = 0;
     CGFloat backScrollViewY = 0;
     CGFloat backScrollViewW = CurrentDeviceWidth;
-    CGFloat backScrollViewH = self.frame.size.height;
+    CGFloat backScrollViewH = ScreenHeight-SafeAreaTopHeight-SafeAreaBottomHeight;
     
     self.backScrollView = [[UIScrollView alloc] init];
     self.backScrollView.frame = CGRectMake(0,backScrollViewY,backScrollViewW, backScrollViewH);
     [self addSubview:self.backScrollView];
     
-    self.backScrollView.contentSize = CGSizeMake(self.backScrollView.width, self.backScrollView.height+0.5);
+    self.backScrollView.contentSize = CGSizeMake(self.backScrollView.width, ScreenHeight-SafeAreaTopHeight-SafeAreaBottomHeight+20);
     self.backScrollView.showsVerticalScrollIndicator = NO;
     self.backScrollView.backgroundColor  = [UIColor clearColor];
     

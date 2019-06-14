@@ -82,6 +82,7 @@
 		188E74A320ADCA8100921A5D /* MineEWMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188E74A120ADCA8100921A5D /* MineEWMViewController.xib */; };
 		1893F72222407A6800D7C775 /* StartUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893F72022407A6800D7C775 /* StartUpViewController.m */; };
 		1893F72322407A6800D7C775 /* StartUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1893F72122407A6800D7C775 /* StartUpViewController.xib */; };
+		18957FD722B0A07700B575C0 /* 无声.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 18957FD622B0A07700B575C0 /* 无声.m4a */; };
 		18A671E220D935AB00DF3C1A /* LoctionUpdateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A671E120D935AB00DF3C1A /* LoctionUpdateTool.m */; };
 		18AFD82B20DB3C46008E4AE5 /* HeartRateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AFD82A20DB3C46008E4AE5 /* HeartRateDetailViewController.m */; };
 		18AFD82E20DB3CF3008E4AE5 /* DirtyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AFD82D20DB3CF3008E4AE5 /* DirtyDetailViewController.m */; };
@@ -1354,6 +1355,7 @@
 		1893F71F22407A6800D7C775 /* StartUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartUpViewController.h; sourceTree = "<group>"; };
 		1893F72022407A6800D7C775 /* StartUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartUpViewController.m; sourceTree = "<group>"; };
 		1893F72122407A6800D7C775 /* StartUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartUpViewController.xib; sourceTree = "<group>"; };
+		18957FD622B0A07700B575C0 /* 无声.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "无声.m4a"; sourceTree = "<group>"; };
 		18A31DD620A9CA8200CF2FFF /* API.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = API.pch; sourceTree = "<group>"; };
 		18A671E020D935AB00DF3C1A /* LoctionUpdateTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoctionUpdateTool.h; sourceTree = "<group>"; };
 		18A671E120D935AB00DF3C1A /* LoctionUpdateTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoctionUpdateTool.m; sourceTree = "<group>"; };
@@ -5740,6 +5742,7 @@
 		72C068681BE32F630033F441 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18957FD622B0A07700B575C0 /* 无声.m4a */,
 				72A873EE1C4650E80029F460 /* 22.m4a */,
 				72C068691BE32F630033F441 /* main.m */,
 				72C06B2C1BE343600033F441 /* MistepHeader.pch */,
@@ -7024,6 +7027,7 @@
 				729EB4701E78D21F0005EE86 /* SitStill@2x.png in Resources */,
 				728CBA6C1C33D72A00AC8AFA /* TodayViewController.xib in Resources */,
 				721BB92C1DBE1AC500272BB1 /* SportModelTableViewCell.xib in Resources */,
+				18957FD722B0A07700B575C0 /* 无声.m4a in Resources */,
 				72C686F51EB1D40D009AACFC /* deviceType.png in Resources */,
 				729EB4EB1E78DD5A0005EE86 /* BlueBase_sleep.png in Resources */,
 				7288D2A71E792BB30057ACB2 /* customize_sport@3x.png in Resources */,
