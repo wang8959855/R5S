@@ -28,6 +28,7 @@
                 <outlet property="stateLabel" destination="V9B-HV-DEe" id="kVh-oV-tKb"/>
                 <outlet property="titleLabel" destination="sJv-Gj-BS5" id="fDC-hC-sN2"/>
                 <outlet property="topHeight" destination="TWz-rJ-2Tz" id="mmG-FX-AHN"/>
+                <outlet property="topHeight1" destination="FgH-ob-PUN" id="ylE-ze-YhE"/>
                 <outlet property="topNavView" destination="4cE-jo-vIt" id="W2Z-It-Af2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="zhaoshouhuanDetailLabel" destination="p3A-sC-Yln" id="QBN-Ud-Y3a"/>
@@ -339,7 +340,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nNa-uz-Rdi">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="2LM-2K-oYR"/>
                         <constraint firstAttribute="height" constant="64" id="FgH-ob-PUN"/>
                     </constraints>
                 </imageView>

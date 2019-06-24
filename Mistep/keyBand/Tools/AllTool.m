@@ -155,7 +155,7 @@
 }
 
 //手表的过滤
-+(NSMutableArray *)checkWatch:(NSArray *)deviceArray
++ (NSMutableArray *)checkWatch:(NSArray *)deviceArray
 {
     NSMutableArray *tempArray = [NSMutableArray array];
     
@@ -169,11 +169,11 @@
 }
 
 //手环的过滤
-+(NSMutableArray *)checkBracelet:(NSArray *)deviceArray
++ (NSMutableArray *)checkBracelet:(NSArray *)deviceArray
 {
     NSMutableArray *tempArray = [NSMutableArray array];
     
-    for ( PerModel *model in deviceArray)
+    for (PerModel *model in deviceArray)
     {
         if (model.type != 8) {
             [tempArray addObject:model];

@@ -44,6 +44,7 @@
     {
         self.blueToothManager.delegate = self;
         self.blueToothScan.delegate = self;
+        [self.blueToothManager  weatherRefresh];
     }
     return self;
 }

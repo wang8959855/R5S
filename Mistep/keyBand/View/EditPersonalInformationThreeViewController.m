@@ -146,7 +146,7 @@
     int maxHeart,maxHeartTwo;
     maxHeart = 220 - [[HCHCommonManager getInstance]getAge];
     maxHeartTwo = maxHeart * 80 /100;
-    [[CositeaBlueTooth sharedInstance] setHeartRateAlarmWithState:YES MaxHeartRate:maxHeartTwo MinHeartRate:60];
+    [[CositeaBlueTooth sharedInstance] setHeartRateAlarmWithState:YES MaxHeartRate:maxHeartTwo MinHeartRate:40];
 }
 
 @end

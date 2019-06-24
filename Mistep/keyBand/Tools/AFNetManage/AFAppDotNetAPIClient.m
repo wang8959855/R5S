@@ -57,6 +57,10 @@ static NSString * const testAFAppDotNetAPIBaseURLString = @"http://bracelet.cosi
 
 - (void)checkWeatherWithCityName:(NSString *)cityName;
 {
+    self.city = cityName;
+    if ([cityName compare:@"市"]) {
+        cityName = [cityName stringByReplacingOccurrencesOfString:@"市" withString:@""];
+    }
     NSString *numberID = [CityNumber querycityNumber:cityName];
     //adaLog(@"numberID  -- - -  -- -  %@",numberID);
     if(!numberID){   return; }
@@ -566,7 +570,7 @@ static NSString * const testAFAppDotNetAPIBaseURLString = @"http://bracelet.cosi
             
             NSString *date = todayDic[@"date"];
             NSString *shi = realtimeDictionary[@"time"];
-            NSString *city = aqiDictionary[@"city"];
+            NSString *city = self.city;
             NSString *weather = realtimeDictionary[@"weather"];
             
             NSString *tempMax = todayDic[@"tempMax"];

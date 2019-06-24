@@ -40,6 +40,8 @@ typedef enum {
 
 //@property (nonatomic,weak) id<AFAppDotNetAPIClientDelegate> delegate;
 
+@property (nonatomic, copy) NSString *city;
+
 + (instancetype)sharedClient;
 
 /*

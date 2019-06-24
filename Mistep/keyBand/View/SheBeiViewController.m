@@ -17,6 +17,8 @@
 @property (nonatomic,assign) BOOL isChange;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight1;
+
 
 
 @end
@@ -49,6 +51,7 @@ static NSString *conectReuse = @"connectedCell";
     [self setupView];
     //    [self setupConstraint];
     self.topHeight.constant = SafeAreaTopHeight;
+    self.topHeight1.constant = SafeAreaTopHeight;
     
     UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:guideButton];
@@ -712,7 +715,7 @@ static NSString *conectReuse = @"connectedCell";
         int maxHeart,maxHeartTwo;
         maxHeart = 220 - [[HCHCommonManager getInstance]getAge];
         maxHeartTwo = maxHeart * 80 /100;
-        [[CositeaBlueTooth sharedInstance] setHeartRateAlarmWithState:YES MaxHeartRate:maxHeartTwo MinHeartRate:60];
+        [[CositeaBlueTooth sharedInstance] setHeartRateAlarmWithState:YES MaxHeartRate:maxHeartTwo MinHeartRate:40];
         
         //默认关闭微信、QQ消息
         [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:10 State:NO];

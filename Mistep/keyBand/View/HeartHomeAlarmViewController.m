@@ -320,8 +320,7 @@
     
 }
 
-- (void)chekHeartRateAlarm
-{
+- (void)chekHeartRateAlarm {
     WeakSelf;
     [[PZBlueToothManager sharedInstance] checkHeartRateAlarmWithHeartRateAlarmBlock:^(int state, int max, int min) {
         [weakSelf.heartAlarmSwitch setOn:state animated:YES];

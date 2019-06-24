@@ -60,27 +60,33 @@ static PZCityTool *instance;
     CLLocation *currentLocation = [locations lastObject];
     NSString *locationString = [NSString stringWithFormat:@"%.6f,%.6f",currentLocation.coordinate.longitude,currentLocation.coordinate.latitude];
     [manager stopUpdatingLocation];
-
+    
     [ADASaveDefaluts setObject:locationString forKey:[NSString stringWithFormat:@"%@location",kHCH.UserAcount]];
     BOOL sendWeather = [BleTool sendWeatherFilter];
     if (sendWeather)
     {
-        
+
         BOOL ischina = [[ZCChinaLocation shared] isInsideChina:currentLocation.coordinate];
 //        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
         if(ischina)
         {
-            kHCH.weatherLocation = 2;
-            [[AFAppDotNetAPIClient sharedClient] checkWeatherWithCityNameThree:currentLocation];
+            kHCH.weatherLocation = 1;
+//            [[AFAppDotNetAPIClient sharedClient]
+//             checkWeatherWithCityNameThree:currentLocation];
+            CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+            [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+                CLPlacemark * placemark = placemarks[0];
+                [[AFAppDotNetAPIClient sharedClient] checkWeatherWithCityName:placemark.locality];
+            }];
 
         }
         else
         {
             kHCH.weatherLocation = 2;
             [[AFAppDotNetAPIClient sharedClient] checkWeatherWithCityNameThree:currentLocation];
-            
+
         }
-        
+
     }
     
 }
