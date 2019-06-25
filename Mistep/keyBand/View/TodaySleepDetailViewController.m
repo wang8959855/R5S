@@ -692,7 +692,7 @@
     
     CGFloat nightHeartLabX = 10 * WidthProportion;
     CGFloat nightHeartLabY = 10 * HeightProportion;
-    CGFloat nightHeartLabW = 150 * WidthProportion;
+    CGFloat nightHeartLabW = 200 * WidthProportion;
     CGFloat nightHeartLabH = 30 * HeightProportion;
     
     UILabel *nightHeartLab = [[UILabel alloc]initWithFrame:CGRectMake(nightHeartLabX, nightHeartLabY, nightHeartLabW, nightHeartLabH)];

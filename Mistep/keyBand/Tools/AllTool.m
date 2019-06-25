@@ -2088,9 +2088,7 @@
  *      通过过滤，把有效的睡眠中的清醒转成浅睡。开始睡眠后 30分钟，就算开始。超过30分钟的清醒才是清醒，否则清醒转浅睡
  *
  **/
-+ (NSMutableArray *)filterSleepToValid:(NSArray *)sleepArr
-{
-    
++ (NSMutableArray *)filterSleepToValid:(NSArray *)sleepArr {
     
     NSString *sleepStr = [sleepArr componentsJoinedByString:@""];
     
@@ -2101,8 +2099,9 @@
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"202" withString:@"212"];
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"212" withString:@"211"];
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"33222" withString:@"33112"];
-    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"222" withString:@"221"];
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"2222" withString:@"2221"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"222" withString:@"221"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"121" withString:@"111"];
     
     NSMutableArray * resultArr = [NSMutableArray array];
     
@@ -2110,15 +2109,9 @@
         [resultArr addObject:[sleepStr substringWithRange:NSMakeRange(i, 1)]];
     }
     
-    return resultArr;
     
-    if(sleepArr.count<=0)
-    { return (NSMutableArray *)sleepArr;}
     int filter = 0;//根据这个值判断是否开始过滤
     int filtAwakeep = 0;//根据这个值判断是否转化清醒
-    
-//    NSMutableArray * resultArr = [NSMutableArray arrayWithArray:sleepArr];
-    
     int lightSleep = 0;
     int awakeSleep = 0;
     int deepSleep = 0;
@@ -2126,9 +2119,9 @@
     int nightBeginTime = 0;
     int nightEndTime = 0;
     int sixFiler = 0;//总过滤器。要求六点前过滤
-    for (int i = 0 ; i < sleepArr.count; i ++)
+    for (int i = 0 ; i < resultArr.count; i ++)
     {
-        int sleepState = [sleepArr[i] intValue];
+        int sleepState = [resultArr[i] intValue];
         if (sleepState != 0 && sleepState != 3)
         {
             if (isBegin == NO)
@@ -2143,15 +2136,14 @@
     {
         for (int i = nightBeginTime ; i <= nightEndTime; i ++)
         {
-            int state = [sleepArr[i] intValue];
-            if (state == 2 )    {
+            int state = [resultArr[i] intValue];
+            if (state == 2)    {
                 if(filtAwakeep>0&&filtAwakeep<4&&filter>3&&sixFiler<49)
                 {
                     awakeSleep -= filtAwakeep;
                     lightSleep += filtAwakeep;
                     for (int te = 1; te <= filtAwakeep; te++) {
                         int atIndex = i -te;
-//                        [resultArr replaceObjectAtIndex:atIndex withObject:@1];//把清醒换成浅睡
                     }
                     filtAwakeep = 0;
                 }else
@@ -2164,7 +2156,9 @@
                         filtAwakeep = 0;
                     }
                 }
-                ++deepSleep; }      //深睡
+                ++deepSleep;
+                
+            }      //深睡
             else if (state == 1){
                 if(filtAwakeep>0&&filtAwakeep<4&&filter>3&&sixFiler<49)
                 {
@@ -2195,9 +2189,102 @@
             ++sixFiler;
         }
     }
-    else{ return (NSMutableArray *)sleepArr;}
+    BOOL hear = [AllTool drawNightHeartViewWithBeginTime:nightBeginTime EndTime:nightEndTime];
+    if (!hear) {
+        return [NSMutableArray array];
+    }
     
     return resultArr;
+}
+
+//睡眠心率
++ (BOOL)drawNightHeartViewWithBeginTime:(int)beginTime EndTime:(int)endTime
+{
+    if (beginTime == endTime)
+    {
+        return NO;
+    }
+    beginTime = beginTime*10;
+    endTime = endTime *10;
+    NSDictionary *heartDic = [[CoreDataManage shareInstance] querHeartDataWithTimeSeconds:kHCH.selectTimeSeconds - KONEDAYSECONDS + 8 ];
+    
+    NSArray *array =  [NSKeyedUnarchiver unarchiveObjectWithData:heartDic[HeartRate_ActualData_HCH]];
+    //只是去后面两个小时
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
+    NSRange range = NSMakeRange(0, mutableArray.count/3);
+    [mutableArray removeObjectsInRange:range];
+    
+    NSMutableArray *tempArray = [NSMutableArray new];
+    if (array && array.count != 0)
+    {
+        [tempArray addObjectsFromArray:mutableArray];
+    }
+    else
+    {
+        for (int i = 0 ; i < 120; i ++) //晚上九点到十二点
+        {
+            [tempArray addObject:[NSNumber numberWithInt:0]];
+        }
+    }
+    for (int i = 1 ; i < 5; i ++)
+    {
+        if( i == 4 )
+        {   //只是取前十个小时
+            NSDictionary *nightHeartDic = [[CoreDataManage shareInstance] querHeartDataWithTimeSeconds:kHCH.selectTimeSeconds+i];
+            NSArray *array1 = [NSKeyedUnarchiver unarchiveObjectWithData:nightHeartDic[HeartRate_ActualData_HCH]];
+            NSMutableArray *mutableArray1 = [NSMutableArray arrayWithArray:array1];
+            NSRange range1 = NSMakeRange(mutableArray1.count/ 3, mutableArray1.count/3 *2);
+            [mutableArray1 removeObjectsInRange:range1];
+            if (array && array.count != 0)
+            {
+                [tempArray addObjectsFromArray:mutableArray1];
+            }
+            else
+            {
+                for (int i = 0 ; i < 60; i ++)
+                {
+                    [tempArray addObject:[NSNumber numberWithInt:0]];
+                }
+            }
+            
+        }
+        else
+        {
+            NSDictionary *nightHeartDic = [[CoreDataManage shareInstance] querHeartDataWithTimeSeconds:kHCH.selectTimeSeconds+i];
+            NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:nightHeartDic[HeartRate_ActualData_HCH]];
+            if (array && array.count != 0&&(!((array.count==1)&&([array[0]isEqualToString:@""]))))
+            {
+                [tempArray addObjectsFromArray:array];
+            }
+            else
+            {
+                for (int i = 0 ; i < 180; i ++)
+                {
+                    [tempArray addObject:[NSNumber numberWithInt:0]];
+                }
+            }
+        }
+    }
+    
+    NSMutableArray *_nightHeartArray = [NSMutableArray array];
+    for (int i = beginTime; i < endTime; i ++)
+    {
+        if(tempArray[i])
+        {
+            [_nightHeartArray addObject:tempArray[i]];
+        }
+        else
+        {
+        }
+    }
+    
+    [_nightHeartArray removeObject:@"0"];
+    if (_nightHeartArray.count <= 20) {
+        return NO;
+    }
+    
+    
+    return YES;
 }
 
 + (CAShapeLayer *)getCornerRoundWithSelfView:(UIView *)originalView byRoundingCorners:(UIRectCorner)corners cornerRadii:(CGSize)size{
