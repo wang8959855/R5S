@@ -194,7 +194,7 @@
     //请求一次。
     [self timingUploadDataTimeAction];
     
-    self.timingUploadDataTime = [NSTimer  scheduledTimerWithTimeInterval:60 target:self selector:@selector(detailDayDateCurrent) userInfo:nil repeats:YES];
+    self.timingUploadDataTime = [NSTimer  scheduledTimerWithTimeInterval:180 target:self selector:@selector(detailDayDateCurrent) userInfo:nil repeats:YES];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
@@ -234,6 +234,9 @@
 - (void)detailDayDateCurrent{
     BOOL isDown  = [self checkIsCanDown];
     if (!isDown) {
+        return;
+    }
+    if (![CositeaBlueTooth sharedInstance].isConnected){
         return;
     }
     if(kHCH.iphoneNetworkStatus>0){
@@ -2148,7 +2151,7 @@
         sleepAll = [AllTool arrayToString2:[self deleteSleepArrayZero:self.sleepArray]];
     }
     NSString *timeStr = [NSString stringWithFormat:@"%f",[[TimeCallManager getInstance] getNowSecond]];
-    NSString *dateStr = [[TimeCallManager getInstance] getTimeStringWithSeconds:self.curSeconed andFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [[TimeCallManager getInstance] getTimeStringWithSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay] andFormat:@"yyyy-MM-dd"];
     
     NSDictionary *paramater = @{@"Step_List":stepAll,@"Step":step,@"Cal":cal,@"Distance":distance,@"Cal_List":costsAll,@"Sq_List":sleepAll,@"StartTime":startTime,@"EndTime":endTime,@"hrData":hear,@"userId":USERID,@"date":dateStr,@"time":timeStr};
     NSString *url = [NSString stringWithFormat:@"%@/%@",HEARTRATEUPDATE,TOKEN];

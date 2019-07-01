@@ -161,7 +161,8 @@
     
     for ( PerModel *model in deviceArray)
     {
-        if (model.type == 8) {
+        NSString* firstStr = [model.per.name substringToIndex:1];
+        if ([firstStr isEqualToString:@"B"]) {
             [tempArray addObject:model];
         }
     }
@@ -175,7 +176,8 @@
     
     for (PerModel *model in deviceArray)
     {
-        if (model.type != 8) {
+        NSString* firstStr = [model.per.name substringToIndex:1];
+        if (![firstStr isEqualToString:@"B"]) {
             [tempArray addObject:model];
         }
     }
@@ -1194,6 +1196,9 @@
 +(NSMutableArray*)weatherDateToArray:(NSString *)date
 {
     NSMutableArray *arr = [NSMutableArray array];
+    if (date.length == 0) {
+        date = [[TimeCallManager getInstance] getTimeStringWithSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay] andFormat:@"yyyy-MM-dd"];
+    }
     if (date)
     {
         NSArray *arrayDay = [date componentsSeparatedByString:@"-"];
@@ -2110,15 +2115,9 @@
     }
     
     
-    int filter = 0;//根据这个值判断是否开始过滤
-    int filtAwakeep = 0;//根据这个值判断是否转化清醒
-    int lightSleep = 0;
-    int awakeSleep = 0;
-    int deepSleep = 0;
     BOOL isBegin = NO;
     int nightBeginTime = 0;
     int nightEndTime = 0;
-    int sixFiler = 0;//总过滤器。要求六点前过滤
     for (int i = 0 ; i < resultArr.count; i ++)
     {
         int sleepState = [resultArr[i] intValue];
@@ -2130,63 +2129,6 @@
                 nightBeginTime = i;
             }
             nightEndTime = i;
-        }
-    }
-    if (nightEndTime > nightBeginTime)
-    {
-        for (int i = nightBeginTime ; i <= nightEndTime; i ++)
-        {
-            int state = [resultArr[i] intValue];
-            if (state == 2)    {
-                if(filtAwakeep>0&&filtAwakeep<4&&filter>3&&sixFiler<49)
-                {
-                    awakeSleep -= filtAwakeep;
-                    lightSleep += filtAwakeep;
-                    for (int te = 1; te <= filtAwakeep; te++) {
-                        int atIndex = i -te;
-                    }
-                    filtAwakeep = 0;
-                }else
-                {
-                    if (filtAwakeep > 3)
-                    {
-                        filter = 1;
-                        filtAwakeep = 0;
-                    } else {
-                        filtAwakeep = 0;
-                    }
-                }
-                ++deepSleep;
-                
-            }      //深睡
-            else if (state == 1){
-                if(filtAwakeep>0&&filtAwakeep<4&&filter>3&&sixFiler<49)
-                {
-                    awakeSleep -= filtAwakeep;
-                    lightSleep += filtAwakeep;
-                    for (int teb = 1; teb <= filtAwakeep; teb++) {
-                        int atIndex = i -teb;
-                        [resultArr replaceObjectAtIndex:atIndex withObject:@1];//把清醒换成浅睡
-                    }
-                    filtAwakeep = 0;
-                }else
-                {
-                    if (filtAwakeep > 3)
-                    {
-                        filter = 1;
-                        filtAwakeep = 0;
-                    } else {
-                        filtAwakeep = 0;
-                    }
-                }
-                ++lightSleep; }    //浅睡
-            else if (state == 0 || state == 3)
-            {
-                ++awakeSleep;
-                ++ filtAwakeep;
-            }   //清醒
-            ++filter;
-            ++sixFiler;
         }
     }
     BOOL hear = [AllTool drawNightHeartViewWithBeginTime:nightBeginTime EndTime:nightEndTime];
@@ -2206,7 +2148,7 @@
     }
     beginTime = beginTime*10;
     endTime = endTime *10;
-    NSDictionary *heartDic = [[CoreDataManage shareInstance] querHeartDataWithTimeSeconds:kHCH.selectTimeSeconds - KONEDAYSECONDS + 8 ];
+    NSDictionary *heartDic = [[CoreDataManage shareInstance] querHeartDataWithTimeSeconds:kHCH.selectTimeSeconds - KONEDAYSECONDS + 8];
     
     NSArray *array =  [NSKeyedUnarchiver unarchiveObjectWithData:heartDic[HeartRate_ActualData_HCH]];
     //只是去后面两个小时
@@ -2269,7 +2211,7 @@
     NSMutableArray *_nightHeartArray = [NSMutableArray array];
     for (int i = beginTime; i < endTime; i ++)
     {
-        if(tempArray[i])
+        if([tempArray[i] integerValue] != 0)
         {
             [_nightHeartArray addObject:tempArray[i]];
         }
@@ -2278,7 +2220,6 @@
         }
     }
     
-    [_nightHeartArray removeObject:@"0"];
     if (_nightHeartArray.count <= 20) {
         return NO;
     }

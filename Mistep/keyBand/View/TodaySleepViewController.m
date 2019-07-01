@@ -73,12 +73,19 @@
 
 - (void)reloadWebView{
     [[UIApplication sharedApplication].keyWindow makeToastActivity:CSToastPositionCenter];
+    
+    if ([CositeaBlueTooth sharedInstance].isConnected) {
+        self.sxiao = [CositeaBlueTooth sharedInstance].deviceName.lowercaseString;
+    }else{
+        self.sxiao = @"r5s";
+    }
+    
     //测试
 //    NSString *root = @"http://test03.lantianfangzhou.com/report/current";
     //生产
         NSString *root = @"https://www02.lantianfangzhou.com/report/current";
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s/%@/%@/0",root,USERID,TOKEN]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@/%@/0",root,self.sxiao,USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }
@@ -138,13 +145,19 @@
     [self.view addSubview:self.navView];
     self.haveTabBar = YES;
     
+    if ([CositeaBlueTooth sharedInstance].isConnected) {
+        self.sxiao = [CositeaBlueTooth sharedInstance].deviceName.lowercaseString;
+    }else{
+        self.sxiao = @"r5s";
+    }
+    
     //测试
 //    NSString *root = @"http://test03.lantianfangzhou.com/report/current";
     //生产
     NSString *root = @"https://www02.lantianfangzhou.com/report/current";
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, backScrollViewW, backScrollViewH)];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/r5s/%@/%@/0",root,USERID,TOKEN]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@/%@/0",root,self.sxiao,USERID,TOKEN]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     self.webView.navigationDelegate = self;
@@ -741,7 +754,8 @@
 }
 -(void)SLErefreshSucc
 {
-    self.SLEdoneString = NSLocalizedString(@"syncFinish", nil);
+//    self.SLEdoneString = NSLocalizedString(@"syncFinish", nil);
+    [self reloadWebView];
 }
 -(void)SLErefreshFail
 {

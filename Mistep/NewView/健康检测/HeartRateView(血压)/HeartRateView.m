@@ -20,6 +20,9 @@
 //当前心率
 @property (nonatomic, assign) NSInteger nowHeartRate;
 
+//第一个心率
+@property (nonatomic, copy) NSString *firstHr;
+
 @end
 
 @implementation HeartRateView
@@ -75,6 +78,10 @@
 - (void)getNowHeartRate:(NSNotification *)noti{
     NSString *heart = noti.object;
 //    self.nowHeartRateLabel.attributedText = [self makeAttributedStringWithnumBer:heart Unit:@"bpm" WithFont:18];
+    if (self.firstHr == nil || self.firstHr.length == 0 || [self.firstHr isEqualToString:@"0"]) {
+        self.firstHr = heart;
+        [self getHomeData];
+    }
     self.circleView.value = heart.floatValue;
     self.nowHeartRate = heart.integerValue;
     
@@ -694,8 +701,12 @@
 
 
 - (void)getHomeData{
+    
+    if (self.firstHr == nil) {
+        self.firstHr = @"";
+    }
     NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",GETHOMEDATA,TOKEN];
-    [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userId":USERID,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
+    [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userId":USERID,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime],@"firstrate":self.firstHr} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
      {
          
          //                 adaLog(@"  - - - - -开始登录返回");

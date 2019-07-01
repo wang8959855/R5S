@@ -266,16 +266,41 @@
 #warning mark  需要修改
 //    _heartHZSwitch.userInteractionEnabled = NO;
 //    [self performSelector:@selector(heartHZSwitchCan) withObject:nil afterDelay:1.f];
+    
+    NSString *title = @"";
+    
     if ([[ADASaveDefaluts objectForKey:HEARTCONTINUITY] intValue] == 1) {
         if (indexPath.row == 0)
         {
-            [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:62];
+            title = @"监测时间变更为连续监测，APP将自动重启";
         } else {
-            [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:[_dataArray[indexPath.row] intValue]];
+            title = [NSString stringWithFormat:@"监测时间变更为%@分钟，APP将自动重启",_dataArray[indexPath.row]];
+            
         }
     }else{
-        [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:[_dataArray[indexPath.row] intValue]];
+        title = [NSString stringWithFormat:@"监测时间变更为%@分钟，APP将自动重启",_dataArray[indexPath.row]];
     }
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        if ([[ADASaveDefaluts objectForKey:HEARTCONTINUITY] intValue] == 1) {
+            if (indexPath.row == 0)
+            {
+                [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:62];
+            } else {
+                [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:[self->_dataArray[indexPath.row] intValue]];
+            }
+        }else{
+            [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:[self->_dataArray[indexPath.row] intValue]];
+        }
+        //关闭app
+        exit(1);
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
     [[CositeaBlueTooth sharedInstance] checkHeartTateMonitorwithBlock:nil];
     
