@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; normalTitle = "-"; ObjectID = "4ta-qk-sYi"; */
+"4ta-qk-sYi.normalTitle" = "-";
+
+/* Class = "UILabel"; text = "助眠模式"; ObjectID = "BJz-Up-Zrx"; */
+"BJz-Up-Zrx.text" = "助眠模式";
+
+/* Class = "UILabel"; text = "10min"; ObjectID = "dlQ-tO-KUJ"; */
+"dlQ-tO-KUJ.text" = "10min";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "gBV-hC-iYD"; */
+"gBV-hC-iYD.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "9min59s"; ObjectID = "hDo-Da-HUJ"; */
+"hDo-Da-HUJ.text" = "9min59s";
+
+/* Class = "UILabel"; text = "播放时长"; ObjectID = "oLE-g3-WiE"; */
+"oLE-g3-WiE.text" = "播放時長";

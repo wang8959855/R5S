@@ -681,8 +681,9 @@ static NSString *conectReuse = @"connectedCell";
         
         [self addActityIndicatorInView:self.view labelText:NSLocalizedString(@"正在连接...", nil)  detailLabel:@""];
         [self performSelector:@selector(connectTimeOut) withObject:nil afterDelay:5.f];
+        [self setHeart];
         [[CositeaBlueTooth sharedInstance] connectWithUUID:llString];
-        [AllTool  savePeripheral:model];
+        [AllTool savePeripheral:model];
         //[[CositeaBlueTooth sharedInstance] stopScanDevice];
     }
 }
@@ -695,20 +696,10 @@ static NSString *conectReuse = @"connectedCell";
     }
 }
 
-
-#pragma mark - bluTooth Connect
-
-- (void)connectTimeOut {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(connectTimeOut) object:nil];
-    [self removeActityIndicatorFromView:self.view];
+//循环设置
+- (void)setHeart{
     if ([CositeaBlueTooth sharedInstance].isConnected) {
-        [self addActityTextInView:self.view text:NSLocalizedString(@"设备已连接", nil) deleyTime:1.5f];
-        _stateImageView.image = [UIImage imageNamed:@"设备已连接"];
-        //        _stateLabel.text = [CositeaBlueTooth sharedInstance].deviceName;
-        //        _deviceName.text = NSLocalizedString(@"已连接",nil);
-        [_searchBtn setTitle:NSLocalizedString(@"解绑设备",nil) forState:UIControlStateNormal];
-        
-        //默认打开心率预警和j心率检测
+        //默认打开心率预警和心率检测
         [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:62];
         [[CositeaBlueTooth sharedInstance] changeHeartRateMonitorStateWithState:YES];
         
@@ -721,6 +712,21 @@ static NSString *conectReuse = @"connectedCell";
         [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:10 State:NO];
         [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:9 State:NO];
         
+    }else{
+        [self performSelector:@selector(setHeart) withObject:nil afterDelay:0.5];
+    }
+}
+
+#pragma mark - bluTooth Connect
+- (void)connectTimeOut {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(connectTimeOut) object:nil];
+    [self removeActityIndicatorFromView:self.view];
+    if ([CositeaBlueTooth sharedInstance].isConnected) {
+        [self addActityTextInView:self.view text:NSLocalizedString(@"设备已连接", nil) deleyTime:1.5f];
+        _stateImageView.image = [UIImage imageNamed:@"设备已连接"];
+        //        _stateLabel.text = [CositeaBlueTooth sharedInstance].deviceName;
+        //        _deviceName.text = NSLocalizedString(@"已连接",nil);
+        [_searchBtn setTitle:NSLocalizedString(@"解绑设备",nil) forState:UIControlStateNormal];
     }
     else
     {

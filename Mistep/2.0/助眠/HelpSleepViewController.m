@@ -62,10 +62,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSURL *url1 = [[NSBundle mainBundle]  URLForResource:@"woxihuanni.mp3" withExtension:nil];
+    NSURL *url1 = [[NSBundle mainBundle]  URLForResource:@"huguangsheng.mp3" withExtension:nil];
     NSURL *url2 = [[NSBundle mainBundle]  URLForResource:@"yuxiang.mp3" withExtension:nil];
-    NSURL *url3 = [[NSBundle mainBundle]  URLForResource:@"huguangsheng.mp3" withExtension:nil];
-    NSURL *url4 = [[NSBundle mainBundle]  URLForResource:@"bunengshuodemimi.mp3" withExtension:nil];
+    NSURL *url3 = [[NSBundle mainBundle]  URLForResource:@"bunengshuodemimi.mp3" withExtension:nil];
+    NSURL *url4 = [[NSBundle mainBundle]  URLForResource:@"自然雨.mp3" withExtension:nil];
     self.musicArr = @[url1,url2,url3,url4];
     self.imageArr = @[@"aid_music",@"aid_gushi",@"aid_shuyang",@"aid_ziran"];
     self.selectMusic = 0;

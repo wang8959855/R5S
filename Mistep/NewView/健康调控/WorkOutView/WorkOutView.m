@@ -159,7 +159,7 @@
         
         NSMutableAttributedString *string;
         if (i == 0) {
-            string = [self makeAttributedStringWithnumBer:@"0" Unit:@"步" WithFont:17];
+            string = [self makeAttributedStringWithnumBer:@"0" Unit:kLOCAL(@"步") WithFont:17];
             _sportLabel = [[UILabel alloc] init];
             _sportLabel.frame = CGRectMake(0, imageV.bottom, bView.width, bView.height-imageV.height);
             _sportLabel.textAlignment = NSTextAlignmentCenter;
@@ -167,7 +167,7 @@
             _sportLabel.textColor = allColorWhite;
             [bView addSubview:_sportLabel];
         }else if (i == 1){
-            string = [self makeAttributedStringWithnumBer:@"0" Unit:@"卡路里" WithFont:17];
+            string = [self makeAttributedStringWithnumBer:@"0" Unit:kLOCAL(@"卡路里") WithFont:17];
             _calouiesLabel = [[UILabel alloc] init];
             _calouiesLabel.frame = CGRectMake(0, imageV.bottom, bView.width, bView.height-imageV.height);
             _calouiesLabel.textAlignment = NSTextAlignmentCenter;
@@ -175,7 +175,7 @@
             _calouiesLabel.textColor = allColorWhite;
             [bView addSubview:_calouiesLabel];
         }else{
-            string = [self makeAttributedStringWithnumBer:@"0" Unit:@"次/分" WithFont:17];
+            string = [self makeAttributedStringWithnumBer:@"0" Unit:kLOCAL(@"次/分") WithFont:17];
             _heartRateLabel = [[UILabel alloc] init];
             _heartRateLabel.frame = CGRectMake(0, imageV.bottom, bView.width, bView.height-imageV.height);
             _heartRateLabel.textAlignment = NSTextAlignmentCenter;

@@ -46,9 +46,22 @@ static NSString *AUISaveID = @"AUISaveID";
 @property (nonatomic, strong) UITextField *rafTel3TF;
 @property (nonatomic, strong) UITextField *GluTF;
 
+    @property (weak, nonatomic) IBOutlet UILabel *titlePage;
+    
+    
 @end
 
 @implementation AlertUserInfomationViewController
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getUserInfo];
+    [self performSelector:@selector(reload) withObject:nil afterDelay:2];
+}
+
+- (void)reload{
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,6 +69,7 @@ static NSString *AUISaveID = @"AUISaveID";
     [self setSubViews];
     [self.view addSubview:self.cover];
     [[CitiesDataTool sharedManager] requestGetData];
+    self.titlePage.text = kLOCAL(@"个人信息");
 }
 
 - (void)setSubViews{
@@ -126,19 +140,19 @@ static NSString *AUISaveID = @"AUISaveID";
         //账号信息
         AUIAccountCell *cell = [AUIAccountCell tableView:tableView identfire:AUIAccountID];
         if (indexPath.row == 0) {
-            cell.titleLabel.text = @"更换号码";
-            [cell.alertButton setTitle:@"更换手机号" forState:UIControlStateNormal];
+            cell.titleLabel.text = kLOCAL(@"更换号码");
+            [cell.alertButton setTitle:kLOCAL(@"更换手机号") forState:UIControlStateNormal];
             cell.alertWidth.constant = 85;
             cell.alertRight.constant = 20;
             NSString *numberString = [[[HCHCommonManager getInstance] UserTel] stringByReplacingCharactersInRange:NSMakeRange(3, 5) withString:@"*****"];
             cell.detailLabel.text = numberString;
             [cell.alertButton addTarget:self action:@selector(alertTelAction) forControlEvents:UIControlEventTouchUpInside];
         }else{
-            cell.titleLabel.text = @"康币";
-            [cell.alertButton setTitle:@"赚取康币" forState:UIControlStateNormal];
+            cell.titleLabel.text = kLOCAL(@"康币");
+            [cell.alertButton setTitle:kLOCAL(@"赚取康币") forState:UIControlStateNormal];
             cell.alertWidth.constant = 67;
             cell.alertRight.constant = 29;
-            cell.detailLabel.text = [NSString stringWithFormat:@"%@枚",[[HCHCommonManager getInstance] UserPoint]];
+            cell.detailLabel.text = [NSString stringWithFormat:@"%@%@",[[HCHCommonManager getInstance] UserPoint],kLOCAL(@"枚")];
             [cell.alertButton addTarget:self action:@selector(makePointAction) forControlEvents:UIControlEventTouchUpInside];
         }
         return cell;
@@ -153,66 +167,66 @@ static NSString *AUISaveID = @"AUISaveID";
             cell.detailRight.constant = 25;
         }
         if (indexPath.row == 0) {
-            cell.titleLabel.text = @"姓名";
+            cell.titleLabel.text = kLOCAL(@"姓名");
             cell.detailLabel.text = self.uploadInfoDic[@"userName"];
         }else if (indexPath.row == 1){
-            cell.titleLabel.text = @"性别";
+            cell.titleLabel.text = kLOCAL(@"性别");
             NSInteger sex = [self.uploadInfoDic[@"sex"] integerValue];
             if (sex == 1) {
-                cell.detailLabel.text = @"男";
+                cell.detailLabel.text = kLOCAL(@"男");
             }else{
-                cell.detailLabel.text = @"女";
+                cell.detailLabel.text = kLOCAL(@"女");
             }
         }else if (indexPath.row == 2){
-            cell.titleLabel.text = @"生日";
+            cell.titleLabel.text = kLOCAL(@"生日");
             cell.detailLabel.text = self.uploadInfoDic[@"birthday"];
         }else if (indexPath.row == 3){
-            cell.titleLabel.text = @"所在地";
+            cell.titleLabel.text = kLOCAL(@"所在地");
             cell.detailLabel.text = self.uploadInfoDic[@"address"];
         }else if (indexPath.row == 4){
-            cell.titleLabel.text = @"身高";
+            cell.titleLabel.text = kLOCAL(@"身高");
             cell.detailLabel.text = [NSString stringWithFormat:@"%@cm",self.uploadInfoDic[@"height"]];
         }else if (indexPath.row == 5){
-            cell.titleLabel.text = @"体重";
-            cell.detailLabel.text = [NSString stringWithFormat:@"%@公斤",self.uploadInfoDic[@"weight"]];
+            cell.titleLabel.text = kLOCAL(@"体重");
+            cell.detailLabel.text = [NSString stringWithFormat:@"%@%@",self.uploadInfoDic[@"weight"],kLOCAL(@"公斤")];
         }else if (indexPath.row == 6){
-            cell.titleLabel.text = @"高血压病史";
+            cell.titleLabel.text = kLOCAL(@"高血压病史");
             BOOL isHypertension = [self.uploadInfoDic[@"is_hypertension"] boolValue];
             if (isHypertension) {
-                cell.detailLabel.text = @"有";
+                cell.detailLabel.text = kLOCAL(@"有");
             }else{
-                cell.detailLabel.text = @"无";
+                cell.detailLabel.text = kLOCAL(@"无");
             }
         }else if (indexPath.row == 7){
-            cell.titleLabel.text = @"基准高压值";
+            cell.titleLabel.text = kLOCAL(@"基准高压值");
             cell.detailLabel.text = self.uploadInfoDic[@"SystolicPressure"];
         }else if (indexPath.row == 8){
-            cell.titleLabel.text = @"基准低压值";
+            cell.titleLabel.text = kLOCAL(@"基准低压值");
             cell.detailLabel.text = self.uploadInfoDic[@"DiastolicPressure"];
         }else if (indexPath.row == 9){
-            cell.titleLabel.text = @"冠心病史";
+            cell.titleLabel.text = kLOCAL(@"冠心病史");
             BOOL isCHD = [self.uploadInfoDic[@"is_CHD"] boolValue];
             if (isCHD) {
-                cell.detailLabel.text = @"有";
+                cell.detailLabel.text = kLOCAL(@"有");
             }else{
-                cell.detailLabel.text = @"无";
+                cell.detailLabel.text = kLOCAL(@"无");
             }
         }else if (indexPath.row == 10){
-            cell.titleLabel.text = @"糖尿病史";
+            cell.titleLabel.text = kLOCAL(@"糖尿病史");
             BOOL isdiabetes = [self.uploadInfoDic[@"is_Glu"] boolValue];
             if (isdiabetes) {
-                cell.detailLabel.text = @"有";
+                cell.detailLabel.text = kLOCAL(@"有");
             }else{
-                cell.detailLabel.text = @"无";
+                cell.detailLabel.text = kLOCAL(@"无");
             }
         }else{
             AUIPhoneCell *cellT = [AUIPhoneCell tableView:tableView identfire:AUIPhoneID];
             cellT.phoneTextField.delegate = self;
             cellT.phoneTextField.text = self.uploadInfoDic[@"Glu"];
             self.GluTF = cellT.phoneTextField;
-            cellT.titleLabel.text = @"餐后血糖值";
+            cellT.titleLabel.text = kLOCAL(@"餐后血糖值");
             cellT.phoneTextField.keyboardType = UIKeyboardTypeDecimalPad;
-            cellT.phoneTextField.placeholder = @"请输入餐后血糖值";
+            cellT.phoneTextField.placeholder = kLOCAL(@"请输入餐后血糖值");
             return cellT;
         }
         return cell;
@@ -230,6 +244,9 @@ static NSString *AUISaveID = @"AUISaveID";
             cell.phoneTextField.text = self.uploadInfoDic[@"rafTel3"];
             self.rafTel3TF = cell.phoneTextField;
         }
+        cell.phoneTextField.placeholder = kLOCAL(@"11位手机号码");
+        cell.titleLabel.text = kLOCAL(@"监护人电话");
+        
         return cell;
     }else{
         AUISaveCell *cell = [AUISaveCell tableView:tableView identfire:AUISaveID];
@@ -263,11 +280,11 @@ static NSString *AUISaveID = @"AUISaveID";
     header.backgroundColor = [UIColor whiteColor];
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ScreenWidth-10, 40)];
     if (section == 1) {
-        title.text = @"账号信息";
+        title.text = kLOCAL(@"账号信息");
     }else if (section == 2){
-        title.text = @"我的资料";
+        title.text = kLOCAL(@"我的资料");
     }else if (section == 3){
-        title.text = @"紧急联系人";
+        title.text = kLOCAL(@"紧急联系人");
     }
     [header addSubview:title];
     
@@ -363,7 +380,7 @@ static NSString *AUISaveID = @"AUISaveID";
 //点击确定修改昵称返回
 - (void)backNickNameAction{
     if (![_nickView.nickTF.text length]) {
-        [self addActityTextInView:_nickView text:@"请填写昵称" deleyTime:1.5f];
+        [self addActityTextInView:_nickView text:kLOCAL(@"请填写昵称") deleyTime:1.5f];
         return;
     }
     [self requestAlertInfoUrl:ALERTNICKNAME parameter:@{@"NickName":[_nickView.nickTF.text copy],@"userId":USERID} filePath:nil];
@@ -380,23 +397,23 @@ static NSString *AUISaveID = @"AUISaveID";
     [self.uploadInfoDic setObject:USERID forKey:@"userId"];
     
     if ([self.rafTel1TF.text length] == 0) {
-        [self addActityTextInView:self.view text:@"请填写监护人电话" deleyTime:1.5f];
+        [self addActityTextInView:self.view text:kLOCAL(@"请填写监护人电话") deleyTime:1.5f];
         return;
     }else if ([self.rafTel1TF.text length] != 11){
-        [self addActityTextInView:self.view text:@"监护人电话格式错误" deleyTime:1.5f];
+        [self addActityTextInView:self.view text:kLOCAL(@"监护人电话格式错误") deleyTime:1.5f];
         return;
     }
     
     if ([self.rafTel2TF.text length] != 0) {
         if ([self.rafTel2TF.text length] != 11) {
-            [self addActityTextInView:self.view text:@"监护人电话格式错误" deleyTime:1.5f];
+            [self addActityTextInView:self.view text:kLOCAL(@"监护人电话格式错误") deleyTime:1.5f];
             return;
         }
     }
     
     if ([self.rafTel3TF.text length] != 0) {
         if ([self.rafTel3TF.text length] != 11) {
-            [self addActityTextInView:self.view text:@"监护人电话格式错误" deleyTime:1.5f];
+            [self addActityTextInView:self.view text:kLOCAL(@"监护人电话格式错误") deleyTime:1.5f];
             return;
         }
     }
@@ -519,14 +536,14 @@ static NSString *AUISaveID = @"AUISaveID";
         return [NSString stringWithFormat:@"%ld",row];
     }else if (_PickerViewType == PickerViewSex){
         if (row == 0) {
-            return @"男";
+            return kLOCAL(@"男");
         }
-        return @"女";
+        return kLOCAL(@"女");
     }else{
         if (row == 0) {
-            return @"有";
+            return kLOCAL(@"有");
         }else{
-            return @"无";
+            return kLOCAL(@"无");
         }
     }
 }

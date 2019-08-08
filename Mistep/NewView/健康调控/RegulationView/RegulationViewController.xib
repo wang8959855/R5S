@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegulationViewController">
             <connections>
+                <outlet property="pageTitle" destination="ffX-25-16A" id="DlX-eo-9LF"/>
                 <outlet property="statusheight" destination="YDg-eS-pSR" id="n0i-k7-TzD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webView" destination="UBU-6R-DaD" id="d2W-tR-ujD"/>

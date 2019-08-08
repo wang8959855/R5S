@@ -74,5 +74,9 @@
 #define UOLOADDEVICEMODEL PATH_URL(@"watch")
 //即时检测
 #define NOWTEST PATH_URL(@"temdata")
+//上传崩溃信息
+#define CRASH PATH_URL(@"errorlog")
+//版本
+#define VERSION PATH_URL(@"versionios")
 
 #endif /* API_pch */

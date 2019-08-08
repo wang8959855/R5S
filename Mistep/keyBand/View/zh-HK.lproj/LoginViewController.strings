@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "@lantianyihao"; ObjectID = "NUx-3y-PW6"; */
+"NUx-3y-PW6.text" = "@lantianyihao";
+
+/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "dOq-c2-OM8"; */
+"dOq-c2-OM8.normalTitle" = "获取验证码";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "mKm-z4-7C4"; */
+"mKm-z4-7C4.normalTitle" = "登录";
+
+/* Class = "UIButton"; normalTitle = "点击注册"; ObjectID = "twC-su-wRr"; */
+"twC-su-wRr.normalTitle" = "点击注册";

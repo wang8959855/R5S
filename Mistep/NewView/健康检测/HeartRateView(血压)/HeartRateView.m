@@ -48,7 +48,8 @@
         [PZBlueToothManager sharedInstance].delegate = self;
         [self childrenTimeSecondChanged];
         [self setBlocks];
-        [self getHomeData];
+        [self getHomeData:@""];
+        [[PZBlueToothManager sharedInstance] recieveHistoryHeartRateWithBlock:nil];
     }
     return self;
 }
@@ -64,15 +65,15 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getSPOPressure:) name:GetPressureSPO2HRV object:nil];
     //获取平均心率
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getAvgHeartRate:) name:GetAvgHeartRateNotification object:nil];
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:180 target:self selector:@selector(calcBloodPressure) userInfo:nil repeats:YES];
-//    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:59 target:self selector:@selector(calcBloodPressure) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     
 }
 
 //平均心率
 - (void)getAvgHeartRate:(NSNotification *)noti{
     NSDictionary *dic = noti.object;
-    self.nowHeartRateLabel.attributedText = [self makeAttributedStringWithnumBer:dic[@"avg"] Unit:@"次/分" WithFont:18];
+//    self.nowHeartRateLabel.attributedText = [self makeAttributedStringWithnumBer:dic[@"avg"] Unit:@"次/分" WithFont:18];
 }
 //实时心率
 - (void)getNowHeartRate:(NSNotification *)noti{
@@ -80,7 +81,7 @@
 //    self.nowHeartRateLabel.attributedText = [self makeAttributedStringWithnumBer:heart Unit:@"bpm" WithFont:18];
     if (self.firstHr == nil || self.firstHr.length == 0 || [self.firstHr isEqualToString:@"0"]) {
         self.firstHr = heart;
-        [self getHomeData];
+        [self getHomeData:heart];
     }
     self.circleView.value = heart.floatValue;
     self.nowHeartRate = heart.integerValue;
@@ -106,44 +107,44 @@
 
 //计算血压/心肺功能算法/呼吸率算法 每三分钟计算一次
 - (void)calcBloodPressure{
-    
-    NSInteger sec = [[TimeCallManager getInstance] getNowSecond];
-    NSInteger hour = [[[TimeCallManager getInstance] getHourWithSecond:sec] integerValue];
-    
-    //计算血压
-    NSInteger s = 0;
-    NSInteger d = 0;
-    
-    //不同时段男女基础数据不同
-    NSInteger jichu = 0;
-    if ((hour >= 6 && hour < 10) || (hour >= 16 && hour < 18)) {
-        if ([[[HCHCommonManager getInstance] UserGender] isEqualToString:@"1"]){
-            //男
-            jichu = 60;
-        }else{
-            //女
-            jichu = 65;
-        }
-    }else{
-        if ([[[HCHCommonManager getInstance] UserGender] isEqualToString:@"1"]){
-            //男
-            jichu = 70;
-        }else{
-            //女
-            jichu = 75;
-        }
-    }
-    
-    s = jichu/self.nowHeartRate*(self.nowHeartRate-70)+ [[[HCHCommonManager getInstance] UserSystolicP] integerValue];
-    d = jichu/self.nowHeartRate*0.6*(self.nowHeartRate-70) + [[[HCHCommonManager getInstance] UserDiastolicP] integerValue];
-    
-    NSAttributedString *sting;
-    if (s == 0) {
-        self.bloodPressureLabel.text = @"--/--";
-    }else{
-        sting = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%ld/%ld",s,d] Unit:@"mmHg" WithFont:18];
-        self.bloodPressureLabel.attributedText = sting;
-    }
+    [HCHCommonManager getAvgHeartRate];
+//    NSInteger sec = [[TimeCallManager getInstance] getNowSecond];
+//    NSInteger hour = [[[TimeCallManager getInstance] getHourWithSecond:sec] integerValue];
+//
+//    //计算血压
+//    NSInteger s = 0;
+//    NSInteger d = 0;
+//
+//    //不同时段男女基础数据不同
+//    NSInteger jichu = 0;
+//    if ((hour >= 6 && hour < 10) || (hour >= 16 && hour < 18)) {
+//        if ([[[HCHCommonManager getInstance] UserGender] isEqualToString:@"1"]){
+//            //男
+//            jichu = 60;
+//        }else{
+//            //女
+//            jichu = 65;
+//        }
+//    }else{
+//        if ([[[HCHCommonManager getInstance] UserGender] isEqualToString:@"1"]){
+//            //男
+//            jichu = 70;
+//        }else{
+//            //女
+//            jichu = 75;
+//        }
+//    }
+//
+//    s = jichu/self.nowHeartRate*(self.nowHeartRate-70)+ [[[HCHCommonManager getInstance] UserSystolicP] integerValue];
+//    d = jichu/self.nowHeartRate*0.6*(self.nowHeartRate-70) + [[[HCHCommonManager getInstance] UserDiastolicP] integerValue];
+//
+//    NSAttributedString *sting;
+//    if (s == 0) {
+//        self.bloodPressureLabel.text = @"--/--";
+//    }else{
+//        sting = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%ld/%ld",s,d] Unit:@"mmHg" WithFont:18];
+//        self.bloodPressureLabel.attributedText = sting;
+//    }
     
     //心肺功能算法
 //    NSInteger xf = (s+d)*self.nowHeartRate;
@@ -291,7 +292,7 @@
         //        [weakSelf reloadData];
         [weakSelf successCallbackSleepData];
     }];
-    [self getHomeData];
+    [self getHomeData:@""];
     [self childrenTimeSecondChanged];
 }
 
@@ -350,8 +351,10 @@
 
 - (void)setBackgroundView
 {
-    NSArray *array = @[@"血压",@"血氧",@"平均心率",@"体温"];
-    NSArray *leftImageArr = @[@"xueya",@"xueyang",@"shishi",@"tiwen"];
+//    NSArray *array = @[NSLocalizedString(@"血压", nil),NSLocalizedString(@"血氧", nil),NSLocalizedString(@"血糖", nil),NSLocalizedString(@"体温", nil)];
+    NSArray *array = @[NSLocalizedString(@"血氧", nil),NSLocalizedString(@"体温", nil),NSLocalizedString(@"血压", nil),NSLocalizedString(@"血糖", nil)];
+    NSArray *leftImageArr = @[@"xueyang",@"tiwen",@"xueya",@"xietang"];
+    self.spo2Image.image = [UIImage imageNamed:@""];
     
     for (int i = 0; i < 4; i ++)
     {
@@ -388,7 +391,7 @@
         
         NSAttributedString *string;
         switch (i) {
-            case 0:
+            case 2:
             {
                 _bloodPressureLabel = [[UILabel alloc] init];
                 _bloodPressureLabel.frame = CGRectMake(0, (view.height-30)/2+15, view.width, 30);
@@ -399,7 +402,7 @@
                 
             }
                 break;
-            case 1:
+            case 0:
             {
                 _fatigueLabel = [[UILabel alloc] init];
                 _fatigueLabel.frame = CGRectMake(0, (view.height-30)/2+15, view.width, 30);
@@ -413,9 +416,9 @@
                 [view addSubview:_spo2Image];
             }
                 break;
-            case 2:
+            case 3:
             {
-                string = [self makeAttributedStringWithnumBer:@"--" Unit:@"次/分" WithFont:18];
+                string = [self makeAttributedStringWithnumBer:@"--" Unit:@"mmlo/L" WithFont:18];
                 _nowHeartRateLabel = [[UILabel alloc] init];
                 _nowHeartRateLabel.frame = CGRectMake(0, (view.height-30)/2+15, view.width, 30);
                 _nowHeartRateLabel.attributedText = string;
@@ -424,7 +427,7 @@
                 [view addSubview:_nowHeartRateLabel];
             }
                 break;
-            case 3:
+            case 1:
             {
 //                string = [self makeAttributedStringWithnumBer:@"--" Unit:@"bpm" WithFont:18];
                 _averageHeartRateLabel = [[UILabel alloc] init];
@@ -476,7 +479,7 @@
     self.targetBtn.size = CGSizeMake(200*kX, 30*kDY);
     self.targetBtn.center = CGPointMake(CurrentDeviceWidth/2., self.height - 286*kDY);
     [self.backScrollView addSubview:self.targetBtn];
-    [self.targetBtn setTitle:[NSString stringWithFormat:@"血压/血糖校准设置"] forState:UIControlStateNormal];
+    [self.targetBtn setTitle:[NSString stringWithFormat:NSLocalizedString(@"血压/血糖校准设置", nil)] forState:UIControlStateNormal];
     [self.targetBtn setImage:[UIImage imageNamed:@"jiaozhun"] forState:UIControlStateNormal];
     self.targetBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     self.targetBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -700,13 +703,13 @@
 }
 
 
-- (void)getHomeData{
+- (void)getHomeData:(NSString *)first{
     
     if (self.firstHr == nil) {
         self.firstHr = @"";
     }
     NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",GETHOMEDATA,TOKEN];
-    [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userId":USERID,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime],@"firstrate":self.firstHr} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
+    [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:uploadUrl ParametersDictionary:@{@"userId":USERID,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime],@"firstrate":first} Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task)
      {
          
          //                 adaLog(@"  - - - - -开始登录返回");
@@ -715,7 +718,7 @@
          
          if (error)
          {
-             [self makeCenterToast:@"网络连接错误"];
+             [self makeCenterToast:NSLocalizedString(@"网络连接错误", nil)];
          }
          else
          {
@@ -723,15 +726,17 @@
              NSString *message = [responseObject objectForKey:@"message"];
              if (code == 0) {
                  //成功
-                 self.nowHeartRateLabel.text = responseObject[@"data"][@"rate"];
+                 self.nowHeartRateLabel.text = responseObject[@"data"][@"xuetang"];
                  self.bloodPressureLabel.text = responseObject[@"data"][@"xueya"];
                  self.fatigueLabel.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"xueyang"]];
                  self.averageHeartRateLabel.text = responseObject[@"data"][@"tiwen"];
                  
-                 if ([responseObject[@"data"][@"xueyang"] floatValue] >= 95) {
+                 if ([responseObject[@"data"][@"sp_will"] isEqualToString:@"up"]) {
                      self.spo2Image.image = [UIImage imageNamed:@"upSpo2"];
-                 }else{
+                 }else if ([responseObject[@"data"][@"sp_will"] isEqualToString:@"down"]){
                      self.spo2Image.image = [UIImage imageNamed:@"downSpo2"];
+                 }else if ([responseObject[@"data"][@"sp_will"] isEqualToString:@"2"]){
+                     self.spo2Image.image = [UIImage imageNamed:@""];
                  }
                  
              }else{

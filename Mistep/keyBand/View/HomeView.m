@@ -167,7 +167,7 @@ static NSString *reuseID  = @"CELL";
     }];
     
     UILabel *ele = [[UILabel alloc] initWithFrame:CGRectMake(104*WidthProportion, 160.5*HeightProportion, 20*WidthProportion, 14*HeightProportion)];
-    ele.text = @"电量";
+    ele.text = kLOCAL(@"电量");
     ele.font = [UIFont systemFontOfSize:12];
     ele.textColor = allColorWhite;
     ele.textAlignment = NSTextAlignmentCenter;
@@ -205,9 +205,9 @@ static NSString *reuseID  = @"CELL";
     //    _tableView.backgroundView = nil;
     _tableView.backgroundColor = [UIColor clearColor];//[UIColor cyanColor]
     [_tableView registerNib:[UINib nibWithNibName:@"HomeTableViewCell" bundle:nil] forCellReuseIdentifier:reuseID];
-    self.dataArray = @[@"erweima",@"我的二维码",
-                       @"saoyisao",@"扫一扫",
-                       @"friends",@"亲友监护",
+    self.dataArray = @[@"erweima",kLOCAL(@"我的二维码"),
+                       @"saoyisao",kLOCAL(@"扫一扫"),
+                       @"friends",kLOCAL(@"亲友监护"),
                        @"远程拍照",NSLocalizedString(@"遥控拍照", nil),
                        @"shebei",NSLocalizedString(@"设备管理", nil),
                        @"设置", NSLocalizedString(@"设置", nil),
@@ -256,7 +256,7 @@ static NSString *reuseID  = @"CELL";
     
     //退出
     _signOut = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_signOut setTitle:@"退出" forState:UIControlStateNormal];
+    [_signOut setTitle:kLOCAL(@"退出") forState:UIControlStateNormal];
     [_signOut setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_signOut addTarget:self action:@selector(signOutAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_signOut];
@@ -267,7 +267,7 @@ static NSString *reuseID  = @"CELL";
     
     //注销
     _loginButtonTwo = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_loginButtonTwo setTitle:@"注销" forState:UIControlStateNormal];
+    [_loginButtonTwo setTitle:kLOCAL(@"注销") forState:UIControlStateNormal];
     [_loginButtonTwo setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_loginButtonTwo addTarget:self action:@selector(LoginActionTwo:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_loginButtonTwo];
@@ -752,7 +752,7 @@ static NSString *reuseID  = @"CELL";
     NSString *mediaType = AVMediaTypeVideo;//读取媒体类型
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];//读取设备授权状态
     if(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied){
-        NSString *errorStr = @"应用相机权限受限,请在设置中启用";
+        NSString *errorStr = kLOCAL(@"应用相机权限受限,请在设置中启用");
         [[UIApplication sharedApplication].keyWindow makeToast:errorStr duration:1.5 position:CSToastPositionCenter];
         return;
     }
@@ -760,7 +760,7 @@ static NSString *reuseID  = @"CELL";
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
     if (status == PHAuthorizationStatusRestricted || status == PHAuthorizationStatusDenied) {
         // 无权限
-        NSString *errorStr = @"应用相册权限受限,请在设置中启用";
+        NSString *errorStr = kLOCAL(@"应用相册权限受限,请在设置中启用");
         [[UIApplication sharedApplication].keyWindow makeToast:errorStr duration:1.5 position:CSToastPositionCenter];
         return;
     }
@@ -1035,7 +1035,7 @@ static NSString *reuseID  = @"CELL";
 //添加好友
 - (void)addFriendWithId:(NSString *)friendId{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [AllTool addActityIndicatorInView:window labelText:@"正在添加好友" detailLabel:@"正在添加好友"];
+    [AllTool addActityIndicatorInView:window labelText:kLOCAL(@"正在添加好友") detailLabel:kLOCAL(@"正在添加好友")];
     [self performSelector:@selector(loginTimeOut) withObject:nil afterDelay:60.f];
     NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",ADDFRIEND,TOKEN];
     [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:uploadUrl fileUrl:nil params:@{@"userId":USERID,@"friendId":friendId} Block:^(id responseObject, NSError *error) {

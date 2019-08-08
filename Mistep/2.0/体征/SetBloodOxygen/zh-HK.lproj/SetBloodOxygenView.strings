@@ -1,0 +1,33 @@
+
+/* Class = "UITextField"; placeholder = "请输入基准低压值"; ObjectID = "62v-Pj-gWC"; */
+"62v-Pj-gWC.placeholder" = "請輸入基準低壓值";
+
+/* Class = "UILabel"; text = "基准高压值"; ObjectID = "7ik-mJ-6uV"; */
+"7ik-mJ-6uV.text" = "基準高壓值";
+
+/* Class = "UILabel"; text = "系统初始血压/血糖基准值默认为成年人各年龄正常值，由于个体差异及服药控制等原因出现数值不准确者，请在此将数值修改为经医生或血压计/血糖仪测量校准的数值"; ObjectID = "F1V-9e-GvZ"; */
+"F1V-9e-GvZ.text" = "系統初始血壓/血糖基準值默認為成年人各年齡正常值，由於個體差異及服藥控制等原因出現數值不准確者，請在此將數值修改為經醫生或血壓計/血糖儀測量校準的數值";
+
+/* Class = "UILabel"; text = "餐后血糖值"; ObjectID = "FFF-gm-zko"; */
+"FFF-gm-zko.text" = "餐後血糖值";
+
+/* Class = "UITextField"; placeholder = "请输入餐后血糖值"; ObjectID = "I1M-Db-Fsh"; */
+"I1M-Db-Fsh.placeholder" = "請輸入餐後血糖值";
+
+/* Class = "UILabel"; text = "*点击页面左上角侧边栏图标，亦可修改血压/血糖校准值。"; ObjectID = "MwO-N4-ouZ"; */
+"MwO-N4-ouZ.text" = "*點擊頁面左上角側邊欄圖標，亦可修改血壓/血糖校準值。";
+
+/* Class = "UILabel"; text = "基准低压值"; ObjectID = "brq-LX-YK4"; */
+"brq-LX-YK4.text" = "基準低壓值";
+
+/* Class = "UIButton"; normalTitle = "确定"; ObjectID = "eob-wu-fXT"; */
+"eob-wu-fXT.normalTitle" = "確定";
+
+/* Class = "UIButton"; normalTitle = "取消"; ObjectID = "f9s-3u-ZE0"; */
+"f9s-3u-ZE0.normalTitle" = "取消";
+
+/* Class = "UILabel"; text = "血压/血糖基准值设置"; ObjectID = "ohF-1V-L7a"; */
+"ohF-1V-L7a.text" = "血壓/血糖基準值設置";
+
+/* Class = "UITextField"; placeholder = "请输入基准高压值"; ObjectID = "tyI-Fw-cTt"; */
+"tyI-Fw-cTt.placeholder" = "請輸入基準高壓值";

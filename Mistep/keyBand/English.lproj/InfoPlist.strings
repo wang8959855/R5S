@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Mistep
+
+  Created by apple on 2019/7/2.
+  Copyright © 2019 huichenghe. All rights reserved.
+*/
+
+CFBundleDisplayName = "Wrist health";

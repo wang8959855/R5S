@@ -11,6 +11,7 @@
 #import "ConnectStateView.h"
 #import "DoneCustomView.h"
 #import "SheBeiViewController.h"
+#import "VersionAlertView.h"
 
 @interface SignViewController ()<BlutToothManagerDelegate,PZBlueToothManagerDelegate,CLLocationManagerDelegate>
 
@@ -52,7 +53,7 @@
     [self setBlocks];
     [self SLErefreshAlertView];
     self.tabBarController.tabBar.hidden = NO;
-    [self.datePickBtn setTitle:@"体征" forState:UIControlStateNormal];
+    [self.datePickBtn setTitle:NSLocalizedString(@"体征", nil) forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad {
@@ -67,6 +68,8 @@
         shebei.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:shebei animated:NO];
     }
+    
+    [self uoloadVersion];
     
     [self setupView];
     [HCHCommonManager getAvgHeartRate];
@@ -102,12 +105,12 @@
             NSInteger warnNum = [responseObject[@"data"][@"warnNum"] integerValue];
             if (warnNum > 0) {
                 H5ViewController *h5 = [H5ViewController new];
-                h5.titleStr = @"预警记录";
+                h5.titleStr = NSLocalizedString(@"预警记录", nil);
                 h5.url = [NSString stringWithFormat:@"https://www02.lantianfangzhou.com/report/heartrate/b7s/%@/%@/0?page=curent",USERID,TOKEN];
                 h5.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:h5 animated:YES];
             }else{
-                [self.view makeToast:@"暂无预警记录" duration:1.5 position:CSToastPositionCenter];
+                [self.view makeToast:NSLocalizedString(@"暂无预警记录", nil) duration:1.5 position:CSToastPositionCenter];
             }
         }else{
         }
@@ -166,13 +169,13 @@
             //查看是否开启通知
             [[CositeaBlueTooth sharedInstance] checkSystemAlarmWithType:SystemAlarmType_QQ StateBlock:^(int index, int state) {
                 if (state) {
-                    [weakSelf.view makeToast:@"QQ消息提醒已打开" duration:1.5 position:CSToastPositionBottom];
+                    [weakSelf.view makeToast:NSLocalizedString(@"QQ消息提醒已打开", nil) duration:1.5 position:CSToastPositionBottom];
                 }
             }];
             
             [[CositeaBlueTooth sharedInstance] checkSystemAlarmWithType:SystemAlarmType_WeChat StateBlock:^(int index, int state) {
                 if (state) {
-                    [weakSelf.view makeToast:@"微信消息提醒已打开" duration:1.5 position:CSToastPositionBottom];
+                    [weakSelf.view makeToast:NSLocalizedString(@"微信消息提醒已打开", nil) duration:1.5 position:CSToastPositionBottom];
                 }
             }];
             
@@ -465,7 +468,7 @@
         [self removeActityIndicatorFromView:self.view];
         if (error)
         {
-            [self.view makeCenterToast:@"网络连接错误"];
+            [self.view makeCenterToast:NSLocalizedString(@"网络连接错误", nil)];
         }
         else
         {
@@ -479,5 +482,39 @@
         }
     }];
 }
+
+//上传version
+- (void)uoloadVersion{
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    //获取版本
+    NSString *version = [NSString stringWithFormat:@"%@.%@",[infoDictionary objectForKey:@"CFBundleShortVersionString"],[infoDictionary objectForKey:@"CFBundleVersion"]];
+    NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",VERSION,TOKEN];
+    [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:uploadUrl fileUrl:nil params:@{@"version":version} Block:^(id responseObject, NSError *error) {
+        
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeOut) object:nil];
+        
+        [self removeActityIndicatorFromView:self.view];
+        if (error)
+        {
+            [self.view makeCenterToast:NSLocalizedString(@"网络连接错误", nil)];
+        }
+        else
+        {
+            int code = [[responseObject objectForKey:@"code"] intValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 0) {
+                
+                NSString *store = responseObject[@"data"][@"version"];
+                NSArray *content = responseObject[@"data"][@"content"];
+                BOOL result = [version compare:store] == NSOrderedAscending;
+                if (result) {
+                    [VersionAlertView versionAlertViewWithTitle:message content:content];
+                }
+            } else {
+            }
+        }
+    }];
+}
+
 
 @end

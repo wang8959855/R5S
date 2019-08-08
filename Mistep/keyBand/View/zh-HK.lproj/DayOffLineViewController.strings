@@ -1,0 +1,57 @@
+
+/* Class = "UILabel"; text = "0"; ObjectID = "72i-lT-84i"; */
+"72i-lT-84i.text" = "0";
+
+/* Class = "UILabel"; text = "预警"; ObjectID = "7Tj-CI-cOq"; */
+"7Tj-CI-cOq.text" = "预警";
+
+/* Class = "UILabel"; text = "热身"; ObjectID = "EBs-8j-rRN"; */
+"EBs-8j-rRN.text" = "热身";
+
+/* Class = "UILabel"; text = "有氧"; ObjectID = "Fbo-G0-g5o"; */
+"Fbo-G0-g5o.text" = "有氧";
+
+/* Class = "UILabel"; text = "运动强度"; ObjectID = "I09-IN-uVV"; */
+"I09-IN-uVV.text" = "运动强度";
+
+/* Class = "UILabel"; text = "燃脂"; ObjectID = "J5d-gy-DeW"; */
+"J5d-gy-DeW.text" = "燃脂";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Nxx-Dh-zKN"; */
+"Nxx-Dh-zKN.text" = "0";
+
+/* Class = "UILabel"; text = "h"; ObjectID = "OaH-0O-MYH"; */
+"OaH-0O-MYH.text" = "h";
+
+/* Class = "UILabel"; text = "未知"; ObjectID = "UcE-Ec-qA9"; */
+"UcE-Ec-qA9.text" = "未知";
+
+/* Class = "UILabel"; text = "min"; ObjectID = "VcA-ZU-x4m"; */
+"VcA-ZU-x4m.text" = "min";
+
+/* Class = "UILabel"; text = "非常低"; ObjectID = "cwz-f6-Adc"; */
+"cwz-f6-Adc.text" = "非常低";
+
+/* Class = "UILabel"; text = "热量消耗"; ObjectID = "gHy-mS-5rx"; */
+"gHy-mS-5rx.text" = "热量消耗";
+
+/* Class = "UILabel"; text = "次/分钟"; ObjectID = "gV1-wV-HL4"; */
+"gV1-wV-HL4.text" = "次/分钟";
+
+/* Class = "UILabel"; text = "无氧"; ObjectID = "gtU-lg-X0L"; */
+"gtU-lg-X0L.text" = "无氧";
+
+/* Class = "UILabel"; text = "总运动时长"; ObjectID = "m8P-5Q-JfA"; */
+"m8P-5Q-JfA.text" = "总运动时长";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "mBe-OM-HIQ"; */
+"mBe-OM-HIQ.text" = "0";
+
+/* Class = "UILabel"; text = "平均心率"; ObjectID = "mj8-gt-bl0"; */
+"mj8-gt-bl0.text" = "平均心率";
+
+/* Class = "UILabel"; text = "Kcal"; ObjectID = "o1w-6E-Iw8"; */
+"o1w-6E-Iw8.text" = "Kcal";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "zLf-Hr-9jH"; */
+"zLf-Hr-9jH.text" = "0";

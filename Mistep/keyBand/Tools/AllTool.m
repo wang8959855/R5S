@@ -2099,14 +2099,21 @@
     
     [sleepStr containsString:@""];
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"2332" withString:@"2112"];
-    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"2002" withString:@"2112"];
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"232" withString:@"212"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"132" withString:@"112"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"33222" withString:@"11222"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"2002" withString:@"2112"];
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"202" withString:@"212"];
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"212" withString:@"211"];
-    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"33222" withString:@"33112"];
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"2222" withString:@"2221"];
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"222" withString:@"221"];
     sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"121" withString:@"111"];
+    
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"22112211" withString:@"22111122"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"22112211" withString:@"12112211"];
+    sleepStr = [sleepStr stringByReplacingOccurrencesOfString:@"22112211" withString:@"12222111"];
+    
+    
     
     NSMutableArray * resultArr = [NSMutableArray array];
     
@@ -2211,6 +2218,9 @@
     NSMutableArray *_nightHeartArray = [NSMutableArray array];
     for (int i = beginTime; i < endTime; i ++)
     {
+        if (i >= tempArray.count) {
+            break;
+        }
         if([tempArray[i] integerValue] != 0)
         {
             [_nightHeartArray addObject:tempArray[i]];
@@ -2220,7 +2230,7 @@
         }
     }
     
-    if (_nightHeartArray.count <= 20) {
+    if (_nightHeartArray.count <= 36) {
         return NO;
     }
     

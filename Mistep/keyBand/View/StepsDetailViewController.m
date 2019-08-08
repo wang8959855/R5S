@@ -42,7 +42,7 @@
     [[PSDrawerManager instance] cancelDragResponse];
     [self childrenTimeSecondChanged];
     [self reloadBlueToothData];
-    [self.datePickBtn setTitle:@"运动锻炼" forState:UIControlStateNormal];
+    [self.datePickBtn setTitle:kLOCAL(@"运动锻炼") forState:UIControlStateNormal];
     [self.datePickBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     UIButton *shareBtn = [self.view viewWithTag:1002];
     [shareBtn setImage:[UIImage imageNamed:@"fenxiang-black"] forState:UIControlStateNormal];
@@ -106,7 +106,7 @@
     self.stepsView.steps = YES;
     
     NSArray *array= @[@"walk",@"SitStill"];
-    NSArray *titleArr = @[@"步数",@"久坐"];
+    NSArray *titleArr = @[kLOCAL(@"步数"),kLOCAL(@"久坐")];
     UIView *centerView;
     for (int i = 0; i < 2; i ++)
     {
@@ -497,7 +497,7 @@
 - (void)reloadStepsData
 {
 //    [GCDDelay gcdCancel:self.task];
-    NSDictionary *detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.selectTimeSeconds];
+    NSDictionary *detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay]];
     NSArray *stepsArray;
     if (!((NSNull *)detailDic[kDayStepsData] == [NSNull null]))
         stepsArray = [NSKeyedUnarchiver unarchiveObjectWithData:detailDic[kDayStepsData]];

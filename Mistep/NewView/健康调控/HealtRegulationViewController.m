@@ -58,7 +58,7 @@
     [self setBlocks];
     [self SLErefreshAlertView];
     self.tabBarController.tabBar.hidden = NO;
-    [self.datePickBtn setTitle:@"运动" forState:UIControlStateNormal];
+    [self.datePickBtn setTitle:NSLocalizedString(@"运动", nil) forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad {
@@ -211,7 +211,7 @@
     //selectShowTypeView上的button
     _sportButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _sportButton.frame = CGRectMake(0, 0, 110, 40);
-    [_sportButton setTitle:@"步数" forState:UIControlStateNormal];
+    [_sportButton setTitle:kLOCAL(@"步数") forState:UIControlStateNormal];
     [_sportButton setBackgroundColor:kColor(40, 82, 251)];
     _sportButton.layer.cornerRadius = 20.f;
     _sportButton.layer.masksToBounds = YES;
@@ -223,7 +223,7 @@
     
     _workoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _workoutButton.frame = CGRectMake(90, 0, 110, 40);
-    [_workoutButton setTitle:@"锻炼" forState:UIControlStateNormal];
+    [_workoutButton setTitle:kLOCAL(@"锻炼") forState:UIControlStateNormal];
     _workoutButton.layer.cornerRadius = 20.f;
     _workoutButton.layer.masksToBounds = YES;
     [_workoutButton setBackgroundColor:[UIColor clearColor]];

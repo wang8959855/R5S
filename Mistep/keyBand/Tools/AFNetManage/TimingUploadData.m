@@ -2076,63 +2076,66 @@
     
     WeakSelf;
     //获取睡眠数据
-    [[PZBlueToothManager sharedInstance] checkTodaySleepStateWithBlock:^(int timeSeconds, NSArray *sleepArray) {
-//        weakSelf.sleepArray = sleepArray;
-//        weakSelf.sleepArray = [NSMutableArray array];
-        weakSelf.sleepTime = timeSeconds;
-        //获取心率数据
-        [[PZBlueToothManager sharedInstance] checkTodayHeartRateWithBlock:^(int timeSeconds, int index, NSArray *heartArray) {
-            switch (index) {
-                case 1:{
-                    [heart1 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray];
-                }break;
-                case 2:{
-                    [heart2 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray];
-                }break;
-                case 3:{
-                    [heart3 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray];
-                }break;
-                case 4:{
-                    [heart4 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray];
-                }break;
-                case 5:{
-                    [heart5 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray];
-                }break;
-                case 6:{
-                    [heart6 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray];
-                }break;
-                case 7:{
-                    [heart7 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray];
-                }break;
-                case 8:{
-                    [heart8 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray];
-                }break;
-            }
-            NSString *heartString1 =[AllTool arrayToStringHeart:heart1];
-            NSString *heartString2 =[AllTool arrayToStringHeart:heart2];
-            NSString *heartString3 =[AllTool arrayToStringHeart:heart3];
-            NSString *heartString4 =[AllTool arrayToStringHeart:heart4];
-            NSString *heartString5 =[AllTool arrayToStringHeart:heart5];
-            NSString *heartString6 =[AllTool arrayToStringHeart:heart6];
-            NSString *heartString7 =[AllTool arrayToStringHeart:heart7];
-            NSString *heartString8 =[AllTool arrayToStringHeart:heart8];
-            NSMutableString * upDataHeart =[NSMutableString string];
-            [upDataHeart appendString:heartString1];
-            [upDataHeart appendString:heartString2];
-            [upDataHeart appendString:heartString3];
-            [upDataHeart appendString:heartString4];
-            [upDataHeart appendString:heartString5];
-            [upDataHeart appendString:heartString6];
-            [upDataHeart appendString:heartString7];
-            [upDataHeart appendString:heartString8];
+        [[PZBlueToothManager sharedInstance] checkTodaySleepStateWithBlock:^(int timeSeconds, NSArray *sleepArray) {
+    //        weakSelf.sleepArray = sleepArray;
+    //        weakSelf.sleepArray = [NSMutableArray array];
+            weakSelf.sleepTime = timeSeconds;
             //获取运动数据
             [[PZBlueToothManager sharedInstance] checkHourStepsAndCostsWithBlock:^(NSArray *steps, NSArray *costs) {
                 [[PZBlueToothManager sharedInstance] chekCurDayAllDataWithBlock:^(NSDictionary *dic) {
-                   [self uploadCurrentHearStr:upDataHeart sleepArr:self.sleepArray sleepTime:weakSelf.sleepTime steps:steps costs:costs dayDic:dic];
+                    
+                    NSArray *heartArray = [[SQLdataManger getInstance] getHistoryHeartRateWithDate:[[TimeCallManager getInstance] getTimeStringWithSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay] andFormat:@"yyyy-MM-dd"]];
+                    for (int i = 0; i < 8; i++){
+                        //获取心率数据
+                        switch (i) {
+                            case 0:{
+                                [heart1 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray[i]];
+                            }break;
+                            case 1:{
+                                [heart2 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray[i]];
+                            }break;
+                            case 2:{
+                                [heart3 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray[i]];
+                            }break;
+                            case 3:{
+                                [heart4 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray[i]];
+                            }break;
+                            case 4:{
+                                [heart5 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray[i]];
+                            }break;
+                            case 5:{
+                                [heart6 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray[i]];
+                            }break;
+                            case 6:{
+                                [heart7 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray[i]];
+                            }break;
+                            case 7:{
+                                [heart8 replaceObjectsInRange:NSMakeRange(0, 180) withObjectsFromArray:heartArray[i]];
+                            }break;
+                        }
+                    }
+                    NSString *heartString1 =[AllTool arrayToStringHeart:heart1];
+                    NSString *heartString2 =[AllTool arrayToStringHeart:heart2];
+                    NSString *heartString3 =[AllTool arrayToStringHeart:heart3];
+                    NSString *heartString4 =[AllTool arrayToStringHeart:heart4];
+                    NSString *heartString5 =[AllTool arrayToStringHeart:heart5];
+                    NSString *heartString6 =[AllTool arrayToStringHeart:heart6];
+                    NSString *heartString7 =[AllTool arrayToStringHeart:heart7];
+                    NSString *heartString8 =[AllTool arrayToStringHeart:heart8];
+                    NSMutableString * upDataHeart =[NSMutableString string];
+                    [upDataHeart appendString:heartString1];
+                    [upDataHeart appendString:heartString2];
+                    [upDataHeart appendString:heartString3];
+                    [upDataHeart appendString:heartString4];
+                    [upDataHeart appendString:heartString5];
+                    [upDataHeart appendString:heartString6];
+                    [upDataHeart appendString:heartString7];
+                    [upDataHeart appendString:heartString8];
+                    
+                    [self uploadCurrentHearStr:upDataHeart sleepArr:self.sleepArray sleepTime:weakSelf.sleepTime steps:steps costs:costs dayDic:dic];
                 }];
             }];
         }];
-    }];
 }
 
 - (void)uploadCurrentHearStr:(NSString *)hear sleepArr:(NSArray *)sleepArr sleepTime:(int)sleeptime steps:(NSArray *)stepArr costs:(NSArray *)costs dayDic:(NSDictionary *)dayDic{
@@ -2140,8 +2143,8 @@
     NSString *step = dayDic[@"TotalSteps_DayData"];
     NSString *distance = [NSString stringWithFormat:@"%f",[dayDic[@"TotalMeters_DayData"] doubleValue]/1000.0];
     
-    NSString *startTime = [self calcSleepStartAndEndTimeWithCurrentTime:self.curSeconed][0];
-    NSString *endTime = [self calcSleepStartAndEndTimeWithCurrentTime:self.curSeconed][1];
+    NSString *startTime = [self calcSleepStartAndEndTimeWithCurrentTime:[[TimeCallManager getInstance] getSecondsOfCurDay]][0];
+    NSString *endTime = [self calcSleepStartAndEndTimeWithCurrentTime:[[TimeCallManager getInstance] getSecondsOfCurDay]][1];
     NSString *stepAll = [AllTool arrayToStringSport:stepArr];
     NSString *costsAll = [AllTool arrayToStringSport:costs];
     NSString *sleepAll = @"";
@@ -2153,7 +2156,7 @@
     NSString *timeStr = [NSString stringWithFormat:@"%f",[[TimeCallManager getInstance] getNowSecond]];
     NSString *dateStr = [[TimeCallManager getInstance] getTimeStringWithSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay] andFormat:@"yyyy-MM-dd"];
     
-    NSDictionary *paramater = @{@"Step_List":stepAll,@"Step":step,@"Cal":cal,@"Distance":distance,@"Cal_List":costsAll,@"Sq_List":sleepAll,@"StartTime":startTime,@"EndTime":endTime,@"hrData":hear,@"userId":USERID,@"date":dateStr,@"time":timeStr};
+    NSDictionary *paramater = @{@"Step_List":stepAll,@"Step":step,@"Cal":cal,@"Distance":distance,@"Cal_List":costsAll,@"Sq_List":sleepAll,@"StartTime":startTime,@"EndTime":endTime,@"hrData":hear,@"userId":USERID,@"date":dateStr,@"time":timeStr,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]};
     NSString *url = [NSString stringWithFormat:@"%@/%@",HEARTRATEUPDATE,TOKEN];
     [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:url ParametersDictionary:paramater Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task){
         int code = [responseObject[@"code"] intValue];

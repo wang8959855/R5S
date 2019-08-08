@@ -33,14 +33,22 @@ static HCHCommonManager * instance=nil;
     instance = nil ;
 }
 
+- (int)todayTimeSeconds{
+    return [[TimeCallManager getInstance] getSecondsOfCurDay];
+}
+
+- (int)selectTimeSeconds{
+    return [[TimeCallManager getInstance] getSecondsOfCurDay];
+}
+
 - (void)initData{
     _isFirstLogin = [[NSUserDefaults standardUserDefaults] boolForKey:CheckFirstLoad_HCH];
     _sleepPlan = [[[NSUserDefaults standardUserDefaults] objectForKey:Sleep_PlanTo_HCH] intValue];
     _stepsPlan = [[[NSUserDefaults standardUserDefaults] objectForKey:Steps_PlanTo_HCH] intValue];
     _antilossIsOn = [[NSUserDefaults standardUserDefaults] boolForKey:AntiLoss_Status_HCH];
     _state = [[[NSUserDefaults standardUserDefaults] objectForKey:kUnitStateKye]intValue];
-    _todayTimeSeconds = [[TimeCallManager getInstance] getSecondsOfCurDay];
-    _selectTimeSeconds = _todayTimeSeconds;
+//    _todayTimeSeconds = [[TimeCallManager getInstance] getSecondsOfCurDay];
+//    _selectTimeSeconds = _todayTimeSeconds;
     self.pilaoValue = YES;
     self.weatherLocation = 1;
     _timeTimer = [NSTimer scheduledTimerWithTimeInterval:10.f target:self selector:@selector(systemTimeChange) userInfo:nil repeats:YES];//定时刷新时间
@@ -710,113 +718,113 @@ static HCHCommonManager * instance=nil;
             [[SQLdataManger getInstance] addHistoryHeartRate:@[data1,data2,data3,data4,data5,data6,data7,data8,timeStr] date:timeStr];
         }
         
-        NSInteger heart = 0;
-        NSInteger max = 0;
-        NSInteger min = 100;
-        NSInteger total = 0;
-        for (NSNumber *number in heart1) {
-            heart += number.integerValue;
-            if (number.integerValue != 0){
-                total += 1;
-            }
-            if (number.integerValue > max){
-                max = number.integerValue;
-            }
-            if (number.integerValue < min && number.integerValue != 0){
-                min = number.integerValue;
-            }
-        }
-        for (NSNumber *number in heart2) {
-            heart += number.integerValue;
-            if (number.integerValue != 0){
-                total += 1;
-            }
-            if (number.integerValue > max){
-                max = number.integerValue;
-            }
-            if (number.integerValue < min && number.integerValue != 0){
-                min = number.integerValue;
-            }
-        }
-        for (NSNumber *number in heart3) {
-            heart += number.integerValue;
-            if (number.integerValue != 0){
-                total += 1;
-            }
-            if (number.integerValue > max){
-                max = number.integerValue;
-            }
-            if (number.integerValue < min && number.integerValue != 0){
-                min = number.integerValue;
-            }
-        }
-        for (NSNumber *number in heart4) {
-            heart += number.integerValue;
-            if (number.integerValue != 0){
-                total += 1;
-            }
-            if (number.integerValue > max){
-                max = number.integerValue;
-            }
-            if (number.integerValue < min && number.integerValue != 0){
-                min = number.integerValue;
-            }
-        }
-        for (NSNumber *number in heart5) {
-            heart += number.integerValue;
-            if (number.integerValue != 0){
-                total += 1;
-            }
-            if (number.integerValue > max){
-                max = number.integerValue;
-            }
-            if (number.integerValue < min && number.integerValue != 0){
-                min = number.integerValue;
-            }
-        }
-        for (NSNumber *number in heart6) {
-            heart += number.integerValue;
-            if (number.integerValue != 0){
-                total += 1;
-            }
-            if (number.integerValue > max){
-                max = number.integerValue;
-            }
-            if (number.integerValue < min && number.integerValue != 0){
-                min = number.integerValue;
-            }
-        }
-        for (NSNumber *number in heart7) {
-            heart += number.integerValue;
-            if (number.integerValue != 0){
-                total += 1;
-            }
-            if (number.integerValue > max){
-                max = number.integerValue;
-            }
-            if (number.integerValue < min && number.integerValue != 0){
-                min = number.integerValue;
-            }
-        }
-        for (NSNumber *number in heart8) {
-            heart += number.integerValue;
-            if (number.integerValue != 0){
-                total += 1;
-            }
-            if (number.integerValue > max){
-                max = number.integerValue;
-            }
-            if (number.integerValue < min && number.integerValue != 0){
-                min = number.integerValue;
-            }
-        }
-        NSString *avg = [NSString stringWithFormat:@"%ld",heart/total];
-        NSString *minStr = [NSString stringWithFormat:@"%ld",min];
-        if (total == 0){
-            minStr = @"0";
-        }
-        NSString *maxStr = [NSString stringWithFormat:@"%ld",max];
-        [[NSNotificationCenter defaultCenter] postNotificationName:GetAvgHeartRateNotification object:@{@"avg":avg,@"min":minStr,@"max":maxStr}];
+//        NSInteger heart = 0;
+//        NSInteger max = 0;
+//        NSInteger min = 100;
+//        NSInteger total = 0;
+//        for (NSNumber *number in heart1) {
+//            heart += number.integerValue;
+//            if (number.integerValue != 0){
+//                total += 1;
+//            }
+//            if (number.integerValue > max){
+//                max = number.integerValue;
+//            }
+//            if (number.integerValue < min && number.integerValue != 0){
+//                min = number.integerValue;
+//            }
+//        }
+//        for (NSNumber *number in heart2) {
+//            heart += number.integerValue;
+//            if (number.integerValue != 0){
+//                total += 1;
+//            }
+//            if (number.integerValue > max){
+//                max = number.integerValue;
+//            }
+//            if (number.integerValue < min && number.integerValue != 0){
+//                min = number.integerValue;
+//            }
+//        }
+//        for (NSNumber *number in heart3) {
+//            heart += number.integerValue;
+//            if (number.integerValue != 0){
+//                total += 1;
+//            }
+//            if (number.integerValue > max){
+//                max = number.integerValue;
+//            }
+//            if (number.integerValue < min && number.integerValue != 0){
+//                min = number.integerValue;
+//            }
+//        }
+//        for (NSNumber *number in heart4) {
+//            heart += number.integerValue;
+//            if (number.integerValue != 0){
+//                total += 1;
+//            }
+//            if (number.integerValue > max){
+//                max = number.integerValue;
+//            }
+//            if (number.integerValue < min && number.integerValue != 0){
+//                min = number.integerValue;
+//            }
+//        }
+//        for (NSNumber *number in heart5) {
+//            heart += number.integerValue;
+//            if (number.integerValue != 0){
+//                total += 1;
+//            }
+//            if (number.integerValue > max){
+//                max = number.integerValue;
+//            }
+//            if (number.integerValue < min && number.integerValue != 0){
+//                min = number.integerValue;
+//            }
+//        }
+//        for (NSNumber *number in heart6) {
+//            heart += number.integerValue;
+//            if (number.integerValue != 0){
+//                total += 1;
+//            }
+//            if (number.integerValue > max){
+//                max = number.integerValue;
+//            }
+//            if (number.integerValue < min && number.integerValue != 0){
+//                min = number.integerValue;
+//            }
+//        }
+//        for (NSNumber *number in heart7) {
+//            heart += number.integerValue;
+//            if (number.integerValue != 0){
+//                total += 1;
+//            }
+//            if (number.integerValue > max){
+//                max = number.integerValue;
+//            }
+//            if (number.integerValue < min && number.integerValue != 0){
+//                min = number.integerValue;
+//            }
+//        }
+//        for (NSNumber *number in heart8) {
+//            heart += number.integerValue;
+//            if (number.integerValue != 0){
+//                total += 1;
+//            }
+//            if (number.integerValue > max){
+//                max = number.integerValue;
+//            }
+//            if (number.integerValue < min && number.integerValue != 0){
+//                min = number.integerValue;
+//            }
+//        }
+//        NSString *avg = [NSString stringWithFormat:@"%ld",heart/total];
+//        NSString *minStr = [NSString stringWithFormat:@"%ld",min];
+//        if (total == 0){
+//            minStr = @"0";
+//        }
+//        NSString *maxStr = [NSString stringWithFormat:@"%ld",max];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:GetAvgHeartRateNotification object:@{@"avg":avg,@"min":minStr,@"max":maxStr}];
     }];
 }
 

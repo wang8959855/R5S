@@ -17,7 +17,7 @@
 #import <WebKit/WebKit.h>
 
 
-@interface TodaySleepViewController ()<BlutToothManagerDelegate,PZBlueToothManagerDelegate,NightCircleViewDelegate,WKNavigationDelegate>
+@interface TodaySleepViewController ()<BlutToothManagerDelegate,PZBlueToothManagerDelegate,NightCircleViewDelegate,WKNavigationDelegate,UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIScrollView *backScrollView;
 //@property (nonatomic,strong)UIView *connectView;//提示连接的view
@@ -50,16 +50,21 @@
     
     UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:refreshButton];
-    refreshButton.frame = CGRectMake(CurrentDeviceWidth - 30, StatusBarHeight + 12, 20, 20);
+    refreshButton.frame = CGRectMake(CurrentDeviceWidth - 40, StatusBarHeight, 35, 44);
     [refreshButton setImage:[UIImage imageNamed:@"shuaxin-icon"] forState:UIControlStateNormal];
     [refreshButton addTarget:self action:@selector(reloadWebView) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:guideButton];
-    guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 25, StatusBarHeight + 12, 20, 20);
+    guideButton.frame = CGRectMake(CurrentDeviceWidth - 55 - 35, StatusBarHeight, 35, 44);
     [guideButton setImage:[UIImage imageNamed:@"zy"] forState:UIControlStateNormal];
     [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     
+    self.webView.scrollView.delegate = self;
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return nil;
 }
 
 //指引
@@ -191,7 +196,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.datePickBtn setTitle:@"报告" forState:UIControlStateNormal];
+    [self.datePickBtn setTitle:NSLocalizedString(@"报告", nil) forState:UIControlStateNormal];
 //    BOOL isalert = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isAlertRegulation"] boolValue];
 //    if (!isalert) {
 //        [AlertMainView alertMainViewWithType:AlertMainViewTypeRegulation];
@@ -336,8 +341,8 @@
 -(void)sleepDrawWithDictionary
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(sleepDrawWithDictionary) object:nil];
-    NSDictionary *todayDic =  [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.selectTimeSeconds];
-    NSDictionary *lastDayDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.selectTimeSeconds - KONEDAYSECONDS];
+    NSDictionary *todayDic =  [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay]];
+    NSDictionary *lastDayDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay] - KONEDAYSECONDS];
     
     NSMutableArray *sleepArray = [[NSMutableArray alloc] init];
     
@@ -744,7 +749,7 @@
     if(![SLEconnectString isEqualToString:NSLocalizedString(@"connectSuccessfully", nil)])
     {
         self.backScrollView.frame = CGRectMake(0,SafeAreaTopHeight+self.SLEconStateView.height,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
-        self.webView.frame = CGRectMake(0,0,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height);
+        self.webView.frame = CGRectMake(0,0,self.backScrollView.frame.size.width, self.backScrollView.frame.size.height-self.SLEconStateView.height);
     }
 }
 

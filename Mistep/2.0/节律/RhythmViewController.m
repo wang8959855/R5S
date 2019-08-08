@@ -37,7 +37,16 @@
     [self setBlocks];
     [self SLErefreshAlertView];
     self.tabBarController.tabBar.hidden = NO;
-    [self.datePickBtn setTitle:@"节律" forState:UIControlStateNormal];
+    
+    UILabel *tit = [[UILabel alloc] init];
+    tit.size = CGSizeMake(120, SafeAreaTopHeight-StatusBarHeight);
+    tit.origin = CGPointMake(ScreenWidth/2-60, StatusBarHeight);
+    tit.font = Font_Normal_String(14);
+    tit.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:tit];
+    tit.textColor = [UIColor whiteColor];
+    tit.text = kLOCAL(@"节律");
+    
 }
 
 - (void)viewDidLoad {

@@ -10,6 +10,9 @@
 
 @interface RegulationViewController ()<UIWebViewDelegate>
 
+    @property (weak, nonatomic) IBOutlet UILabel *pageTitle;
+    
+    
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusheight;
@@ -25,6 +28,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     self.statusheight.constant = StatusBarHeight;
+    self.pageTitle.text = kLOCAL(@"健康调控");
 }
 
 - (void)didReceiveMemoryWarning {

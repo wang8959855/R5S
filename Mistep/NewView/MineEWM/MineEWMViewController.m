@@ -16,7 +16,10 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusHeight;
 
-
+@property (weak, nonatomic) IBOutlet UILabel *pageTitle;
+   
+    
+    
 @end
 
 @implementation MineEWMViewController
@@ -28,6 +31,7 @@
     [self composeImg:[self encodeQRImageWithContent:data size:CGSizeMake(215, 215)]];
     self.iconImage.image = [UIImage imageNamed:@"AppIcon"];
     self.statusHeight.constant = StatusBarHeight;
+    self.pageTitle.text = kLOCAL(@"我的二维码");
 }
 
 - (void)didReceiveMemoryWarning {

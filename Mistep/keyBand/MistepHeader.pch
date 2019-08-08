@@ -36,7 +36,9 @@
 #import "UIImageView+WebCache.h"
 #import <Toast.h>
 #import "GuideLinesViewController.h"
-
+#import "UIButton+QiEventInterval.h"
+#import "NSMutableArray+Extension.h"
+#import "NSArray+Extension.h"
 
 
 #if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64

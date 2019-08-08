@@ -47,7 +47,7 @@
     [self setBlocks];
     [self SLErefreshAlertView];
     self.tabBarController.tabBar.hidden = NO;
-    [self.datePickBtn setTitle:@"睡眠" forState:UIControlStateNormal];
+    [self.datePickBtn setTitle:kLOCAL(@"睡眠") forState:UIControlStateNormal];
     
 }
 
@@ -195,7 +195,7 @@
     //selectShowTypeView上的button
     _sleepButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _sleepButton.frame = CGRectMake(0, 0, 110, 40);
-    [_sleepButton setTitle:@"睡眠" forState:UIControlStateNormal];
+    [_sleepButton setTitle:kLOCAL(@"睡眠") forState:UIControlStateNormal];
     [_sleepButton setBackgroundColor:kColor(40, 82, 251)];
     _sleepButton.layer.cornerRadius = 20.f;
     _sleepButton.layer.masksToBounds = YES;
@@ -207,7 +207,7 @@
     
     _helpSleepButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _helpSleepButton.frame = CGRectMake(90, 0, 110, 40);
-    [_helpSleepButton setTitle:@"助眠" forState:UIControlStateNormal];
+    [_helpSleepButton setTitle:kLOCAL(@"助眠") forState:UIControlStateNormal];
     _helpSleepButton.layer.cornerRadius = 20.f;
     _helpSleepButton.layer.masksToBounds = YES;
     [_helpSleepButton setBackgroundColor:[UIColor clearColor]];

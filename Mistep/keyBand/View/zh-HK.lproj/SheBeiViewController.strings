@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "找设备"; ObjectID = "6Zt-KX-eHy"; */
+"6Zt-KX-eHy.text" = "找设备";
+
+/* Class = "UILabel"; text = "deviceName"; ObjectID = "EQX-1R-YRb"; */
+"EQX-1R-YRb.text" = "deviceName";
+
+/* Class = "UILabel"; text = "清除APP内所有数据记录"; ObjectID = "ElQ-Vl-Udd"; */
+"ElQ-Vl-Udd.text" = "清除APP内所有数据记录";
+
+/* Class = "UILabel"; text = "恢复出厂设置"; ObjectID = "PIZ-iM-irU"; */
+"PIZ-iM-irU.text" = "恢复出厂设置";
+
+/* Class = "UILabel"; text = "设备未连接"; ObjectID = "V9B-HV-DEe"; */
+"V9B-HV-DEe.text" = "设备未连接";
+
+/* Class = "UILabel"; text = "清除本地数据"; ObjectID = "Vf2-kt-9tX"; */
+"Vf2-kt-9tX.text" = "清除本地数据";
+
+/* Class = "UIButton"; normalTitle = "搜索设备"; ObjectID = "gyJ-nE-UWk"; */
+"gyJ-nE-UWk.normalTitle" = "搜索设备";
+
+/* Class = "UILabel"; text = "让设备震动，方便查找"; ObjectID = "p3A-sC-Yln"; */
+"p3A-sC-Yln.text" = "让设备震动，方便查找";
+
+/* Class = "UILabel"; text = "我的设备"; ObjectID = "sJv-Gj-BS5"; */
+"sJv-Gj-BS5.text" = "我的设备";
+
+/* Class = "UILabel"; text = "恢复出厂设置后，所有数据将清零。"; ObjectID = "xHg-8v-3Be"; */
+"xHg-8v-3Be.text" = "恢复出厂设置后，所有数据将清零。";

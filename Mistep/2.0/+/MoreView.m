@@ -12,9 +12,14 @@
 #import "RhythmViewController.h"
 #import "RegulationViewController.h"
 #import "NowTestViewController.h"
+#import <BMKLocationKit/BMKLocationManager.h>
+#import <BMKLocationkit/BMKLocationComponent.h>
+#import <BMKLocationKit/BMKLocationAuth.h>
 
 static MoreView *instance = nil;
-@interface MoreView ()<CLLocationManagerDelegate>
+@interface MoreView ()<CLLocationManagerDelegate,BMKLocationManagerDelegate,BMKLocationAuthDelegate>
+
+@property (nonatomic, strong) BMKLocationManager *locationManager1;
 
 @property (nonatomic, strong) UIButton *rotateBtn;
 
@@ -60,6 +65,7 @@ static MoreView *instance = nil;
                     view.frame = [instance.endFrameArr[i] CGRectValue];
                 }
                 [instance getState];
+                [instance createLocation];
             } completion:^(BOOL finished) {
             }];
         }
@@ -73,6 +79,26 @@ static MoreView *instance = nil;
         [self setSubViews];
     }
     return self;
+}
+
+- (void)createLocation{
+    //初始化实例
+    [[BMKLocationAuth sharedInstance] checkPermisionWithKey:@"D9vyaPEBqnK7vNZTCqSSpSP2PxvyN3vF" authDelegate:self];
+    _locationManager1 = [[BMKLocationManager alloc] init];
+    //设置delegate
+    _locationManager1.delegate = self;
+    //设置是否允许后台定位
+    _locationManager1.allowsBackgroundLocationUpdates = YES;
+    //设置返回位置的坐标系类型
+    _locationManager1.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+    //设置距离过滤参数
+    _locationManager1.distanceFilter = kCLDistanceFilterNone;
+    //设置预期精度参数
+    _locationManager1.desiredAccuracy = kCLLocationAccuracyBest;
+    //设置位置获取超时时间
+    _locationManager1.locationTimeout = 30;
+    //设置获取地址信息超时时间
+    _locationManager1.reGeocodeTimeout = 30;
 }
 
 - (void)setSubViews{
@@ -119,11 +145,11 @@ static MoreView *instance = nil;
             self.policeBtn = button;
             [button setImage:[UIImage imageNamed:@"yj-blue"] forState:UIControlStateSelected];
             [button setImage:[UIImage imageNamed:@"yujing-h"] forState:UIControlStateNormal];
-            label.text = @"预警";
+            label.text = kLOCAL(@"预警");
         }else if (i == 1){
             self.locationBtn = button;
             [button setImage:[UIImage imageNamed:@"dw-blue"] forState:UIControlStateSelected];
-            label.text = @"定位";
+            label.text = kLOCAL(@"定位");
             [button setImage:[UIImage imageNamed:@"dingwei-h"] forState:UIControlStateNormal];
         }else if (i == 2){
             self.sosBtn = button;
@@ -132,11 +158,11 @@ static MoreView *instance = nil;
         }else if (i == 3){
             self.jielvBtn = button;
             [button setImage:[UIImage imageNamed:@"jl-blue"] forState:UIControlStateNormal];
-            label.text = @"节律";
+            label.text = kLOCAL(@"节律");
         }else if (i == 4){
             self.regulationBtn = button;
             [button setImage:[UIImage imageNamed:@"tiaokong"] forState:UIControlStateNormal];
-            label.text = @"调控";
+            label.text = kLOCAL(@"调控");
         }else if (i == 5){
             self.testBtn = button;
             [button setImage:[UIImage imageNamed:@"jishi"] forState:UIControlStateNormal];
@@ -170,26 +196,26 @@ static MoreView *instance = nil;
         WeakSelf;
         sos.sosOKBlock = ^{
             if (!weakSelf.locationBtn.selected) {
-                [self makeCenterToast:@"请先打开定位"];
+                [self makeCenterToast:kLOCAL(@"请先打开定位")];
                 return;
             }
-            [weakSelf startLocation];
+            [weakSelf startUploadLocation];
         };
     }else if (button == self.locationBtn){//定位
         [self rotateAction:nil];
         NSString *title = @"";
         if (button.selected) {
-            title = @"关闭轨迹定位将让监护人无法获取您的位置信息，是否关闭";
+            title = kLOCAL(@"关闭轨迹定位将让监护人无法获取您的位置信息，是否关闭");
         }else{
-            title = @"轨迹定位将让监护人获取您的位置信息，是否开启";
+            title = kLOCAL(@"轨迹定位将让监护人获取您的位置信息，是否开启");
         }
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"通知" message:title preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLOCAL(@"通知") message:title preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:kLOCAL(@"设置") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             //跳转设置
             NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
             [[UIApplication sharedApplication] openURL:settingsURL];
         }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:kLOCAL(@"取消") style:UIAlertActionStyleDefault handler:nil]];
         [[self findCurrentViewController] presentViewController:alert animated:YES completion:nil];
     }else if (button == self.policeBtn){//预警
         WeakSelf;
@@ -265,6 +291,31 @@ static MoreView *instance = nil;
     
 }
 
+- (void)startUploadLocation{
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if ([CLLocationManager locationServicesEnabled] &&
+        (status == kCLAuthorizationStatusAuthorizedWhenInUse
+         || status == kCLAuthorizationStatusAuthorizedAlways)) {
+            //定位功能可用，开始定位
+            //单次定位
+            WeakSelf
+            [self.locationManager1 requestLocationWithReGeocode:YES withNetworkState:NO completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
+                if (location.rgcData) {
+                    NSString *address = @"";
+                    if ([location.rgcData.province isEqualToString:location.rgcData.city]) {
+                        address = [NSString stringWithFormat:@"%@%@",location.rgcData.city,location.rgcData.district];
+                    }else{
+                        address = [NSString stringWithFormat:@"%@%@%@",location.rgcData.province,location.rgcData.city,location.rgcData.district];
+                    }
+                    [weakSelf requestSOSAddress:address lng:location.location.coordinate.longitude lat:location.location.coordinate.latitude environment:location.rgcData.locationDescribe];
+                }else{
+                    [weakSelf requestSOSAddress:@"" lng:location.location.coordinate.longitude lat:location.location.coordinate.latitude environment:@""];
+                }
+            }];
+            
+        }
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     CLLocation *newLocation = locations[0];
     CLLocationCoordinate2D oldCoordinate = newLocation.coordinate;
@@ -302,7 +353,7 @@ static MoreView *instance = nil;
         NSString *message = responseObject[@"message"];
         if (code == 0) {
             [self rotateAction:nil];
-            [[self findCurrentViewController].view makeCenterToast:@"呼叫成功"];
+            [[self findCurrentViewController].view makeCenterToast:kLOCAL(@"呼叫成功")];
         }else{
             [self makeCenterToast:message];
         }

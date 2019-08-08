@@ -37,17 +37,22 @@
 		180F2FBD2248F0B0003EE292 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F2FBB2248F0B0003EE292 /* SignViewController.m */; };
 		180F2FBE2248F0B0003EE292 /* SignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F2FBC2248F0B0003EE292 /* SignViewController.xib */; };
 		180F2FC222490740003EE292 /* SetBloodOxygenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F2FC122490740003EE292 /* SetBloodOxygenView.m */; };
-		180F2FC422490750003EE292 /* SetBloodOxygenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F2FC322490750003EE292 /* SetBloodOxygenView.xib */; };
 		180F2FC8224A0B72003EE292 /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F2FC7224A0B72003EE292 /* MoreView.m */; };
 		180F2FCB224A0C47003EE292 /* SleepNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F2FCA224A0C47003EE292 /* SleepNewViewController.m */; };
 		180F2FD0224A60F4003EE292 /* HelpSleepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F2FCE224A60F4003EE292 /* HelpSleepViewController.m */; };
-		180F2FD1224A60F4003EE292 /* HelpSleepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F2FCF224A60F4003EE292 /* HelpSleepViewController.xib */; };
 		1810621D226066AE009A3562 /* NowTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810621B226066AE009A3562 /* NowTestViewController.m */; };
 		1810621E226066AE009A3562 /* NowTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1810621C226066AE009A3562 /* NowTestViewController.xib */; };
 		1810622422607D53009A3562 /* celaing-d.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1810622322607D53009A3562 /* celaing-d.gif */; };
+		1811DC8522CB31C10050DD22 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1811DC8722CB31C10050DD22 /* InfoPlist.strings */; };
+		1811DCB222CB40150050DD22 /* HelpSleepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1811DCB422CB40150050DD22 /* HelpSleepViewController.xib */; };
+		1811DCBA22CB47760050DD22 /* SetBloodOxygenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1811DCBC22CB47760050DD22 /* SetBloodOxygenView.xib */; };
+		1814A21822DC51AE00DC9DE4 /* UIButton+QiEventInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = 1814A21722DC51AE00DC9DE4 /* UIButton+QiEventInterval.m */; };
 		1815A8A8224718CA00699F38 /* 设置@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1815A8A5224718C800699F38 /* 设置@3x.png */; };
 		1815A8A9224718CA00699F38 /* 设置@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1815A8A6224718C800699F38 /* 设置@2x.png */; };
 		1815A8AA224718CA00699F38 /* 设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 1815A8A7224718C900699F38 /* 设置.png */; };
+		181D568722E0048700F75A08 /* 自然雨.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 181D568522E0048600F75A08 /* 自然雨.mp3 */; };
+		181D568822E0048700F75A08 /* 蛐蛐.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 181D568622E0048600F75A08 /* 蛐蛐.mp3 */; };
+		18280AFB22D0B1EE00615BDE /* AlertPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18280AFD22D0B1EE00615BDE /* AlertPhoneViewController.xib */; };
 		18298FA220AC65FA0080C536 /* AlertUserInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18298FA020AC65FA0080C536 /* AlertUserInfomationViewController.m */; };
 		18298FA320AC65FA0080C536 /* AlertUserInfomationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18298FA120AC65FA0080C536 /* AlertUserInfomationViewController.xib */; };
 		1832DC1B22715CAC00CA27DA /* AttentionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1832DC1322715CAC00CA27DA /* AttentionCell.m */; };
@@ -70,6 +75,10 @@
 		184A089A20E26BA10080C078 /* SelectStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A089820E26BA10080C078 /* SelectStepCell.m */; };
 		184A089B20E26BA10080C078 /* SelectStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A089920E26BA10080C078 /* SelectStepCell.xib */; };
 		184F5B0E22408F970055170C /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F5B0D22408F970055170C /* GuideViewController.m */; };
+		1856CFC522F7C106002DE6B2 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856CFC122F7C106002DE6B2 /* NSArray+Extension.m */; };
+		1856CFC622F7C106002DE6B2 /* NSMutableArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856CFC222F7C106002DE6B2 /* NSMutableArray+Extension.m */; };
+		1856CFCA22F9267F002DE6B2 /* VersionAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856CFC922F9267F002DE6B2 /* VersionAlertView.m */; };
+		1856CFCC22F92688002DE6B2 /* VersionAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1856CFCB22F92688002DE6B2 /* VersionAlertView.xib */; };
 		185ACE4821007D7E0015B627 /* AlertMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185ACE4721007D7E0015B627 /* AlertMainView.m */; };
 		185ACE4A21007D850015B627 /* AlertMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185ACE4921007D850015B627 /* AlertMainView.xib */; };
 		188BFCEE20D3BEEA00DA7813 /* FriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188BFCEC20D3BEEA00DA7813 /* FriendDetailViewController.m */; };
@@ -77,7 +86,6 @@
 		188E749620AD58E500921A5D /* AlertNickNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188E749520AD58E500921A5D /* AlertNickNameView.m */; };
 		188E749820AD58EF00921A5D /* AlertNickNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188E749720AD58EF00921A5D /* AlertNickNameView.xib */; };
 		188E749C20ADB0FD00921A5D /* AlertPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188E749A20ADB0FD00921A5D /* AlertPhoneViewController.m */; };
-		188E749D20ADB0FD00921A5D /* AlertPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188E749B20ADB0FD00921A5D /* AlertPhoneViewController.xib */; };
 		188E74A220ADCA8100921A5D /* MineEWMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188E74A020ADCA8100921A5D /* MineEWMViewController.m */; };
 		188E74A320ADCA8100921A5D /* MineEWMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188E74A120ADCA8100921A5D /* MineEWMViewController.xib */; };
 		1893F72222407A6800D7C775 /* StartUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893F72022407A6800D7C775 /* StartUpViewController.m */; };
@@ -1288,21 +1296,63 @@
 		180F2FBC2248F0B0003EE292 /* SignViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignViewController.xib; sourceTree = "<group>"; };
 		180F2FC022490740003EE292 /* SetBloodOxygenView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetBloodOxygenView.h; sourceTree = "<group>"; };
 		180F2FC122490740003EE292 /* SetBloodOxygenView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetBloodOxygenView.m; sourceTree = "<group>"; };
-		180F2FC322490750003EE292 /* SetBloodOxygenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetBloodOxygenView.xib; sourceTree = "<group>"; };
 		180F2FC6224A0B72003EE292 /* MoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
 		180F2FC7224A0B72003EE292 /* MoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
 		180F2FC9224A0C47003EE292 /* SleepNewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SleepNewViewController.h; sourceTree = "<group>"; };
 		180F2FCA224A0C47003EE292 /* SleepNewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SleepNewViewController.m; sourceTree = "<group>"; };
 		180F2FCD224A60F4003EE292 /* HelpSleepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpSleepViewController.h; sourceTree = "<group>"; };
 		180F2FCE224A60F4003EE292 /* HelpSleepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpSleepViewController.m; sourceTree = "<group>"; };
-		180F2FCF224A60F4003EE292 /* HelpSleepViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpSleepViewController.xib; sourceTree = "<group>"; };
 		1810621A226066AE009A3562 /* NowTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NowTestViewController.h; sourceTree = "<group>"; };
 		1810621B226066AE009A3562 /* NowTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NowTestViewController.m; sourceTree = "<group>"; };
 		1810621C226066AE009A3562 /* NowTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowTestViewController.xib; sourceTree = "<group>"; };
 		1810622322607D53009A3562 /* celaing-d.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "celaing-d.gif"; sourceTree = "<group>"; };
+		1811DC8622CB31C10050DD22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		1811DC8822CB327E0050DD22 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1811DC9422CB36510050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/LoginViewController.strings"; sourceTree = "<group>"; };
+		1811DC9522CB36520050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/FindPSWViewController.strings"; sourceTree = "<group>"; };
+		1811DC9622CB36520050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/RgistViewController.strings"; sourceTree = "<group>"; };
+		1811DC9722CB36520050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/EditPersonInformationViewController.strings"; sourceTree = "<group>"; };
+		1811DC9822CB36520050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/EditPswViewController.strings"; sourceTree = "<group>"; };
+		1811DC9922CB36530050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/HomeViewController.strings"; sourceTree = "<group>"; };
+		1811DC9A22CB36530050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/HuoDongXiangQingCell.strings"; sourceTree = "<group>"; };
+		1811DC9B22CB36540050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/DayOffLineViewController.strings"; sourceTree = "<group>"; };
+		1811DC9C22CB36540050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/TodayViewController.strings"; sourceTree = "<group>"; };
+		1811DC9D22CB36540050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/TargetViewController.strings"; sourceTree = "<group>"; };
+		1811DC9E22CB36550050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/DayDetailViewController.strings"; sourceTree = "<group>"; };
+		1811DC9F22CB36550050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/shijianViewController.strings"; sourceTree = "<group>"; };
+		1811DCA022CB36550050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/TrendViewController.strings"; sourceTree = "<group>"; };
+		1811DCA122CB36560050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/SharedViewController.strings"; sourceTree = "<group>"; };
+		1811DCA222CB36560050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/SheBeiViewController.strings"; sourceTree = "<group>"; };
+		1811DCA322CB36560050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/FriendListViewController.strings"; sourceTree = "<group>"; };
+		1811DCA422CB36560050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/FriendListTableViewCell.strings"; sourceTree = "<group>"; };
+		1811DCA522CB36570050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/FriendListDetailViewController.strings"; sourceTree = "<group>"; };
+		1811DCA622CB36570050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/AlarmViewController.strings"; sourceTree = "<group>"; };
+		1811DCA722CB36580050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/AlarmTableViewCell.strings"; sourceTree = "<group>"; };
+		1811DCA822CB36580050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/ZIDingYiViewController.strings"; sourceTree = "<group>"; };
+		1811DCA922CB36580050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/TimeViewController.strings"; sourceTree = "<group>"; };
+		1811DCAA22CB36580050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/HeartAlarmViewController.strings"; sourceTree = "<group>"; };
+		1811DCAB22CB36590050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/AboutViewController.strings"; sourceTree = "<group>"; };
+		1811DCAC22CB36590050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/HelpViewController.strings"; sourceTree = "<group>"; };
+		1811DCAD22CB36590050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Main.strings"; sourceTree = "<group>"; };
+		1811DCAE22CB365A0050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
+		1811DCB022CB365A0050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		1811DCB122CB365B0050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1811DCB722CB43FA0050DD22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HelpSleepViewController.xib; sourceTree = "<group>"; };
+		1811DCBB22CB47760050DD22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SetBloodOxygenView.xib; sourceTree = "<group>"; };
+		1811DCBE22CB47860050DD22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SetBloodOxygenView.strings"; sourceTree = "<group>"; };
+		1811DCC022CB478A0050DD22 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/SetBloodOxygenView.strings"; sourceTree = "<group>"; };
+		1814A21622DC51AE00DC9DE4 /* UIButton+QiEventInterval.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+QiEventInterval.h"; sourceTree = "<group>"; };
+		1814A21722DC51AE00DC9DE4 /* UIButton+QiEventInterval.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+QiEventInterval.m"; sourceTree = "<group>"; };
 		1815A8A5224718C800699F38 /* 设置@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置@3x.png"; sourceTree = "<group>"; };
 		1815A8A6224718C800699F38 /* 设置@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置@2x.png"; sourceTree = "<group>"; };
 		1815A8A7224718C900699F38 /* 设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置.png"; sourceTree = "<group>"; };
+		181D568522E0048600F75A08 /* 自然雨.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "自然雨.mp3"; sourceTree = "<group>"; };
+		181D568622E0048600F75A08 /* 蛐蛐.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "蛐蛐.mp3"; sourceTree = "<group>"; };
+		18280AFC22D0B1EE00615BDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlertPhoneViewController.xib; sourceTree = "<group>"; };
+		18280AFF22D0B1F800615BDE /* th-TH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "th-TH"; path = "th-TH.lproj/AlertPhoneViewController.strings"; sourceTree = "<group>"; };
+		18280B0122D0B1FE00615BDE /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/AlertPhoneViewController.strings"; sourceTree = "<group>"; };
+		18280B0222D0C72600615BDE /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/HelpSleepViewController.strings"; sourceTree = "<group>"; };
+		18280B0422D0C73300615BDE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/HelpSleepViewController.strings"; sourceTree = "<group>"; };
 		18298F9F20AC65FA0080C536 /* AlertUserInfomationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertUserInfomationViewController.h; sourceTree = "<group>"; };
 		18298FA020AC65FA0080C536 /* AlertUserInfomationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertUserInfomationViewController.m; sourceTree = "<group>"; };
 		18298FA120AC65FA0080C536 /* AlertUserInfomationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertUserInfomationViewController.xib; sourceTree = "<group>"; };
@@ -1337,6 +1387,13 @@
 		184A089920E26BA10080C078 /* SelectStepCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectStepCell.xib; sourceTree = "<group>"; };
 		184F5B0C22408F970055170C /* GuideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		184F5B0D22408F970055170C /* GuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
+		1856CFC122F7C106002DE6B2 /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
+		1856CFC222F7C106002DE6B2 /* NSMutableArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Extension.m"; sourceTree = "<group>"; };
+		1856CFC322F7C106002DE6B2 /* NSMutableArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Extension.h"; sourceTree = "<group>"; };
+		1856CFC422F7C106002DE6B2 /* NSArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extension.h"; sourceTree = "<group>"; };
+		1856CFC822F9267F002DE6B2 /* VersionAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionAlertView.h; sourceTree = "<group>"; };
+		1856CFC922F9267F002DE6B2 /* VersionAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionAlertView.m; sourceTree = "<group>"; };
+		1856CFCB22F92688002DE6B2 /* VersionAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersionAlertView.xib; sourceTree = "<group>"; };
 		185ACE4621007D7E0015B627 /* AlertMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertMainView.h; sourceTree = "<group>"; };
 		185ACE4721007D7E0015B627 /* AlertMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertMainView.m; sourceTree = "<group>"; };
 		185ACE4921007D850015B627 /* AlertMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertMainView.xib; sourceTree = "<group>"; };
@@ -1348,7 +1405,6 @@
 		188E749720AD58EF00921A5D /* AlertNickNameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertNickNameView.xib; sourceTree = "<group>"; };
 		188E749920ADB0FD00921A5D /* AlertPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertPhoneViewController.h; sourceTree = "<group>"; };
 		188E749A20ADB0FD00921A5D /* AlertPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertPhoneViewController.m; sourceTree = "<group>"; };
-		188E749B20ADB0FD00921A5D /* AlertPhoneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPhoneViewController.xib; sourceTree = "<group>"; };
 		188E749F20ADCA8100921A5D /* MineEWMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineEWMViewController.h; sourceTree = "<group>"; };
 		188E74A020ADCA8100921A5D /* MineEWMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineEWMViewController.m; sourceTree = "<group>"; };
 		188E74A120ADCA8100921A5D /* MineEWMViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineEWMViewController.xib; sourceTree = "<group>"; };
@@ -3223,6 +3279,8 @@
 		180EC46F224B2C1F00DDF892 /* 音乐 */ = {
 			isa = PBXGroup;
 			children = (
+				181D568622E0048600F75A08 /* 蛐蛐.mp3 */,
+				181D568522E0048600F75A08 /* 自然雨.mp3 */,
 				180EC470224B2C1F00DDF892 /* woxihuanni.mp3 */,
 				180EC471224B2C1F00DDF892 /* yuxiang.mp3 */,
 				180EC472224B2C1F00DDF892 /* huguangsheng.mp3 */,
@@ -3315,7 +3373,7 @@
 			children = (
 				180F2FC022490740003EE292 /* SetBloodOxygenView.h */,
 				180F2FC122490740003EE292 /* SetBloodOxygenView.m */,
-				180F2FC322490750003EE292 /* SetBloodOxygenView.xib */,
+				1811DCBC22CB47760050DD22 /* SetBloodOxygenView.xib */,
 			);
 			path = SetBloodOxygen;
 			sourceTree = "<group>";
@@ -3325,7 +3383,7 @@
 			children = (
 				180F2FCD224A60F4003EE292 /* HelpSleepViewController.h */,
 				180F2FCE224A60F4003EE292 /* HelpSleepViewController.m */,
-				180F2FCF224A60F4003EE292 /* HelpSleepViewController.xib */,
+				1811DCB422CB40150050DD22 /* HelpSleepViewController.xib */,
 			);
 			path = "助眠";
 			sourceTree = "<group>";
@@ -3340,9 +3398,19 @@
 			path = NowTest;
 			sourceTree = "<group>";
 		};
+		1814A21522DC518A00DC9DE4 /* UIButton+QiEventInterval */ = {
+			isa = PBXGroup;
+			children = (
+				1814A21622DC51AE00DC9DE4 /* UIButton+QiEventInterval.h */,
+				1814A21722DC51AE00DC9DE4 /* UIButton+QiEventInterval.m */,
+			);
+			path = "UIButton+QiEventInterval";
+			sourceTree = "<group>";
+		};
 		1815A8AB22471A2500699F38 /* 2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				1856CFC722F9266A002DE6B2 /* VersionAlert */,
 				18F41E90228526AD00D80625 /* 指引 */,
 				1810621922606684009A3562 /* NowTest */,
 				180EC49B224C77C800DDF892 /* 节律 */,
@@ -3397,7 +3465,7 @@
 				18298FA120AC65FA0080C536 /* AlertUserInfomationViewController.xib */,
 				188E749920ADB0FD00921A5D /* AlertPhoneViewController.h */,
 				188E749A20ADB0FD00921A5D /* AlertPhoneViewController.m */,
-				188E749B20ADB0FD00921A5D /* AlertPhoneViewController.xib */,
+				18280AFD22D0B1EE00615BDE /* AlertPhoneViewController.xib */,
 			);
 			path = AlertUserInfomation;
 			sourceTree = "<group>";
@@ -3473,6 +3541,27 @@
 				184F5B0D22408F970055170C /* GuideViewController.m */,
 			);
 			path = Guide;
+			sourceTree = "<group>";
+		};
+		1856CFAE22F7BBAD002DE6B2 /* NSArray+Crash */ = {
+			isa = PBXGroup;
+			children = (
+				1856CFC422F7C106002DE6B2 /* NSArray+Extension.h */,
+				1856CFC122F7C106002DE6B2 /* NSArray+Extension.m */,
+				1856CFC322F7C106002DE6B2 /* NSMutableArray+Extension.h */,
+				1856CFC222F7C106002DE6B2 /* NSMutableArray+Extension.m */,
+			);
+			path = "NSArray+Crash";
+			sourceTree = "<group>";
+		};
+		1856CFC722F9266A002DE6B2 /* VersionAlert */ = {
+			isa = PBXGroup;
+			children = (
+				1856CFC822F9267F002DE6B2 /* VersionAlertView.h */,
+				1856CFC922F9267F002DE6B2 /* VersionAlertView.m */,
+				1856CFCB22F92688002DE6B2 /* VersionAlertView.xib */,
+			);
+			path = VersionAlert;
 			sourceTree = "<group>";
 		};
 		185ACE4521007D620015B627 /* AlertView */ = {
@@ -5734,6 +5823,7 @@
 				18FA89EF223C859B00008638 /* File */,
 				720A83D01BFEAD5900634577 /* LaunchImage.launchimage */,
 				72C068791BE32F640033F441 /* Info.plist */,
+				1811DC8722CB31C10050DD22 /* InfoPlist.strings */,
 				72C068681BE32F630033F441 /* Supporting Files */,
 			);
 			path = keyBand;
@@ -5802,6 +5892,8 @@
 		72C06B261BE3420C0033F441 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				1856CFAE22F7BBAD002DE6B2 /* NSArray+Crash */,
+				1814A21522DC518A00DC9DE4 /* UIButton+QiEventInterval */,
 				18A671DF20D9359900DF3C1A /* LoctionUpdateTool */,
 				18EB469D20AAB3F600E49E9F /* ChooseLocation */,
 				72C8799C1E8D0E96008FA297 /* Reachability */,
@@ -6467,6 +6559,7 @@
 				pl,
 				"tr-TR",
 				"th-TH",
+				"zh-HK",
 			);
 			mainGroup = 72C0685C1BE32F630033F441;
 			productRefGroup = 72C068661BE32F630033F441 /* Products */;
@@ -6550,7 +6643,7 @@
 				720B26A31D94D8CB0002B569 /* 吃药.png in Resources */,
 				729EB4411E78D21F0005EE86 /* xuanze.png in Resources */,
 				729EB32E1E78D21E0005EE86 /* right@3x.png in Resources */,
-				188E749D20ADB0FD00921A5D /* AlertPhoneViewController.xib in Resources */,
+				18280AFB22D0B1EE00615BDE /* AlertPhoneViewController.xib in Resources */,
 				18FDF57D20AEC5F900EDBB28 /* qr_scan_line@3x.png in Resources */,
 				720B266B1D94D8CB0002B569 /* 眼睛@2x.png in Resources */,
 				7288D2B21E79427E0057ACB2 /* beCareful@2x.png in Resources */,
@@ -6671,6 +6764,7 @@
 				72E9B4B11DFAAD9100640CE2 /* 月亮shezhi@2x.png in Resources */,
 				7288D2B11E79427E0057ACB2 /* beCareful.png in Resources */,
 				729EB4181E78D21F0005EE86 /* Warm_up_map.png in Resources */,
+				181D568822E0048700F75A08 /* 蛐蛐.mp3 in Resources */,
 				729EB2FC1E78D21E0005EE86 /* Aerobic.png in Resources */,
 				720B26271D94D8CB0002B569 /* 蓝牙@3x.png in Resources */,
 				729EB4EF1E78DD5A0005EE86 /* BlueDots_sleep@2x.png in Resources */,
@@ -6841,10 +6935,11 @@
 				72B44A1F1DEEEDEC00F33BC2 /* 问号@2x.png in Resources */,
 				729EB3E91E78D21E0005EE86 /* Shape_cha_map.png in Resources */,
 				729EB3851E78D21E0005EE86 /* buxing@3x.png in Resources */,
-				180F2FD1224A60F4003EE292 /* HelpSleepViewController.xib in Resources */,
+				1811DCB222CB40150050DD22 /* HelpSleepViewController.xib in Resources */,
 				720B26991D94D8CB0002B569 /* 久坐提醒@3x.png in Resources */,
 				728CBA4E1C33D68500AC8AFA /* RgistViewController.xib in Resources */,
 				729EB3B01E78D21E0005EE86 /* GO_map.png in Resources */,
+				1856CFCC22F92688002DE6B2 /* VersionAlertView.xib in Resources */,
 				729EB3E71E78D21E0005EE86 /* Running_map@2x.png in Resources */,
 				720B265B1D94D8CB0002B569 /* 性别.png in Resources */,
 				729EB47E1E78D21F0005EE86 /* walk.png in Resources */,
@@ -7168,6 +7263,7 @@
 				729EB3F11E78D21E0005EE86 /* Shape_dian_map@3x.png in Resources */,
 				7259EB2F1D0FDACB007F21C7 /* FriendListViewController.xib in Resources */,
 				729EB3CB1E78D21E0005EE86 /* Lower_rectangle_map.png in Resources */,
+				181D568722E0048700F75A08 /* 自然雨.mp3 in Resources */,
 				729EB4B51E78DA230005EE86 /* bigger_pressure@3x.png in Resources */,
 				729EB3EF1E78D21E0005EE86 /* Shape_dian_map.png in Resources */,
 				72E9B4A41DFAAD9100640CE2 /* shezhi2.png in Resources */,
@@ -7313,7 +7409,7 @@
 				729EB3E01E78D21E0005EE86 /* Rectangle_sive_map.png in Resources */,
 				72C686EE1EB1BBA5009AACFC /* qipao_left@3x.png in Resources */,
 				729EB5191E78E9720005EE86 /* map_youyang@2x.png in Resources */,
-				180F2FC422490750003EE292 /* SetBloodOxygenView.xib in Resources */,
+				1811DCBA22CB47760050DD22 /* SetBloodOxygenView.xib in Resources */,
 				18FDF57920AEC5F900EDBB28 /* qr_bottom_right@2x.png in Resources */,
 				1849836220AC6D75007109A9 /* AUISaveCell.xib in Resources */,
 				720B26421D94D8CB0002B569 /* PZ_背景@3x.png in Resources */,
@@ -7350,6 +7446,7 @@
 				729EB4FD1E78DD5A0005EE86 /* SleepSelectedState_sleep.png in Resources */,
 				729EB4651E78D21F0005EE86 /* QS_segBG@2x.png in Resources */,
 				72E9B4BA1DFAAD9100640CE2 /* 设置shezhi.png in Resources */,
+				1811DC8522CB31C10050DD22 /* InfoPlist.strings in Resources */,
 				729EB3D41E78D21E0005EE86 /* Movement_type_map.png in Resources */,
 				72E9B4BB1DFAAD9100640CE2 /* 设置shezhi@2x.png in Resources */,
 				720B26AC1D94D8CB0002B569 /* 心率监测.png in Resources */,
@@ -7545,6 +7642,7 @@
 				72C069D21BE3316D0033F441 /* RgistViewController.m in Sources */,
 				185ACE4821007D7E0015B627 /* AlertMainView.m in Sources */,
 				72D0C17E1BF334B100C86050 /* NightFilterControl.m in Sources */,
+				1856CFCA22F9267F002DE6B2 /* VersionAlertView.m in Sources */,
 				7226CEB91DC9800500BFB9AD /* NSDate+MJ.m in Sources */,
 				72ED4A3B1E76394400A8D964 /* BleTool.m in Sources */,
 				72E63D131C0E8114000006B5 /* UIScrollView+MJExtension.m in Sources */,
@@ -7593,6 +7691,7 @@
 				72C8799F1E8D0E96008FA297 /* Reachability.m in Sources */,
 				724AB4951D9675A900CEF785 /* LMGaugeView.m in Sources */,
 				725D90AC1BFAC206002C1FC8 /* AboutViewController.m in Sources */,
+				1856CFC522F7C106002DE6B2 /* NSArray+Extension.m in Sources */,
 				72E900B51E30A9B9007FC6EF /* TodaySportMapViewController.m in Sources */,
 				72689F4C1DCB4C2B0088CBAF /* NSAttributedString+appendAttributedString.m in Sources */,
 				72A63F5C1E73EC5C00F472A9 /* adaWeatherModel.m in Sources */,
@@ -7626,6 +7725,7 @@
 				180F2FC222490740003EE292 /* SetBloodOxygenView.m in Sources */,
 				72A61C861D7FF69E003CE7B2 /* CositeaBlueToothManager.m in Sources */,
 				18FDF55A20AEC4D600EDBB28 /* WLBarcodeViewController.mm in Sources */,
+				1856CFC622F7C106002DE6B2 /* NSMutableArray+Extension.m in Sources */,
 				725D80E61D01667800FE2253 /* FriendListDetailViewController.m in Sources */,
 				72E9B4831DFAAB8200640CE2 /* pageManageTableViewCell.m in Sources */,
 				72E63D141C0E8114000006B5 /* UIScrollView+MJRefresh.m in Sources */,
@@ -7638,6 +7738,7 @@
 				72D300851E650DFC001D09D7 /* ADAChart.m in Sources */,
 				180F2FBD2248F0B0003EE292 /* SignViewController.m in Sources */,
 				72AACC1D1E83A56E0069421A /* PSDrawerManager.m in Sources */,
+				1814A21822DC51AE00DC9DE4 /* UIButton+QiEventInterval.m in Sources */,
 				727305481BEB297000EC1726 /* FMDatabaseAdditions.m in Sources */,
 				72B8980A1CD1BA83006C266A /* AutocompletionTableView.m in Sources */,
 				18EF20CE20B3E539002772F8 /* HealtPoliceViewController.m in Sources */,
@@ -7754,6 +7855,46 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1811DC8722CB31C10050DD22 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1811DC8622CB31C10050DD22 /* zh-Hans */,
+				1811DC8822CB327E0050DD22 /* English */,
+				1811DCB022CB365A0050DD22 /* zh-HK */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1811DCB422CB40150050DD22 /* HelpSleepViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1811DCB722CB43FA0050DD22 /* Base */,
+				18280B0222D0C72600615BDE /* zh-HK */,
+				18280B0422D0C73300615BDE /* zh-Hans */,
+			);
+			name = HelpSleepViewController.xib;
+			sourceTree = "<group>";
+		};
+		1811DCBC22CB47760050DD22 /* SetBloodOxygenView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1811DCBB22CB47760050DD22 /* Base */,
+				1811DCBE22CB47860050DD22 /* zh-Hans */,
+				1811DCC022CB478A0050DD22 /* zh-HK */,
+			);
+			name = SetBloodOxygenView.xib;
+			sourceTree = "<group>";
+		};
+		18280AFD22D0B1EE00615BDE /* AlertPhoneViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18280AFC22D0B1EE00615BDE /* Base */,
+				18280AFF22D0B1F800615BDE /* th-TH */,
+				18280B0122D0B1FE00615BDE /* zh-HK */,
+			);
+			name = AlertPhoneViewController.xib;
+			sourceTree = "<group>";
+		};
 		723E67361E9E189B00DCB453 /* UMSocialLocalizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -7761,6 +7902,7 @@
 				723E674E1E9E189B00DCB453 /* th-TH */,
 				723E674F1E9E189B00DCB453 /* tr-TR */,
 				723E67511E9E189B00DCB453 /* zh-Hans */,
+				1811DCAE22CB365A0050DD22 /* zh-HK */,
 			);
 			name = UMSocialLocalizable.strings;
 			sourceTree = "<group>";
@@ -7782,6 +7924,7 @@
 				7210A5E31D5B037600B49332 /* pl */,
 				7231FF211DED1EA8000E4547 /* tr-TR */,
 				727D95111E0A4F41007A7F9C /* th-TH */,
+				1811DCA322CB36560050DD22 /* zh-HK */,
 			);
 			name = FriendListViewController.xib;
 			sourceTree = "<group>";
@@ -7803,6 +7946,7 @@
 				7210A5E41D5B037600B49332 /* pl */,
 				7231FF221DED1EA8000E4547 /* tr-TR */,
 				727D95121E0A4F41007A7F9C /* th-TH */,
+				1811DCA422CB36560050DD22 /* zh-HK */,
 			);
 			name = FriendListTableViewCell.xib;
 			sourceTree = "<group>";
@@ -7824,6 +7968,7 @@
 				7210A5E51D5B037600B49332 /* pl */,
 				7231FF231DED1EA8000E4547 /* tr-TR */,
 				727D95131E0A4F41007A7F9C /* th-TH */,
+				1811DCA522CB36570050DD22 /* zh-HK */,
 			);
 			name = FriendListDetailViewController.xib;
 			sourceTree = "<group>";
@@ -7844,6 +7989,7 @@
 				7210A5E61D5B037600B49332 /* pl */,
 				7231FF241DED1EA8000E4547 /* tr-TR */,
 				727D95141E0A4F41007A7F9C /* th-TH */,
+				1811DCA622CB36570050DD22 /* zh-HK */,
 			);
 			name = AlarmViewController.xib;
 			sourceTree = "<group>";
@@ -7864,6 +8010,7 @@
 				7210A5E71D5B037600B49332 /* pl */,
 				7231FF251DED1EA8000E4547 /* tr-TR */,
 				727D95151E0A4F41007A7F9C /* th-TH */,
+				1811DCA722CB36580050DD22 /* zh-HK */,
 			);
 			name = AlarmTableViewCell.xib;
 			sourceTree = "<group>";
@@ -7884,6 +8031,7 @@
 				7210A5E81D5B037600B49332 /* pl */,
 				7231FF261DED1EA8000E4547 /* tr-TR */,
 				727D95161E0A4F41007A7F9C /* th-TH */,
+				1811DCA822CB36580050DD22 /* zh-HK */,
 			);
 			name = ZIDingYiViewController.xib;
 			sourceTree = "<group>";
@@ -7904,6 +8052,7 @@
 				7210A5E91D5B037600B49332 /* pl */,
 				7231FF271DED1EA8000E4547 /* tr-TR */,
 				727D95171E0A4F41007A7F9C /* th-TH */,
+				1811DCA922CB36580050DD22 /* zh-HK */,
 			);
 			name = TimeViewController.xib;
 			sourceTree = "<group>";
@@ -7924,6 +8073,7 @@
 				7210A5EA1D5B037600B49332 /* pl */,
 				7231FF281DED1EA8000E4547 /* tr-TR */,
 				727D95181E0A4F41007A7F9C /* th-TH */,
+				1811DCAA22CB36580050DD22 /* zh-HK */,
 			);
 			name = HeartAlarmViewController.xib;
 			sourceTree = "<group>";
@@ -7944,6 +8094,7 @@
 				7210A5D61D5B037600B49332 /* pl */,
 				7231FF2D1DED1EA9000E4547 /* tr-TR */,
 				727D95041E0A4F41007A7F9C /* th-TH */,
+				1811DC9622CB36520050DD22 /* zh-HK */,
 			);
 			name = RgistViewController.xib;
 			sourceTree = "<group>";
@@ -7964,6 +8115,7 @@
 				7210A5D81D5B037600B49332 /* pl */,
 				7231FF2F1DED1EA9000E4547 /* tr-TR */,
 				727D95061E0A4F41007A7F9C /* th-TH */,
+				1811DC9822CB36520050DD22 /* zh-HK */,
 			);
 			name = EditPswViewController.xib;
 			sourceTree = "<group>";
@@ -7984,6 +8136,7 @@
 				7210A5D71D5B037600B49332 /* pl */,
 				7231FF2E1DED1EA9000E4547 /* tr-TR */,
 				727D95051E0A4F41007A7F9C /* th-TH */,
+				1811DC9722CB36520050DD22 /* zh-HK */,
 			);
 			name = EditPersonInformationViewController.xib;
 			sourceTree = "<group>";
@@ -8004,6 +8157,7 @@
 				7210A5D41D5B037600B49332 /* pl */,
 				7231FF2B1DED1EA9000E4547 /* tr-TR */,
 				727D95021E0A4F41007A7F9C /* th-TH */,
+				1811DC9422CB36510050DD22 /* zh-HK */,
 			);
 			name = LoginViewController.xib;
 			sourceTree = "<group>";
@@ -8024,6 +8178,7 @@
 				7210A5D51D5B037600B49332 /* pl */,
 				7231FF2C1DED1EA9000E4547 /* tr-TR */,
 				727D95031E0A4F41007A7F9C /* th-TH */,
+				1811DC9522CB36520050DD22 /* zh-HK */,
 			);
 			name = FindPSWViewController.xib;
 			sourceTree = "<group>";
@@ -8044,6 +8199,7 @@
 				7210A5D91D5B037600B49332 /* pl */,
 				7231FF301DED1EA9000E4547 /* tr-TR */,
 				727D95071E0A4F41007A7F9C /* th-TH */,
+				1811DC9922CB36530050DD22 /* zh-HK */,
 			);
 			name = HomeViewController.xib;
 			sourceTree = "<group>";
@@ -8064,6 +8220,7 @@
 				7210A5DA1D5B037600B49332 /* pl */,
 				7231FF331DED1EA9000E4547 /* tr-TR */,
 				727D950A1E0A4F41007A7F9C /* th-TH */,
+				1811DC9C22CB36540050DD22 /* zh-HK */,
 			);
 			name = TodayViewController.xib;
 			sourceTree = "<group>";
@@ -8084,6 +8241,7 @@
 				7210A5DB1D5B037600B49332 /* pl */,
 				7231FF311DED1EA9000E4547 /* tr-TR */,
 				727D95081E0A4F41007A7F9C /* th-TH */,
+				1811DC9A22CB36530050DD22 /* zh-HK */,
 			);
 			name = HuoDongXiangQingCell.xib;
 			sourceTree = "<group>";
@@ -8104,6 +8262,7 @@
 				7210A5DC1D5B037600B49332 /* pl */,
 				7231FF321DED1EA9000E4547 /* tr-TR */,
 				727D95091E0A4F41007A7F9C /* th-TH */,
+				1811DC9B22CB36540050DD22 /* zh-HK */,
 			);
 			name = DayOffLineViewController.xib;
 			sourceTree = "<group>";
@@ -8124,6 +8283,7 @@
 				7210A5DD1D5B037600B49332 /* pl */,
 				7231FF341DED1EA9000E4547 /* tr-TR */,
 				727D950B1E0A4F41007A7F9C /* th-TH */,
+				1811DC9D22CB36540050DD22 /* zh-HK */,
 			);
 			name = TargetViewController.xib;
 			sourceTree = "<group>";
@@ -8144,6 +8304,7 @@
 				7210A5E01D5B037600B49332 /* pl */,
 				7231FF1E1DED1EA8000E4547 /* tr-TR */,
 				727D950E1E0A4F41007A7F9C /* th-TH */,
+				1811DCA022CB36550050DD22 /* zh-HK */,
 			);
 			name = TrendViewController.xib;
 			sourceTree = "<group>";
@@ -8164,6 +8325,7 @@
 				7210A5E21D5B037600B49332 /* pl */,
 				7231FF201DED1EA8000E4547 /* tr-TR */,
 				727D95101E0A4F41007A7F9C /* th-TH */,
+				1811DCA222CB36560050DD22 /* zh-HK */,
 			);
 			name = SheBeiViewController.xib;
 			sourceTree = "<group>";
@@ -8184,6 +8346,7 @@
 				7210A5E11D5B037600B49332 /* pl */,
 				7231FF1F1DED1EA8000E4547 /* tr-TR */,
 				727D950F1E0A4F41007A7F9C /* th-TH */,
+				1811DCA122CB36560050DD22 /* zh-HK */,
 			);
 			name = SharedViewController.xib;
 			sourceTree = "<group>";
@@ -8204,6 +8367,7 @@
 				7210A5DE1D5B037600B49332 /* pl */,
 				7231FF351DED1EA9000E4547 /* tr-TR */,
 				727D950C1E0A4F41007A7F9C /* th-TH */,
+				1811DC9E22CB36550050DD22 /* zh-HK */,
 			);
 			name = DayDetailViewController.xib;
 			sourceTree = "<group>";
@@ -8224,6 +8388,7 @@
 				7210A5DF1D5B037600B49332 /* pl */,
 				7231FF361DED1EA9000E4547 /* tr-TR */,
 				727D950D1E0A4F41007A7F9C /* th-TH */,
+				1811DC9F22CB36550050DD22 /* zh-HK */,
 			);
 			name = shijianViewController.xib;
 			sourceTree = "<group>";
@@ -8245,6 +8410,7 @@
 				7231FF291DED1EA8000E4547 /* tr-TR */,
 				727D95191E0A4F41007A7F9C /* th-TH */,
 				18F4DF3220E61D910042C6E9 /* zh-Hans */,
+				1811DCAB22CB36590050DD22 /* zh-HK */,
 			);
 			name = AboutViewController.xib;
 			sourceTree = "<group>";
@@ -8265,6 +8431,7 @@
 				7210A5EC1D5B037600B49332 /* pl */,
 				7231FF2A1DED1EA8000E4547 /* tr-TR */,
 				727D951A1E0A4F41007A7F9C /* th-TH */,
+				1811DCAC22CB36590050DD22 /* zh-HK */,
 			);
 			name = HelpViewController.xib;
 			sourceTree = "<group>";
@@ -8285,6 +8452,7 @@
 				7231FF391DED1EA9000E4547 /* tr-TR */,
 				727D951D1E0A4F41007A7F9C /* th-TH */,
 				72E355571E3048790036B77B /* zh-Hans */,
+				1811DCB122CB365B0050DD22 /* zh-HK */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -8305,6 +8473,7 @@
 				7210A5ED1D5B037700B49332 /* pl */,
 				7231FF371DED1EA9000E4547 /* tr-TR */,
 				727D951B1E0A4F41007A7F9C /* th-TH */,
+				1811DCAD22CB36590050DD22 /* zh-HK */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

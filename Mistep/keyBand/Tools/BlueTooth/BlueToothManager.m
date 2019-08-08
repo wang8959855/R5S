@@ -782,7 +782,7 @@ static BlueToothManager *instance;
     [[PZCityTool sharedInstance] refresh];
     if (!weatherTimer)
     {
-        weatherTimer = [NSTimer scheduledTimerWithTimeInterval:30.f target:self selector:@selector(weatherRe:) userInfo:nil repeats:YES];
+//        weatherTimer = [NSTimer scheduledTimerWithTimeInterval:30.f target:self selector:@selector(weatherRe:) userInfo:nil repeats:YES];
     }
     //    });
 }

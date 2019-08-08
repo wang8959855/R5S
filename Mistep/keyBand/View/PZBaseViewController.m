@@ -343,7 +343,7 @@
     UITabBarItem *tabItem1 = [[UITabBarItem alloc] init];
     tabItem1.image = [[UIImage imageNamed:@"healthy-white"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     tabItem1.selectedImage = [[UIImage imageNamed:@"healthy-blue"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    tabItem1.title = @"体征";
+    tabItem1.title = NSLocalizedString(@"体征", nil);
     helthTesing.tabBarItem = tabItem1;
 //    tabItem1.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
     
@@ -372,7 +372,7 @@
 //    tabItem2.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
     tabItem2.image = [[UIImage imageNamed:@"steps-white"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     tabItem2.selectedImage = [[UIImage imageNamed:@"steps-blue"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    tabItem2.title = @"睡眠";
+    tabItem2.title = NSLocalizedString(@"睡眠", nil);
     
     TodaySleepViewController *todaySleepVC = [[TodaySleepViewController alloc] init];
     UINavigationController *nav3 = [[UINavigationController alloc] initWithRootViewController:todaySleepVC];
@@ -382,7 +382,7 @@
 //    tabItem3.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
     tabItem3.image = [[UIImage imageNamed:@"report-white"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     tabItem3.selectedImage = [[UIImage imageNamed:@"report-blue"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    tabItem3.title = @"报告";
+    tabItem3.title = NSLocalizedString(@"报告", nil);
     
     
 //    XueyaViewController *xueyaVC = [[XueyaViewController alloc] init];
@@ -394,7 +394,7 @@
 //    tabItem4.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
     tabItem4.image = [[UIImage imageNamed:@"regulate-white"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     tabItem4.selectedImage = [[UIImage imageNamed:@"regulate-blue"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    tabItem4.title = @"运动";
+    tabItem4.title = NSLocalizedString(@"运动", nil);
     
     NSArray *tabbarItems;
     uint supportNum = [[ADASaveDefaluts objectForKey:SUPPORTPAGEMANAGER] doubleValue];

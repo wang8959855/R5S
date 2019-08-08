@@ -125,9 +125,9 @@
 }
 - (void)reloadData
 {
-    _detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.selectTimeSeconds];
+    _detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay]];
     [_sleepArray removeAllObjects];
-    NSDictionary *lastDayDic= [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.selectTimeSeconds - KONEDAYSECONDS];
+    NSDictionary *lastDayDic= [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay] - KONEDAYSECONDS];
     
     NSMutableArray * lastDaySleepArray = [SleepTool lastDaySleepDataWithDictionary:lastDayDic];
     
@@ -205,7 +205,7 @@
                 UIView *view = [[UIView alloc]init];
                 view.tag = 100;
                 [_sleepView addSubview:view];
-                if (state == 2 )
+                if (state == 2)
                 {
                     view.backgroundColor = deepColor;
                     deepSleep ++;

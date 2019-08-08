@@ -445,7 +445,7 @@
     UILabel *titL = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth/2-150, 10, 300, 25)];
     [self.backScrollView addSubview:titL];
     titL.textColor = [UIColor whiteColor];
-    titL.text = @"时辰与脏腑对照表";
+    titL.text = kLOCAL(@"时辰与脏腑对照表");
     titL.font = Font_Bold_String(17);
     titL.textAlignment = NSTextAlignmentCenter;
     
@@ -509,14 +509,14 @@
     [downView addSubview:jiedu];
     
     UILabel *jieduLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 20, 100, 20)];
-    jieduLabel.text = @"健康解读";
+    jieduLabel.text = kLOCAL(@"健康解读");
     jieduLabel.font = Font_Bold_String(13);
     [downView addSubview:jieduLabel];
     
     UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(20, jiedu.bottom+10, downView.width-40, 80)];
     content.textColor = kMainColor;
     content.font = [UIFont boldSystemFontOfSize:14];
-    content.text = @"人为什么会生病？许多原因是因为人违背了自然的时间法则和时间节律。中医哲学主张天人合一，认为人是大自然的组成部分，人正常生理活动应该符合自然规律。";
+    content.text = kLOCAL(@"人为什么会生病？许多原因是因为人违背了自然的时间法则和时间节律。中医哲学主张天人合一，认为人是大自然的组成部分，人正常生理活动应该符合自然规律。");
     content.numberOfLines = 0;
     [downView addSubview:content];
     [content sizeToFit];
@@ -524,7 +524,7 @@
     UILabel *content1 = [[UILabel alloc] initWithFrame:CGRectMake(20, content.bottom+5, downView.width-40, 80)];
     content1.textColor = kMainColor;
     content1.font = [UIFont boldSystemFontOfSize:14];
-    content1.text = @"养生机器人把人的脏腑与12个时辰的兴衰变化联系起来，环环相扣，有机有序，科学掌握和应用脏腑节律，能够促进人体健康养生，预防和排查人体疾病。养生机器人是你随身相伴的健康管理专家！";
+    content1.text = kLOCAL(@"养生机器人把人的脏腑与12个时辰的兴衰变化联系起来，环环相扣，有机有序，科学掌握和应用脏腑节律，能够促进人体健康养生，预防和排查人体疾病。养生机器人是你随身相伴的健康管理专家！");
     content1.numberOfLines = 0;
     [downView addSubview:content1];
     [content1 sizeToFit];
@@ -700,7 +700,7 @@
 //获取最后一个心率值
 - (NSInteger)getSleepEndTime:(NSInteger)time is30:(BOOL)is30{
     NSDictionary *lastDayDic= [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:time - KONEDAYSECONDS];
-    NSDictionary *detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.selectTimeSeconds];
+    NSDictionary *detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay]];
     NSMutableArray *sleepArray = [NSMutableArray array];
     NSMutableArray * lastDaySleepArray = [SleepTool lastDaySleepDataWithDictionary:lastDayDic];
     

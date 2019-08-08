@@ -59,6 +59,9 @@
 @property (nonatomic, strong) UILabel *num4label;//120
 @property (nonatomic, strong) UILabel *num5label;//150
 
+//记录上一次心率
+@property (nonatomic, assign) CGFloat lastHr;
+
 @end
 
 @implementation HeartRateCircleView
@@ -373,7 +376,7 @@
         self.valueLabel.backgroundColor = [UIColor clearColor];
         self.valueLabel.textAlignment = NSTextAlignmentCenter;
         
-        NSMutableAttributedString *string = [self makeAttributedStringWithnumBer:@"0" Unit:@"次/分" WithFont:35];
+        NSMutableAttributedString *string = [self makeAttributedStringWithnumBer:@"0" Unit:NSLocalizedString(@"次/分", nil) WithFont:35];
         self.valueLabel.font = self.valueFont;
         self.valueLabel.minimumScaleFactor = 10/self.valueLabel.font.pointSize;
         self.valueLabel.textColor = self.valueTextColor;
@@ -386,7 +389,7 @@
     if (!self.comLabel)
     {
         self.comLabel = [[UILabel alloc] init];
-        self.comLabel.text = @"实时心率";
+        self.comLabel.text = NSLocalizedString(@"实时心率", nil);
         self.comLabel.textAlignment = NSTextAlignmentCenter;
         self.comLabel.frame = CGRectMake(0, self.valueLabel.bottom + 11*kDY, self.width, 20 * kDY);
         self.comLabel.font = Font_Normal_String(14);
@@ -495,27 +498,66 @@
 
 - (void)setValue:(CGFloat)value {
     
-    if (value >= 40 && value < 55) {
+    if (self.lastHr == 0 && value == 0) {
         //黄色
         self.valueLabel.textColor = kColor(253, 183, 45);
         self.sleepImageView.image = [UIImage imageNamed:@"yellowHeart"];
-    }else if (value >= 55 && value < 90){
-         //蓝色
-        self.valueLabel.textColor = kColor(26, 160, 229);
-        self.sleepImageView.image = [UIImage imageNamed:@"heart"];
-    }else if (value >= 90 && value < 120){
-         //黄色
-        self.valueLabel.textColor = kColor(253, 183, 45);
-        self.sleepImageView.image = [UIImage imageNamed:@"yellowHeart"];
+        self.valueLabel.attributedText = [self makeAttributedStringWithnumBer:kLOCAL(@"异常") Unit:@"" WithFont:30];
+        
+        return;
+    }
+    if (self.lastHr != 0 && value == 0) {
+        if (self.lastHr >= 40 && self.lastHr < 55) {
+            //黄色
+            self.valueLabel.textColor = kColor(253, 183, 45);
+            self.sleepImageView.image = [UIImage imageNamed:@"yellowHeart"];
+            self.valueLabel.attributedText = [self makeAttributedStringWithnumBer:kLOCAL(@"异常") Unit:@"" WithFont:30];
+            [self.valueLabel adjustsFontSizeToFitWidth];
+        }else if (self.lastHr >= 55 && self.lastHr < 90){
+            //蓝色
+            self.valueLabel.textColor = kColor(26, 160, 229);
+            self.sleepImageView.image = [UIImage imageNamed:@"heart"];
+            self.valueLabel.attributedText = [self makeAttributedStringWithnumBer:kLOCAL(@"正常") Unit:@"" WithFont:30];
+            [self.valueLabel adjustsFontSizeToFitWidth];
+        }else if (self.lastHr >= 90 && self.lastHr < 120){
+            //黄色
+            self.valueLabel.textColor = kColor(253, 183, 45);
+            self.sleepImageView.image = [UIImage imageNamed:@"yellowHeart"];
+            self.valueLabel.attributedText = [self makeAttributedStringWithnumBer:kLOCAL(@"异常") Unit:@"" WithFont:30];
+            [self.valueLabel adjustsFontSizeToFitWidth];
+        }else{
+            //红色
+            self.valueLabel.textColor = kColor(244, 70, 73);
+            self.sleepImageView.image = [UIImage imageNamed:@"redHeart"];
+            self.valueLabel.attributedText = [self makeAttributedStringWithnumBer:kLOCAL(@"风险") Unit:@"" WithFont:30];
+            [self.valueLabel adjustsFontSizeToFitWidth];
+        }
     }else{
-        //红色
-        self.valueLabel.textColor = kColor(244, 70, 73);
-        self.sleepImageView.image = [UIImage imageNamed:@"redHeart"];
+        if (value >= 40 && value < 55) {
+            //黄色
+            self.valueLabel.textColor = kColor(253, 183, 45);
+            self.sleepImageView.image = [UIImage imageNamed:@"yellowHeart"];
+        }else if (value >= 55 && value < 90){
+            //蓝色
+            self.valueLabel.textColor = kColor(26, 160, 229);
+            self.sleepImageView.image = [UIImage imageNamed:@"heart"];
+        }else if (value >= 90 && value < 120){
+            //黄色
+            self.valueLabel.textColor = kColor(253, 183, 45);
+            self.sleepImageView.image = [UIImage imageNamed:@"yellowHeart"];
+        }else{
+            //红色
+            self.valueLabel.textColor = kColor(244, 70, 73);
+            self.sleepImageView.image = [UIImage imageNamed:@"redHeart"];
+        }
+        NSMutableAttributedString *string = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%.f",value] Unit:kLOCAL(@"次/分") WithFont:35];
+        self.valueLabel.attributedText = string;
+        
+        self.lastHr = value;
     }
     
+    
     float com = (100 * value/_maxValue);
-    NSMutableAttributedString *string = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%.f",value] Unit:@"次/分" WithFont:35];
-    self.valueLabel.attributedText = string;
     
     float maxCom = MIN(com, 100);
     

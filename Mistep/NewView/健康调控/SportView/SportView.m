@@ -61,12 +61,12 @@
 //平均心率
 - (void)getAvgHeartRate:(NSNotification *)noti{
     NSDictionary *dic = noti.object;
-    self.activeTimeLabel.attributedText = [self makeAttributedStringWithnumBer:dic[@"avg"] Unit:@"次/分" WithFont:18];
+    self.activeTimeLabel.attributedText = [self makeAttributedStringWithnumBer:dic[@"avg"] Unit:kLOCAL(@"次/分") WithFont:18];
 }
 
 - (void)getNowHeartRate:(NSNotification *)noti{
     NSString *heart = noti.object;
-    self.heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:heart Unit:@"次/分" WithFont:18];
+    self.heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:heart Unit:kLOCAL(@"次/分") WithFont:18];
 }
 
 - (void)setbackGround
@@ -108,7 +108,7 @@
     }];
     
     //    设置下方4个view
-    NSArray *array = @[@"里程",@"卡路里",@"实时心率",@"平均心率"];
+    NSArray *array = @[kLOCAL(@"里程"),kLOCAL(@"卡路里"),kLOCAL(@"实时心率"),kLOCAL(@"平均心率")];
     NSArray *leftImageArr = @[@"licheng--",@"kaluli--",@"shishi",@"pingjun--"];
     
     for (int i = 0; i < 4; i ++)
@@ -173,7 +173,7 @@
                 break;
             case 2:
             {
-                string = [self makeAttributedStringWithnumBer:@"0" Unit:@"次/分" WithFont:18];
+                string = [self makeAttributedStringWithnumBer:@"0" Unit:kLOCAL(@"次/分") WithFont:18];
                 _heartRateLabel = [[UILabel alloc] init];
                 _heartRateLabel.textColor = kMainColor;
                 _heartRateLabel.textAlignment = NSTextAlignmentCenter;
@@ -185,7 +185,7 @@
                 break;
             case 3:
             {
-                string = [self makeAttributedStringWithnumBer:@"0" Unit:@"次/分" WithFont:18];
+                string = [self makeAttributedStringWithnumBer:@"0" Unit:kLOCAL(@"次/分") WithFont:18];
                 _activeTimeLabel = [[UILabel alloc] init];
                 _activeTimeLabel.textAlignment = NSTextAlignmentCenter;
                 _activeTimeLabel.textColor = kMainColor;
@@ -227,7 +227,7 @@
     //    self.targetBtn.layer.borderWidth = 1;
     //    self.targetBtn.layer.cornerRadius = 8*kDY;
     [self.targetBtn setImage:[UIImage imageNamed:@"target1"] forState:UIControlStateNormal];
-    [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:@"10000" Unit:@"(目标步数)" WithFont:18] forState:UIControlStateNormal];
+    [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:@"10000" Unit:[NSString stringWithFormat:@"(%@)",kLOCAL(@"目标步数")] WithFont:18] forState:UIControlStateNormal];
     [self.targetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.targetBtn.titleLabel.textColor = allColorWhite;
     [self.targetBtn addTarget:self action:@selector(targetBtnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -247,7 +247,7 @@
     if (kHCH.selectTimeSeconds != kHCH.todayTimeSeconds)
     {
         //        [self unableHeart];
-        _heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:@"--" Unit:@"次/分" WithFont:18];
+        _heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:@"--" Unit:kLOCAL(@"次/分") WithFont:18];
         _targetBtn.userInteractionEnabled = NO;
     }
     else
@@ -304,10 +304,10 @@
             [[PZBlueToothManager sharedInstance] changeHeartStateWithState:YES Block:^(int number) {
                 if (number == 0)
                 {
-                    self.heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:@"--" Unit:@"次/分" WithFont:18];
+                    self.heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:@"--" Unit:kLOCAL(@"次/分") WithFont:18];
                     return;
                 }
-                self.heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d",number] Unit:@"次/分" WithFont:18];
+                self.heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d",number] Unit:kLOCAL(@"次/分") WithFont:18];
             }];
         }
         else
@@ -365,7 +365,7 @@
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(upDataUIWithDic) object:nil];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(reloadOutTime) object:nil];
-    NSDictionary *dic =  [[SQLdataManger getInstance] getTotalDataWith:kHCH.selectTimeSeconds];
+    NSDictionary *dic =  [[SQLdataManger getInstance] getTotalDataWith:[[TimeCallManager getInstance] getSecondsOfCurDay]];
     if (dic.allKeys.count != 0)
     {
         [self.backScrollView headerEndRefreshing];
@@ -389,11 +389,11 @@
         }
         self.caloriesLabel.attributedText = [self makeAttributedStringWithnumBer:[costs description] Unit:@"kcal" WithFont:18];
         NSMutableAttributedString *activeString = [[NSMutableAttributedString alloc] init];
-        [activeString appendAttributedString:[self makeAttributedStringWithnumBer:@"0" Unit:@"次/分" WithFont:18]];
+        [activeString appendAttributedString:[self makeAttributedStringWithnumBer:@"0" Unit:kLOCAL(@"次/分") WithFont:18]];
 //        self.activeTimeLabel.attributedText = activeString;
         int stepPlan = [dic[@"stepsPlan"] intValue];
         
-        [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d",stepPlan] Unit:@"(目标步数)" WithFont:18] forState:UIControlStateNormal];
+        [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d",stepPlan] Unit:[NSString stringWithFormat:@"(%@)",kLOCAL(@"目标步数")] WithFont:18] forState:UIControlStateNormal];
         self.circle.maxValue = stepPlan;
         self.circle.value = [steps intValue];
         
@@ -414,9 +414,9 @@
         self.caloriesLabel.attributedText = [self makeAttributedStringWithnumBer:@"0" Unit:@"kcal" WithFont:18];
         
         NSMutableAttributedString *activeString = [[NSMutableAttributedString alloc] init];
-        activeString = [self makeAttributedStringWithnumBer:@"--" Unit:@"次/分" WithFont:18];
+        activeString = [self makeAttributedStringWithnumBer:@"--" Unit:kLOCAL(@"次/分") WithFont:18];
         self.activeTimeLabel.attributedText = activeString;
-        _heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:@"--" Unit:@"次/分" WithFont:18];
+        _heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:@"--" Unit:kLOCAL(@"次/分") WithFont:18];
     }
 }
 
@@ -657,7 +657,7 @@
          
          if (error)
          {
-             [self makeCenterToast:@"网络连接错误"];
+             [self makeCenterToast:kLOCAL(@"网络连接错误")];
          }
          else
          {

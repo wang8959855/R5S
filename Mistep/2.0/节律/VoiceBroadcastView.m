@@ -35,18 +35,18 @@
     //获取开关的数据
     [self.openArr addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"openArr"]];
     
-    self.titleArr = @[@"丑时(01:00-03:00)",
-                      @"寅时(03:00-05:00)",
-                      @"卯时(05:00-07:00)",
-                      @"辰时(07:00-09:00)",
-                      @"巳时(09:00-11:00)",
-                      @"午时(11:00-13:00)",
-                      @"未时(13:00-15:00)",
-                      @"申时(15:00-17:00)",
-                      @"酉时(17:00-19:00)",
-                      @"戌时(19:00-21:00)",
-                      @"亥时(21:00-23:00)",
-                      @"子时(23:00-01:00)"];
+    self.titleArr = @[[NSString stringWithFormat:@"%@(01:00-03:00)",kLOCAL(@"丑时")],
+                      [NSString stringWithFormat:@"%@(03:00-05:00)",kLOCAL(@"寅时")],
+                      [NSString stringWithFormat:@"%@(05:00-07:00)",kLOCAL(@"卯时")],
+                      [NSString stringWithFormat:@"%@(07:00-09:00)",kLOCAL(@"辰时")],
+                      [NSString stringWithFormat:@"%@(09:00-11:00)",kLOCAL(@"巳时")],
+                      [NSString stringWithFormat:@"%@(11:00-13:00)",kLOCAL(@"午时")],
+                      [NSString stringWithFormat:@"%@(13:00-15:00)",kLOCAL(@"未时")],
+                      [NSString stringWithFormat:@"%@(15:00-17:00)",kLOCAL(@"申时")],
+                      [NSString stringWithFormat:@"%@(17:00-19:00)",kLOCAL(@"酉时")],
+                      [NSString stringWithFormat:@"%@(19:00-21:00)",kLOCAL(@"戌时")],
+                      [NSString stringWithFormat:@"%@(21:00-23:00)",kLOCAL(@"亥时")],
+                      [NSString stringWithFormat:@"%@(23:00-01:00)",kLOCAL(@"子时")]];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

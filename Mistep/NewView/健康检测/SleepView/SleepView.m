@@ -177,7 +177,7 @@
     if (dic)
     {
         int sleepPlan = [dic[@"sleepPlan"] intValue];
-        [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d h",sleepPlan / 60] Unit:@"(目标睡眠)" WithFont:18] forState:UIControlStateNormal];
+        [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d h",sleepPlan / 60] Unit:[NSString stringWithFormat:@"(%@)",kLOCAL(@"目标睡眠")] WithFont:18] forState:UIControlStateNormal];
         self.circle.maxValue = sleepPlan;
     }
 }
@@ -188,8 +188,8 @@
 -(void)sleepDrawWithDictionary
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(sleepDrawWithDictionary) object:nil];
-    NSDictionary *todayDic =  [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.selectTimeSeconds];
-    NSDictionary *lastDayDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.selectTimeSeconds - KONEDAYSECONDS];
+    NSDictionary *todayDic =  [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay]];
+    NSDictionary *lastDayDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay] - KONEDAYSECONDS];
     
     NSMutableArray *sleepArray = [[NSMutableArray alloc] init];
     
@@ -303,7 +303,7 @@
     self.targetBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     [self.targetBtn setImage:[UIImage imageNamed:@"target1"] forState:UIControlStateNormal];
     
-    [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d h",[HCHCommonManager getInstance].sleepPlan / 60] Unit:@"(目标睡眠)" WithFont:18] forState:UIControlStateNormal];
+    [self.targetBtn setAttributedTitle:[self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%d h",[HCHCommonManager getInstance].sleepPlan / 60] Unit:[NSString stringWithFormat:@"(%@)",kLOCAL(@"目标睡眠")] WithFont:18] forState:UIControlStateNormal];
     //    [self.targetBtn setTitle:[NSString stringWithFormat:@"%d h",[HCHCommonManager getInstance].sleepPlan / 60] forState:UIControlStateNormal];
     self.targetBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.targetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -323,7 +323,7 @@
     [downView addSubview:jiedu];
     
     UILabel *jieduLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 20, 100, 20)];
-    jieduLabel.text = @"睡眠解读";
+    jieduLabel.text = kLOCAL(@"睡眠解读");
     jieduLabel.font = Font_Bold_String(15);
     [downView addSubview:jieduLabel];
     
@@ -331,10 +331,10 @@
     [downView addSubview:tixing];
     tixing.font = [UIFont systemFontOfSize:11];
     tixing.numberOfLines = 0;
-    tixing.text = @"*正常人睡眠时长是7-8小时,\n 其中深睡时长应达到总睡眠时长的25%。";
+    tixing.text = kLOCAL(@"*正常人睡眠时长是7-8小时,\n 其中深睡时长应达到总睡眠时长的25%。");
     tixing.textColor = kMainColor;
     
-    NSArray *array = @[@"深睡",@"浅睡",@"清醒"];
+    NSArray *array = @[kLOCAL(@"深睡"),kLOCAL(@"浅睡"),kLOCAL(@"清醒")];
     for (int i = 0; i < 3; i ++) {
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 50+i*40, 25,25)];
@@ -380,6 +380,7 @@
                 break;
             case 1:
             {//浅睡
+                imageView.image = [UIImage imageNamed:@"浅睡"];
                 string =  [self makeAttributedStringWithnumBer:@"0" Unit:@"h" WithFont:17];
                 [string appendAttributedString:[self makeAttributedStringWithnumBer:@"0" Unit:@"min" WithFont:17]];
                 _lightLabel = [[UILabel alloc] init];

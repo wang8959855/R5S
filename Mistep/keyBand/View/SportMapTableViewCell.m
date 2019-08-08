@@ -156,7 +156,7 @@
     UILabel *stepsMarkLabel = [[UILabel alloc] init];
     stepsMarkLabel.backgroundColor = [UIColor clearColor];
     stepsMarkLabel.frame = CGRectMake(stepsNumberLabelX, stepsNumberLabel.bottom, stepsNumberLabelW, stepsNumberLabelH);
-    stepsMarkLabel.text = @"步数";
+    stepsMarkLabel.text = kLOCAL(@"步数");
     stepsMarkLabel.textColor = fontColorSet;
     stepsMarkLabel.font = [UIFont systemFontOfSize:11];
     [scrollView addSubview:stepsMarkLabel];
@@ -217,7 +217,7 @@
     UILabel *kcalMarkLabel = [[UILabel alloc] init];
     kcalMarkLabel.backgroundColor = [UIColor clearColor];
     kcalMarkLabel.frame = CGRectMake(kcalNumberLabelX, kcalNumberLabel.bottom, kcalNumberLabelW, kcalNumberLabelH);
-    kcalMarkLabel.text = @"卡路里";
+    kcalMarkLabel.text = kLOCAL(@"卡路里");
     kcalMarkLabel.textColor = fontColorSet;
     kcalMarkLabel.font = [UIFont systemFontOfSize:11];
     [scrollView addSubview:kcalMarkLabel];
@@ -268,7 +268,7 @@
     UILabel *bpmUnitLabel = [[UILabel alloc] init];
     bpmUnitLabel.backgroundColor = [UIColor clearColor];
     bpmUnitLabel.frame = CGRectMake(bpmNumberLabelX, bpmNumberLabel.bottom, bpmNumberLabelW, bpmNumberLabelH);
-    bpmUnitLabel.text = @"心率";
+    bpmUnitLabel.text = kLOCAL(@"心率");
     bpmUnitLabel.textColor = fontColorSet;
     bpmUnitLabel.font = [UIFont systemFontOfSize:11];
     [scrollView addSubview:bpmUnitLabel];

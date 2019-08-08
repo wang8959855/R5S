@@ -202,11 +202,11 @@
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     NSMutableArray *sleepArray = [NSMutableArray array];
-    NSDictionary * detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.todayTimeSeconds];
+    NSDictionary * detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay]];
     [sleepArray removeAllObjects];
     if (detailDic != nil)
     {
-        NSDictionary *lastDayDic= [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.todayTimeSeconds - KONEDAYSECONDS];
+        NSDictionary *lastDayDic= [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay] - KONEDAYSECONDS];
         
         NSMutableArray * lastDaySleepArray = [SleepTool lastDaySleepDataWithDictionary:lastDayDic];
         [sleepArray addObjectsFromArray:lastDaySleepArray];
@@ -257,11 +257,11 @@
 {
     //    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     NSMutableArray *sleepArray = [NSMutableArray array];
-    NSDictionary * detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.todayTimeSeconds];
+    NSDictionary * detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay]];
     [sleepArray removeAllObjects];
     //    if (detailDic != nil)
     //    {
-    NSDictionary *lastDayDic= [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.todayTimeSeconds - KONEDAYSECONDS];
+    NSDictionary *lastDayDic= [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay] - KONEDAYSECONDS];
     
     NSMutableArray * lastDaySleepArray = [SleepTool lastDaySleepDataWithDictionary:lastDayDic];
     [sleepArray addObjectsFromArray:lastDaySleepArray];

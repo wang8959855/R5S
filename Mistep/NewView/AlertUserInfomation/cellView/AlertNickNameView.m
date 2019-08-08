@@ -8,6 +8,12 @@
 
 #import "AlertNickNameView.h"
 
+@interface AlertNickNameView ()
+    
+@property (weak, nonatomic) IBOutlet UILabel *titleP;
+    
+@end
+
 @implementation AlertNickNameView
 
 + (AlertNickNameView *)alertNickNameView{
@@ -19,6 +25,10 @@
     v.okButton.layer.borderWidth = 1;
     v.cancelButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     v.okButton.layer.borderColor = kMainColor.CGColor;
+    [v.okButton setTitle:kLOCAL(@"确定") forState:UIControlStateNormal];
+    [v.cancelButton setTitle:kLOCAL(@"取消") forState:UIControlStateNormal];
+    v.titleP.text = kLOCAL(@"修改昵称");
+    v.nickTF.placeholder = kLOCAL(@"点击上传你的昵称");
     
     return v;
 }

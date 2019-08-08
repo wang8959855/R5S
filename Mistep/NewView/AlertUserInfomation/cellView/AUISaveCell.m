@@ -15,6 +15,7 @@
     if (!cell) {
         cell = [[NSBundle mainBundle] loadNibNamed:@"AUISaveCell" owner:self options:nil].lastObject;
     }
+    [cell.saveButton setTitle:kLOCAL(@"保存") forState:UIControlStateNormal];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

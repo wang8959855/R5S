@@ -34,6 +34,8 @@
     // Do any additional setup after loading the view from its nib.
     [self setSubViews];
     self.statusHeight.constant = StatusBarHeight;
+    NSAttributedString *att = [[NSAttributedString alloc] initWithString:kLOCAL(@"如果当前手机号不用或丢失,请联系客服")];
+    self.kefuLabel.attributedText = att;
 }
 
 - (void)setSubViews{
@@ -136,23 +138,23 @@
 
 - (BOOL)isTel{
     if ([self.oldTelTF.text length] == 0) {
-        [self addActityTextInView:self.view text:@"原手机号不能为空" deleyTime:1.5f];
+        [self addActityTextInView:self.view text:kLOCAL(@"原手机号不能为空") deleyTime:1.5f];
         return NO;
     }
     if ([self.oldTelTF.text length] != 11) {
-        [self addActityTextInView:self.view text:@"原手机号格式不正确" deleyTime:1.5f];
+        [self addActityTextInView:self.view text:kLOCAL(@"原手机号格式不正确") deleyTime:1.5f];
         return NO;
     }
     if (![self.oldTelTF.text isEqualToString:[[HCHCommonManager getInstance] UserTel]]) {
-        [self addActityTextInView:self.view text:@"请输入注册时的手机号" deleyTime:1.5f];
+        [self addActityTextInView:self.view text:kLOCAL(@"请输入注册时的手机号") deleyTime:1.5f];
         return NO;
     }
     if ([self.newsTelTF.text length] == 0) {
-        [self addActityTextInView:self.view text:@"新手机号不能为空" deleyTime:1.5f];
+        [self addActityTextInView:self.view text:kLOCAL(@"新手机号不能为空") deleyTime:1.5f];
         return NO;
     }
     if ([self.newsTelTF.text length] != 11) {
-        [self addActityTextInView:self.view text:@"新手机号格式不正确" deleyTime:1.5f];
+        [self addActityTextInView:self.view text:kLOCAL(@"新手机号格式不正确") deleyTime:1.5f];
         return NO;
     }
     return YES;
@@ -161,10 +163,10 @@
 //倒计时
 - (void)countDown{
     _sec--;
-    [self.verificationButton setTitle:[NSString stringWithFormat:@"%ld秒",_sec] forState:UIControlStateNormal];
+    [self.verificationButton setTitle:[NSString stringWithFormat:@"%ld%@",_sec,kLOCAL(@"秒")] forState:UIControlStateNormal];
     if (_sec == 0) {
         [self.timer invalidate];
-        [self.verificationButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [self.verificationButton setTitle:kLOCAL(@"获取验证码") forState:UIControlStateNormal];
         self.verificationButton.userInteractionEnabled = YES;
     }
 }

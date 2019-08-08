@@ -43,6 +43,15 @@
 @interface AppDelegate ()<AVAudioSessionDelegate,AVAudioPlayerDelegate>
 @end
 
+void UncaughtExceptionHandler(NSException *exception) {
+    NSArray *arr = [exception callStackSymbols];
+    NSString *reason = [exception reason];
+    NSString *name = [exception name];
+    NSLog(@"\n%@\n%@\n%@",arr,reason,name);
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate sendCrashLogWithCallStackSymbols:[arr componentsJoinedByString:@","] reason:reason name:name];
+}
+
 @implementation AppDelegate
 
 
@@ -72,7 +81,36 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ChangeGuid) name:@"ChangeGuid" object:nil];
     }
     
+    NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
+    
+    [self queryCrashInfo];
+    
     return YES;
+}
+
+- (void)queryCrashInfo{
+    //查询有没有崩溃信息
+    NSDictionary *paramatar = [[NSUserDefaults standardUserDefaults] objectForKey:@"crash"];
+    if (paramatar == nil) {
+        return;
+    }
+    [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:CRASH ParametersDictionary:paramatar Block:^(id responseObject, NSError *error, NSURLSessionDataTask *task) {
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"crash"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }];
+}
+
+// 通过post 或者 get 方式来将异常信息发送到服务器
+- (void)sendCrashLogWithCallStackSymbols:(NSString *)callStackSymbols reason:(NSString *)reason name:(NSString *)name{
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    //获取版本
+    NSString *version = [NSString stringWithFormat:@"%@.%@",[infoDictionary objectForKey:@"CFBundleShortVersionString"],[infoDictionary objectForKey:@"CFBundleVersion"]];
+    
+    NSDictionary *paramatar = @{@"reason":reason,@"name":name,@"callStackSymbols":callStackSymbols,@"version":version};
+    
+    [[NSUserDefaults standardUserDefaults] setObject:paramatar forKey:@"crash"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)playbackgroud {
@@ -391,6 +429,10 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    //从后台进入刷新天气
+    if ([CositeaBlueTooth sharedInstance].isConnected) {
+        [[PZCityTool sharedInstance] refresh];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

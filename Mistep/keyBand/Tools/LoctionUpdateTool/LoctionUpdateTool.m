@@ -49,10 +49,10 @@
     //设置预期精度参数
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     //设置位置获取超时时间
-    _locationManager.locationTimeout = 10;
+    _locationManager.locationTimeout = 30;
     //设置获取地址信息超时时间
-    _locationManager.reGeocodeTimeout = 10;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1800 target:self selector:@selector(startUploadLocation) userInfo:nil repeats:YES];
+    _locationManager.reGeocodeTimeout = 30;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3600 target:self selector:@selector(startUploadLocation) userInfo:nil repeats:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploadLocation) name:@"uploadLocation" object:nil];
     [self.timer fire];
 }
@@ -93,15 +93,19 @@
             //上传成功
             NSLog(@"上传成功");
             PZBaseViewController *topmostVC = (PZBaseViewController *)[self topViewController];
-            [topmostVC.view makeCenterToast:@"腕上健康:地理位置上传成功"];
+            [topmostVC.view makeCenterToast:kLOCAL(@"腕上健康:地理位置上传成功")];
         }else{
             //上传失败
             if (self.uploadNum < 3) {
-                [self requestUploadAddress:address lng:lng lat:lat environment:environment];
+                [self performSelector:@selector(afterUploadAddress:) withObject:@{@"address":address,@"lng":@(lng),@"lat":@(lat),@"environment":environment} afterDelay:5];
             }
             self.uploadNum++;
         }
     }];
+}
+
+- (void)afterUploadAddress:(NSDictionary *)dic{
+    [self requestUploadAddress:dic[@"address"] lng:[dic[@"lng"] floatValue] lat:[dic[@"lat"] floatValue] environment:dic[@"environment"]];
 }
 
 - (UIViewController *)topViewController {

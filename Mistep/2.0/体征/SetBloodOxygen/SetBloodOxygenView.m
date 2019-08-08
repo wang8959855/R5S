@@ -35,15 +35,15 @@
 //确定
 - (IBAction)okeyAction:(UIButton *)sender {
     if (self.heightTF.text.length == 0) {
-        [self makeBottomToast:@"请填写基准高压值"];
+        [self makeBottomToast:kLOCAL(@"请填写基准高压值")];
         return;
     }
     if (self.lowTF.text.length == 0) {
-        [self makeBottomToast:@"请填写基准低压值"];
+        [self makeBottomToast:kLOCAL(@"请填写基准低压值")];
         return;
     }
     if (self.SPO2TF.text.length == 0) {
-        [self makeBottomToast:@"请填写餐后血糖值"];
+        [self makeBottomToast:kLOCAL(@"请填写餐后血糖值")];
         return;
     }
     
@@ -76,7 +76,7 @@
         [self hideToastActivity];
         if (error)
         {
-            [self makeCenterToast:@"网络连接错误"];
+            [self makeCenterToast:kLOCAL(@"网络连接错误")];
         }
         else
         {
@@ -84,13 +84,13 @@
             NSString *message = [responseObject objectForKey:@"message"];
             if (code == 0) {
                 if ([message isEqualToString:@"error"]) {
-                    [self makeCenterToast:@"修改失败"];
+                    [self makeCenterToast:kLOCAL(@"修改失败")];
                     return;
                 }else{
                     //设置血压配置参数
                     [ADASaveDefaluts setObject:_uploadInfoDic[@"SystolicPressure"] forKey:BLOODPRESSURELOW];
                     [ADASaveDefaluts setObject:_uploadInfoDic[@"DiastolicPressure"] forKey:BLOODPRESSUREHIGH];
-                    [self makeCenterToast:@"修改成功"];
+                    [self makeCenterToast:kLOCAL(@"修改成功")];
                     
                     [[NSUserDefaults standardUserDefaults] setObject:self.heightTF.text forKey:@"setheight"];
                     [[NSUserDefaults standardUserDefaults] setObject:self.lowTF.text forKey:@"setlow"];

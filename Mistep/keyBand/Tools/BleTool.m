@@ -8,7 +8,7 @@
 
 #define isZhHans [[[NSLocale preferredLanguages] firstObject] hasPrefix:@"zh-Hans"] //是中文为YES其他为NO
 #define isTH [[[NSLocale preferredLanguages] firstObject] hasPrefix:@"th"] //是泰文为YES其他为NO
-
+#define isZhHant [[[NSLocale preferredLanguages] firstObject] hasPrefix:@"zh-Hant"]//繁体
 
 #import "BleTool.h"
 
@@ -50,6 +50,9 @@
     if (isTH)
     {
         langage = 2; // 如果是泰语就是泰语
+    }
+    if (isZhHant) {
+        langage = 3;//繁体中文
     }
     return langage;
 }

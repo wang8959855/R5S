@@ -377,7 +377,7 @@
 - (void)reloadStepsData
 {
     //    [GCDDelay gcdCancel:self.task];
-    NSDictionary *detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:kHCH.selectTimeSeconds];
+    NSDictionary *detailDic = [[CoreDataManage shareInstance] querDayDetailWithTimeSeconds:[[TimeCallManager getInstance] getSecondsOfCurDay]];
     NSArray *stepsArray;
     if (!((NSNull *)detailDic[kDayStepsData] == [NSNull null]))
         stepsArray = [NSKeyedUnarchiver unarchiveObjectWithData:detailDic[kDayStepsData]];

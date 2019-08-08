@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "换绑手机"; ObjectID = "1L4-vE-ucf"; */
+"1L4-vE-ucf.text" = "换绑手机";
+
+/* Class = "UITextField"; placeholder = "请输入旧手机号"; ObjectID = "1Nx-RS-BGO"; */
+"1Nx-RS-BGO.placeholder" = "请输入旧手机号";
+
+/* Class = "UITextField"; placeholder = "请输入验证码"; ObjectID = "AKk-Xl-7Y3"; */
+"AKk-Xl-7Y3.placeholder" = "请输入验证码";
+
+/* Class = "UITextField"; placeholder = "请输入新手机号"; ObjectID = "Bkm-xC-eiN"; */
+"Bkm-xC-eiN.placeholder" = "请输入新手机号";
+
+/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "xrh-nZ-INf"; */
+"xrh-nZ-INf.normalTitle" = "获取验证码";
+
+/* Class = "UIButton"; normalTitle = "验证后绑定新手机"; ObjectID = "zfR-X0-qte"; */
+"zfR-X0-qte.normalTitle" = "验证后绑定新手机";

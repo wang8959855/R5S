@@ -29,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *topButton2;
 
 
+    
+
 @end
 
 @implementation NewFriendsViewController
@@ -47,6 +49,10 @@
     self.tableView.rowHeight = 139;
     [self getFriendList];
     self.statusHeight.constant = StatusBarHeight;
+    
+    [self.topButton1 setTitle:kLOCAL(@"我的关注") forState:UIControlStateNormal];
+    [self.topButton2 setTitle:kLOCAL(@"关注我的") forState:UIControlStateNormal];
+    
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
@@ -80,10 +86,10 @@
 // 进入编辑模式，按下出现的编辑按钮后,进行删除操作
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除好友？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLOCAL(@"确定删除好友？") message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:kLOCAL(@"取消") style:UIAlertActionStyleDefault handler:nil]];
     WeakSelf
-    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alert addAction:[UIAlertAction actionWithTitle:kLOCAL(@"确定") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [weakSelf deleteInfo:indexPath.row];
     }]];
     
@@ -132,7 +138,7 @@
         if (code == 0) {
             [self.dataSource removeObjectAtIndex:row];
             [self.tableView reloadData];
-            [self addActityTextInView:self.view text:@"删除成功" deleyTime:1.5f];
+            [self addActityTextInView:self.view text:kLOCAL(@"删除成功") deleyTime:1.5f];
         } else {
             [self addActityTextInView:self.view text:NSLocalizedString(message, nil)  deleyTime:1.5f];
         }
@@ -194,8 +200,8 @@
             }];
         } else if (status == AVAuthorizationStatusAuthorized) { // 用户允许当前应用访问相机
         } else if (status == AVAuthorizationStatusDenied) { // 用户拒绝当前应用访问相机
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 相机 - ] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
-            UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:kLOCAL(@"温馨提示") message:kLOCAL(@"请去-> [设置 - 隐私 - 相机 - ] 打开访问开关") preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *alertA = [UIAlertAction actionWithTitle:kLOCAL(@"确定") style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
             }];
             
             [alertC addAction:alertA];
@@ -216,7 +222,7 @@
             [self addFriendWithId:str];
         }else{
             NSLog(@"扫描后的结果~%@",str);
-            [self addActityTextInView:self.view text:@"无法识别" deleyTime:1.5f];
+            [self addActityTextInView:self.view text:kLOCAL(@"无法识别") deleyTime:1.5f];
         }
     }];
     [self presentViewController:vc animated:YES completion:nil];

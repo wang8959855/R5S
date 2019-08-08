@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "目标设置"; ObjectID = "5bt-7P-Z5G"; */
+"5bt-7P-Z5G.text" = "目标设置";
+
+/* Class = "UILabel"; text = "运动目标"; ObjectID = "H01-Df-Sbe"; */
+"H01-Df-Sbe.text" = "运动目标";
+
+/* Class = "UIButton"; normalTitle = "完成"; ObjectID = "Nju-ze-k1V"; */
+"Nju-ze-k1V.normalTitle" = "完成";
+
+/* Class = "UILabel"; text = "正常"; ObjectID = "ad6-HE-Qbq"; */
+"ad6-HE-Qbq.text" = "正常";
+
+/* Class = "UILabel"; text = "睡眠目标"; ObjectID = "eox-PX-Od6"; */
+"eox-PX-Od6.text" = "睡眠目标";
+
+/* Class = "UILabel"; text = "正常"; ObjectID = "hJK-bp-reb"; */
+"hJK-bp-reb.text" = "正常";
+
+/* Class = "UILabel"; text = "根据个人数据，设置相应目标！"; ObjectID = "myr-zg-pi3"; */
+"myr-zg-pi3.text" = "根据个人数据，设置相应目标！";

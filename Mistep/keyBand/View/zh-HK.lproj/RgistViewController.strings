@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "@lantianyihaov"; ObjectID = "4FD-PF-zoN"; */
+"4FD-PF-zoN.text" = "@lantianyihaov";
+
+/* Class = "UIButton"; normalTitle = "下一步"; ObjectID = "Aef-tS-6Y6"; */
+"Aef-tS-6Y6.normalTitle" = "下一步";
+
+/* Class = "UITextField"; placeholder = "请输入验证码"; ObjectID = "Bul-vL-rDJ"; */
+"Bul-vL-rDJ.placeholder" = "请输入验证码";
+
+/* Class = "UITextField"; placeholder = "请输入手机号"; ObjectID = "DMf-oE-v8P"; */
+"DMf-oE-v8P.placeholder" = "请输入手机号";
+
+/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "fPj-2q-lmV"; */
+"fPj-2q-lmV.normalTitle" = "获取验证码";
