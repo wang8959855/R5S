@@ -46,6 +46,8 @@ static MoreView *instance = nil;
 
 @property (strong,nonatomic) CLLocationManager* locationManager;
 
+//为了自动定时播报
+@property (nonatomic, strong) RhythmViewController *rhythnmVC;
 
 @end
 
@@ -55,22 +57,26 @@ static MoreView *instance = nil;
     @synchronized(self) {
         if( instance == nil ){
             instance =  [[MoreView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-            [[UIApplication sharedApplication].keyWindow addSubview:instance];
-            
-            CGAffineTransform endAngle = CGAffineTransformMakeRotation(M_PI / 4);
-            [UIView animateWithDuration:0.3 animations:^{
-                instance.rotateBtn.transform = endAngle;
-                for (int i = 0; i < 5; i++) {
-                    UIView *view = [instance viewWithTag:100+i];
-                    view.frame = [instance.endFrameArr[i] CGRectValue];
-                }
-                [instance getState];
-                [instance createLocation];
-            } completion:^(BOOL finished) {
-            }];
+            instance.rhythnmVC = [RhythmViewController new];
         }
     }
     return instance;
+}
+
++ (void)startView{
+    [[UIApplication sharedApplication].keyWindow addSubview:instance];
+    
+    CGAffineTransform endAngle = CGAffineTransformMakeRotation(M_PI / 4);
+    [UIView animateWithDuration:0.3 animations:^{
+        instance.rotateBtn.transform = endAngle;
+        for (int i = 0; i < 5; i++) {
+            UIView *view = [instance viewWithTag:100+i];
+            view.frame = [instance.endFrameArr[i] CGRectValue];
+        }
+        [instance getState];
+        [instance createLocation];
+    } completion:^(BOOL finished) {
+    }];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -188,8 +194,7 @@ static MoreView *instance = nil;
 - (void)menuAction:(UIButton *)button{
     if (button == self.jielvBtn) {//节律
         [self rotateAction:nil];
-        RhythmViewController *rhy = [RhythmViewController new];
-        [[self findCurrentViewController].navigationController pushViewController:rhy animated:YES];
+        [[self findCurrentViewController].navigationController pushViewController:self.rhythnmVC animated:YES];
     }else if (button == self.sosBtn){//sos
         SOSView *sos = [SOSView initSOSView];
         [sos show];
@@ -253,7 +258,7 @@ static MoreView *instance = nil;
         }
     } completion:^(BOOL finished) {
         [instance removeFromSuperview];
-        instance = nil;
+//        instance = nil;
     }];
 }
 //关闭界面
@@ -266,7 +271,7 @@ static MoreView *instance = nil;
         }
     } completion:^(BOOL finished) {
         [instance removeFromSuperview];
-        instance = nil;
+//        instance = nil;
     }];
 }
 
@@ -339,7 +344,7 @@ static MoreView *instance = nil;
             [self makeCenterToast:@"定位失败"];
             return;
         }
-        [self requestSOSAddress:[NSString stringWithFormat:@"%@%@%@%@",place.country,place.locality,place.subLocality,place.name] lng:oldCoordinate.longitude lat:oldCoordinate.latitude environment:place.name];
+//        [self requestSOSAddress:[NSString stringWithFormat:@"%@%@%@%@",place.country,place.locality,place.subLocality,place.name] lng:oldCoordinate.longitude lat:oldCoordinate.latitude environment:place.name];
     }];
 }
 

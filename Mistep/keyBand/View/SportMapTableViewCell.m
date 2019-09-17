@@ -348,7 +348,7 @@
     NSInteger loc = 11;
     NSInteger len = 5;
     self.timeString = [NSString stringWithFormat:@"%@- %@",[sport.fromTime substringWithRange:NSMakeRange(loc, len)],[sport.toTime substringWithRange:NSMakeRange(loc, len)]];
-    //    self.stepString = sport.stepNumber;
+    self.stepString = sport.stepNumber;
     self.kcalString = sport.kcalNumber;
     NSString *bpm = [AllTool  getMean:sport.heartRateArray];
     //adaLog(@"bpm - %@",bpm);
@@ -462,8 +462,7 @@
     _kcalString = kcalString;
     self.kcalNumberLabel.text = kcalString;
 }
--(void)setStepString:(NSString *)stepString
-{
+-(void)setStepString:(NSString *)stepString {
     _stepString = stepString;
     self.stepsNumberLabel.text = stepString;
 }

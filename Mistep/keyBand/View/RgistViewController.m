@@ -20,6 +20,9 @@
 //倒计时
 @property (nonatomic, strong) NSTimer *timer;
 
+@property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTop;
+
 @end
 
 @implementation RgistViewController
@@ -39,6 +42,26 @@
     self.versionLabel.text = showAppVersion;
     // Do any additional setup after loading the view from its nib.
 //    [self setButtonWithButton:_nextBtn andTitle:NSLocalizedString(@"下一步", nil)];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification{
+    
+    CGFloat top = 0;
+    if (ScreenHeight <= 667) {
+        top -= 150;
+    }else if (ScreenHeight <= 812){
+        top -= 100;
+    }
+    [UIView animateWithDuration:0.5 animations:^{
+        self.viewTop.constant = top;
+    } completion:nil];
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification{
+    self.viewTop.constant = 0;
 }
 
 - (void)setXibLabel

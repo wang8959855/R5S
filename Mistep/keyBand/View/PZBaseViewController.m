@@ -60,7 +60,6 @@
     // Do any additional setup after loading the view.
     
     _topNavHeight.constant = SafeAreaTopHeight;
-    
     _topNavView.backgroundColor = [UIColor whiteColor];
     UIView *topView = [[UIView alloc] init];
     topView.backgroundColor = [UIColor blackColor];
@@ -104,7 +103,7 @@
 }
 
 - (void)moreView{
-    [MoreView moreView];
+    [MoreView startView];
 }
 
 - (void)didReceiveMemoryWarning {

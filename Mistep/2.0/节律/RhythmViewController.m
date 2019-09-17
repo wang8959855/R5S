@@ -28,6 +28,23 @@
 
 @implementation RhythmViewController
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        CGFloat backScrollViewY = SafeAreaTopHeight;
+        CGFloat backScrollViewW = CurrentDeviceWidth;
+        CGFloat backScrollViewH = CurrentDeviceHeight - SafeAreaTopHeight - SafeAreaBottomHeight;
+        
+        _dirtyView = [[DirtyView alloc] initWithFrame:CGRectMake(0, backScrollViewY, backScrollViewW, backScrollViewH)];
+    }
+    return self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [_dirtyView stopAudio];
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[PSDrawerManager instance] beginDragResponse];
@@ -188,7 +205,7 @@
     CGFloat backScrollViewW = CurrentDeviceWidth;
     CGFloat backScrollViewH = CurrentDeviceHeight - SafeAreaTopHeight - SafeAreaBottomHeight;
     
-    _dirtyView = [[DirtyView alloc] initWithFrame:CGRectMake(0, backScrollViewY, backScrollViewW, backScrollViewH)];
+//    _dirtyView = [[DirtyView alloc] initWithFrame:CGRectMake(0, backScrollViewY, backScrollViewW, backScrollViewH)];
     _dirtyView.controller = self;
     [self.view addSubview:_dirtyView];
     

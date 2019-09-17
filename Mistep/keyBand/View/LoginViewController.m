@@ -25,6 +25,9 @@
 //倒计时
 @property (nonatomic, strong) NSTimer *timer;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTop;
+
+
 @end
 
 @implementation LoginViewController
@@ -86,6 +89,27 @@
     [_findPasswordBtn setTitle:NSLocalizedString(@"忘记密码》", nil) forState:UIControlStateNormal];
     _titleLabel.text = NSLocalizedString(@"登录", nil);
     _thirdPartLabel.text = NSLocalizedString(@"使用第三方登录", nil);
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification{
+    
+    CGFloat top = 0;
+    if (ScreenHeight <= 667) {
+        top -= 150;
+    }else if (ScreenHeight <= 812){
+        top -= 100;
+    }
+    [UIView animateWithDuration:0.5 animations:^{
+        self.viewTop.constant = top;
+    } completion:nil];
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification{
+    self.viewTop.constant = 0;
 }
 
 - (void)dealloc

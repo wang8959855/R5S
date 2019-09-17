@@ -20,6 +20,9 @@ typedef void(^dirtyReloadViewBlock)(NSString *title);
 @property (nonatomic, strong) UILabel *nowDateLabel;
 @property (nonatomic, strong) NSTimer *timer;
 
+//关闭语音播报
+- (void)stopAudio;
+
 //开启机器人
 @property (nonatomic, strong) UIButton *openRobotBtn;
 //语音播报

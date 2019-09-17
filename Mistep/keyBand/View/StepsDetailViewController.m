@@ -69,12 +69,12 @@
         {
             [weakSelf performSelector:@selector(reloadOutTime) withObject:nil afterDelay:5.0f];
             [weakSelf reloadBlueToothData];
-            UIButton *HRVButton = (UIButton *)[weakSelf.backScrollView viewWithTag:202];
-            if (HRVButton.selected == YES)
-            {
-                HRVButton.selected = NO;
-                [weakSelf HRandHRVButtonClick:HRVButton];
-            }
+//            UIButton *HRVButton = (UIButton *)[weakSelf.backScrollView viewWithTag:202];
+////            if (HRVButton.selected == YES)
+////            {
+////                HRVButton.selected = NO;
+////                [weakSelf HRandHRVButtonClick:HRVButton];
+////            }
         }
         else
         {

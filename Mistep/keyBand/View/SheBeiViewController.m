@@ -307,7 +307,7 @@ static NSString *conectReuse = @"connectedCell";
 
 - (IBAction)clearLocalData:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"注意", nil) message:NSLocalizedString(@"当前操作将清除本应用所有历史数据，是否继续？", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil) otherButtonTitles:NSLocalizedString(@"确定", nil), nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"注意", nil) message:NSLocalizedString(@"当前操作将清除云设备内所有数据，应用内自定义设置也将全部关闭，是否继续？", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil) otherButtonTitles:NSLocalizedString(@"确定", nil), nil];
     alert.tag = 102;
     [alert show];
     
@@ -709,8 +709,8 @@ static NSString *conectReuse = @"connectedCell";
         [[CositeaBlueTooth sharedInstance] setHeartRateAlarmWithState:YES MaxHeartRate:maxHeartTwo MinHeartRate:40];
         
         //默认关闭微信、QQ消息
-        [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:10 State:NO];
-        [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:9 State:NO];
+//        [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:10 State:NO];
+//        [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:9 State:NO];
         
     }else{
         [self performSelector:@selector(setHeart) withObject:nil afterDelay:0.5];

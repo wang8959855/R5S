@@ -40,6 +40,19 @@
 @end
 
 @implementation DirtyView
+- (void)willMoveToWindow:(UIWindow *)newWindow{
+    if (!newWindow) {
+        self.audioPlayer = nil;        
+    }
+}
+
+- (void)stopAudio{
+    self.audioPlayer = nil;
+}
+
+- (void)dealloc{
+    self.audioPlayer = nil;
+}
 
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -50,8 +63,7 @@
     [self calcGlu];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = allColorWhite;
@@ -258,24 +270,15 @@
 }
 
 - (void)setDate{
-    self.nowSec++;
-    if (self.nowSec >= 86400) {
-        self.nowSec = 0;
-    }
-    NSInteger hour = 0;
-    NSInteger min = 0;
-    NSInteger sec;
-    NSInteger now = self.nowSec;
-    if (self.nowSec >= 3600) {
-        hour = self.nowSec/3600;
-        now -= hour*3600;
-    }
-    if (now >= 60) {
-        min = now/60;
-        now -= min*60;
-    }
-    sec = now;
-    self.nowDateLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hour,min,sec];
+    NSDate *date = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:date];
+    
+    NSInteger hour=[components hour];
+    NSInteger minute=[components minute];
+    NSInteger second=[components second];
+    self.nowSec = hour*3600+minute*60+second;
+    self.nowDateLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hour,minute,second];
     
     NSInteger index = 0;
     self.SJDString = @"";

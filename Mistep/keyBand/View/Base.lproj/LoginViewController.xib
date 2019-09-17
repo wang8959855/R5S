@@ -18,6 +18,7 @@
                 <outlet property="verificationButton" destination="dOq-c2-OM8" id="BrO-DU-Lgn"/>
                 <outlet property="versionLabel" destination="NUx-3y-PW6" id="2WC-e8-YdC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewTop" destination="5UY-Zm-3O9" id="Xcf-fL-eoh"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

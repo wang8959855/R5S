@@ -16,6 +16,7 @@
 #import "SheBeiViewController.h"
 #import "ConnectStateView.h"
 #import "SelectStepTypeViewController.h"
+#import "NSAttributedString+appendAttributedString.h"
 
 @interface WorkOutView ()<BlutToothManagerDelegate,MapSportTypeSelectViewControllerDelegate,SportMapTableViewCellDelegate,UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
@@ -34,6 +35,19 @@
 @property (nonatomic, strong) UILabel *calouiesLabel;
 //心率
 @property (nonatomic, strong) UILabel *heartRateLabel;
+
+/*
+ *
+ *目标时间选择器
+ */
+@property (strong, nonatomic) UIPickerView *pickerView;
+@property (strong, nonatomic) NSArray * hourArray;
+@property (strong, nonatomic) NSArray * minuteArray;
+@property (strong, nonatomic) UIButton *SubBackView;
+@property (strong, nonatomic) UIView *SubAnimationView;
+@property (strong, nonatomic) NSString * pickerViewMinute;
+@property (strong, nonatomic) NSString * pickerViewHour;
+@property (nonatomic, strong) NSString *targetTime;//运动的目标时间的字符串
 
 @end
 
@@ -137,9 +151,14 @@
 //    self.targetBtn.layer.borderColor = kMainColor.CGColor;
 //    self.targetBtn.layer.borderWidth = 1;
 //    self.targetBtn.layer.cornerRadius = self.targetBtn.height/2.;
+    self.pickerViewHour = @"00";
+    self.pickerViewMinute = @"30";
     [self.targetBtn setImage:[UIImage imageNamed:@"target1"] forState:UIControlStateNormal];
-    [self.targetBtn setTitle:@"30min" forState:UIControlStateNormal];
-    self.targetBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    NSAttributedString *attrString = [NSAttributedString getAttributedText:16 pickerViewHour:self.pickerViewHour pickerViewMinute:self.pickerViewMinute];
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:attrString.string attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    [self.targetBtn setAttributedTitle:att forState:UIControlStateNormal];
+//    self.targetBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     self.targetBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.targetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.targetBtn addTarget:self action:@selector(targetBtnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -219,6 +238,8 @@
     MapSportTypeViewController *sportTypeVC = [[MapSportTypeViewController alloc]init];
     [sportTypeVC setHidesBottomBarWhenPushed:YES];
     sportTypeVC.navigationController.navigationBar.hidden = YES;
+    sportTypeVC.pickerViewHour = self.pickerViewHour;
+    sportTypeVC.pickerViewMinute = self.pickerViewMinute;
     [self.controller.navigationController pushViewController:sportTypeVC animated:YES];
     
 //    SelectStepTypeViewController *step = [SelectStepTypeViewController new];
@@ -284,6 +305,20 @@
     _sportArray = [NSMutableArray arrayWithArray:array];
     _sportArray = [self sortSport:_sportArray];
     [self.sportTabelView reloadData];
+    
+    NSInteger allBpmAvg = 0;
+    NSInteger allStep = 0;
+    NSInteger allKcal = 0;
+    for (SportModelMap *sport in _sportArray) {
+        NSString *bpm = [AllTool  getMean:sport.heartRateArray];
+        allBpmAvg += bpm.integerValue;
+        allStep += sport.stepNumber.integerValue;
+        allKcal += sport.kcalNumber.integerValue;
+    }
+    self.sportLabel.attributedText = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%ld",allStep] Unit:kLOCAL(@"步") WithFont:17];
+    self.calouiesLabel.attributedText = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%ld",allKcal] Unit:kLOCAL(@"卡路里") WithFont:17];
+    self.heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%ld",allBpmAvg/_sportArray.count] Unit:kLOCAL(@"次/分") WithFont:17];
+    
 }
 #pragma mark    ---  私有方法
 -(void)openHeartRateFail
@@ -369,13 +404,12 @@
 
 #pragma mark -
 - (void)targetBtnAction:(UIButton *)button{
-    
+    if (_SubBackView == nil) [self setPickerViewTwo];
 }
 
 #pragma mark   - - - 排序 各个运动
 -(NSMutableArray *)sortSport:(NSMutableArray *)array
 {
-    
     for (NSInteger i = 0; i<array.count; i++) {
         for (NSInteger j= i+1; j<array.count ; j++) {
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -534,6 +568,252 @@
     [unitString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:font - 5] range:NSMakeRange(0, unitString.length)];
     [attributeString appendAttributedString:unitString];
     return attributeString;
+}
+
+#pragma mark  --  UIDatePicker --
+- (void)setPickerViewTwo
+{
+    _SubBackView = [[UIButton alloc] initWithFrame:CurrentDeviceBounds];
+    _SubBackView.backgroundColor = [UIColor clearColor];
+    [self.controller.view addSubview:_SubBackView];
+    [_SubBackView addTarget:self action:@selector(dateSureClickTwo) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    _SubAnimationView  = [[UIView alloc] initWithFrame:CGRectMake(0, CurrentDeviceHeight, CurrentDeviceWidth, 246)];
+    [_SubBackView addSubview:_SubAnimationView];
+    _SubAnimationView.backgroundColor = [UIColor whiteColor];
+    
+    //弹出的pickerView
+    CGFloat pickerViewX = 0;
+    CGFloat pickerViewY = 50;
+    CGFloat pickerViewW = CurrentDeviceWidth;
+    CGFloat pickerViewH = 246 - pickerViewY;
+    
+    self.pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(pickerViewX,pickerViewY, pickerViewW, pickerViewH)];
+    [_SubAnimationView addSubview:self.pickerView];
+    //设置选择器的水平的阴影效果
+    self.pickerView.showsSelectionIndicator = YES;
+    
+    self.pickerView.backgroundColor = [UIColor whiteColor];
+    self.pickerView.delegate = self;
+    self.pickerView.dataSource = self;
+    [_SubAnimationView addSubview:self.pickerView];
+    [self.pickerView reloadAllComponents];//刷新UIPickerView
+    
+    UILabel * hourLabel = [[UILabel alloc]init];
+    [self.pickerView addSubview:hourLabel];
+    hourLabel.text = @"h";
+    hourLabel.backgroundColor = [UIColor clearColor];
+    CGFloat hourLabelX = CurrentDeviceWidth / 3;
+    CGFloat hourLabelW = CurrentDeviceWidth / 4;
+    CGFloat hourLabelH = 25;
+    CGFloat hourLabelY = pickerViewH/ 2 - hourLabelH * 0.7;
+    hourLabel.frame = CGRectMake(hourLabelX, hourLabelY, hourLabelW, hourLabelH);
+    
+    UILabel * minuteLabel = [[UILabel alloc]init];
+    [self.pickerView addSubview:minuteLabel];
+    minuteLabel.text = @"min";
+    minuteLabel.backgroundColor = [UIColor clearColor];
+    CGFloat minuteLabelX = CurrentDeviceWidth / 3 * 2;
+    CGFloat minuteLabelW = CurrentDeviceWidth / 4;
+    CGFloat minuteLabelH = hourLabelH;
+    CGFloat minuteLabelY = pickerViewH/ 2 - minuteLabelH * 0.7;
+    minuteLabel.frame = CGRectMake(minuteLabelX, minuteLabelY, minuteLabelW, minuteLabelH);
+    NSInteger row1 = 0;
+    NSInteger row2 = 0;
+    if(self.targetBtn.titleLabel.attributedText)
+    {
+        row1 = self.hourArray.count/2 + [self.pickerViewHour integerValue];
+        row2 = self.minuteArray.count/2 + [self.pickerViewMinute integerValue];
+    }
+    else
+    {
+        row1 = self.hourArray.count/2;
+        row2 = self.minuteArray.count/2;
+    }
+    [self.pickerView selectRow:row1 inComponent:0 animated:NO];
+    [self.pickerView selectRow:row2 inComponent:1 animated:NO];
+    
+    //右上角的选择按钮
+    UIView *buttonView = [[UIView alloc] init];
+    [_SubAnimationView addSubview:buttonView];
+    CGFloat buttonViewX = 50;
+    CGFloat buttonViewY = 50;
+    buttonView.sd_layout
+    .topSpaceToView(_SubAnimationView,10)
+    .rightSpaceToView(_SubAnimationView,10)
+    .heightIs(buttonViewX)
+    .widthIs(buttonViewY);
+    
+    UIImageView *btnImageView = [[UIImageView alloc] init];
+    btnImageView.image = [UIImage imageNamed:@"xuanze"];
+    [buttonView addSubview:btnImageView];
+    btnImageView.userInteractionEnabled = YES;
+    
+    btnImageView.sd_layout
+    .topSpaceToView(buttonView,0)
+    .rightSpaceToView(buttonView,10)
+    .heightIs(buttonViewX - 20)
+    .widthIs(buttonViewY - 20);
+    
+    
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [buttonView addSubview:button];
+    button.backgroundColor = [UIColor clearColor];
+    [button addTarget:self action:@selector(dateSureClickTwo) forControlEvents:UIControlEventTouchUpInside];
+    button.sd_layout
+    .topSpaceToView(buttonView,0)
+    .rightSpaceToView(buttonView,0)
+    .heightIs(buttonViewX)
+    .widthIs(buttonViewY);
+    
+    
+    
+    [UIView animateWithDuration:0.23 animations:^{
+        _SubBackView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        _SubAnimationView.frame = CGRectMake(0, CurrentDeviceHeight - 246,CurrentDeviceWidth, 246);
+    }];
+}
+
+- (void)hiddenPickerView
+{
+    [UIView animateWithDuration:0.23 animations:^{
+        _SubAnimationView.frame = CGRectMake(0, CurrentDeviceHeight, CurrentDeviceWidth, 246);
+        _SubBackView.frame = CGRectMake(0, CurrentDeviceHeight, CurrentDeviceWidth, 246);
+    } completion:^(BOOL finished) {
+        [self.pickerView removeFromSuperview];
+        self.pickerView = nil;
+        [_SubAnimationView removeFromSuperview];
+        _SubAnimationView = nil;
+        [_SubBackView removeFromSuperview];
+        _SubBackView = nil;
+        
+    }];
+}
+
+- (void)dateSureClickTwo
+{
+    
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:[NSAttributedString getAttributedText:16 pickerViewHour:self.pickerViewHour pickerViewMinute:self.pickerViewMinute].string attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    [self.targetBtn setAttributedTitle:att forState:UIControlStateNormal];
+    //    [ADASaveDefaluts setObject:[NSString stringWithFormat:@"%@H%@min",self.pickerViewHour,self.pickerViewMinute] forKey:MAPSPORTTARGET];//保存地图运动目标
+    
+    if (self.pickerViewHour == 0) {
+        self.targetTime = [NSString stringWithFormat:@"%@min",self.pickerViewMinute];
+    }else{
+        self.targetTime = [NSString stringWithFormat:@"%@H%@min",self.pickerViewHour,self.pickerViewMinute];
+    }
+    [self hiddenPickerView];
+    
+}
+
+#pragma mark - pickerView Delegate DataSource
+
+//返回有几列
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 2;
+}
+//返回指定列的行数
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if(component==0){
+        
+        return  self.hourArray.count;
+    }
+    return self.minuteArray.count;
+}
+//返回指定列，行的高度，就是自定义行的高度
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 130.0f * HEIGHT_PROPORTION;
+}
+//返回指定列的宽度
+- (CGFloat) pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+    
+    //    //adaLog(@"CurrentDeviceWidth / 6 = %f",[UIScreen mainScreen].bounds.size.width / 6);
+    return  [UIScreen mainScreen].bounds.size.width / 3;
+}
+
+// 自定义指定列的每行的视图，即指定列的每行的视图行为一致
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    if (!view){
+        view = [[UIView alloc]init];
+    }
+    if(component == 0){
+        UILabel *text = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 20)];
+        text.textAlignment = NSTextAlignmentCenter;
+        text.text = [self.hourArray objectAtIndex:row];
+        [view addSubview:text];
+    }else{
+        
+        UILabel *text = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,80, 20)];
+        text.textAlignment = NSTextAlignmentCenter;
+        text.text = [self.minuteArray objectAtIndex:row];
+        [view addSubview:text];
+    }
+    
+    return view;
+}
+//显示的标题
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    
+    //    if (component == 0) {
+    //        return     @"H";
+    //    } else if(component == 1){
+    //        return     @"min";
+    //
+    //    }
+    return @"H";
+}
+//显示的标题字体、颜色等属性
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    
+    if(component == 0){
+        NSString *str = self.hourArray[row];
+        NSMutableAttributedString *AttributedString = [[NSMutableAttributedString alloc]initWithString:str];
+        [AttributedString addAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:54 * ZITI_PROPORTION], NSForegroundColorAttributeName:[UIColor whiteColor]} range:NSMakeRange(0, [AttributedString  length])];
+        
+        return AttributedString;
+    }
+    
+    NSString *str = self.minuteArray[row];
+    NSMutableAttributedString *AttributedString = [[NSMutableAttributedString alloc]initWithString:str];
+    [AttributedString addAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:54 * ZITI_PROPORTION], NSForegroundColorAttributeName:[UIColor whiteColor]} range:NSMakeRange(0, [AttributedString  length])];
+    
+    return AttributedString;
+}
+
+//PickerView被选择的行
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    
+    if(component == 0){
+        self.pickerViewHour = [self.hourArray objectAtIndex:row];
+        //adaLog(@"hour  = %@",[self.hourArray objectAtIndex:row]);
+    }else if(component == 1){
+        self.pickerViewMinute = [self.minuteArray objectAtIndex:row];
+        //adaLog(@"minute  = %@",[self.minuteArray objectAtIndex:row]);
+    }
+    
+}
+
+#pragma mark   -    懒加载
+
+-(NSArray *)hourArray
+{
+    if (!_hourArray) {
+        _hourArray = @[@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23"];
+    }
+    return _hourArray;
+}
+-(NSArray *)minuteArray
+{
+    if (!_minuteArray) {
+        _minuteArray = @[@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30",@"31",@"32",@"33",@"34",@"35",@"36",@"37",@"38",@"39",@"40",@"41",@"42",@"43",@"44",@"45",@"46",@"47",@"48",@"49",@"50",@"51",@"52",@"53",@"54",@"55",@"56",@"57",@"58",@"59",@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30",@"31",@"32",@"33",@"34",@"35",@"36",@"37",@"38",@"39",@"40",@"41",@"42",@"43",@"44",@"45",@"46",@"47",@"48",@"49",@"50",@"51",@"52",@"53",@"54",@"55",@"56",@"57",@"58",@"59",@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30",@"31",@"32",@"33",@"34",@"35",@"36",@"37",@"38",@"39",@"40",@"41",@"42",@"43",@"44",@"45",@"46",@"47",@"48",@"49",@"50",@"51",@"52",@"53",@"54",@"55",@"56",@"57",@"58",@"59",@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30",@"31",@"32",@"33",@"34",@"35",@"36",@"37",@"38",@"39",@"40",@"41",@"42",@"43",@"44",@"45",@"46",@"47",@"48",@"49",@"50",@"51",@"52",@"53",@"54",@"55",@"56",@"57",@"58",@"59",@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30",@"31",@"32",@"33",@"34",@"35",@"36",@"37",@"38",@"39",@"40",@"41",@"42",@"43",@"44",@"45",@"46",@"47",@"48",@"49",@"50",@"51",@"52",@"53",@"54",@"55",@"56",@"57",@"58",@"59",@"00",@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30",@"31",@"32",@"33",@"34",@"35",@"36",@"37",@"38",@"39",@"40",@"41",@"42",@"43",@"44",@"45",@"46",@"47",@"48",@"49",@"50",@"51",@"52",@"53",@"54",@"55",@"56",@"57",@"58",@"59"];
+    }
+    
+    return _minuteArray;
 }
 
 @end

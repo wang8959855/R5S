@@ -211,7 +211,7 @@ static NSString *reuseID  = @"CELL";
                        @"远程拍照",NSLocalizedString(@"遥控拍照", nil),
                        @"shebei",NSLocalizedString(@"设备管理", nil),
                        @"设置", NSLocalizedString(@"设置", nil),
-                       @"关于", NSLocalizedString(@"关于", nil),];
+                       @"关于", NSLocalizedString(@"关于", nil)];
     
     if (![HCHCommonManager getInstance].userInfoDictionAry)
     {
@@ -650,6 +650,14 @@ static NSString *reuseID  = @"CELL";
     h5.titleStr = @"我的费用";
     //
     h5.url = [NSString stringWithFormat:@"https://rulong.lantianfangzhou.com/wechat2/fy.html?userID=%@&token=%@",USERID,TOKEN];
+    [self unitePushViewController:h5];
+}
+
+//邀请好友关注
+- (void)yaoqing:(id)sender{
+    H5ViewController *h5 = [H5ViewController new];
+    h5.titleStr = @"邀请好友关注";
+    h5.url = @"https://wap.youzan.com/salesman/home/tutorial/index?kdt_id=10292855&UserID=50&token=2695382f78b946a3";
     [self unitePushViewController:h5];
 }
 

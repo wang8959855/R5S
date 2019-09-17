@@ -30,8 +30,6 @@
 @property (strong, nonatomic) UIButton *SubBackView;
 @property (strong, nonatomic) UIView *SubAnimationView;
 
-@property (strong, nonatomic) NSString * pickerViewMinute;
-@property (strong, nonatomic) NSString * pickerViewHour;
 @property (nonatomic, strong) UIButton *timeViewButton;//目标设置
 @property (nonatomic, strong) UIImageView *goImageView;//开始按钮
 @property (nonatomic, strong) UIButton *sportTypeButton;//运动类型的按钮
@@ -127,13 +125,13 @@
     UIButton *targetButton = [[UIButton alloc]init];
     [targetImageView addSubview:targetButton];
     targetButton.frame = CGRectMake(targetButtonX, targetButtonY, targetButtonW, targetButtonH);
-    [targetButton addTarget:self action:@selector(targetButtonAction) forControlEvents:UIControlEventTouchUpInside];
+//    [targetButton addTarget:self action:@selector(targetButtonAction) forControlEvents:UIControlEventTouchUpInside];
     targetButton.backgroundColor = [UIColor clearColor];
     targetButton.layer.cornerRadius = targetButtonH/2;
     [targetButton setImage:[UIImage imageNamed:@"Target_Map"] forState:UIControlStateNormal];
     [targetButton setImageEdgeInsets:UIEdgeInsetsMake(0.0, -10*WidthProportion, 0.0, 0.0)];
-    self.pickerViewHour = @"00";
-    self.pickerViewMinute = @"30";
+//    self.pickerViewHour = @"00";
+//    self.pickerViewMinute = @"30";
     [targetButton setAttributedTitle:[NSAttributedString getAttributedText:16 pickerViewHour:self.pickerViewHour pickerViewMinute:self.pickerViewMinute] forState:UIControlStateNormal];
     //返回目标时间
     

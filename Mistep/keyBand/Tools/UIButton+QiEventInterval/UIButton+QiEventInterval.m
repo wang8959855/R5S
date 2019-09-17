@@ -54,6 +54,12 @@
 }
 
 - (void)custom_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event{
+    if ([target isKindOfClass:NSClassFromString(@"UISwipeActionPullView")]) {
+        [self custom_sendAction:action to:target forEvent:event];
+        return;
+    }
+    
+    
     
     // 如果想要设置统一的间隔时间，可以在此处加上以下几句
     // 值得提醒一下：如果这里设置了统一的时间间隔，会影响UISwitch,如果想统一设置，又不想影响UISwitch，建议将UIControl分类，改成UIButton分类，实现方法是一样的

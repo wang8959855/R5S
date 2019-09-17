@@ -261,7 +261,7 @@
 "此操作将删除当前设备连接，并开始搜索新设备，是否继续？"="This will remove the current device and search a new one,whether to continue";
 "大于"="More than";
 "当前操作将清除手环内所有数据，是否继续？"="This operation will clear all bracelet data,whether to continue";
-"当前操作将清除本应用所有历史数据，是否继续？"="This operation will clear all APP data, whether to continue";
+"当前操作将清除本应用所有历史数据，是否继续？"="The current operation will clear all data in the cloud device, and the in-app customization settings will be all closed. Continue?";
 "返回"="Return";
 "防丢提醒"="Anti-lost reminder";
 "肥胖"="Obesity";

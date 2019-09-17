@@ -38,6 +38,7 @@
 #import "XueyaViewController.h"
 #import "DeviceTypeViewController.h"
 #import "TodaySleepViewController.h"
+#import "MoreView.h"
 
 
 @interface AppDelegate ()<AVAudioSessionDelegate,AVAudioPlayerDelegate>
@@ -66,6 +67,8 @@ void UncaughtExceptionHandler(NSException *exception) {
     [[PZBlueToothManager sharedInstance] setBlocks];
     //    [AFAppDotNetAPIClient startMonitor];//旧的监测网络
     [HCHCommonManager getInstance];//apple demo 监测网络
+    
+    [MoreView moreView];
     
     NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginCache"];
     if ([dic allKeys].count > 0) {

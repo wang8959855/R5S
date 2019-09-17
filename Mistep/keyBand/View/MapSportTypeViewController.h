@@ -12,4 +12,7 @@
 
 @property (nonatomic,strong) NSMutableDictionary *sportTypeDic;
 
+@property (strong, nonatomic) NSString * pickerViewMinute;
+@property (strong, nonatomic) NSString * pickerViewHour;
+
 @end
