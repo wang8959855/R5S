@@ -48,8 +48,7 @@
 
 @implementation HealtRegulationViewController
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [[PSDrawerManager instance] beginDragResponse];
     [BlueToothManager getInstance].delegate = self;
@@ -59,6 +58,9 @@
     [self SLErefreshAlertView];
     self.tabBarController.tabBar.hidden = NO;
     [self.datePickBtn setTitle:NSLocalizedString(@"运动", nil) forState:UIControlStateNormal];
+    if (self.workoutView) {
+        [self.workoutView refreshView];
+    }
 }
 
 - (void)viewDidLoad {

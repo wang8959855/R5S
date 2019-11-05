@@ -451,33 +451,41 @@ static NSString *conectReuse = @"connectedCell";
 
 
 
-- (void)showSearchView
-{
-    [AllTool clearDeviceBangding];
-    //    [self refreshConnectView];
-    [self performSelector:@selector(searchDeviceTimeOut) withObject:nil afterDelay:3.f];
-    self.deviceArray = nil;
+- (void)showSearchView {
     
-    __weak SheBeiViewController *weakSelf = self;
-    [[CositeaBlueTooth sharedInstance] scanDevicesWithBlock:^(NSArray *array) {
-        NSArray *devices = [array copy];
-        if ([ADASaveDefaluts getDeviceTypeInt] == 2) {
-            weakSelf.deviceArray = [AllTool checkWatch:devices];
-        }
-        else
-        {
-            weakSelf.deviceArray = [AllTool checkBracelet:devices];//[NSMutableArray arrayWithArray:devices];
-        }
-        [weakSelf.deviceTableView reloadData];
-    }];
-    self.deviceTableView.tableFooterView = [[UIView alloc] init];
-    //    _bluetoothScan.myDelegate = self;
-    _searchView.frame = CGRectMake(0, CurrentDeviceHeight, CurrentDeviceWidth, CurrentDeviceHeight);
-    [self.view addSubview:_searchView];
-    [UIView animateWithDuration:0.23 animations:^{
-        _searchView.frame = CurrentDeviceBounds;
-    }];
-    [self addActityIndicatorInView:self.view labelText:NSLocalizedString(@"搜索设备", nil) detailLabel:NSLocalizedString(@"搜索设备", nil)];
+    //选择设备类型
+    DeviceTypeViewController *deveceType = [[DeviceTypeViewController alloc]init];
+    deveceType.navigationController.navigationBar.hidden = YES;
+    [self.navigationController pushViewController:deveceType animated:YES];
+    
+    //选择完成回调
+    WeakSelf
+    deveceType.selectTypeBlock = ^{
+        [AllTool clearDeviceBangding];
+        //    [self refreshConnectView];
+        [weakSelf performSelector:@selector(searchDeviceTimeOut) withObject:nil afterDelay:3.f];
+        weakSelf.deviceArray = nil;
+        
+        [[CositeaBlueTooth sharedInstance] scanDevicesWithBlock:^(NSArray *array) {
+            NSArray *devices = [array copy];
+            if ([ADASaveDefaluts getDeviceTypeInt] == 2) {
+                weakSelf.deviceArray = [AllTool checkWatch:devices];
+            }
+            else
+            {
+                weakSelf.deviceArray = [AllTool checkBracelet:devices];//[NSMutableArray arrayWithArray:devices];
+            }
+            [weakSelf.deviceTableView reloadData];
+        }];
+        weakSelf.deviceTableView.tableFooterView = [[UIView alloc] init];
+        //    _bluetoothScan.myDelegate = self;
+        _searchView.frame = CGRectMake(0, CurrentDeviceHeight, CurrentDeviceWidth, CurrentDeviceHeight);
+        [weakSelf.view addSubview:_searchView];
+        [UIView animateWithDuration:0.23 animations:^{
+            _searchView.frame = CurrentDeviceBounds;
+        }];
+        [weakSelf addActityIndicatorInView:self.view labelText:NSLocalizedString(@"搜索设备", nil) detailLabel:NSLocalizedString(@"搜索设备", nil)];
+    };
     
 }
 
@@ -711,6 +719,9 @@ static NSString *conectReuse = @"connectedCell";
         //默认关闭微信、QQ消息
 //        [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:10 State:NO];
 //        [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:9 State:NO];
+        
+        //运动检测默认关闭
+        [[CositeaBlueTooth sharedInstance] setupPageManager:4];
         
     }else{
         [self performSelector:@selector(setHeart) withObject:nil afterDelay:0.5];

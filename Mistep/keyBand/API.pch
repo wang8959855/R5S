@@ -14,6 +14,9 @@
 //测试环境
 //#define ROOT_URL @"http://test04.lantianfangzhou.com/r5s/api/"
 
+//报告
+#define REPORT_URL @"http://www02.lantianfangzhou.com/report/r5s/"
+
 #define PATH_URL(url) [NSString stringWithFormat:@"%@%@",ROOT_URL,url]
 
 //登录

@@ -11,8 +11,12 @@
 @protocol DeviceTypeViewControllerDelegate <NSObject>
 -(void)deviceisChange:(BOOL)change;
 @end
+
+typedef void(^selectTypeBlock)(void);
 @interface DeviceTypeViewController : PZBaseViewController
 @property (nonatomic,weak) id<DeviceTypeViewControllerDelegate> delegate;
 @property (nonatomic,assign) BOOL isHiddenBackButton;
+
+@property (nonatomic, copy) selectTypeBlock selectTypeBlock;
 
 @end

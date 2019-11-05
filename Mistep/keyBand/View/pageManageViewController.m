@@ -84,7 +84,7 @@
 -(void)data
 {
     
-    _dataArray = [NSMutableArray arrayWithObjects:@"步数shezhi",NSLocalizedString(@"步数", nil),@"0",@"矢量智能对象",NSLocalizedString(@"心率", nil),@"1",@"运动shezhi",NSLocalizedString(@"运动", nil),@"2",@"里程",NSLocalizedString(@"里程", nil),@"3",@"卡路里shezhi",NSLocalizedString(@"卡路里",nil),@"4",@"shezhi2",NSLocalizedString(@"设置", nil),@"6",nil];
+    _dataArray = [NSMutableArray arrayWithObjects:@"步数shezhi",NSLocalizedString(@"步数", nil),@"0",@"矢量智能对象",NSLocalizedString(@"心率", nil),@"1",@"运动shezhi",NSLocalizedString(@"运动检测", nil),@"2",@"里程",NSLocalizedString(@"里程", nil),@"3",@"卡路里shezhi",NSLocalizedString(@"卡路里",nil),@"4",@"shezhi2",NSLocalizedString(@"设置", nil),@"6",nil];
     uint supportNum = [[ADASaveDefaluts objectForKey:SUPPORTPAGEMANAGER] doubleValue];
     if(supportNum != 4294967295)
     {
@@ -111,7 +111,7 @@
                 else if (i==2)
                 {
                    
-                    array = @[@"运动shezhi",NSLocalizedString(@"运动", nil),[NSString stringWithFormat:@"%d",i]];
+                    array = @[@"运动shezhi",NSLocalizedString(@"运动检测", nil),[NSString stringWithFormat:@"%d",i]];
                     [self.dataArray addObjectsFromArray:array];
                 }
                 else if (i==3)
@@ -182,7 +182,7 @@
                     }
                     else if (i==2)
                     {
-                        array = @[@"运动shezhi",NSLocalizedString(@"运动", nil),[NSString stringWithFormat:@"%d",i]];
+                        array = @[@"运动shezhi",NSLocalizedString(@"运动检测", nil),[NSString stringWithFormat:@"%d",i]];
                         [self.dataArray addObjectsFromArray:array];
                     }
                     else if (i==3)

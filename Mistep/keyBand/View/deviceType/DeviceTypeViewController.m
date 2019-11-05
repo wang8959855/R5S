@@ -274,8 +274,11 @@
             }
             
             [self.navigationController popViewControllerAnimated:YES];
-            if(_delegate &&[_delegate performSelector:@selector(deviceisChange:)])
-            {   [_delegate deviceisChange:isChange];
+            if(_delegate &&[_delegate performSelector:@selector(deviceisChange:)]) {
+                [_delegate deviceisChange:isChange];
+            }
+            if (self.selectTypeBlock) {
+                self.selectTypeBlock();
             }
             
         }

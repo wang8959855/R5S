@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) UIViewController *controller;
 
+- (void)refreshView;
+
 @end

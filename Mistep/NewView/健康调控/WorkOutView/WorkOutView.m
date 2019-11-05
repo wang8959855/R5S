@@ -93,6 +93,12 @@
 {
     [self reloadDataALL];//换日期，就刷新界面
 }
+
+//切换刷新界面
+- (void)refreshView{
+    [self reloadDataALL];
+}
+
 -(void)setupView
 {
     [self initView];
@@ -318,7 +324,7 @@
     self.sportLabel.attributedText = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%ld",allStep] Unit:kLOCAL(@"步") WithFont:17];
     self.calouiesLabel.attributedText = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%ld",allKcal] Unit:kLOCAL(@"卡路里") WithFont:17];
     self.heartRateLabel.attributedText = [self makeAttributedStringWithnumBer:[NSString stringWithFormat:@"%ld",allBpmAvg/_sportArray.count] Unit:kLOCAL(@"次/分") WithFont:17];
-    
+    [self.sportTabelView reloadData];
 }
 #pragma mark    ---  私有方法
 -(void)openHeartRateFail

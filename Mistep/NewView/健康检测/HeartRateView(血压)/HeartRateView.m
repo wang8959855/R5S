@@ -356,8 +356,7 @@
     NSArray *leftImageArr = @[@"xueyang",@"tiwen",@"xueya",@"xietang"];
     self.spo2Image.image = [UIImage imageNamed:@""];
     
-    for (int i = 0; i < 4; i ++)
-    {
+    for (int i = 0; i < 4; i ++) {
         UIView *view = [[UIView alloc] init];
         view.frame = CGRectMake((8 + i % 2 * 181) *kX-5,
                                 self.backScrollView.height- (29 * kDY)- (100 + 3)*kDY * (i/2 + 1)-30,
@@ -386,8 +385,8 @@
         label.textAlignment = NSTextAlignmentCenter;
         [view addSubview:label];
         
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(alertAtion:)];
-//        [view addGestureRecognizer:tap];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(alertAtion:)];
+        [view addGestureRecognizer:tap];
         
         NSAttributedString *string;
         switch (i) {
@@ -679,28 +678,56 @@
     }];
 }
 
-//点击提示
+#pragma mark - 四模块点击
 - (void)alertAtion:(UIGestureRecognizer *)tap{
-    NSArray *arr;
-    switch (tap.view.tag) {
-        case 30:
-            arr = @[@"本项功能提供了无仪器监测现场的实时动态血压监测手段，能够有效反映全天血压变化规律。",@"系统初始血压基准值默认为成年人各年龄段正常值，由于个体差异及服药控制等原因出现数值不准确者，请点击侧边栏图标-点击头像图标，进入个人资料编辑页面，在“基准高压值、基准低压值”中，将数值修改为经医生或血压计测量校准的数值。",@"对于轻度和临界高血压患者，有利于提高检出率；对于高血压患者，有利于进行情绪、运动、饮酒等日常管理，以及指导用药剂量和时间；对判断高血压病人有无靶器官，预防脑卒中以及心、脑、肾高血压继发性疾病有重要意义。",@"本项监测为实时动态监测，每3分钟一次。周期性血压趋势状态请在“健康报告”中查看。"];
-            break;
-            
-        case 31:
-            arr = @[@"本项功能连续跟踪采集、分析三天的晨起静息心率数据，提示用户处于何种状态，指导用户进行合理的生活作息节律安排，避免工作劳累、运动过度等，防止连续疲劳造成身体伤害，甚至过劳死的发生。",@"本项监测为连续跟踪监测，每天一次，要求连续佩戴云环三天以上，如系统未采集到连续数据，参数值则显示为“- -”。周期性疲劳趋势状态请在“健康报告”中查看。"];
-            break;
-            
-        case 32:
-            arr = @[@"心肺功能最能反映一个人的健康情况，心肺功能检查是心血管和呼吸系统疾病的必要检查之一，尤其对于长期吸烟、慢性咳嗽和咯痰、呼吸困难、在特殊环境中工作、呼吸道疾病等人群具有重要意义。",@"本项监测为实时动态监测，每3分钟一次。周期性心肺功能状态请在“健康报告”中查看。"];
-            break;
-            
-        case 33:
-            arr = @[@"呼吸减慢常见于代谢率降低、麻醉过量、休克以及明显颅内压增高等；呼吸增快主要见于肺炎、肺栓塞、胸膜炎、支气管哮喘、充血性心力衰竭、代谢亢进以及神经精神障碍等。",@"本项监测为实时动态监测，每3分钟一次。周期性呼吸频率状态请在“健康报告”中查看。"];
-            break;
+    NSString *url = @"";
+    NSString *paraStr = [NSString stringWithFormat:@"%@/%@/0?page=current",USERID,TOKEN];
+    NSString *titStr = @"";
+    if (tap.view.tag == 30) {
+        //血氧
+        titStr = @"血氧";
+        url = [NSString stringWithFormat:@"%@sp/%@",REPORT_URL,paraStr];
+    }else if (tap.view.tag == 31){
+        //体温
+        titStr = @"体温";
+        url = [NSString stringWithFormat:@"%@temperature/%@",REPORT_URL,paraStr];
+    }else if (tap.view.tag == 32){
+        //血压
+        titStr = @"血压";
+        url = [NSString stringWithFormat:@"%@bloodpressure/%@",REPORT_URL,paraStr];
+    }else if (tap.view.tag == 33){
+        //血糖
+        titStr = @"血糖";
+        url = [NSString stringWithFormat:@"%@bloodsugar/%@",REPORT_URL,paraStr];
     }
-    [AlertMainView alertMainViewWithArray:arr];
+    H5ViewController *h5 = [[H5ViewController alloc] init];
+    h5.titleStr = titStr;
+    h5.url = url;
+    h5.hidesBottomBarWhenPushed = YES;
+    [self.controller.navigationController pushViewController:h5 animated:YES];
 }
+//点击提示
+//- (void)alertAtion:(UIGestureRecognizer *)tap{
+//    NSArray *arr;
+//    switch (tap.view.tag) {
+//        case 30:
+//            arr = @[@"本项功能提供了无仪器监测现场的实时动态血压监测手段，能够有效反映全天血压变化规律。",@"系统初始血压基准值默认为成年人各年龄段正常值，由于个体差异及服药控制等原因出现数值不准确者，请点击侧边栏图标-点击头像图标，进入个人资料编辑页面，在“基准高压值、基准低压值”中，将数值修改为经医生或血压计测量校准的数值。",@"对于轻度和临界高血压患者，有利于提高检出率；对于高血压患者，有利于进行情绪、运动、饮酒等日常管理，以及指导用药剂量和时间；对判断高血压病人有无靶器官，预防脑卒中以及心、脑、肾高血压继发性疾病有重要意义。",@"本项监测为实时动态监测，每3分钟一次。周期性血压趋势状态请在“健康报告”中查看。"];
+//            break;
+//
+//        case 31:
+//            arr = @[@"本项功能连续跟踪采集、分析三天的晨起静息心率数据，提示用户处于何种状态，指导用户进行合理的生活作息节律安排，避免工作劳累、运动过度等，防止连续疲劳造成身体伤害，甚至过劳死的发生。",@"本项监测为连续跟踪监测，每天一次，要求连续佩戴云环三天以上，如系统未采集到连续数据，参数值则显示为“- -”。周期性疲劳趋势状态请在“健康报告”中查看。"];
+//            break;
+//
+//        case 32:
+//            arr = @[@"心肺功能最能反映一个人的健康情况，心肺功能检查是心血管和呼吸系统疾病的必要检查之一，尤其对于长期吸烟、慢性咳嗽和咯痰、呼吸困难、在特殊环境中工作、呼吸道疾病等人群具有重要意义。",@"本项监测为实时动态监测，每3分钟一次。周期性心肺功能状态请在“健康报告”中查看。"];
+//            break;
+//
+//        case 33:
+//            arr = @[@"呼吸减慢常见于代谢率降低、麻醉过量、休克以及明显颅内压增高等；呼吸增快主要见于肺炎、肺栓塞、胸膜炎、支气管哮喘、充血性心力衰竭、代谢亢进以及神经精神障碍等。",@"本项监测为实时动态监测，每3分钟一次。周期性呼吸频率状态请在“健康报告”中查看。"];
+//            break;
+//    }
+//    [AlertMainView alertMainViewWithArray:arr];
+//}
 
 
 - (void)getHomeData:(NSString *)first{

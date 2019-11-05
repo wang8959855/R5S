@@ -65,7 +65,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
 	<string>1026905677395557</string>
 	<key>FacebookDisplayName</key>
@@ -244,6 +244,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>我们需要使用蓝牙用于在APP中连接设备，若不允许，将无法获取设备信息</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>我们需要使用蓝牙用于在APP中连接设备，若不允许，将无法获取设备信息</string>
 	<key>NSCameraUsageDescription</key>

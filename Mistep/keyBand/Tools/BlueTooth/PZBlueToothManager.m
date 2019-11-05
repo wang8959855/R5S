@@ -37,16 +37,16 @@
 - (void)chekCurDayAllDataWithBlock:(void(^)(NSDictionary *dic))dayTotalDataBlock
 {
     WeakSelf;
-    [[CositeaBlueTooth sharedInstance] chekCurDayAllDataWithBlock:^(DayOverViewDataModel *model)
-     {
+    [[CositeaBlueTooth sharedInstance] chekCurDayAllDataWithBlock:^(DayOverViewDataModel *model) {
          
          NSDictionary *dic = [weakSelf saveAllDayDataWithModel:model];
-         
+        
+        if (dic == nil) {
+            return;
+        }
          dispatch_async(dispatch_get_main_queue(), ^{
-             if (model.timeSeconds == [[TimeCallManager getInstance] getSecondsOfCurDay])
-             {
-                 if (dayTotalDataBlock)
-                 {
+             if (model.timeSeconds == [[TimeCallManager getInstance] getSecondsOfCurDay]) {
+                 if (dayTotalDataBlock) {
                      dayTotalDataBlock(dic);
                      [HCHCommonManager getInstance].curSportDic = dic;
                  }

@@ -13,7 +13,7 @@
 
 + (void)load {
     NSString *version= [UIDevice currentDevice].systemVersion;
-    if (version.integerValue < 10) {
+    if (version.integerValue < 11) {
         return;
     }
     
@@ -38,17 +38,29 @@
 }
 
 - (id)yye_objectAtIndexedSubscript:(NSUInteger)index{
+    NSString *version= [UIDevice currentDevice].systemVersion;
+    if (version.integerValue < 11) {
+        return @"";
+    }
     if(index>=self.count) return @"";
     
     return [self yye_objectAtIndexedSubscript:index];
 }
 
 - (id)yye_objectAtIndex:(NSUInteger)index{
+    NSString *version= [UIDevice currentDevice].systemVersion;
+    if (version.integerValue < 11) {
+        return @"";
+    }
     if(index>=self.count) return @"";
     return [self yye_objectAtIndex:index];
 }
 
 - (id)yyeSingle_objectAtIndex:(NSUInteger)index{
+    NSString *version= [UIDevice currentDevice].systemVersion;
+    if (version.integerValue < 11) {
+        return @"";
+    }
     if(index>=self.count){
         return @"";
     }

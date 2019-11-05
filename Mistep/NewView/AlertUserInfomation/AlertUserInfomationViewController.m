@@ -237,15 +237,17 @@ static NSString *AUISaveID = @"AUISaveID";
         if (indexPath.row == 0) {
             cell.phoneTextField.text = self.uploadInfoDic[@"rafTel1"];
             self.rafTel1TF = cell.phoneTextField;
+            cell.titleLabel.text = kLOCAL(@"第一监护人电话");
         }else if (indexPath.row == 1){
             cell.phoneTextField.text = self.uploadInfoDic[@"rafTel2"];
+            cell.titleLabel.text = kLOCAL(@"第二监护人电话");
             self.rafTel2TF = cell.phoneTextField;
         }else{
             cell.phoneTextField.text = self.uploadInfoDic[@"rafTel3"];
             self.rafTel3TF = cell.phoneTextField;
+            cell.titleLabel.text = kLOCAL(@"第三监护人电话");
         }
         cell.phoneTextField.placeholder = kLOCAL(@"11位手机号码");
-        cell.titleLabel.text = kLOCAL(@"监护人电话");
         
         return cell;
     }else{
@@ -400,20 +402,20 @@ static NSString *AUISaveID = @"AUISaveID";
         [self addActityTextInView:self.view text:kLOCAL(@"请填写监护人电话") deleyTime:1.5f];
         return;
     }else if ([self.rafTel1TF.text length] != 11){
-        [self addActityTextInView:self.view text:kLOCAL(@"监护人电话格式错误") deleyTime:1.5f];
+        [self addActityTextInView:self.view text:kLOCAL(@"第一监护人电话格式错误") deleyTime:1.5f];
         return;
     }
     
     if ([self.rafTel2TF.text length] != 0) {
         if ([self.rafTel2TF.text length] != 11) {
-            [self addActityTextInView:self.view text:kLOCAL(@"监护人电话格式错误") deleyTime:1.5f];
+            [self addActityTextInView:self.view text:kLOCAL(@"第二监护人电话格式错误") deleyTime:1.5f];
             return;
         }
     }
     
     if ([self.rafTel3TF.text length] != 0) {
         if ([self.rafTel3TF.text length] != 11) {
-            [self addActityTextInView:self.view text:kLOCAL(@"监护人电话格式错误") deleyTime:1.5f];
+            [self addActityTextInView:self.view text:kLOCAL(@"第三监护人电话格式错误") deleyTime:1.5f];
             return;
         }
     }
@@ -581,6 +583,8 @@ static NSString *AUISaveID = @"AUISaveID";
                      //设置血压配置参数
                      [ADASaveDefaluts setObject:self.uploadInfoDic[@"SystolicPressure"] forKey:BLOODPRESSURELOW];
                      [ADASaveDefaluts setObject:self.uploadInfoDic[@"DiastolicPressure"] forKey:BLOODPRESSUREHIGH];
+                     //设置血压到设备
+                     [[CositeaBlueTooth sharedInstance] setupCorrectNumber];
                      
                      [[NSUserDefaults standardUserDefaults] setObject:self.uploadInfoDic[@"SystolicPressure"] forKey:@"setheight"];
                      [[NSUserDefaults standardUserDefaults] setObject:self.uploadInfoDic[@"DiastolicPressure"] forKey:@"setlow"];
