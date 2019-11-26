@@ -81,5 +81,7 @@
 #define CRASH PATH_URL(@"errorlog")
 //版本
 #define VERSION PATH_URL(@"versionios")
+//获取首页血糖血压
+#define GETHOMEGLU PATH_URL(@"bp_glu")
 
 #endif /* API_pch */

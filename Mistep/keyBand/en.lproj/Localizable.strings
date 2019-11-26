@@ -29,6 +29,8 @@
 " 公制" = " Metric";
 "六" = "Sat";
 "出生日期不能为空，请选择出生日期" = "Date of birth cannot be empty and please choose date of birth";
+"请输入30-200之间的数值" = "Please enter a value between 30 and 200";
+"餐后血糖值不能大于35" = "Postprandial blood glucose level can not be greater than 35";
 "刷新超时" = "Timeout";
 "力量训练" = "Strength training";
 "取消" = "Cancel";

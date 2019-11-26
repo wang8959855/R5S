@@ -88,6 +88,7 @@
 		188E749C20ADB0FD00921A5D /* AlertPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188E749A20ADB0FD00921A5D /* AlertPhoneViewController.m */; };
 		188E74A220ADCA8100921A5D /* MineEWMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188E74A020ADCA8100921A5D /* MineEWMViewController.m */; };
 		188E74A320ADCA8100921A5D /* MineEWMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188E74A120ADCA8100921A5D /* MineEWMViewController.xib */; };
+		18937F2323725EB600885A13 /* UIViewController+PresentStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18937F2123725EB600885A13 /* UIViewController+PresentStyle.m */; };
 		1893F72222407A6800D7C775 /* StartUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893F72022407A6800D7C775 /* StartUpViewController.m */; };
 		1893F72322407A6800D7C775 /* StartUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1893F72122407A6800D7C775 /* StartUpViewController.xib */; };
 		18957FD722B0A07700B575C0 /* 无声.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 18957FD622B0A07700B575C0 /* 无声.m4a */; };
@@ -1408,6 +1409,8 @@
 		188E749F20ADCA8100921A5D /* MineEWMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineEWMViewController.h; sourceTree = "<group>"; };
 		188E74A020ADCA8100921A5D /* MineEWMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineEWMViewController.m; sourceTree = "<group>"; };
 		188E74A120ADCA8100921A5D /* MineEWMViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineEWMViewController.xib; sourceTree = "<group>"; };
+		18937F2123725EB600885A13 /* UIViewController+PresentStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PresentStyle.m"; sourceTree = "<group>"; };
+		18937F2223725EB600885A13 /* UIViewController+PresentStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PresentStyle.h"; sourceTree = "<group>"; };
 		1893F71F22407A6800D7C775 /* StartUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartUpViewController.h; sourceTree = "<group>"; };
 		1893F72022407A6800D7C775 /* StartUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartUpViewController.m; sourceTree = "<group>"; };
 		1893F72122407A6800D7C775 /* StartUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartUpViewController.xib; sourceTree = "<group>"; };
@@ -3584,6 +3587,15 @@
 				18FDF55820AEC4D600EDBB28 /* WLBarcodeViewController.mm */,
 			);
 			path = MineEWM;
+			sourceTree = "<group>";
+		};
+		18937F2023725EB600885A13 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18937F2223725EB600885A13 /* UIViewController+PresentStyle.h */,
+				18937F2123725EB600885A13 /* UIViewController+PresentStyle.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		18A671DF20D9359900DF3C1A /* LoctionUpdateTool */ = {
@@ -5892,6 +5904,7 @@
 		72C06B261BE3420C0033F441 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				18937F2023725EB600885A13 /* ViewController */,
 				1856CFAE22F7BBAD002DE6B2 /* NSArray+Crash */,
 				1814A21522DC518A00DC9DE4 /* UIButton+QiEventInterval */,
 				18A671DF20D9359900DF3C1A /* LoctionUpdateTool */,
@@ -7699,6 +7712,7 @@
 				724AD2D61D8100F6003A10CA /* PZBlueToothManager.m in Sources */,
 				188E749C20ADB0FD00921A5D /* AlertPhoneViewController.m in Sources */,
 				180EC49E224C781100DDF892 /* RhythmViewController.m in Sources */,
+				18937F2323725EB600885A13 /* UIViewController+PresentStyle.m in Sources */,
 				7298A2A51E98CD12008029FD /* SMTabBar.m in Sources */,
 				7243BDA41BF032E900F394AB /* TrendViewController.m in Sources */,
 				72B0F74E1BE8815300236D41 /* BlueToothManager.m in Sources */,

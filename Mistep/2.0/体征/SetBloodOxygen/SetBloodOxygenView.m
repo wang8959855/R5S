@@ -25,15 +25,22 @@
     set.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
     [[UIApplication sharedApplication].keyWindow addSubview:set];
     
-    set.SPO2TF.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"setspo2"];
-    set.heightTF.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"setheight"];
-    set.lowTF.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"setlow"];
+//    set.SPO2TF.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"setspo2"];
+//    set.heightTF.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"setheight"];
+//    set.lowTF.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"setlow"];
+    
+    [set getData];
     
     return set;
 }
 
 //确定
 - (IBAction)okeyAction:(UIButton *)sender {
+    
+    NSInteger hei = self.heightTF.text.integerValue;
+    NSInteger low = self.lowTF.text.integerValue;
+    CGFloat xuetang = self.SPO2TF.text.floatValue;
+    
     if (self.heightTF.text.length == 0) {
         [self makeBottomToast:kLOCAL(@"请填写基准高压值")];
         return;
@@ -44,6 +51,21 @@
     }
     if (self.SPO2TF.text.length == 0) {
         [self makeBottomToast:kLOCAL(@"请填写餐后血糖值")];
+        return;
+    }
+    
+    if (hei > 200 || hei < 30) {
+        [self makeBottomToast:kLOCAL(@"请输入30-200之间的数值")];
+        return;
+    }
+    
+    if (low > 200 || low < 30) {
+        [self makeBottomToast:kLOCAL(@"请输入30-200之间的数值")];
+        return;
+    }
+    
+    if (xuetang > 35) {
+        [self makeBottomToast:kLOCAL(@"餐后血糖值不能大于35")];
         return;
     }
     
@@ -108,6 +130,34 @@
         }
     }];
     
+}
+
+- (void)getData{
+    NSString *uploadUrl = [NSString stringWithFormat:@"%@/%@",GETHOMEGLU,TOKEN];
+    [self makeToastActivity:CSToastPositionCenter];
+    [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:uploadUrl fileUrl:nil params:@{@"userId":USERID} Block:^(id responseObject, NSError *error) {
+        
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(loginTimeOut) object:nil];
+        
+        [self hideToastActivity];
+        if (error)
+        {
+            [self makeCenterToast:kLOCAL(@"网络连接错误")];
+        }
+        else
+        {
+            int code = [[responseObject objectForKey:@"code"] intValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 0) {
+                self.heightTF.text = responseObject[@"data"][@"SystolicPressure"];
+                self.lowTF.text = responseObject[@"data"][@"DiastolicPressure"];
+                self.SPO2TF.text = responseObject[@"data"][@"Glu"];
+                
+            } else {
+                [self makeCenterToast:message];
+            }
+        }
+    }];
 }
 
 //取消
