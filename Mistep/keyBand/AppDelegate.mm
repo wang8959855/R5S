@@ -84,6 +84,13 @@ void UncaughtExceptionHandler(NSException *exception) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ChangeGuid) name:@"ChangeGuid" object:nil];
     }
     
+    //上传成功弹窗
+    NSString *uploadMessage = [[NSUserDefaults standardUserDefaults] objectForKey:@"uploadMessage"];
+    if (!uploadMessage) {//默认打开
+        uploadMessage = @"1";
+        [[NSUserDefaults standardUserDefaults] setObject:uploadMessage forKey:@"uploadMessage"];
+    }
+    
     NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
     
     [self queryCrashInfo];

@@ -14,6 +14,10 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
 
+@property (weak, nonatomic) IBOutlet UILabel *tanchuang;
+
+@property (weak, nonatomic) IBOutlet UISwitch *tanchuangSwitch;
+
 
 @end
 
@@ -47,6 +51,14 @@
     [_heartAlarmSwitch setOn:NO];
     _hidenView.hidden = YES;
     
+    //上传成功弹窗
+    NSString *uploadMessage = [[NSUserDefaults standardUserDefaults] objectForKey:@"uploadMessage"];
+    if ([uploadMessage isEqualToString:@"1"]) {
+        [self.tanchuangSwitch setOn:YES];
+    }else{
+        [self.tanchuangSwitch setOn:NO];
+    }
+    
 }
 - (void)setXibLabels
 {
@@ -55,6 +67,7 @@
     _kAlarmAreaLabel.text = NSLocalizedString(@"预警范围", nil);
     _kMaxLabel.text = NSLocalizedString(@"最大心率", nil);
     _kMinLabel.text = NSLocalizedString(@"最小心率", nil);
+    _tanchuang.text = NSLocalizedString(@"实时上传弹窗提示", nil);
 }
 
 - (void)heartHZStateChanged:(BOOL)state
@@ -104,6 +117,16 @@
     [[CositeaBlueTooth sharedInstance] checkHeartTateMonitorwithBlock:nil];
     [self removeShadowView];
 }
+
+- (IBAction)tanchuangAction:(UISwitch *)sender {
+    if (sender.isOn) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"uploadMessage"];
+    }else{
+        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"uploadMessage"];
+    }
+}
+
+
 //一秒后让这个按钮可以使用
 - (void)heartHZSwitchCan
 {

@@ -83,5 +83,9 @@
 #define VERSION PATH_URL(@"versionios")
 //获取首页血糖血压
 #define GETHOMEGLU PATH_URL(@"bp_glu")
+//建议列表
+#define SUGGEST PATH_URL(@"advicelist")
+//建议详情
+#define SUGGESTDETAIL PATH_URL(@"advice")
 
 #endif /* API_pch */

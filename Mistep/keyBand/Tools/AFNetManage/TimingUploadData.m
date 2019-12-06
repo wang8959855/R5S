@@ -2161,10 +2161,14 @@
     [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:url ParametersDictionary:paramater Block:^(id responseObject, NSError *error,NSURLSessionDataTask* task){
         int code = [responseObject[@"code"] intValue];
         //adaLog(@"code = %d, msd = %@",code,responseObject[@"msg"]);
-        if (code == 0)
-        {
+        if (code == 0) {
             NSLog(@"每分钟上传数据成功");
-            
+            //上传成功弹窗
+            NSString *uploadMessage = [[NSUserDefaults standardUserDefaults] objectForKey:@"uploadMessage"];
+            if ([uploadMessage isEqualToString:@"1"]) {
+                //提示
+                [[UIApplication sharedApplication].keyWindow makeCenterToast:@"上传数据成功"];
+            }
         }else{
             
         }

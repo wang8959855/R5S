@@ -60,6 +60,10 @@
 		1832DC1D22715CAC00CA27DA /* AttentionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1832DC1522715CAC00CA27DA /* AttentionReusableView.m */; };
 		1832DC1E22715CAC00CA27DA /* AttentionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1832DC1722715CAC00CA27DA /* AttentionReusableView.xib */; };
 		1832DC1F22715CAC00CA27DA /* AttentionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1832DC1922715CAC00CA27DA /* AttentionCell.xib */; };
+		1848DC5E2395EA8D00DC0624 /* SuggestListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1848DC5D2395EA8D00DC0624 /* SuggestListView.m */; };
+		1848DC602395EA9500DC0624 /* SuggestListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1848DC5F2395EA9500DC0624 /* SuggestListView.xib */; };
+		1848DC6523960E7800DC0624 /* SuggestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1848DC6323960E7800DC0624 /* SuggestCell.m */; };
+		1848DC6623960E7800DC0624 /* SuggestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1848DC6423960E7800DC0624 /* SuggestCell.xib */; };
 		1849834D20AC6ABA007109A9 /* AUIHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849834B20AC6ABA007109A9 /* AUIHeaderCell.m */; };
 		1849834E20AC6ABA007109A9 /* AUIHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1849834C20AC6ABA007109A9 /* AUIHeaderCell.xib */; };
 		1849835220AC6AFD007109A9 /* AUIAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849835020AC6AFD007109A9 /* AUIAccountCell.m */; };
@@ -1365,6 +1369,12 @@
 		1832DC1822715CAC00CA27DA /* AttentionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionView.h; sourceTree = "<group>"; };
 		1832DC1922715CAC00CA27DA /* AttentionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttentionCell.xib; sourceTree = "<group>"; };
 		1832DC1A22715CAC00CA27DA /* AttentionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionReusableView.h; sourceTree = "<group>"; };
+		1848DC5C2395EA8D00DC0624 /* SuggestListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestListView.h; sourceTree = "<group>"; };
+		1848DC5D2395EA8D00DC0624 /* SuggestListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestListView.m; sourceTree = "<group>"; };
+		1848DC5F2395EA9500DC0624 /* SuggestListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestListView.xib; sourceTree = "<group>"; };
+		1848DC6223960E7800DC0624 /* SuggestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestCell.h; sourceTree = "<group>"; };
+		1848DC6323960E7800DC0624 /* SuggestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestCell.m; sourceTree = "<group>"; };
+		1848DC6423960E7800DC0624 /* SuggestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestCell.xib; sourceTree = "<group>"; };
 		1849834A20AC6ABA007109A9 /* AUIHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AUIHeaderCell.h; sourceTree = "<group>"; };
 		1849834B20AC6ABA007109A9 /* AUIHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AUIHeaderCell.m; sourceTree = "<group>"; };
 		1849834C20AC6ABA007109A9 /* AUIHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AUIHeaderCell.xib; sourceTree = "<group>"; };
@@ -3363,6 +3373,7 @@
 		180F2FB92248ADD3003EE292 /* 体征 */ = {
 			isa = PBXGroup;
 			children = (
+				1848DC5B2395EA6E00DC0624 /* SuggestList */,
 				180F2FBF224906F5003EE292 /* SetBloodOxygen */,
 				180F2FBA2248F0B0003EE292 /* SignViewController.h */,
 				180F2FBB2248F0B0003EE292 /* SignViewController.m */,
@@ -3486,6 +3497,27 @@
 				1832DC1422715CAC00CA27DA /* AttentionView.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		1848DC5B2395EA6E00DC0624 /* SuggestList */ = {
+			isa = PBXGroup;
+			children = (
+				1848DC6123960E5D00DC0624 /* cell */,
+				1848DC5C2395EA8D00DC0624 /* SuggestListView.h */,
+				1848DC5D2395EA8D00DC0624 /* SuggestListView.m */,
+				1848DC5F2395EA9500DC0624 /* SuggestListView.xib */,
+			);
+			path = SuggestList;
+			sourceTree = "<group>";
+		};
+		1848DC6123960E5D00DC0624 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				1848DC6223960E7800DC0624 /* SuggestCell.h */,
+				1848DC6323960E7800DC0624 /* SuggestCell.m */,
+				1848DC6423960E7800DC0624 /* SuggestCell.xib */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		1849834920AC6AA2007109A9 /* cellView */ = {
@@ -6937,6 +6969,7 @@
 				729EB4601E78D21F0005EE86 /* NavigationBarShadow@2x.png in Resources */,
 				72E9B4B61DFAAD9100640CE2 /* 矢量智能对象.png in Resources */,
 				72C02C8C1E728B99003E79B6 /* suspen.mp3 in Resources */,
+				1848DC6623960E7800DC0624 /* SuggestCell.xib in Resources */,
 				729EB3121E78D21E0005EE86 /* HD_clock@2x.png in Resources */,
 				729EB3311E78D21E0005EE86 /* Run@3x.png in Resources */,
 				720B26C31D94D8CB0002B569 /* ZDY_睡眠@3x.png in Resources */,
@@ -7140,6 +7173,7 @@
 				729EB4EB1E78DD5A0005EE86 /* BlueBase_sleep.png in Resources */,
 				7288D2A71E792BB30057ACB2 /* customize_sport@3x.png in Resources */,
 				720B267B1D94D8CB0002B569 /* 清除本地数据@3x.png in Resources */,
+				1848DC602395EA9500DC0624 /* SuggestListView.xib in Resources */,
 				18EB46AB20AAB3F600E49E9F /* AddressTableViewCell.xib in Resources */,
 				729EB4B81E78DA230005EE86 /* BigGreen_pressure@3x.png in Resources */,
 				724A3C961E0BB26A008BE204 /* 天气@2x.png in Resources */,
@@ -7680,6 +7714,7 @@
 				7201437E1D3724B1007E3465 /* UUChart.m in Sources */,
 				180EC499224B54EB00DDF892 /* JXPopoverViewCell.m in Sources */,
 				724865271C9B9482009F557C /* DeleteAlertViewController.m in Sources */,
+				1848DC5E2395EA8D00DC0624 /* SuggestListView.m in Sources */,
 				72717CE61E7B6BBF0064B4C8 /* ConnectStateView.m in Sources */,
 				72D3008B1E650EDB001D09D7 /* SportDetailMapViewController.m in Sources */,
 				7298A29D1E98CD12008029FD /* NSArray+MASAdditions.m in Sources */,
@@ -7696,6 +7731,7 @@
 				726FA1A51BFDBCD900669166 /* CoreDataManage.m in Sources */,
 				7209DD3C1CFEC2D30011C047 /* FriendListTableViewCell.m in Sources */,
 				721BB92B1DBE1AC500272BB1 /* SportModelTableViewCell.m in Sources */,
+				1848DC6523960E7800DC0624 /* SuggestCell.m in Sources */,
 				72D3008E1E650FBC001D09D7 /* XueyaCorrectView.m in Sources */,
 				721BF2F61C5B52F500F9AB9F /* CustomIOSAlertView.m in Sources */,
 				184A089A20E26BA10080C078 /* SelectStepCell.m in Sources */,
@@ -8615,7 +8651,7 @@
 				CODE_SIGN_ENTITLEMENTS = Wukong.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KN9NUA579B;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -8684,6 +8720,7 @@
 					"$(PROJECT_DIR)/framework/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/framework/ZBar",
 				);
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hch.wsjk;
 				PRODUCT_NAME = Wukong;
@@ -8701,7 +8738,7 @@
 				CODE_SIGN_ENTITLEMENTS = Wukong.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KN9NUA579B;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -8770,6 +8807,7 @@
 					"$(PROJECT_DIR)/framework/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/framework/ZBar",
 				);
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hch.wsjk;
 				PRODUCT_NAME = Wukong;

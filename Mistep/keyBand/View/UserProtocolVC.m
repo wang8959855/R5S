@@ -8,7 +8,7 @@
 
 #import "UserProtocolVC.h"
 
-@interface UserProtocolVC ()
+@interface UserProtocolVC ()<UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
@@ -24,6 +24,7 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"agreement" ofType:@"html"];
     NSURL *url = [NSURL fileURLWithPath:path];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    self.webView.delegate = self;
 }
 
 - (IBAction)backAction:(id)sender {

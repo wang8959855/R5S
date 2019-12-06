@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SuggestCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsC-VN-aJ0">
+                        <rect key="frame" x="0.0" y="43" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.12549019607843137" green="0.61568627450980395" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="RXt-EU-uxd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试建议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deb-YW-PDF">
+                        <rect key="frame" x="0.0" y="12.5" width="180" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.12549019610000001" green="0.61568627450000002" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.11.25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2a-g3-lhO">
+                        <rect key="frame" x="230" y="12.5" width="90" height="19.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="Csy-cc-bJ2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.12549019610000001" green="0.61568627450000002" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="O2a-g3-lhO" secondAttribute="trailing" id="Bl1-WG-LIW"/>
+                    <constraint firstAttribute="trailing" secondItem="RsC-VN-aJ0" secondAttribute="trailing" id="E92-WZ-N1w"/>
+                    <constraint firstItem="deb-YW-PDF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ydi-sI-gsI"/>
+                    <constraint firstItem="deb-YW-PDF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bI6-zM-m4m"/>
+                    <constraint firstItem="O2a-g3-lhO" firstAttribute="leading" secondItem="deb-YW-PDF" secondAttribute="trailing" constant="50" id="buP-6r-4HV"/>
+                    <constraint firstAttribute="bottom" secondItem="RsC-VN-aJ0" secondAttribute="bottom" id="hI2-bm-COY"/>
+                    <constraint firstItem="RsC-VN-aJ0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kar-lZ-ofG"/>
+                    <constraint firstItem="O2a-g3-lhO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="plv-fg-aZc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="dateL" destination="O2a-g3-lhO" id="0TF-zq-vvA"/>
+                <outlet property="titleL" destination="deb-YW-PDF" id="L7Z-CY-Anr"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="90"/>
+        </tableViewCell>
+    </objects>
+</document>

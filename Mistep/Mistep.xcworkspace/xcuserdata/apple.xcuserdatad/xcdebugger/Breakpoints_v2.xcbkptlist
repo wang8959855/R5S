@@ -26,8 +26,8 @@
             timestampString = "585803107.125466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "690"
-            endingLineNumber = "690"
+            startingLineNumber = "766"
+            endingLineNumber = "766"
             landmarkName = "-SLEconnectionFailedAction:"
             landmarkType = "7">
          </BreakpointContent>
@@ -43,8 +43,8 @@
             timestampString = "585803107.125764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "774"
-            endingLineNumber = "774"
+            startingLineNumber = "850"
+            endingLineNumber = "850"
             landmarkName = "-SLEhiddenDoneView"
             landmarkType = "7">
          </BreakpointContent>
@@ -60,8 +60,8 @@
             timestampString = "585803107.125857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "801"
-            endingLineNumber = "801"
+            startingLineNumber = "877"
+            endingLineNumber = "877"
             landmarkName = "-setSLEdoneString:"
             landmarkType = "7">
          </BreakpointContent>

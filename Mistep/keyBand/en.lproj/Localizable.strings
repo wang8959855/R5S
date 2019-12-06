@@ -60,6 +60,7 @@
 "%d秒后" = "After %d seconds";
 "徒步" = "Walking";
 "心率预警" = "Heart rate warning";
+"实时上传弹窗提示" = "Upload popup prompts in real time";
 "心率预警设置成功" = "Successful";
 "恢复出厂设置" = "Restore factory settings";
 "您两次输入的密码不一致" = "The password and confirmation password are different";

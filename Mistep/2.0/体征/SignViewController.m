@@ -12,6 +12,7 @@
 #import "DoneCustomView.h"
 #import "SheBeiViewController.h"
 #import "VersionAlertView.h"
+#import "SuggestListView.h"
 
 @interface SignViewController ()<BlutToothManagerDelegate,PZBlueToothManagerDelegate,CLLocationManagerDelegate>
 
@@ -27,6 +28,12 @@
 
 @property (strong,nonatomic) CLLocationManager* locationManager;
 
+//红点
+@property (nonatomic, strong) UILabel *redLabel;
+
+//建议列表
+@property (nonatomic, strong) NSMutableArray *suggestList;
+@property (nonatomic, assign) NSInteger warn;
 
 @end
 
@@ -42,6 +49,7 @@
 //    if (!isalert) {
 //        [AlertMainView alertMainViewWithType:AlertMainViewTypeTest];
 //    }
+    [self getSuggestList];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -86,6 +94,13 @@
     [messageButton setImage:[UIImage imageNamed:@"yujing"] forState:UIControlStateNormal];
     [messageButton addTarget:self action:@selector(yujingAction) forControlEvents:UIControlEventTouchUpInside];
     
+    self.redLabel = [[UILabel alloc] initWithFrame:CGRectMake(CurrentDeviceWidth - 45 - 10, StatusBarHeight + 4, 10, 10)];
+    [self.view addSubview:self.redLabel];
+    self.redLabel.backgroundColor = [UIColor redColor];
+    self.redLabel.layer.cornerRadius = 5;
+    self.redLabel.layer.masksToBounds = YES;
+    self.redLabel.hidden = YES;
+    
     UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:guideButton];
     guideButton.frame = CGRectMake(CurrentDeviceWidth - 45 - 32 - 30, StatusBarHeight + 12, 20, 20);
@@ -94,27 +109,41 @@
     
 }
 
-//预警
-- (void)yujingAction{
-    NSString *url = [NSString stringWithFormat:@"%@/%@",GETWARNING,TOKEN];
-    NSDictionary *para = @{@"UserID":USERID,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]};
-    
-    [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:url fileUrl:nil params:para Block:^(id responseObject, NSError *error) {
+//获取建议列表
+- (void)getSuggestList{
+     NSString *url = [NSString stringWithFormat:@"%@/%@",SUGGEST,TOKEN];
+    [[AFAppDotNetAPIClient sharedClient] globalmultiPartUploadWithUrl:url fileUrl:nil params:@{@"userId":USERID} Block:^(id responseObject, NSError *error) {
         int code = [responseObject[@"code"] intValue];
         if (code == 0) {
-            NSInteger warnNum = [responseObject[@"data"][@"warnNum"] integerValue];
-            if (warnNum > 0) {
-                H5ViewController *h5 = [H5ViewController new];
-                h5.titleStr = NSLocalizedString(@"预警记录", nil);
-                h5.url = [NSString stringWithFormat:@"https://www02.lantianfangzhou.com/report/heartrate/b7s/%@/%@/0?page=curent",USERID,TOKEN];
-                h5.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:h5 animated:YES];
-            }else{
-                [self.view makeToast:NSLocalizedString(@"暂无预警记录", nil) duration:1.5 position:CSToastPositionCenter];
+            [self.suggestList addObjectsFromArray:responseObject[@"data"][@"list"]];
+            self.warn = [responseObject[@"data"][@"warn"] integerValue];
+            
+            BOOL isHidden = YES;
+            for (NSDictionary *dic in self.suggestList) {
+                if ([dic[@"state"] isEqualToString:@"1"]) {
+                    isHidden = NO;
+                }
             }
+            self.redLabel.hidden = isHidden;
         }else{
         }
     }];
+}
+
+//预警
+- (void)yujingAction{
+    SuggestListView *suggest = [SuggestListView suggestListViewWithNum:0 superVC:self list:self.suggestList];
+    //改变首页红点
+    WeakSelf
+    suggest.closeRequestBlock = ^{
+        BOOL isHidden = YES;
+        for (NSDictionary *dic in weakSelf.suggestList) {
+            if ([dic[@"state"] isEqualToString:@"1"]) {
+                isHidden = NO;
+            }
+        }
+        weakSelf.redLabel.hidden = isHidden;
+    };
 }
 
 //指引
@@ -514,6 +543,14 @@
             }
         }
     }];
+}
+
+#pragma mark - 懒加载
+- (NSMutableArray *)suggestList{
+    if (!_suggestList) {
+        _suggestList = [NSMutableArray array];
+    }
+    return _suggestList;
 }
 
 
