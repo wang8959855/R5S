@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -330,7 +328,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dur-4N-6vS">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="549"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="jFF-I6-YfY"/>
@@ -372,21 +370,30 @@
                         <action selector="hidenSearchView:" destination="-1" eventType="touchUpInside" id="p8f-bE-nBV"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注：苹果用户在解除设备绑定后，若需要再次绑定同一设备，需要在手机“设置”-“蓝牙”中忽略相应设备，再前往APP搜索绑定。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edK-z6-cPC">
+                    <rect key="frame" x="15" y="613" width="345" height="54"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="nNa-uz-Rdi" secondAttribute="trailing" id="46s-gN-4IP"/>
                 <constraint firstItem="dEg-wr-tDH" firstAttribute="leading" secondItem="Pwr-46-Wqo" secondAttribute="leading" constant="15" id="7ga-Og-ffB"/>
                 <constraint firstItem="MDu-rb-eWh" firstAttribute="leading" secondItem="Pwr-46-Wqo" secondAttribute="leading" id="ECn-YH-kej"/>
+                <constraint firstItem="edK-z6-cPC" firstAttribute="top" secondItem="dur-4N-6vS" secondAttribute="bottom" id="HWD-aR-eXG"/>
                 <constraint firstItem="xyb-PX-xml" firstAttribute="centerY" secondItem="nNa-uz-Rdi" secondAttribute="centerY" constant="10" id="JhD-fN-epw"/>
                 <constraint firstItem="MDu-rb-eWh" firstAttribute="top" secondItem="Pwr-46-Wqo" secondAttribute="top" constant="27" id="Kqf-xb-Ze1"/>
                 <constraint firstItem="xyb-PX-xml" firstAttribute="centerX" secondItem="nNa-uz-Rdi" secondAttribute="centerX" id="Om3-Y8-ZI4"/>
                 <constraint firstItem="nNa-uz-Rdi" firstAttribute="leading" secondItem="Pwr-46-Wqo" secondAttribute="leading" id="Rdd-Ce-pX8"/>
+                <constraint firstAttribute="bottom" secondItem="edK-z6-cPC" secondAttribute="bottom" id="T1J-0j-p7l"/>
                 <constraint firstItem="dur-4N-6vS" firstAttribute="leading" secondItem="Pwr-46-Wqo" secondAttribute="leading" id="WKV-Zv-GGN"/>
                 <constraint firstItem="dur-4N-6vS" firstAttribute="top" secondItem="nNa-uz-Rdi" secondAttribute="bottom" id="Xjj-l0-Gbc"/>
                 <constraint firstItem="nNa-uz-Rdi" firstAttribute="top" secondItem="Pwr-46-Wqo" secondAttribute="top" id="bJV-ZJ-tJl"/>
+                <constraint firstItem="edK-z6-cPC" firstAttribute="leading" secondItem="Pwr-46-Wqo" secondAttribute="leading" constant="15" id="kBC-Ou-hDt"/>
                 <constraint firstAttribute="trailing" secondItem="dur-4N-6vS" secondAttribute="trailing" id="o8t-ao-768"/>
-                <constraint firstAttribute="bottom" secondItem="dur-4N-6vS" secondAttribute="bottom" id="xhT-Gf-ggo"/>
+                <constraint firstAttribute="trailing" secondItem="edK-z6-cPC" secondAttribute="trailing" constant="15" id="yfU-Hs-bv6"/>
                 <constraint firstItem="dEg-wr-tDH" firstAttribute="top" secondItem="Pwr-46-Wqo" secondAttribute="top" constant="28" id="zVZ-Mc-Y4r"/>
             </constraints>
             <point key="canvasLocation" x="445" y="159"/>

@@ -88,6 +88,9 @@
     NSString *url = [NSString stringWithFormat:@"%@/%@",UPLOADLOCATION,TOKEN];
     NSDictionary *para = @{@"UserID":USERID,@"address":address,@"lng":@(lng),@"lat":@(lat),@"environment":environment,@"apptime":[[TimeCallManager getInstance] getCurrentAreaTime]};
     [[AFAppDotNetAPIClient sharedClient] globalRequestWithRequestSerializerType:nil ResponseSerializeType:nil RequestType:NSAFRequest_POST RequestURL:url ParametersDictionary:para Block:^(id responseObject, NSError *error, NSURLSessionDataTask *task) {
+        if (error) {
+            return;
+        }
         int code = [responseObject[@"code"] intValue];
         if (code == 0) {
             //上传成功

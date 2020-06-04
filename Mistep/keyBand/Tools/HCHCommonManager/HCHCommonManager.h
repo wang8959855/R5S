@@ -12,6 +12,7 @@
 #import "TodayStepsViewController.h"
 #import "Reachability.h"
 
+typedef void(^networkStatusBlock)(NetworkStatus network);
 @interface HCHCommonManager : NSObject
 
 @property (nonatomic, assign) BOOL isFirstLogin;
@@ -69,6 +70,9 @@
 @property (nonatomic, assign) BOOL conState;    //  蓝牙 连接状态的监测
 
 @property (nonatomic, assign) int LanguageNum;    //  语言状态。用于发给手表。用于请求天气发给手表
+
+//实时返回网络状态
+@property (nonatomic, copy) networkStatusBlock networkStatusBlock;
 
 //获取平均心率
 + (void)getAvgHeartRate;

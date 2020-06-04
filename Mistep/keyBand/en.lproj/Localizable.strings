@@ -145,7 +145,7 @@
 "身高不能为空，请选择身高" = "The height can't be empty, and please choose the height";
 "体重不能为空，请选择体重"="The weight can't be empty, and please choose the weight";
 "输入不能为空" = "Input can't be empty";
-"输入的心率必须在40到180之间" = "Input rate must be between 40 and 180";
+"输入的心率必须在40到100之间" = "Input rate must be between 40 and 100";
 "达人" = "Expert";
 "运动" = "Movement";
 "连接超时" = "Timeout";
@@ -512,3 +512,5 @@
 "synchronizationFailure" = "Synchronization failure";
 
 "DataSyn" = "Data syn..";//差一点点
+
+"无网络" = "No network";

@@ -137,7 +137,7 @@
 "手环固件有新版本，是否更新？"="Armband neue Firmware-Version, ob zu aktualisieren?";
 "手环升级成功"="Aktualisierung erfolgreich";
 "输入不能为空"="Die Eingabe kann nicht leer sein";
-"输入的心率必须在40到180之间"="Geben Sie die Herzfrequenz zwischen 40 und  180";
+"输入的心率必须在40到100之间"="Geben Sie die Herzfrequenz zwischen 40 und  100";
 "刷新超时"="Refresh Timeout";
 "睡眠"="Schlaf";
 "睡眠目标"="Ziel des Schlafes";

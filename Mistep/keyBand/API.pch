@@ -10,12 +10,12 @@
 #define API_pch
 
 //生产环境
-#define ROOT_URL @"https://www01.lantianfangzhou.com/r5s/api/"
+#define ROOT_URL @"https://test07.chinazhiao.com/r5s/api/"
 //测试环境
 //#define ROOT_URL @"http://test04.lantianfangzhou.com/r5s/api/"
 
 //报告
-#define REPORT_URL @"http://www02.lantianfangzhou.com/report/r5s/"
+#define REPORT_URL @"http://www04.lantianfangzhou.com/report/"
 
 #define PATH_URL(url) [NSString stringWithFormat:@"%@%@",ROOT_URL,url]
 

@@ -235,7 +235,7 @@
 "授权成功"="Udana autoryzacja";
 "授权失败"="Autoryzacja nie powiodła się";
 "输入不能为空"="Wprowadzeni nie może być puste";
-"输入的心率必须在40到180之间"="Tętno musi wynosić od 40 do 180";
+"输入的心率必须在40到100之间"="Tętno musi wynosić od 40 do 100";
 "输入昵称"="Nazwa użytkownika";
 "数据更新时间:"="Ostatnia aktualizacja:";
 "刷新超时"="Czas odświeżania";

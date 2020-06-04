@@ -63,6 +63,15 @@
     [guideButton addTarget:self action:@selector(guideAction) forControlEvents:UIControlEventTouchUpInside];
     
     self.webView.scrollView.delegate = self;
+    
+    WeakSelf
+    [HCHCommonManager getInstance].networkStatusBlock = ^(NetworkStatus network) {
+        if (network == NotReachable) {
+        }else{
+            [weakSelf reloadWebView];
+        }
+    };
+    
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
@@ -99,9 +108,15 @@
 
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    self.failView.hidden = YES;
-    if (!webView.isLoading) {
+    if ([HCHCommonManager getInstance].iphoneNetworkStatus == NotReachable) {
         [[UIApplication sharedApplication].keyWindow hideToastActivity];
+        [self failView];
+        self.failView.hidden = NO;
+    }else{
+        self.failView.hidden = YES;
+        if (!webView.isLoading) {
+            [[UIApplication sharedApplication].keyWindow hideToastActivity];
+        }
     }
 }
 

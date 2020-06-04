@@ -419,7 +419,6 @@ static NSString *AUISaveID = @"AUISaveID";
             return;
         }
     }
-    
     [self requestAlertInfoUrl:UPLOADUSERINFO parameter:self.uploadInfoDic filePath:nil];
 }
 

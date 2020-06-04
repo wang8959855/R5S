@@ -681,7 +681,7 @@
 #pragma mark - 四模块点击
 - (void)alertAtion:(UIGestureRecognizer *)tap{
     NSString *url = @"";
-    NSString *paraStr = [NSString stringWithFormat:@"%@/%@/0?page=current",USERID,TOKEN];
+    NSString *paraStr = [NSString stringWithFormat:@"wsjk/r5s/%@/%@/0?page=current",USERID,TOKEN];
     NSString *titStr = @"";
     if (tap.view.tag == 30) {
         //血氧

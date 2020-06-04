@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *chaozhong;
 @property (weak, nonatomic) IBOutlet UILabel *feipang;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
+
+
 @end
 
 @implementation BMIViewController
@@ -33,13 +36,12 @@
     
     self.topNavView2.backgroundColor = kMainColor;
     
-    if(_isRegister)
-    {
+    if(_isRegister) {
         _backButton.hidden = YES;
         _backButtonBig.hidden = YES;
     }
     [self setXibLabel];
-    
+    self.topHeight.constant = SafeAreaTopHeight;
     float BMI = _weight*10000.0/_height/_height;
     float minWeight = 18.5*_height*_height/10000;
     float maxWeight = 25 * _height *_height/10000;

@@ -381,7 +381,7 @@
  "输入不能为空" = "La entrada no puede estar vacía";
  
  /* No comment provided by engineer. */
- "输入的心率必须在40到180之间" = "Introduzca la frecuencia cardiaca debe ser entre 40 y 180";
+ "输入的心率必须在40到100之间" = "Introduzca la frecuencia cardiaca debe ser entre 40 y 100";
  
  /* No comment provided by engineer. */
  "达人" = "Maestro";

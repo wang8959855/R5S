@@ -78,14 +78,14 @@
     int min = [_minTF.text intValue];
     if (min && max)
     {
-        if (max < 40 || max > 180)
+        if (max < 40 || max > 100)
         {
-            [self showAlertView:NSLocalizedString(@"输入的心率必须在40到180之间", nil)];
+            [self showAlertView:NSLocalizedString(@"输入的心率必须在40到100之间", nil)];
             return;
         }
-        else if (min < 40 || min > 180)
+        else if (min < 40 || min > 100)
         {
-            [self showAlertView:NSLocalizedString(@"输入的心率必须在40到180之间", nil)];
+            [self showAlertView:NSLocalizedString(@"输入的心率必须在40到100之间", nil)];
             return;
         }else
         {

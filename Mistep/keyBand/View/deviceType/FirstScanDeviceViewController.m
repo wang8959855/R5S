@@ -39,8 +39,7 @@
     [super viewWillAppear:YES];
     [self searchView];
 }
-- (void)header
-{
+- (void)header {
     CGFloat headImageViewX = 0;
     CGFloat headImageViewY = StatusBarHeight;
     CGFloat headImageViewW = CurrentDeviceWidth;
@@ -154,8 +153,7 @@
     //    }
 }
 
--(void)setupBounds
-{
+-(void)setupBounds {
     CGFloat boundsViewX  = 0;
     CGFloat boundsViewY  = CGRectGetMaxY(self.deviceTableView.frame);
     CGFloat boundsViewW  = CurrentDeviceWidth;
@@ -247,8 +245,7 @@
     return 60;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PerModel *model = [_deviceArray objectAtIndex:indexPath.row];
     CBPeripheral *dev = model.per;
     if (dev)
@@ -264,9 +261,10 @@
         }
         
         [self addActityIndicatorInView:self.view labelText:NSLocalizedString(@"正在连接...", nil)  detailLabel:@""];
-        [self performSelector:@selector(connectTimeOut) withObject:nil afterDelay:5.f];
+        [self performSelector:@selector(connectTimeOut) withObject:nil afterDelay:3.f];
         [[CositeaBlueTooth sharedInstance] connectWithUUID:llString];
         [AllTool  savePeripheral:model];
+        [self setHeart];
         //[[CositeaBlueTooth sharedInstance] stopScanDevice];
     }
     else
@@ -275,8 +273,29 @@
     }
 }
 
-
-
+//循环设置
+- (void)setHeart{
+    if ([CositeaBlueTooth sharedInstance].isConnected) {
+        //默认打开心率预警和心率检测
+        [[CositeaBlueTooth sharedInstance] setHeartRateMonitorDurantionWithTime:62];
+        [[CositeaBlueTooth sharedInstance] changeHeartRateMonitorStateWithState:YES];
+        
+        int maxHeart,maxHeartTwo;
+        maxHeart = 220 - [[HCHCommonManager getInstance]getAge];
+        maxHeartTwo = maxHeart * 80 /100;
+        [[CositeaBlueTooth sharedInstance] setHeartRateAlarmWithState:YES MaxHeartRate:maxHeartTwo MinHeartRate:40];
+        
+        //默认关闭微信、QQ消息
+//        [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:10 State:NO];
+//        [[CositeaBlueTooth sharedInstance] setSystemAlarmWithType:9 State:NO];
+        
+        //运动检测默认关闭
+        [[CositeaBlueTooth sharedInstance] setupPageManager:4];
+        
+    }else{
+        [self performSelector:@selector(setHeart) withObject:nil afterDelay:0.5];
+    }
+}
 
 #pragma mark - bluTooth Connect
 

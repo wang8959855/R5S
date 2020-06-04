@@ -615,20 +615,21 @@ static HCHCommonManager * instance=nil;
 //    //adaLog(@"todayTimeSeconds = %@",[[TimeCallManager getInstance] timeAdditionWithTimeString:@"yyyy-MM-dd HH:mm:ss" andSeconed:_todayTimeSeconds]);
 }
 #pragma  mark   - -- apple demo   监测网络
-- (void) reachabilityChanged:(NSNotification *)note
-{
+- (void) reachabilityChanged:(NSNotification *)note {
     Reachability* curReach = [note object];
     NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
     [self updateInterfaceWithReachability:curReach];
 }
-- (void)updateInterfaceWithReachability:(Reachability *)reachability
-{
+- (void)updateInterfaceWithReachability:(Reachability *)reachability {
     NetworkStatus netStatus = [reachability currentReachabilityStatus];
     self.iphoneNetworkStatus = netStatus;
-    switch (netStatus)
-    {
+    if (self.networkStatusBlock) {
+        self.networkStatusBlock(netStatus);
+    }
+    switch (netStatus) {
         case NotReachable:{
             //adaLog(@"--NotReachable");
+            [[UIApplication sharedApplication].keyWindow makeToast:NSLocalizedString(@"无网络", nil) duration:1 position:CSToastPositionCenter];
             break;
         }
         case ReachableViaWWAN:{

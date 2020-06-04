@@ -146,7 +146,7 @@
 "身高不能为空，请选择身高" = "Boy boş bırakılamaz, lütfen boyunuzu giriniz";
 "体重不能为空，请选择体重"="Kilo boş bırakılamaz, lütfen kilonuzu giriniz";
 "输入不能为空" = "Giriş boş bırakılamaz";
-"输入的心率必须在40到180之间" = "Giriş hızı 40 ila 180 arası olmalıdır";
+"输入的心率必须在40到100之间" = "Giriş hızı 40 ila 100 arası olmalıdır";
 "达人" = "Uzman";
 "运动" = "Hareket";
 "连接超时" = "Zamanaşımı";

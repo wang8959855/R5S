@@ -666,8 +666,7 @@ static NSString *conectReuse = @"connectedCell";
     return 60;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PerModel *model = [_deviceArray objectAtIndex:indexPath.row];
     
     CBPeripheral *dev = model.per;

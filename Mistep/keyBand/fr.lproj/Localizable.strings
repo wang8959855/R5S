@@ -140,7 +140,7 @@
 "手环固件有新版本，是否更新？"="Mettre à jour la nouvelle version de microprogramme du bracelet, oui ou non?";
 "手环升级成功"="mise à jour avec succès";
 "输入不能为空"="L'entrée ne peut pas être vide";
-"输入的心率必须在40到180之间"="La fréquence cardiaque entrée doit être de 40 au 180.";
+"输入的心率必须在40到100之间"="La fréquence cardiaque entrée doit être de 40 au 100.";
 "刷新超时"="rafraîchir timeout";
 "睡眠"="sommeil";
 "睡眠目标"="cible de sommeil";

@@ -8651,7 +8651,7 @@
 				CODE_SIGN_ENTITLEMENTS = Wukong.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KN9NUA579B;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -8720,7 +8720,7 @@
 					"$(PROJECT_DIR)/framework/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/framework/ZBar",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hch.wsjk;
 				PRODUCT_NAME = Wukong;
@@ -8738,7 +8738,7 @@
 				CODE_SIGN_ENTITLEMENTS = Wukong.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KN9NUA579B;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -8807,7 +8807,7 @@
 					"$(PROJECT_DIR)/framework/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/framework/ZBar",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hch.wsjk;
 				PRODUCT_NAME = Wukong;
